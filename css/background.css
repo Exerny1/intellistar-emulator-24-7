@@ -1,11 +1,13 @@
-/* Background container with gradient */
-#background-image {
+/* Unified TWC-style gradient for all background states */
+#background-image,
+#background-image.below-screen,
+#background-image.above-screen {
   position: relative;
   left: 0px;
   top: 0px;
   width: 100%;
   height: 100%;
-  background: linear-gradient(180deg, #1b1d3a 0%, #2b2e50 50%, #4e5b84 100%) !important;
+  background: linear-gradient(180deg, #00aaff 0%, #00ffaa 50%, #0077aa 100%) !important;
   background-repeat: no-repeat !important;
   transition: top 400ms linear;
 }
