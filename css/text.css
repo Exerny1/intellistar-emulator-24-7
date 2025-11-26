@@ -1,17 +1,15 @@
-/* Regular text (Raleway 400) */
-.regular-text{
-  font-family: 'Raleway', sans-serif;
+.regular-text {
+  font-family: 'Roboto', sans-serif;
   font-weight: 400;
-  font-size: 62px;
+  font-size: 54px;
   color: white;
-  text-shadow: 3px 3px 3px rgba(0,0,0,0.15);
+  text-shadow: 2px 2px 2px rgba(0,0,0,0.15);
 }
 
-/* Strong text (Raleway 700) */
-.strong-text{
-  font-family: 'Raleway', sans-serif;
+.strong-text {
+  font-family: 'Roboto', sans-serif;
   font-weight: 700;
-  font-size: 60px;
+  font-size: 52px;
   color: white;
-  text-shadow: 5px 5px 5px rgba(0,0,0,0.25);
+  text-shadow: 4px 4px 4px rgba(0,0,0,0.25);
 }
