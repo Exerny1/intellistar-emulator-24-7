@@ -1,23 +1,19 @@
-@font-face {
-  font-family: akkoThin;
-  src: url(../fonts/akkopro-thin.otf);
-}
+/* Poppins font import */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
-@font-face {
-  font-family: akkoLight;
-  src: url(../fonts/akkopro-light.ttf);
-}
-
+/* Regular text (light Poppins) */
 .regular-text{
   text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.15);
-  font-family: akkoThin;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
   font-size: 62px;
   color: white;
 }
 
+/* Strong text (bold Poppins) */
 .strong-text{
-  font-family: akkoLight;
-  font-weight: bold;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
   font-size: 60px;
   color:white;
   text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.25);
