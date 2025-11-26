@@ -1,13 +1,15 @@
+/* Regular text in Helvetica */
 .regular-text{
-  font-family: 'PT Sans Narrow', sans-serif;
+  font-family: Helvetica, Arial, sans-serif;
   font-weight: 400;
   font-size: 62px;
   color: white;
   text-shadow: 3px 3px 3px rgba(0,0,0,0.15);
 }
 
+/* Strong text in Helvetica Bold */
 .strong-text{
-  font-family: 'PT Sans Narrow', sans-serif;
+  font-family: Helvetica, Arial, sans-serif;
   font-weight: 700;
   font-size: 60px;
   color: white;
