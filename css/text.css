@@ -1,15 +1,15 @@
-/* Regular text in Helvetica */
+/* Regular text (Raleway 400) */
 .regular-text{
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: 'Raleway', sans-serif;
   font-weight: 400;
   font-size: 62px;
   color: white;
   text-shadow: 3px 3px 3px rgba(0,0,0,0.15);
 }
 
-/* Strong text in Helvetica Bold */
+/* Strong text (Raleway 700) */
 .strong-text{
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: 'Raleway', sans-serif;
   font-weight: 700;
   font-size: 60px;
   color: white;
