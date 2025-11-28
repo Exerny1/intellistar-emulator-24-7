@@ -1,20 +1,11 @@
-#background-image,
-#background-image.below-screen,
-#background-image.above-screen {
-  position: relative;
-  left: 0px;
-  top: 0px;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, #d1fff0 0%, #ffffff 100%) !important; /* ← choose your peppermint gradient */
-  background-repeat: no-repeat !important;
-  transition: top 400ms linear;
-}
-
-#background-image.below-screen {
-  top: 100%;
-}
-
-#background-image.above-screen {
-  top: -100%;
-}
+background: radial-gradient(circle at center,
+  #ffffff 0%,
+  #ffffff 20%,
+  transparent 20%
+),
+repeating-conic-gradient(
+  from 0deg,
+  #ff0000 0deg 20deg,
+  #ffffff 20deg 40deg
+);
+background-blend-mode: overlay;
