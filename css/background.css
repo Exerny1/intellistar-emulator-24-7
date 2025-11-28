@@ -1,11 +1,33 @@
-background: radial-gradient(circle at center,
-  #ffffff 0%,
-  #ffffff 20%,
-  transparent 20%
-),
-repeating-conic-gradient(
-  from 0deg,
-  #ff0000 0deg 20deg,
-  #ffffff 20deg 40deg
-);
-background-blend-mode: overlay;
+#background-image {
+  position: relative;
+  left: 0px;
+  top: 0px;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+  transition: top 400ms;
+  transition-timing-function: linear;
+
+  /* Static peppermint swirl */
+  background: 
+    radial-gradient(circle at center,
+      white 0%,
+      white 20%,
+      transparent 20%
+    ),
+    repeating-conic-gradient(
+      from 0deg,
+      #ff0000 0deg 20deg,
+      white 20deg 40deg
+    );
+  background-size: cover;
+  background-position: center;
+}
+
+#background-image.below-screen {
+  top: 100%;
+}
+
+#background-image.above-screen {
+  top: -100%;
+}
