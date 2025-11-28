@@ -6,16 +6,18 @@
   top: 0px;
   width: 100%;
   height: 100%;
-  
-  /* Snowy sky gradient: blue to soft white */
-  background: linear-gradient(
-    to bottom,
-    #3a6ea5 0%,    /* mid blue at top */
-    #b0d4f1 70%,   /* light blue fading */
-    #f0f4f9 100%   /* soft white at bottom */
-  ) !important;
 
-  background-repeat: no-repeat !important;
+  /* Dark blue base with glowing Christmas spots */
+  background: 
+    radial-gradient(circle at 20% 25%, rgba(255, 0, 0, 0.6), transparent 80%),  /* red spot */
+    radial-gradient(circle at 70% 10%, rgba(0, 255, 0, 0.5), transparent 80%), /* green spot */
+    radial-gradient(circle at 40% 70%, rgba(255, 255, 0, 0.4), transparent 80%), /* gold spot */
+    radial-gradient(circle at 85% 60%, rgba(255, 0, 0, 0.5), transparent 80%),  /* red spot */
+    radial-gradient(circle at 15% 80%, rgba(0, 255, 0, 0.5), transparent 80%), /* green spot */
+    #0b1c3a; /* dark blue base */
+
+  background-repeat: no-repeat;
+  background-size: cover;
   transition: top 400ms linear;
 }
 
