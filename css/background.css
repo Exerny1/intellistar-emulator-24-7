@@ -6,15 +6,13 @@
   top: 0px;
   width: 100%;
   height: 100%;
-  
-  /* Christmas gradient: multiple reds, greens, and soft white sparkle */
+
+  /* Snow gradient: dark blue to light gray/white for snowy feel */
   background: linear-gradient(
     135deg,
-    #ff4d4d 0%,   /* bright red */
-    #ff0000 25%,  /* deep red */
-    #00b300 50%,  /* bright green */
-    #007700 75%,  /* darker green */
-    #ffffff 100%  /* subtle white sparkle at the bottom-right */
+    #1a2a6c 0%,    /* deep night blue */
+    #b0c4de 60%,   /* light steel blue for snow feeling */
+    #ffffff 100%    /* bright white at bottom-right to simulate snow accumulation */
   ) !important;
 
   background-repeat: no-repeat !important;
