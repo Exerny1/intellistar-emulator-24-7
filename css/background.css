@@ -1,13 +1,18 @@
-#background-image,
-#background-image.below-screen,
-#background-image.above-screen {
+#background-image {
   position: relative;
-  left: 0px;
-  top: 0px;
+  left: 0;
+  top: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, #ff0000 0%, #ffffff 100%); /* Red to white peppermint gradient */
+  background-color: #0a0f2d; /* dark blue base */
+  background-image: 
+    radial-gradient(circle at 20% 30%, #ff6ec7 2px, transparent 0),
+    radial-gradient(circle at 70% 10%, #ffe600 3px, transparent 0),
+    radial-gradient(circle at 50% 70%, #00ffe0 2px, transparent 0),
+    radial-gradient(circle at 80% 50%, #ff4500 2px, transparent 0),
+    radial-gradient(circle at 30% 80%, #8a2be2 2px, transparent 0);
   background-repeat: no-repeat;
+  background-size: cover;
   transition: top 400ms linear;
 }
 
