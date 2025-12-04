@@ -196,79 +196,34 @@ function fetchCurrentWeather(){
 }
 
 function fetchRadarImages(){
-  radarImage = document.createElement("iframe");
+  // Skip radar until replaced with some other solution (wunderground api dead)
+   //scheduleTimeline();
+   //return;
+/*
+  radarImage = new Image();
   radarImage.onerror = function () {
     getElement('radar-container').style.display = 'none';
   }
+  radarImage.src = `https://api.wunderground.com/api/${CONFIG.secrets.wundergroundAPIKey}/animatedradar/q/MI/${zipCode}.gif?newmaps=1&timelabel=1&timelabel.y=10&num=5&delay=10&radius=100&num=15&width=1235&height=525&rainsnow=1&smoothing=1&noclutter=1`;
+*/
+// Temporary solution using National NWS mosaic unitll I can get a different free API.
+  radarImage = new Image();
+  radarImage.onerror = function () {
+    getElement('radar-container').style.display = 'none';
+  }
+  // radarImage.src = `https://s.w-x.co/staticmaps/wu/wxtype/none/usa/animate.png`;
+  radarImage.src = `https://s.w-x.co/staticmaps/wu/wxtype/none/usa/animate.png`;
+  // Use some hacky workarounds the (almost) 4K size of the imagery
+  radarImage.width = `1235`
+  radarImage.height = `525`
 
-  mapSettings = btoa(JSON.stringify({
-    "agenda": {
-      "id": "weather",
-      "center": [longitude, latitude],
-      "location": null,
-      "zoom": 8
-    },
-    "animating": true,
-    "base": "standard",
-    "artcc": false,
-    "county": false,
-    "cwa": false,
-    "rfc": false,
-    "state": false,
-    "menu": false,
-    "shortFusedOnly": false,
-    "opacity": {
-      "alerts": 0.0,
-      "local": 0.0,
-      "localStations": 0.0,
-      "national": 0.6
-    }
-  }));
-  radarImage.setAttribute("src", "https://radar.weather.gov/?settings=v1_" + mapSettings);
-  radarImage.style.width = "1230px"
-  radarImage.style.height = "740px"
-  radarImage.style.marginTop = "-220px"
-  radarImage.style.overflow = "hidden"
-  
+
   if(alertsActive){
     zoomedRadarImage = new Image();
     zoomedRadarImage.onerror = function () {
       getElement('zoomed-radar-container').style.display = 'none';
     }
-
-    zoomedRadarImage = document.createElement("iframe");
-    zoomedRadarImage.onerror = function () {
-      getElement('zoomed-radar-container').style.display = 'none';
-    }
-  
-    mapSettings = btoa(JSON.stringify({
-      "agenda": {
-        "id": "weather",
-        "center": [longitude, latitude],
-        "location": null,
-        "zoom": 10
-      },
-      "animating": true,
-      "base": "standard",
-      "artcc": false,
-      "county": false,
-      "cwa": false,
-      "rfc": false,
-      "state": false,
-      "menu": false,
-      "shortFusedOnly": false,
-      "opacity": {
-        "alerts": 0.0,
-        "local": 0.0,
-        "localStations": 0.0,
-        "national": 0.6
-      }
-    }));
-    zoomedRadarImage.setAttribute("src", "https://radar.weather.gov/?settings=v1_" + mapSettings);
-    zoomedRadarImage.style.width = "1230px"
-    zoomedRadarImage.style.height = "740px"
-    zoomedRadarImage.style.marginTop = "-220px"
-    zoomedRadarImage.style.overflow = "hidden"
+    zoomedRadarImage.src = `https://api.wunderground.com/api/${CONFIG.secrets.wundergroundAPIKey}/animatedradar/q/MI/${zipCode}.gif?newmaps=1&timelabel=1&timelabel.y=10&num=5&delay=10&radius=50&num=15&width=1235&height=525&rainsnow=1&smoothing=1&noclutter=1`;
   }
 
   scheduleTimeline();
