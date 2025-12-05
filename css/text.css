@@ -1,7 +1,7 @@
 .regular-text {
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
-  font-size: 48px; /* was 54px */
+  font-size: 52px; /* was 54px */
   color: white;
   text-shadow: 2px 2px 2px rgba(0,0,0,0.15);
 }
@@ -9,7 +9,7 @@
 .strong-text {
   font-family: 'Roboto', sans-serif;
   font-weight: 700;
-  font-size: 46px; /* was 52px */
+  font-size: 52px; /* was 52px */
   color: white;
   text-shadow: 4px 4px 4px rgba(0,0,0,0.25);
 }
