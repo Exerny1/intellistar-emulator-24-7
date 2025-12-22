@@ -1,4 +1,6 @@
-#background-image {
+#background-image,
+#background-image.below-screen,
+#background-image.above-screen {
   position: relative;
   left: 0px;
   top: 0px;
@@ -6,11 +8,19 @@
   height: 100%;
   background: linear-gradient(
     135deg,
-    #0e3b2c 0%,   /* dark evergreen */
-    #145a32 30%,  /* pine green */
-    #7b1e24 65%,  /* warm holiday red */
-    #2a0f12 100%  /* dark winter night */
-  );
-  background-repeat: no-repeat;
+    #0e3b2c 0%,     /* deep evergreen */
+    #145a32 30%,    /* softer pine green */
+    #7b1e24 65%,    /* warm holiday red */
+    #2a0f12 100%    /* dark winter night */
+  ) !important;
+  background-repeat: no-repeat !important;
   transition: top 400ms linear;
+}
+
+#background-image.below-screen {
+  top: 100%;
+}
+
+#background-image.above-screen {
+  top: -100%;
 }
