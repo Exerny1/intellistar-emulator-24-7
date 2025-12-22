@@ -1,28 +1,11 @@
-/* Winter holiday gradient background for #background-image */
-#background-image,
-#background-image.below-screen,
-#background-image.above-screen {
+#background-image {
   background: linear-gradient(
     135deg,
     #0e3b2c 0%,    /* deep evergreen */
     #145a32 30%,   /* soft pine green */
     #7b1e24 65%,   /* warm holiday red */
     #2a0f12 100%   /* dark winter night */
-  ) !important;
-  position: relative;
-  left: 0px;
-  top: 0px;
+  ) !important; /* override any previous background */
   background-repeat: no-repeat;
-  width: 100%;
-  height: 100%;
-  transition: top 400ms linear;
-}
-
-/* Sliding states */
-#background-image.below-screen {
-  top: 100%;
-}
-
-#background-image.above-screen {
-  top: -100%;
+  background-size: cover; /* make sure it fills the area */
 }
