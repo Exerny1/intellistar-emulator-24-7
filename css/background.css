@@ -8,10 +8,12 @@
   height: 100%;
   background: linear-gradient(
     135deg,
-    #0e3b2c 0%,     /* deep evergreen */
-    #145a32 30%,    /* softer pine green */
-    #7b1e24 65%,    /* warm holiday red */
-    #2a0f12 100%    /* dark winter night */
+    #0a1a2f 0%,     /* dark winter night blue */
+    #0f5fa6 25%,    /* soft blue light */
+    #1f7a1f 45%,    /* green bulb */
+    #c7a000 65%,    /* warm yellow bulb */
+    #a11a1a 85%,    /* red bulb */
+    #050508 100%    /* near-black fade */
   ) !important;
   background-repeat: no-repeat !important;
   transition: top 400ms linear;
