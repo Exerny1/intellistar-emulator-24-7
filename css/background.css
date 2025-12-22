@@ -1,17 +1,26 @@
 #background-image,
 #background-image.below-screen,
 #background-image.above-screen {
-  position: absolute; /* absolute so it fills the screen */
-  top: 0;
-  left: 0;
+  position: relative;
+  left: 0px;
+  top: 0px;
   width: 100%;
   height: 100%;
-  z-index: -1; /* make sure it's behind everything */
-
-  background-image: url("https://images.unsplash.com/photo-1608889175250-c3b0c1667a4b?auto=format&fit=crop&w=1920&q=80");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-
+  background: linear-gradient(
+    135deg,
+    #0e3b2c 0%,     /* deep evergreen */
+    #145a32 30%,    /* softer pine green */
+    #7b1e24 65%,    /* warm holiday red */
+    #2a0f12 100%    /* dark winter night */
+  ) !important;
+  background-repeat: no-repeat !important;
   transition: top 400ms linear;
+}
+
+#background-image.below-screen {
+  top: 100%;
+}
+
+#background-image.above-screen {
+  top: -100%;
 }
