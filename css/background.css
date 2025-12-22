@@ -1,6 +1,4 @@
-/* Changed 'Background-image' to '.background-image' or '#background-image' */
-#background-image,
-.background-image,
+Background-image,
 #background-image.below-screen,
 #background-image.above-screen {
   position: relative;
@@ -8,9 +6,15 @@
   top: 0px;
   width: 100%;
   height: 100%;
-  /* Added background-size to ensure it stretches */
-  background: linear-gradient(135deg, #2c353e 0%, #0f1115 100%) !important;
-  background-size: cover !important;
+  /* 1. Adjusted angle to 155deg to push the light more to the left
+     2. Added a middle stop to simulate the soft fall-off of light
+  */
+  background: linear-gradient(
+    155deg, 
+    #2c353e 0%, 
+    #1c2127 40%, 
+    #0f1115 100%
+  ) !important;
   background-repeat: no-repeat !important;
   transition: top 400ms linear;
 }
