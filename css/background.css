@@ -7,11 +7,11 @@
   width: 100%;
   height: 100%;
   background: linear-gradient(
-    to bottom,
-    #6fb7ff 0%,      /* soft winter sky blue at top */
-    #bfe5ff 40%,     /* lighter icy blue */
-    #eaf6ff 70%,     /* almost-snowy tone */
-    rgba(255, 255, 255, 0.75) 100% /* snowy bottom but slightly transparent so text still shows */
+    135deg,
+    #0e3b2c 0%,     /* deep evergreen */
+    #145a32 30%,    /* softer pine green */
+    #7b1e24 65%,    /* warm holiday red */
+    #2a0f12 100%    /* dark winter night */
   ) !important;
   background-repeat: no-repeat !important;
   transition: top 400ms linear;
