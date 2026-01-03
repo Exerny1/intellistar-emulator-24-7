@@ -3,18 +3,17 @@
 #background-image.below-screen,
 #background-image.above-screen {
   position: relative;
-  left: 0;
-  top: 0;
+  left: 0px;
+  top: 0px;
   width: 100%;
   height: 100%;
 
   background: linear-gradient(
-    to bottom,
-    #10263d 0%,    /* top: cool IntelliStar blue */
-    #143a5a 30%,   /* soft broadcast blue */
-    #0f2b44 55%,   /* muted teal-blue */
-    #08131f 80%,   /* deep shadow */
-    #05080c 100%   /* near-black footer */
+    135deg,
+    #0b1f33 0%,   /* deep TWC blue */
+    #0e2f46 40%,  /* IntelliStar teal-blue */
+    #08131f 75%,  /* dark transition */
+    #05080c 100%  /* near-black */
   ) !important;
 
   background-size: cover !important;
