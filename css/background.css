@@ -9,11 +9,11 @@
   height: 100%;
 
   background: linear-gradient(
-    135deg,
-    #0b1f33 0%,   /* deep TWC blue */
-    #0e2f46 40%,  /* IntelliStar teal-blue */
-    #08131f 75%,  /* dark transition */
-    #05080c 100%  /* near-black */
+    180deg,
+    #2b3f52 0%,   /* steel blue top */
+    #243848 35%,  /* soft slate blue */
+    #1b2c3a 65%,  /* deeper blue-gray */
+    #121c25 100%  /* dark base */
   ) !important;
 
   background-size: cover !important;
