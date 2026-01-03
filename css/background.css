@@ -10,9 +10,9 @@
 
   background: radial-gradient(
     circle at 20% 20%,
-    #1D242C 0%,
-    #141A21 45%,
-    #0B0D0F 100%
+    #242D36 0%,   /* slightly brighter slate highlight */
+    #181F26 45%,  /* softened mid-tone */
+    #0B0D0F 100%  /* keep edges dark */
   ) !important;
 
   background-repeat: no-repeat !important;
