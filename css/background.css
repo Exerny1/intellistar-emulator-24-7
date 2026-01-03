@@ -8,12 +8,15 @@
   width: 100%;
   height: 100%;
 
-  background: linear-gradient(
-    180deg,
-    #5A8DC0 0%,   /* top weather blue */
-    #3B669E 45%,  /* lo-fi CRT transition */
-    #142B4D 100%  /* deep bottom blue */
-  ) !important;
+  background:
+    radial-gradient(
+      ellipse at top center,
+      #5A8DC0 0%,
+      #4A79B2 25%,
+      #3B669E 50%,
+      #233F63 75%,
+      #142B4D 100%
+    ) !important;
 
   background-repeat: no-repeat !important;
   background-size: cover !important;
