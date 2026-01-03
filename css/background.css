@@ -10,13 +10,12 @@
 
   background: linear-gradient(
     180deg,
-    #2b3f52 0%,   /* steel blue top */
-    #243848 35%,  /* soft slate blue */
-    #1b2c3a 65%,  /* deeper blue-gray */
-    #121c25 100%  /* dark base */
+    #5A8DC0 0%,   /* top weather blue */
+    #3B669E 45%,  /* lo-fi CRT transition */
+    #142B4D 100%  /* deep bottom blue */
   ) !important;
 
-  background-size: cover !important;
   background-repeat: no-repeat !important;
+  background-size: cover !important;
   transition: top 400ms linear;
 }
