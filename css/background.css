@@ -10,12 +10,13 @@
 
   background: radial-gradient(
     circle at 20% 20%,
-    #273441 0%,   /* subtle blue-leaning slate */
-    #1A2430 45%,  /* cool navy mid-tone */
-    #0B0D0F 100%  /* deep charcoal edge */
-  ) !important;
+    #2a4f6e 0%,     /* cold steel blue highlight */
+    #1e354a 35%,    /* winter navy */
+    #121e28 65%,    /* storm shadow */
+    #090c10 100%    /* near-black cold night */
+  );
 
-  background-repeat: no-repeat !important;
-  background-size: cover !important;
+  background-repeat: no-repeat;
+  background-size: cover;
   transition: top 400ms linear;
 }
