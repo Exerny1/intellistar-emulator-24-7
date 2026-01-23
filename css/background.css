@@ -1,4 +1,4 @@
-#background-image,
+l#background-image,
 .background-image,
 #background-image.below-screen,
 #background-image.above-screen {
@@ -10,10 +10,10 @@
 
   background: radial-gradient(
     circle at 20% 20%,
-    #3b6f97 0%,     /* icy sky blue glow */
-    #254c6b 30%,    /* cold steel blue */
-    #162735 60%,    /* storm navy */
-    #0a0e13 100%    /* deep winter night */
+    #5a1c1c 0%,     /* muted emergency red */
+    #3b1212 35%,    /* deep warning red */
+    #1f0a0a 65%,    /* dark maroon shadow */
+    #0b0505 100%    /* near-black alert night */
   ) !important;
 
   background-repeat: no-repeat !important;
