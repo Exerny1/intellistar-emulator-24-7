@@ -47,9 +47,7 @@
   top: 0px;
 }
 
-#infobar-local-logo.shown{
-  transition-delay: 150ms;
-  top: 0px;
+
 }
 
 #infobar-location-container.shown{
