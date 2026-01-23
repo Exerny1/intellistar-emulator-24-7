@@ -15,12 +15,10 @@
   float: left;
 }
 
-#infobar-local-logo {
-  position: relative;
-  transition: top 0.4s;
-  top: 100%;
-  height: 100%;
-  float: left;
+
+  #infobar-local-logo {
+  visibility: hidden !important;
+}
 }
 
 #infobar-time-container{
