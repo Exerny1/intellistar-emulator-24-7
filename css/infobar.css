@@ -15,9 +15,13 @@
   float: left;
 }
 
-#infobar-local-logoł position: relative; transition: top •4s;
-top: 100%;
-height: 100%; float: left;
+#infobar-local-logo {
+  position: relative;
+  transition: top 0.4s;
+  top: 100%;
+  height: 100%;
+  float: left;
+}
 
 #infobar-time-container{
   background-color: rgba(0, 0, 0, 0.25);
