@@ -10,11 +10,11 @@
 
   background: radial-gradient(
     circle at 20% 20%,
-    #6e8fa8 0%,     /* icy snowfall glow */
-    #3f5d73 28%,    /* steel winter blue */
-    #1e2f3d 55%,    /* storm core */
-    #0f1419 75%,    /* blizzard darkness */
-    #07090c 100%    /* whiteout night */
+    #7fa6c4 0%,     /* cold snow-lit sky (more blue) */
+    #4f7fa3 30%,    /* icy steel blue */
+    #27435a 55%,    /* storm mass */
+    #13202b 75%,    /* deep winter night */
+    #070b10 100%    /* blizzard darkness */
   ) !important;
 
   background-repeat: no-repeat !important;
