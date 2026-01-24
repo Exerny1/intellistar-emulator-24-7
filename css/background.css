@@ -7,12 +7,15 @@
   top: 0 !important;
   width: 100% !important;
   height: 100% !important;
+
   background: radial-gradient(
     circle at 20% 20%,
-    #5f86a8 0%,    /* brighter true blue highlight */
-    #3f6586 45%,   /* classic TWC storm blue */
-    #16222d 100%   /* deep navy edge */
+    #2a4f6e 0%,     /* icy storm blue highlight */
+    #1c364f 40%,    /* deep winter blue */
+    #0f1b27 70%,    /* cold night blue */
+    #070c11 100%    /* near-black storm night */
   ) !important;
+
   background-repeat: no-repeat !important;
   background-size: cover !important;
   transition: top 400ms linear !important;
