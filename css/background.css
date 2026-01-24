@@ -9,9 +9,9 @@
   height: 100% !important;
   background: radial-gradient(
     circle at 20% 20%,
-    #2e4a5e 0%,    /* cold steel blue highlight */
-    #1f3444 45%,   /* deep storm blue */
-    #0b1218 100%   /* near-black winter night */
+    #4f6f88 0%,    /* brighter steel blue highlight */
+    #344e63 45%,   /* stormy blue-gray */
+    #121a21 100%   /* dark edge, not pure black */
   ) !important;
   background-repeat: no-repeat !important;
   background-size: cover !important;
