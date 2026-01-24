@@ -9,9 +9,9 @@
   height: 100% !important;
   background: radial-gradient(
     circle at 20% 20%,
-    #4f6f88 0%,    /* brighter steel blue highlight */
-    #344e63 45%,   /* stormy blue-gray */
-    #121a21 100%   /* dark edge, not pure black */
+    #5f86a8 0%,    /* brighter true blue highlight */
+    #3f6586 45%,   /* classic TWC storm blue */
+    #16222d 100%   /* deep navy edge */
   ) !important;
   background-repeat: no-repeat !important;
   background-size: cover !important;
