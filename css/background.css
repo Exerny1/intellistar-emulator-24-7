@@ -7,16 +7,12 @@
   top: 0 !important;
   width: 100% !important;
   height: 100% !important;
-
   background: radial-gradient(
     circle at 20% 20%,
-    #7fa6c4 0%,     /* cold snow-lit sky (more blue) */
-    #4f7fa3 30%,    /* icy steel blue */
-    #27435a 55%,    /* storm mass */
-    #13202b 75%,    /* deep winter night */
-    #070b10 100%    /* blizzard darkness */
+    #2e4a5e 0%,    /* cold steel blue highlight */
+    #1f3444 45%,   /* deep storm blue */
+    #0b1218 100%   /* near-black winter night */
   ) !important;
-
   background-repeat: no-repeat !important;
   background-size: cover !important;
   transition: top 400ms linear !important;
