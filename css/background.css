@@ -7,12 +7,15 @@
   top: 0 !important;
   width: 100% !important;
   height: 100% !important;
+
   background: radial-gradient(
-      circle at 20% 20%,
-      #7a1f1f 0%,    /* muted warning red highlight */
-      #4a1010 45%,  /* deep alert red */
-      #140606 100%  /* near-black winter night */
+    circle at 20% 20%,
+    #2b3f52 0%,     /* cold storm blue */
+    #1a2b3a 40%,    /* deep winter navy */
+    #0c141c 75%,    /* near-black storm cloud */
+    #06090c 100%    /* night snow squall */
   ) !important;
+
   background-repeat: no-repeat !important;
   background-size: cover !important;
   transition: top 400ms linear !important;
