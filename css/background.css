@@ -10,9 +10,9 @@
 
   background: radial-gradient(
     circle at 20% 20%,
-    #2a4f6e 0%,     /* icy storm blue highlight */
-    #1c364f 40%,    /* deep winter blue */
-    #0f1b27 70%,    /* cold night blue */
+    #3a6f8f 0%,     /* icy cyan-blue highlight */
+    #25526e 35%,    /* storm cyan-blue */
+    #142b3d 65%,    /* deep winter blue */
     #070c11 100%    /* near-black storm night */
   ) !important;
 
