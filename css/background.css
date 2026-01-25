@@ -10,10 +10,10 @@
 
   background: radial-gradient(
     circle at 20% 20%,
-    #6b1d1d 0%,     /* alert red highlight */
-    #4a0f12 35%,    /* deep warning red */
-    #25080a 65%,    /* dark storm red */
-    #0a0405 100%    /* near-black */
+    #4a7f9c 0%,     /* brighter icy cyan */
+    #2e627e 35%,    /* lifted storm blue */
+    #18364a 65%,    /* deep winter blue */
+    #080d12 100%    /* storm night */
   ) !important;
 
   background-repeat: no-repeat !important;
