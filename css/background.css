@@ -1,13 +1,21 @@
-/* Default / Normal Background (Non-Alert) */
 #background-image,
-.background-image {
+.background-image,
+#background-image.below-screen,
+#background-image.above-screen {
+  position: relative;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+
   background: radial-gradient(
     circle at 20% 20%,
-    #24303b 0%,   /* deep slate/navy (slightly brighter) */
-    #1a232c 45%,  /* smooth mid fade */
-    #0b0d10 100%  /* rich charcoal */
+    #273441 0%,   /* subtle blue-leaning slate */
+    #1A2430 45%,  /* cool navy mid-tone */
+    #0B0D0F 100%  /* deep charcoal edge */
   ) !important;
 
   background-repeat: no-repeat !important;
   background-size: cover !important;
+  transition: top 400ms linear;
 }
