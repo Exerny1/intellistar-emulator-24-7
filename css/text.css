@@ -1,7 +1,7 @@
 .regular-text {
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
-  font-size: 52px; /* was 54px */
+  font-size: 50px; /* was 54px */
   color: white;
   text-shadow: 2px 2px 2px rgba(0,0,0,0.15);
 }
