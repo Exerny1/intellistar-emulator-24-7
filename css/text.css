@@ -9,7 +9,7 @@
 .strong-text {
   font-family: 'Roboto', sans-serif;
   font-weight: 700;
-  font-size: 52px; /* was 52px */
+  font-size: 50px; /* was 52px */
   color: white;
   text-shadow: 4px 4px 4px rgba(0,0,0,0.25);
 }
