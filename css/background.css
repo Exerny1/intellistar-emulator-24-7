@@ -10,7 +10,7 @@
   /* Background with top and bottom grey bars */
   background: linear-gradient(
     to bottom,
-    rgba(50, 50, 50, 1) 0%,       /* Top grey bar */
+    rgba(50, 50, 50, 1) 100%,       /* Top grey bar */
     #327EBD 10%,                  /* Main blue */
     #327EBD 90%,                  /* Main blue */
     rgba(50, 50, 50, 1) 100%      /* Bottom grey bar */
