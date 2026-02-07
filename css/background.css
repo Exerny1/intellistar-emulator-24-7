@@ -9,10 +9,10 @@
   height: 100%;
   background: linear-gradient(
     to bottom,
-    #327EBD 0%,      /* main blue at top */
-    #5AA3E0 80%,     /* lighter blue gradient fading down */
-    #1A1A1A 80%,     /* start of dark bottom bar */
-    #1A1A1A 100%     /* bottom bar fills remaining 20% */
+    rgba(50, 126, 189, 0.6) 0%,   /* semi-transparent blue */
+    rgba(50, 126, 189, 0.6) 80%,  /* continues to 80% */
+    #1A1A1A 80%,                   /* dark bottom bar starts */
+    #1A1A1A 100%                   /* bottom bar fills remaining 20% */
   ) !important;
   background-size: cover !important;
   background-repeat: no-repeat !important;
