@@ -8,13 +8,7 @@
   width: 100%;
   height: 100%;
 
-  background: radial-gradient(
-    circle at 20% 20%,
-    #6fb7ff 0%,      /* lighter highlight */
-    #327EBD 40%,     /* your WeatherScan blue */
-    #0b2a66 100%     /* deep navy edge */
-  ) !important;
-
+  background: #327EBD !important;  /* Solid WeatherScan blue */
   background-repeat: no-repeat !important;
   background-size: cover !important;
   transition: top 400ms linear;
