@@ -18,3 +18,29 @@
   background-repeat: no-repeat !important;
   transition: top 400ms linear;
 }
+
+/* LEFT curved strip */
+#background-image::before {
+  content: "";
+  position: absolute;
+  left: -120px;
+  top: 18%;
+  width: 260px;
+  height: 64%;
+  background: linear-gradient(90deg, #3aa1ff, #2c6fb3);
+  border-radius: 140px;
+  opacity: 0.85;
+}
+
+/* RIGHT curved strip */
+#background-image::after {
+  content: "";
+  position: absolute;
+  right: -120px;
+  top: 18%;
+  width: 260px;
+  height: 64%;
+  background: linear-gradient(270deg, #3aa1ff, #2c6fb3);
+  border-radius: 140px;
+  opacity: 0.85;
+  }
