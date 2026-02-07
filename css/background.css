@@ -9,10 +9,10 @@
   height: 100%;
   background: linear-gradient(
     to bottom,
-    #1F5D8A 0%,        /* darker WeatherScan blue */
-    #1F5D8A 80%,       /* blue continues until 80% */
-    #1A1A1A 80%,       /* start of dark bottom bar */
-    #1A1A1A 100%       /* bottom bar fills remaining 20% */
+    rgba(50, 126, 189, 0.5) 0%,   /* semi-transparent WeatherScan blue */
+    rgba(50, 126, 189, 0.5) 80%,  /* blue continues with same transparency */
+    #1A1A1A 80%,                   /* solid black bottom bar */
+    #1A1A1A 100%
   ) !important;
   background-size: cover !important;
   background-repeat: no-repeat !important;
