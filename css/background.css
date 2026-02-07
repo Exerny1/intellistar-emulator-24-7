@@ -19,42 +19,33 @@
   transition: top 400ms linear;
 }
 
-/* ---------- LEFT WEATHERSCAN PILLAR ---------- */
+/* ---------- LEFT WEATHERSCAN PILLAR (NO SHADOW) ---------- */
 #background-image::before {
   content: "";
   position: absolute;
   left: 0;
-  top: 18%;              /* matches your top bar position */
-  width: 110px;          /* pillar thickness */
-  height: 64%;           /* matches space between bars */
+  top: 0;               /* STARTS AT THE TOP */
+  width: 105px;         /* pillar thickness */
+  height: 100%;         /* runs full height */
 
-  /* Solid Steel Blue */
+  /* Solid WeatherScan blue */
   background: #327EBD;
 
-  /* Concave cut using border-radius trick */
-  border-radius: 0 120px 120px 0 / 50%;
-
-  /* Soft shadow along the curved edge */
-  box-shadow:
-    8px 0 12px rgba(0,0,0,0.25),
-    15px 0 25px rgba(0,0,0,0.15);
+  /* Single inward curve */
+  border-radius: 0 140px 140px 0 / 45%;
 }
 
-/* ---------- RIGHT WEATHERSCAN PILLAR ---------- */
+/* ---------- RIGHT WEATHERSCAN PILLAR (NO SHADOW) ---------- */
 #background-image::after {
   content: "";
   position: absolute;
   right: 0;
-  top: 18%;
-  width: 110px;
-  height: 64%;
+  top: 0;               /* STARTS AT THE TOP */
+  width: 105px;
+  height: 100%;
 
   background: #327EBD;
 
-  /* Mirror the concave curve */
-  border-radius: 120px 0 0 120px / 50%;
-
-  box-shadow:
-    -8px 0 12px rgba(0,0,0,0.25),
-    -15px 0 25px rgba(0,0,0,0.15);
+  /* Mirror the inward curve */
+  border-radius: 140px 0 0 140px / 45%;
 }
