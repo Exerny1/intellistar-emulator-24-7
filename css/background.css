@@ -9,9 +9,10 @@
   height: 100%;
   background: linear-gradient(
     to bottom,
-    #327EBD 0%,        /* main WeatherScan blue */
+    #1A1A1A 0%,        /* top black bar */
+    #327EBD 10%,       /* blue starts after 10% */
     #327EBD 80%,       /* blue continues until 80% */
-    #1A1A1A 80%,       /* start of dark bottom bar */
+    #1A1A1A 80%,       /* bottom black bar starts */
     #1A1A1A 100%       /* bottom bar fills remaining 20% */
   ) !important;
   background-size: cover !important;
