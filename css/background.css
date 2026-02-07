@@ -10,9 +10,9 @@
   background: linear-gradient(
     to bottom,
     #1D3F63 0%,        /* deep, rich blue at the top */
-    #2C5E8F 80%,       /* lighter blue toward bottom */
-    #1A1A1A 80%,       /* start of black bar */
-    #1A1A1A 100%       /* black bar fills remaining 20% */
+    #2C5E8F 85%,       /* lighter blue toward bottom */
+    #1A1A1A 85%,       /* start of black bar */
+    #1A1A1A 100%       /* black bar fills remaining 15% */
   ) !important;
   background-size: cover !important;
   background-repeat: no-repeat !important;
