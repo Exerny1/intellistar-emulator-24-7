@@ -19,26 +19,26 @@
   transition: top 400ms linear;
 }
 
-/* ---------- LEFT WEATHERSCAN PILLAR (FLAT–CURVE–FLAT) ---------- */
+/* ---------- LEFT WEATHERSCAN PILLAR (DEEP ROUND CURVE) ---------- */
 #background-image::before {
   content: "";
   position: absolute;
   left: 0;
   top: 0;
-  width: 105px;      /* thickness of the bar */
+  width: 105px;
   height: 100%;
 
   background: #327EBD;
 
-  /* This makes it flat at top & bottom, curved only in middle */
+  /* Deeper, rounder inward curve */
   clip-path: polygon(
-    0% 0%,      /* top-left */
-    100% 0%,    /* top-right (flat top) */
-    100% 40%,   /* start of inward curve */
-    65% 50%,    /* deepest inward point */
-    100% 60%,   /* end of inward curve */
-    100% 100%,  /* flat bottom right */
-    0% 100%     /* flat bottom left */
+    0% 0%,        /* top-left */
+    100% 0%,      /* flat top */
+    100% 35%,     
+    55% 50%,      /* DEEPEST inward point */
+    100% 65%,     
+    100% 100%,    /* flat bottom */
+    0% 100%
   );
 }
 
@@ -54,12 +54,12 @@
   background: #327EBD;
 
   clip-path: polygon(
-    100% 0%,    /* top-right */
-    0% 0%,      /* top-left (flat top) */
-    0% 40%,     /* start of inward curve */
-    35% 50%,    /* deepest inward point */
-    0% 60%,     /* end of inward curve */
-    0% 100%,    /* flat bottom left */
-    100% 100%   /* flat bottom right */
+    100% 0%,      
+    0% 0%,        /* flat top */
+    0% 35%,       
+    45% 50%,      /* DEEPEST inward point */
+    0% 65%,       
+    0% 100%,      /* flat bottom */
+    100% 100%
   );
 }
