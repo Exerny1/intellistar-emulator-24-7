@@ -7,26 +7,14 @@
   top: 0px;
   width: 100%;
   height: 100%;
-  /* Main background: blue gradient */
+  /* Main gradient with solid bottom bar */
   background: linear-gradient(
     180deg,
-    #4BA1D8 0%,    /* top, lighter blue */
-    #327EBD 100%   /* bottom, main blue */
+    #4BA1D8 0%,     /* top lighter blue */
+    #327EBD 85%,    /* main blue ending slightly above bottom */
+    #0B0D0F 100%    /* solid dark bar at the bottom */
   ) !important;
   background-size: cover !important;
   background-repeat: no-repeat !important;
   transition: top 400ms linear;
-}
-
-/* Solid bar at the bottom */
-#background-image::after,
-.background-image::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 120px; /* Adjust this to fit your text area */
-  background-color: #0B0D0F; /* solid black/charcoal bar */
-  z-index: 1; /* ensure it sits above the background but below text */
 }
