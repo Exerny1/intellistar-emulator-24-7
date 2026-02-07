@@ -3,13 +3,18 @@
 #background-image.below-screen,
 #background-image.above-screen {
   position: relative;
-  left: 0px;
-  top: 0px;
+  left: 0;
+  top: 0;
   width: 100%;
   height: 100%;
-
-  background: #2879B2 !important;  /* slightly darker, still cyan-blue */
-  background-repeat: no-repeat !important;
+  background: linear-gradient(
+    to bottom,
+    #15A7C7 0%,        /* main background color */
+    #15A7C7 85%,       /* same color until 85% */
+    #0B0D0F 85%,       /* start of the bottom bar */
+    #0B0D0F 100%       /* bottom bar fills rest */
+  ) !important;
   background-size: cover !important;
+  background-repeat: no-repeat !important;
   transition: top 400ms linear;
 }
