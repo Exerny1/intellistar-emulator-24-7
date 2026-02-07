@@ -10,9 +10,9 @@
 
   background: radial-gradient(
     circle at 20% 20%,
-    #3fc7ff 0%,   /* bright WeatherScan light blue */
-    #1f8bff 35%,  /* classic TWC/WeatherScan blue */
-    #0b2a66 100%  /* deep WeatherScan navy */
+    #6fb7ff 0%,      /* lighter highlight */
+    #327EBD 40%,     /* your WeatherScan blue */
+    #0b2a66 100%     /* deep navy edge */
   ) !important;
 
   background-repeat: no-repeat !important;
