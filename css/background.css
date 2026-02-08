@@ -1,3 +1,4 @@
+/* ---------- MAIN BACKGROUND ---------- */
 #background-image,
 .background-image,
 #background-image.below-screen,
@@ -7,27 +8,31 @@
   top: 0;
   width: 100%;
   height: 100%;
-
-  /* TV APP-STYLE GRADIENT WITH MORE VISIBLE BLACK BAR */
-  background: 
-    radial-gradient(
+  background: radial-gradient(
       circle at 20% 15%,
       rgba(58, 138, 215, 0.35) 0%,      /* soft lit highlight */
       rgba(31, 95, 160, 0.25) 40%,      
       rgba(18, 38, 63, 0.9) 80%,
       #0b0d0f 100%
-    ),
-    linear-gradient(
-      to bottom,
-      #1F5FA0 0%,       /* darker blue at top */
-      #163f6b 70%,      /* deeper toward bottom */
-      rgba(18, 18, 18, 0.95) 88%,  /* almost opaque black bar start */
-      #121212 100%      /* fully opaque bottom */
     ) !important;
-
   background-size: cover !important;
   background-repeat: no-repeat !important;
   transition: top 400ms linear;
+}
+
+/* ---------- BOTTOM BLACK BAR (SEPARATE) ---------- */
+#background-image .bottom-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 12%;                 /* adjust thickness */
+  background: linear-gradient(
+    to top,
+    #1A1A1A 0%,                /* solid dark at the very bottom */
+    #2a2a2a 100%               /* subtle fade toward background */
+  );
+  z-index: 2;                   /* above main background, below curves/text */
 }
 /* ---------- LEFT WEATHERSCAN PILLAR (Full inward curve) ---------- */
 #background-image::before {
