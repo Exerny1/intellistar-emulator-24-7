@@ -19,15 +19,16 @@
   transition: top 400ms linear;
 }
 
-/* Slim top bar */
-#top-bar {
+/* ---------- SLIM TOP BAR ---------- */
+#background-image::before {
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 5%; /* adjust as needed */
-  background-color: #1A1A1A; /* same dark black bar color as bottom */
-  z-index: 999; /* make sure it sits on top */
+  height: 5%;           /* slim bar height */
+  background-color: #1A1A1A; /* black bar */
+  z-index: 2;           /* on top of everything else */
 }
 
 /* ---------- LEFT WEATHERSCAN PILLAR (Full inward curve) ---------- */
