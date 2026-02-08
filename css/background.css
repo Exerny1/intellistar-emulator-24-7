@@ -59,6 +59,7 @@
     35% 0%      /* curve inward more to top edge */
   );
 }
+
 #background-image::before {
   content: "";
   position: absolute;
