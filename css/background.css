@@ -41,23 +41,20 @@
   );
 }
 
-/* ---------- RIGHT WEATHERSCAN PILLAR (Curve only top quarter) ---------- */
+/* Top-right curved accent */
 #background-image::after {
   content: "";
   position: absolute;
-  right: 0;
   top: 0;
-  width: 150px;  /* match left pillar */
-  height: 100%;
-  background: #327EBD;
-
-  /* Curve only top quarter, then flat */
+  right: 0;
+  width: 150px;         /* adjust thickness */
+  height: 150px;        /* adjust depth of curve */
+  background: #327EBD;  /* WeatherScan blue */
+  
+  /* Smooth concave curve */
   clip-path: polygon(
-    100% 0%,     /* top right */
-    0% 0%,       /* top left */
-    35% 25%,     /* inward curve ends at 25% */
-    0% 25%,      /* flat from 25% to bottom */
-    0% 100%,     
-    100% 100%    
+    100% 0%,    /* top-right corner */
+    100% 40%,   /* right side down to 40% */
+    60% 0%      /* curve inward to top side */
   );
 }
