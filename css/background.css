@@ -19,18 +19,17 @@
   transition: top 400ms linear;
 }
 
-/* ---------- LEFT WEATHERSCAN PILLAR (FULL CURVE, THICKER) ---------- */
+/* ---------- LEFT WEATHERSCAN PILLAR (Full inward curve) ---------- */
 #background-image::before {
   content: "";
   position: absolute;
   left: 0;
   top: 0;
-  width: 150px;  /* thicker than before */
+  width: 150px;  /* thicker pillar */
   height: 100%;
-
   background: #327EBD;
 
-  /* ONE smooth inward curve the whole height */
+  /* Full inward curve along the whole height */
   clip-path: polygon(
     0% 0%,       
     100% 0%,     
@@ -42,7 +41,7 @@
   );
 }
 
-/* ---------- RIGHT WEATHERSCAN PILLAR (MIRRORED FULL CURVE, THICKER) ---------- */
+/* ---------- RIGHT WEATHERSCAN PILLAR (Curve only top quarter) ---------- */
 #background-image::after {
   content: "";
   position: absolute;
@@ -50,16 +49,15 @@
   top: 0;
   width: 150px;  /* match left pillar */
   height: 100%;
-
   background: #327EBD;
 
+  /* Curve only top quarter, then flat */
   clip-path: polygon(
-    100% 0%,     
-    0% 0%,       
-    35% 25%,     
-    45% 50%,     
-    35% 75%,     
+    100% 0%,     /* top right */
+    0% 0%,       /* top left */
+    35% 25%,     /* inward curve ends at 25% */
+    0% 25%,      /* flat from 25% to bottom */
     0% 100%,     
-    100% 100%
+    100% 100%    
   );
 }
