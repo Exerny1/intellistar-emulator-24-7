@@ -60,14 +60,13 @@
   );
 }
 
+/* ---------- SLIM TOP BAR ---------- */
 #background-image::before {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 7%;        /* adjust if you want it thinner/thicker */
-  min-height: 30px;  /* keeps it visible on different screens */
-  background: #1A1A1A;
-  z-index: 10;
-}
+  height: 5%;           /* slim bar height */
+  background-color: #1A1A1A; /* black bar */
+  z-index: 2;           /* on top of everything else */
