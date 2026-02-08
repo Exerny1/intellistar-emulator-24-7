@@ -42,18 +42,6 @@
   );
 }
 
-/* ---------- SLIM TOP BAR ---------- */
-#background-image::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 5%;           /* slim bar height */
-  background-color: #1A1A1A; /* black bar */
-  z-index: 2;           /* on top of everything else */
-}
-
 /* Top-right curved accent - extra large and deep */
 #background-image::after {
   content: "";
