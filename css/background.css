@@ -18,10 +18,10 @@
     ),
     linear-gradient(
       to bottom,
-      #1F5FA0 0%,       /* your darker blue */
-      #163f6b 70%,      /* deeper toward bottom */
-      #121212 70%,      /* start of thinner black bar */
-      #121212 100%      /* bottom bar */
+      #1F5FA0 0%,       /* darker blue top */
+      #163f6b 85%,      /* fades down */
+      #121212 85%,      /* start of bottom black bar */
+      #121212 100%      /* end of bottom black bar */
     ) !important;
 
   background-size: cover !important;
