@@ -17,11 +17,11 @@
       #0b0d0f 100%
     ),
     linear-gradient(
-      to bottom,
-      #1F5FA0 0%,       /* darker blue top */
-      #163f6b 85%,      /* fades down */
-      #121212 85%,      /* start of bottom black bar */
-      #121212 100%      /* end of bottom black bar */
+      to bottom,       /* vertical gradient direction */
+      #1F5FA0 0%,      /* darker blue top */
+      #163f6b 85%,     /* fading toward black bar */
+      #121212 85%,     /* top of bottom bar */
+      #121212 100%     /* end of bottom bar */
     ) !important;
 
   background-size: cover !important;
