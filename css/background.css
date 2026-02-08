@@ -41,20 +41,20 @@
   );
 }
 
-/* Top-right curved accent */
+/* Top-right curved accent - bigger and deeper */
 #background-image::after {
   content: "";
   position: absolute;
   top: 0;
   right: 0;
-  width: 150px;         /* adjust thickness */
-  height: 150px;        /* adjust depth of curve */
+  width: 250px;         /* thicker accent */
+  height: 250px;        /* deeper curve */
   background: #327EBD;  /* WeatherScan blue */
   
-  /* Smooth concave curve */
+  /* Deep inward concave curve */
   clip-path: polygon(
     100% 0%,    /* top-right corner */
-    100% 40%,   /* right side down to 40% */
-    60% 0%      /* curve inward to top side */
+    100% 60%,   /* right side down further */
+    50% 0%      /* curve inward more to top edge */
   );
 }
