@@ -18,11 +18,11 @@
     ),
     linear-gradient(
       to bottom,
-      #121212 0%,      /* slim TOP bar */
-      #121212 5%,      /* bar height */
-      #163f6b 5%,      /* main background starts */
-      #12294a 85%,     /* darker toward bottom */
-      #121212 85%,     /* slim BOTTOM bar */
+      #121212 0%,      /* TOP bar */
+      #121212 6%,      /* slightly taller */
+      #163f6b 6%,      /* main background starts */
+      #12294a 85%,     
+      #121212 85%,     /* bottom bar */
       #121212 100%
     ) !important;
 
