@@ -19,8 +19,8 @@
     linear-gradient(
       to bottom,
       #121212 0%,      /* TOP bar */
-      #121212 6%,      /* slightly taller */
-      #163f6b 6%,      /* main background starts */
+      #121212 7%,      /* slightly bigger */
+      #163f6b 7%,      /* main background starts */
       #12294a 85%,     
       #121212 85%,     /* bottom bar */
       #121212 100%
