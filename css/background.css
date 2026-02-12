@@ -1,11 +1,3 @@
-:root {
-  --bar-top: #121212;
-  --bar-blue-start: #12294a;  /* top of main bar */
-  --bar-blue-end: #163f6b;    /* bottom of main bar */
-  --bar-bottom: #121212;
-}
-
-/* Main background */
 #background-image,
 .background-image,
 #background-image.below-screen,
@@ -26,12 +18,12 @@
     ),
     linear-gradient(
       to bottom,
-      var(--bar-top) 0%,       
-      var(--bar-top) 7%,       
-      var(--bar-blue-start) 7%, 
-      var(--bar-blue-end) 85%,  
-      var(--bar-bottom) 85%,    
-      var(--bar-bottom) 100%
+      #121212 0%,      /* TOP bar */
+      #121212 7%,      /* slightly bigger */
+      #163f6b 7%,      /* main background starts */
+      #12294a 85%,     
+      #121212 85%,     /* bottom bar */
+      #121212 100%
     ) !important;
 
   background-size: cover !important;
@@ -39,19 +31,15 @@
   transition: top 400ms linear;
 }
 
-/* Left Pillar — gradient to match main bar */
+/* ---------- LEFT PILLAR (IntelliSTAR Blue) ---------- */
 #background-image::before {
   content: "";
   position: absolute;
   left: 0;
   top: 0;
-  width: 150px;
+  width: 150px;  /* thickness */
   height: 100%;
-  background: linear-gradient(
-    to bottom,
-    var(--bar-blue-start) 0%,
-    var(--bar-blue-end) 100%
-  );
+  background: #163f6b; /* IntelliSTAR-style blue */
   clip-path: polygon(
     0% 0%,       
     100% 0%,     
@@ -63,22 +51,21 @@
   );
 }
 
-/* Top-right curve — gradient to match main bar */
+/* ---------- RIGHT PILLAR (Matches Bars) ---------- */
 #background-image::after {
   content: "";
   position: absolute;
   top: 0;
   right: 0;
-  width: 400px;      
-  height: 600px;     
-  background: linear-gradient(
-    to bottom,
-    var(--bar-blue-start) 0%,
-    var(--bar-blue-end) 100%
-  );
+  width: 400px;      /* thickness */
+  height: 600px;     /* taller curve */
+
+  /* Match top/bottom bars for one-piece look */
+  background: #121212;
+
   clip-path: polygon(
-    100% 0%,     
-    100% 85%,    
-    30% 0%       
+    100% 0%,      /* top-right corner */
+    100% 85%,     /* pushes the curve lower */
+    30% 0%        /* inward scoop */
   );
 }
