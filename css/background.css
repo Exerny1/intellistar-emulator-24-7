@@ -8,13 +8,13 @@
   width: 100%;
   height: 100%;
 
-  /* Just the dark main background + bars, no gradient on bars themselves */
+  /* Dark main background with top and bottom bars */
   background:
     linear-gradient(
       to bottom,
       #121212 0%,      /* TOP bar */
       #121212 7%,      /* slightly bigger */
-      #163f6b 7%,      /* main background starts */
+      #12294a 7%,      /* main background starts */
       #12294a 85%,     
       #121212 85%,     /* bottom bar */
       #121212 100%
@@ -25,19 +25,18 @@
   transition: top 400ms linear;
 }
 
-/* ---------- LEFT PILLAR (solid same blue as bar) ---------- */
+/* ---------- LEFT PILLAR (match bar blue) ---------- */
 #background-image::before {
   content: "";
   position: absolute;
   left: 0;
   top: 0;
-  width: 150px;  /* thicker pillar */
+  width: 150px;  /* pillar width */
   height: 100%;
 
-  /* Solid blue, same as bar */
+  /* Match the blue from bars exactly */
   background: #163f6b;
 
-  /* Full inward curve along the whole height */
   clip-path: polygon(
     0% 0%,       
     100% 0%,     
@@ -49,7 +48,7 @@
   );
 }
 
-/* ---------- TOP-RIGHT PILLAR (solid same blue as bar) ---------- */
+/* ---------- TOP-RIGHT PILLAR (match bar blue) ---------- */
 #background-image::after {
   content: "";
   position: absolute;
@@ -58,7 +57,7 @@
   width: 400px;
   height: 600px;
 
-  /* Solid blue, same as bar */
+  /* Match the blue from bars exactly */
   background: #163f6b;
 
   clip-path: polygon(
