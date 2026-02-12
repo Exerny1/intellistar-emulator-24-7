@@ -40,8 +40,8 @@
   width: 150px;  /* thicker pillar */
   height: 100%;
 
-  /* Match the bar gradient color: use main dark-blue from bar */
-  background: linear-gradient(to bottom, #121212 0%, #163f6b 50%, #12294a 100%);
+  /* Solid blue color */
+  background: #327EBD;
 
   /* Full inward curve along the whole height */
   clip-path: polygon(
@@ -64,8 +64,8 @@
   width: 400px;      /* keep your thickness */
   height: 600px;     /* goes farther down than before */
 
-  /* Match the bar gradient color */
-  background: linear-gradient(to bottom, #121212 0%, #163f6b 50%, #12294a 100%);
+  /* Solid blue color */
+  background: #327EBD;
 
   clip-path: polygon(
     100% 0%,      /* top-right corner */
