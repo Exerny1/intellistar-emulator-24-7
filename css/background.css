@@ -18,11 +18,11 @@
     ),
     linear-gradient(
       to bottom,
-      #121212 0%,       /* Top bar */
-      #121212 7%,       /* top bar height */
-      #327EBD 7%,       /* main background color matching bars/pillars */
-      #163f6b 85%,      /* subtle fade */
-      #121212 85%,      /* Bottom bar */
+      #121212 0%,        /* Top bar */
+      #121212 7%,        /* Top bar height */
+      #163f6b 7%,        /* Darker blue main background start (matches bars) */
+      #12294a 85%,       /* Main background fade */
+      #121212 85%,       /* Bottom bar */
       #121212 100%
     ) !important;
 
@@ -31,7 +31,7 @@
   transition: top 400ms linear;
 }
 
-/* ---------- LEFT PILLAR ---------- */
+/* ---------- LEFT PILLAR (matches bar color) ---------- */
 #background-image::before {
   content: "";
   position: absolute;
@@ -39,10 +39,7 @@
   top: 0;
   width: 150px;  /* pillar thickness */
   height: 100%;
-
-  /* Match the bar color so it connects visually */
-  background: #327EBD;
-
+  background: #163f6b;  /* DARKER blue, same as bars */
   clip-path: polygon(
     0% 0%,       
     100% 0%,     
@@ -54,7 +51,7 @@
   );
 }
 
-/* ---------- TOP-RIGHT CURVE ---------- */
+/* ---------- TOP-RIGHT CURVE (matches bar color) ---------- */
 #background-image::after {
   content: "";
   position: absolute;
@@ -62,10 +59,7 @@
   right: 0;
   width: 400px;      /* width of the curve */
   height: 600px;     /* depth of the curve */
-
-  /* Same bar color for connection */
-  background: #327EBD;
-
+  background: #163f6b;  /* DARKER blue, same as bars */
   clip-path: polygon(
     100% 0%,      /* top-right corner */
     100% 85%,     /* curve goes lower */
