@@ -8,14 +8,8 @@
   width: 100%;
   height: 100%;
 
+  /* Just the dark main background + bars, no gradient on bars themselves */
   background:
-    radial-gradient(
-      circle at 20% 15%,
-      rgba(50, 120, 190, 0.25) 0%,
-      rgba(25, 70, 120, 0.20) 45%,
-      rgba(12, 20, 32, 0.95) 80%,
-      #07090b 100%
-    ),
     linear-gradient(
       to bottom,
       #121212 0%,      /* TOP bar */
@@ -31,7 +25,7 @@
   transition: top 400ms linear;
 }
 
-/* ---------- LEFT WEATHERSCAN PILLAR (Full inward curve) ---------- */
+/* ---------- LEFT PILLAR (solid same blue as bar) ---------- */
 #background-image::before {
   content: "";
   position: absolute;
@@ -40,8 +34,8 @@
   width: 150px;  /* thicker pillar */
   height: 100%;
 
-  /* Solid blue color */
-  background: #327EBD;
+  /* Solid blue, same as bar */
+  background: #163f6b;
 
   /* Full inward curve along the whole height */
   clip-path: polygon(
@@ -55,21 +49,21 @@
   );
 }
 
-/* Top-right curved accent - extra large and deep */
+/* ---------- TOP-RIGHT PILLAR (solid same blue as bar) ---------- */
 #background-image::after {
   content: "";
   position: absolute;
   top: 0;
   right: 0;
-  width: 400px;      /* keep your thickness */
-  height: 600px;     /* goes farther down than before */
+  width: 400px;
+  height: 600px;
 
-  /* Solid blue color */
-  background: #327EBD;
+  /* Solid blue, same as bar */
+  background: #163f6b;
 
   clip-path: polygon(
     100% 0%,      /* top-right corner */
-    100% 85%,     /* pushes the curve much lower */
-    30% 0%        /* deeper inward scoop */
+    100% 85%,     /* curve goes down */
+    30% 0%        /* deep inward curve */
   );
 }
