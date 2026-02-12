@@ -9,6 +9,7 @@
   height: 100%;
 
   background:
+    /* Soft radial lighting */
     radial-gradient(
       circle at 20% 15%,
       rgba(50, 120, 190, 0.25) 0%,
@@ -16,31 +17,42 @@
       rgba(12, 20, 32, 0.95) 80%,
       #07090b 100%
     ),
+
+    /* IntelliStar Top + Bottom Bars */
     linear-gradient(
       to bottom,
-      #121212 0%,      /* TOP bar */
-      #121212 7%,      /* slightly bigger */
-      #163f6b 7%,      /* main background starts */
-      #12294a 85%,     
-      #121212 85%,     /* bottom bar */
-      #121212 100%
+
+      /* --- TOP INTELLISTAR BAR (7%) --- */
+      #2f6fb2 0%,
+      #2a64a3 3%,
+      #1f4f85 7%,
+
+      /* --- MAIN BACKGROUND --- */
+      #163f6b 7%,
+      #12294a 85%,
+
+      /* --- BOTTOM INTELLISTAR BAR (15%) --- */
+      #2f6fb2 85%,
+      #2a64a3 92%,
+      #183f6b 100%
     ) !important;
 
   background-size: cover !important;
   background-repeat: no-repeat !important;
   transition: top 400ms linear;
 }
+
+
 /* ---------- LEFT WEATHERSCAN PILLAR (Full inward curve) ---------- */
 #background-image::before {
   content: "";
   position: absolute;
   left: 0;
   top: 0;
-  width: 150px;  /* thicker pillar */
+  width: 150px;
   height: 100%;
   background: #327EBD;
 
-  /* Full inward curve along the whole height */
   clip-path: polygon(
     0% 0%,       
     100% 0%,     
@@ -52,20 +64,21 @@
   );
 }
 
-/* Top-right curved accent - extra large and deep */
+
+/* ---------- TOP RIGHT CURVED ACCENT ---------- */
 #background-image::after {
   content: "";
   position: absolute;
   top: 0;
   right: 0;
-  width: 400px;      /* keep your thickness */
-  height: 600px;     /* goes farther down than before */
+  width: 400px;
+  height: 600px;
 
   background: #327EBD;
 
   clip-path: polygon(
-    100% 0%,      /* top-right corner */
-    100% 85%,     /* pushes the curve much lower */
-    30% 0%        /* deeper inward scoop */
+    100% 0%,
+    100% 85%,
+    30% 0%
   );
 }
