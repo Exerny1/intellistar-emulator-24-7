@@ -8,32 +8,25 @@
   width: 100%;
   height: 100%;
 
-  /* IntelliStar base background + top/bottom bars */
+  /* IntelliSTAR blue-gray background with subtle gradient */
   background:
-    /* Soft radial lighting */
     radial-gradient(
-      circle at 20% 15%,
-      rgba(120, 140, 160, 0.25) 0%,
-      rgba(90, 110, 130, 0.20) 45%,
-      rgba(50, 60, 70, 0.95) 80%,
-      #121212 100%
+      circle at 20% 20%,
+      rgba(130, 150, 170, 0.25) 0%,
+      rgba(100, 120, 140, 0.20) 45%,
+      rgba(60, 70, 90, 0.95) 80%,
+      #1f1f25 100%
     ),
 
-    /* Top + bottom bars */
+    /* Top and bottom bars in Intelistar gradient */
     linear-gradient(
       to bottom,
-
-      /* Top bar */
-      #2c3e50 0%,
-      #34495e 7%,
-
-      /* Main background */
-      #3b4a5a 7%,
-      #2f3e50 85%,
-
-      /* Bottom bar */
-      #2c3e50 85%,
-      #34495e 100%
+      #2e4d6d 0%,    /* Top bar start */
+      #2e4d6d 7%,    /* Top bar end */
+      #3b5a7a 7%,    /* Main background start */
+      #2f4b65 85%,   /* Main background end */
+      #2e4d6d 85%,   /* Bottom bar start */
+      #2e4d6d 100%   /* Bottom bar end */
     ) !important;
 
   background-size: cover !important;
