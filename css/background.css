@@ -31,15 +31,19 @@
   transition: top 400ms linear;
 }
 
-/* ---------- LEFT PILLAR (IntelliSTAR Blue) ---------- */
+/* ---------- LEFT PILLAR (Blends with Bars) ---------- */
 #background-image::before {
   content: "";
   position: absolute;
   left: 0;
   top: 0;
-  width: 150px;  /* thickness */
+  width: 150px;  
   height: 100%;
-  background: #163f6b; /* IntelliSTAR-style blue */
+  background: linear-gradient(
+    to bottom,
+    #163f6b 0%,    /* IntelliSTAR blue top */
+    #121212 85%    /* fades into bottom bar */
+  );
   clip-path: polygon(
     0% 0%,       
     100% 0%,     
@@ -51,21 +55,24 @@
   );
 }
 
-/* ---------- RIGHT PILLAR (Matches Bars) ---------- */
+/* ---------- RIGHT PILLAR (Blends with Bars) ---------- */
 #background-image::after {
   content: "";
   position: absolute;
   top: 0;
   right: 0;
-  width: 400px;      /* thickness */
-  height: 600px;     /* taller curve */
+  width: 400px;     
+  height: 600px;    
 
-  /* Match top/bottom bars for one-piece look */
-  background: #121212;
+  background: linear-gradient(
+    to bottom,
+    #12294a 0%,   /* matches background near top */
+    #121212 85%   /* fades into bottom bar */
+  );
 
   clip-path: polygon(
-    100% 0%,      /* top-right corner */
-    100% 85%,     /* pushes the curve lower */
-    30% 0%        /* inward scoop */
+    100% 0%,     
+    100% 85%,    
+    30% 0%       
   );
 }
