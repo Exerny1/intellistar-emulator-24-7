@@ -30,42 +30,4 @@
   background-repeat: no-repeat !important;
   transition: top 400ms linear;
 }
-/* ---------- LEFT WEATHERSCAN PILLAR (Full inward curve) ---------- */
-#background-image::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 150px;  /* thicker pillar */
-  height: 100%;
-  background: #327EBD;
 
-  /* Full inward curve along the whole height */
-  clip-path: polygon(
-    0% 0%,       
-    100% 0%,     
-    65% 25%,     
-    55% 50%,     
-    65% 75%,     
-    100% 100%,   
-    0% 100%      
-  );
-}
-
-/* Top-right curved accent - extra large and deep */
-#background-image::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 400px;      /* keep your thickness */
-  height: 600px;     /* goes farther down than before */
-
-  background: #327EBD;
-
-  clip-path: polygon(
-    100% 0%,      /* top-right corner */
-    100% 85%,     /* pushes the curve much lower */
-    30% 0%        /* deeper inward scoop */
-  );
-}
