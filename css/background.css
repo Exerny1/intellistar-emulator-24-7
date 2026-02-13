@@ -8,7 +8,7 @@
   width: 100%;
   height: 100%;
 
-  /* Main background with top & bottom bars (Intelistar blue gradient palette) */
+  /* Main background with top, bottom, left, and right bars */
   background:
     radial-gradient(
       circle at 20% 15%,
@@ -19,67 +19,24 @@
     ),
     linear-gradient(
       to bottom,
-      #121212 0%,      /* top bar */
-      #121212 7%,      
-      #12294a 7%,      /* main background (bar color palette) */
-      #12294a 85%,     
-      #121212 85%,     /* bottom bar */
+      #121212 0%,       /* top bar */
+      #121212 7%,       
+      #12294a 7%,       /* main background starts */
+      #12294a 85%,      
+      #121212 85%,      /* bottom bar */
+      #121212 100%
+    ),
+    linear-gradient(
+      to right,
+      #121212 0%,       /* left bar */
+      #121212 7%,       
+      transparent 7%,   /* main area transparent */
+      transparent 93%,  
+      #121212 93%,      /* right bar */
       #121212 100%
     ) !important;
 
   background-size: cover !important;
   background-repeat: no-repeat !important;
   transition: top 400ms linear;
-}
-
-/* ---------- LEFT PILLAR (Gradient) ---------- */
-#background-image::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 150px;
-  height: 100%;
-
-  /* Vertical gradient matching the bar palette */
-  background: linear-gradient(
-    to bottom,
-    #163f6b 0%,   /* lighter top */
-    #12294a 100%  /* darker bottom */
-  );
-
-  /* Full inward curve */
-  clip-path: polygon(
-    0% 0%,       
-    100% 0%,     
-    65% 25%,     
-    55% 50%,     
-    65% 75%,     
-    100% 100%,   
-    0% 100%      
-  );
-}
-
-/* ---------- TOP-RIGHT CURVED ACCENT (Gradient) ---------- */
-#background-image::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 400px;
-  height: 600px;
-
-  /* Vertical gradient matching the bar palette */
-  background: linear-gradient(
-    to bottom,
-    #163f6b 0%,   /* lighter top */
-    #12294a 100%  /* darker bottom */
-  );
-
-  /* Deep inward curve */
-  clip-path: polygon(
-    100% 0%,      
-    100% 85%,     
-    30% 0%        
-  );
 }
