@@ -16,7 +16,7 @@
       rgba(25, 70, 120, 0.20) 45%,
       rgba(12, 20, 32, 0.95) 80%,
       #07090b 100%
-    ) top / 100% 7% no-repeat,
+    ) top / 100% 10% no-repeat,
     
     /* Bottom bar */
     radial-gradient(
@@ -34,7 +34,7 @@
       rgba(25, 70, 120, 0.20) 45%,
       rgba(12, 20, 32, 0.95) 80%,
       #07090b 100%
-    ) left / 60px 100% no-repeat,
+    ) left / 80px 100% no-repeat,
 
     /* Right bar */
     radial-gradient(
@@ -43,7 +43,7 @@
       rgba(25, 70, 120, 0.20) 45%,
       rgba(12, 20, 32, 0.95) 80%,
       #07090b 100%
-    ) right / 60px 100% no-repeat,
+    ) right / 80px 100% no-repeat,
 
     /* Main background */
     linear-gradient(to bottom, #163f6b 0%, #12294a 100%) !important;
