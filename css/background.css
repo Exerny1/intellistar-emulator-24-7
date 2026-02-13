@@ -10,22 +10,22 @@
   background-color: #050a12;
 
   background:
-    /* Layer 1: Matte Black Bars */
+    /* Layer 1: Matte Black Bars (Top & Bottom) */
     linear-gradient(
       to bottom,
-      #121212 0%,       
-      #121212 8%,       
+      #0a0d12 0%,       
+      #0a0d12 8%,       
       transparent 8%, 
       transparent 88%,  
-      #121212 88%,      
-      #121212 100%
+      #0a0d12 88%,      
+      #0a0d12 100%
     ),
-    /* Layer 2: The Inner 'Fill' Blue */
+    /* Layer 2: The "Fill" Zone - Deep Modern Navy */
     radial-gradient(
       circle at 50% 50%,
       #163b72 0%,       
-      #0d1d36 65%,      
-      #07090b 100%
+      #0c1d36 60%,      
+      #050a12 100%
     ) !important;
 
   background-size: cover !important;
@@ -34,36 +34,37 @@
   overflow: hidden;
 }
 
-/* ---------- LEFT SIDE: FULL INWARD C-CURVE ---------- */
+/* ---------- LEFT PILLAR: The Madison 'Lens' Sweep ---------- */
 #background-image::before {
   content: "";
   position: absolute;
   left: 0;
   top: 0;
   bottom: 0;
-  width: 18%; 
-  z-index: 10;
+  width: 30%;      /* Wider base to allow for the deep sweep */
+  z-index: 10;     /* Sits ON TOP of the black bars */
 
-  background: #3d85c6; /* Solid Modern Blue */
+  background: #3d85c6; /* Solid Modern Steel Blue */
 
-  /* Deep inward scoop toward the left edge */
-  -webkit-mask-image: radial-gradient(circle at 160% 50%, transparent 72%, black 72%);
-  mask-image: radial-gradient(circle at 160% 50%, transparent 72%, black 72%);
+  /* This clip-path follows your red line: 
+     It starts at the left edge, sweeps deep toward the center, 
+     and pulls back at the top/bottom corners. */
+  clip-path: ellipse(100% 70% at 0% 50%);
 }
 
-/* ---------- RIGHT SIDE: SHORT ACCENT CURVE ---------- */
+/* ---------- RIGHT PILLAR: The Symmetrical Accent ---------- */
 #background-image::after {
   content: "";
   position: absolute;
   right: 0;
   top: 0;
   bottom: 0;
-  width: 12%; /* Made narrower so it doesn't go halfway across */
+  width: 15%;      /* Shorter accent as requested */
   z-index: 10;
 
   background: #295b8d; /* Darker accent blue */
 
-  /* Aggressive mask center to make the curve sharper and less 'deep' */
-  -webkit-mask-image: radial-gradient(circle at -80% 50%, transparent 75%, black 75%);
-  mask-image: radial-gradient(circle at -80% 50%, transparent 75%, black 75%);
+  /* Mirroring the sweep: It only covers about 'halfway' up/down 
+     the side to keep the corners clear as seen in your red marks. */
+  clip-path: ellipse(100% 50% at 100% 50%);
 }
