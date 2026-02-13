@@ -9,35 +9,53 @@
   height: 100%;
 
   background:
-    /* Unified IntelliSTAR-style gradient frame for all edges */
-    linear-gradient(
-      to bottom,
-      #0f203c 0%,       /* top bar start */
-      #1a3b60 7%,       /* subtle lighter blue for smooth transition */
-      #12294a 7%,       /* main background start */
-      #12294a 85%,      /* main background end */
-      #1a3b60 85%,      /* bottom bar start */
-      #0f203c 100%      /* bottom bar end */
-    ),
-    linear-gradient(
-      to right,
-      #0f203c 0%,       /* left bar start */
-      #1a3b60 7%,       /* subtle lighter blue for smooth transition */
-      transparent 7%,   
-      transparent 93%,  
-      #1a3b60 93%,      /* right bar start */
-      #0f203c 100%      /* right bar end */
-    ),
-    /* Radial main background */
+    /* Main dark radial background */
     radial-gradient(
       circle at 20% 15%,
       rgba(50, 120, 190, 0.15) 0%,
       rgba(20, 50, 90, 0.15) 45%,
       rgba(8, 12, 20, 0.95) 80%,
       #07090b 100%
-    ) !important;
+    ),
+    /* Top bar */
+    linear-gradient(
+      to bottom,
+      #163f6b 0%,
+      #204d7f 100%
+    ),
+    /* Bottom bar */
+    linear-gradient(
+      to top,
+      #163f6b 0%,
+      #204d7f 100%
+    ),
+    /* Left bar */
+    linear-gradient(
+      to right,
+      #163f6b 0%,
+      #204d7f 100%
+    ),
+    /* Right bar */
+    linear-gradient(
+      to left,
+      #163f6b 0%,
+      #204d7f 100%
+    );
 
-  background-size: cover !important;
-  background-repeat: no-repeat !important;
+  background-repeat: no-repeat;
+  background-size:
+    100% 7%,    /* top bar height */
+    100% 7%,    /* bottom bar height */
+    50px 100%,  /* left bar width */
+    50px 100%,  /* right bar width */
+    cover;
+
+  background-position:
+    top,        /* top bar */
+    bottom,     /* bottom bar */
+    left,       /* left bar */
+    right,      /* right bar */
+    center;     /* radial background */
+
   transition: top 400ms linear;
 }
