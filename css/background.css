@@ -9,24 +9,24 @@
   height: 100%;
 
   background:
-    /* Layer 1: Top and Bottom bars - Spans full width */
+    /* Layer 1: Top and Bottom bars - Increased thickness */
     linear-gradient(
       to bottom,
       #15191F 0%,       
-      #15191F 5%,       
-      transparent 5%, 
-      transparent 85%,  
-      #15191F 85%,      
+      #15191F 8%,       /* Increased from 5% */
+      transparent 8%, 
+      transparent 78%,  /* Decreased from 85% to make the bar taller */
+      #15191F 78%,      
       #15191F 100%
     ),
-    /* Layer 2: Side bars - Widened to make the center box SMALLER */
+    /* Layer 2: Side bars - Kept at the "larger box" width */
     linear-gradient(
       to right,
       #15191F 0%,       
-      #15191F 12%,      /* Increased from 4% to pull left side in */
-      transparent 12%, 
-      transparent 70%,  /* Decreased from 78% to pull right side in */
-      #15191F 70%,    
+      #15191F 4%,       
+      transparent 4%, 
+      transparent 78%,  
+      #15191F 78%,    
       #15191F 100%
     ),
     /* Layer 3: Brighter Blue Radial Background */
