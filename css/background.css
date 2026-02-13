@@ -9,33 +9,21 @@
   height: 100%;
 
   background:
-    /* Left and right vertical bars */
-    linear-gradient(
-      to right,
-      #1B2026 0%,       /* left bar */
-      #1B2026 7%,       
-      transparent 7%,   
-      transparent 93%,  
-      #1B2026 93%,      /* right bar */
-      #1B2026 100%      
-    ),
-    /* Top and bottom horizontal bars */
-    linear-gradient(
-      to bottom,
-      #1B2026 0%,       /* top bar */
-      #1B2026 7%,       
-      #12294a 7%,       /* main background start */
-      #12294a 85%,      
-      #1B2026 85%,      /* bottom bar */
-      #1B2026 100%      
-    ),
-    /* Main radial background */
     radial-gradient(
       circle at 20% 15%,
-      rgba(50, 120, 190, 0.15) 0%,
-      rgba(20, 50, 90, 0.15) 45%,
-      rgba(8, 12, 20, 0.95) 80%,
+      rgba(50, 120, 190, 0.25) 0%,
+      rgba(25, 70, 120, 0.20) 45%,
+      rgba(12, 20, 32, 0.95) 80%,
       #07090b 100%
+    ),
+    linear-gradient(
+      to bottom,
+      #15191F 0%,       /* Top frame */
+      #15191F 7%,       /* top frame height */
+      #12294a 7%,       /* main background starts */
+      #12294a 85%,      
+      #15191F 85%,      /* bottom frame starts */
+      #15191F 100%      /* bottom frame ends */
     ) !important;
 
   background-size: cover !important;
