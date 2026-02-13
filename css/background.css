@@ -21,8 +21,8 @@
       to bottom,
       #121212 0%,      /* top bar */
       #121212 7%,      
-      #163f6b 7%,      /* main background */
-      #12294a 85%,     
+      #12294a 7%,       /* main background */
+      #0d1a2b 85%,      /* slightly darker */
       #121212 85%,     /* bottom bar */
       #121212 100%
     ) !important;
@@ -41,8 +41,8 @@
   width: 150px;
   height: 100%;
 
-  /* Harmonized pillar gradient close to bars */
-  background: linear-gradient(to bottom, #1b1b1b 0%, #1f4c7a 50%, #12294a 100%);
+  /* Muted dark pillar */
+  background: #12294a;
 
   /* Full inward curve along the whole height */
   clip-path: polygon(
@@ -65,8 +65,8 @@
   width: 400px;
   height: 600px;
 
-  /* Harmonized top-right accent gradient */
-  background: linear-gradient(to bottom, #1b1b1b 0%, #1f4c7a 50%, #12294a 100%);
+  /* Muted dark top-right accent */
+  background: #12294a;
 
   /* Deep inward curve */
   clip-path: polygon(
