@@ -8,54 +8,20 @@
   width: 100%;
   height: 100%;
 
-  background:
-    /* Main dark radial background */
-    radial-gradient(
+  /* Main dark radial background */
+  background: radial-gradient(
       circle at 20% 15%,
       rgba(50, 120, 190, 0.15) 0%,
       rgba(20, 50, 90, 0.15) 45%,
       rgba(8, 12, 20, 0.95) 80%,
       #07090b 100%
-    ),
-    /* Top bar */
-    linear-gradient(
-      to bottom,
-      #163f6b 0%,
-      #204d7f 100%
-    ),
-    /* Bottom bar */
-    linear-gradient(
-      to top,
-      #163f6b 0%,
-      #204d7f 100%
-    ),
-    /* Left bar */
-    linear-gradient(
-      to right,
-      #163f6b 0%,
-      #204d7f 100%
-    ),
-    /* Right bar */
-    linear-gradient(
-      to left,
-      #163f6b 0%,
-      #204d7f 100%
     );
 
-  background-repeat: no-repeat;
-  background-size:
-    100% 7%,    /* top bar height */
-    100% 7%,    /* bottom bar height */
-    50px 100%,  /* left bar width */
-    50px 100%,  /* right bar width */
-    cover;
-
-  background-position:
-    top,        /* top bar */
-    bottom,     /* bottom bar */
-    left,       /* left bar */
-    right,      /* right bar */
-    center;     /* radial background */
+  /* Top bar */
+  box-shadow: inset 0 7% 0 0 #163f6b,   /* top bar start */
+              inset 0 -7% 0 0 #204d7f,  /* bottom bar start */
+              inset 50px 0 0 0 #163f6b, /* left bar */
+              inset -50px 0 0 0 #204d7f; /* right bar */
 
   transition: top 400ms linear;
 }
