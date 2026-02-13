@@ -9,17 +9,17 @@
   height: 100%;
 
   background:
-    /* Layer 1: Top and Bottom bars - Increased thickness */
+    /* Layer 1: Top and Bottom bars */
     linear-gradient(
       to bottom,
       #15191F 0%,       
-      #15191F 8%,       /* Increased from 5% */
+      #15191F 8%,       /* Top bar: Thicker header */
       transparent 8%, 
-      transparent 78%,  /* Decreased from 85% to make the bar taller */
-      #15191F 78%,      
+      transparent 90%,  /* Increased from 78% to make bottom smaller */
+      #15191F 90%,      /* Bottom bar: Now a thin footer */
       #15191F 100%
     ),
-    /* Layer 2: Side bars - Kept at the "larger box" width */
+    /* Layer 2: Side bars */
     linear-gradient(
       to right,
       #15191F 0%,       
