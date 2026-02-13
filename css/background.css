@@ -8,32 +8,68 @@
   width: 100%;
   height: 100%;
 
-  /* Base background: TWC TV App blue */
-  background-color: #12294a; /* dark TWC blue */
+  background:
+    radial-gradient(
+      circle at 20% 15%,
+      rgba(50, 120, 190, 0.25) 0%,
+      rgba(25, 70, 120, 0.20) 45%,
+      rgba(12, 20, 32, 0.95) 80%,
+      #07090b 100%
+    ),
+    linear-gradient(
+      to bottom,
+      #121212 0%,      /* TOP bar */
+      #121212 7%,      /* slightly bigger */
+      #163f6b 7%,      /* main background starts */
+      #12294a 85%,     
+      #121212 85%,     /* bottom bar */
+      #121212 100%
+    ) !important;
 
-  /* Four solid IntelliSTAR blue bars using layered linear gradients */
-  background-image:
-    /* Top bar */
-    linear-gradient(to bottom, #327EBD 0%, #327EBD 5%, transparent 5%, transparent 100%),
-    /* Bottom bar */
-    linear-gradient(to top, #327EBD 0%, #327EBD 18%, transparent 18%, transparent 100%),
-    /* Left bar */
-    linear-gradient(to right, #327EBD 0%, #327EBD 5%, transparent 5%, transparent 100%),
-    /* Right bar */
-    linear-gradient(to left, #327EBD 0%, #327EBD 5%, transparent 5%, transparent 100%);
-  
-  background-repeat: no-repeat;
-  background-size:
-    100% 5%,     /* top bar height */
-    100% 18%,    /* bottom bar height */
-    5% 100%,     /* left bar width */
-    5% 100%;     /* right bar width */
-
-  background-position:
-    top,         /* top bar */
-    bottom,      /* bottom bar */
-    left,        /* left bar */
-    right;       /* right bar */
-
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
   transition: top 400ms linear;
+}
+
+/* ---------- LEFT WEATHERSCAN PILLAR (Full inward curve) ---------- */
+#background-image::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 150px;  /* thicker pillar */
+  height: 100%;
+
+  /* Match the bar gradient color: use main dark-blue from bar */
+  background: linear-gradient(to bottom, #121212 0%, #163f6b 50%, #12294a 100%);
+
+  /* Full inward curve along the whole height */
+  clip-path: polygon(
+    0% 0%,       
+    100% 0%,     
+    65% 25%,     
+    55% 50%,     
+    65% 75%,     
+    100% 100%,   
+    0% 100%      
+  );
+}
+
+/* Top-right curved accent - extra large and deep */
+#background-image::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 400px;      /* keep your thickness */
+  height: 600px;     /* goes farther down than before */
+
+  /* Match the bar gradient color */
+  background: linear-gradient(to bottom, #121212 0%, #163f6b 50%, #12294a 100%);
+
+  clip-path: polygon(
+    100% 0%,      /* top-right corner */
+    100% 85%,     /* pushes the curve much lower */
+    30% 0%        /* deeper inward scoop */
+  );
 }
