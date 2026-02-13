@@ -7,71 +7,64 @@
   top: 0;
   width: 100%;
   height: 100%;
+  background-color: #07090b; /* Deep space fallback */
 
-  /* Main background + top/bottom bars */
+  /* Layer 1: The Dark Header and Ticker Bars */
   background:
-    radial-gradient(
-      circle at 20% 15%,
-      rgba(50, 120, 190, 0.25) 0%,
-      rgba(25, 70, 120, 0.20) 45%,
-      rgba(12, 20, 32, 0.95) 80%,
-      #07090b 100%
-    ),
     linear-gradient(
       to bottom,
-      #121212 0%,      /* top bar */
-      #121212 7%,      
-      #163f6b 7%,      /* main background */
-      #12294a 85%,     
-      #121212 85%,     /* bottom bar */
-      #121212 100%
+      #15191f 0%,       /* Top Header Bar */
+      #15191f 12%,      
+      transparent 12%, 
+      transparent 88%,  
+      #15191f 88%,      /* Bottom Ticker Bar */
+      #15191f 100%
+    ),
+    /* Layer 2: The Main Blue Background with Radial Glow */
+    radial-gradient(
+      circle at 40% 40%,
+      #1c437a 0%,       /* Brighter center blue */
+      #0d1d36 60%,      /* Deep navy transition */
+      #07090b 100%      /* Edge black */
     ) !important;
 
   background-size: cover !important;
   background-repeat: no-repeat !important;
   transition: top 400ms linear;
+  overflow: hidden;
 }
 
-/* ---------- LEFT WEATHERSCAN PILLAR ---------- */
+/* ---------- LEFT PILLAR (The "S" Curve) ---------- */
 #background-image::before {
   content: "";
   position: absolute;
   left: 0;
   top: 0;
-  width: 150px;
+  width: 22%; /* Wider to match the image */
   height: 100%;
+  z-index: 1;
 
-  /* Harmonized pillar gradient close to bars */
-  background: linear-gradient(to bottom, #1b1b1b 0%, #1f4c7a 50%, #12294a 100%);
+  /* Sky Blue to Navy Gradient */
+  background: linear-gradient(135deg, #5a8dc0 0%, #2a4d7d 100%);
 
-  /* Full inward curve along the whole height */
-  clip-path: polygon(
-    0% 0%,       
-    100% 0%,     
-    65% 25%,     
-    55% 50%,     
-    65% 75%,     
-    100% 100%,   
-    0% 100%      
-  );
+  /* Recreates the complex inward 'bow' curve of the left side */
+  clip-path: ellipse(80% 100% at -10% 50%);
+  opacity: 0.9;
 }
 
-/* ---------- TOP-RIGHT CURVED ACCENT ---------- */
+/* ---------- TOP-RIGHT WING (The Massive Arch) ---------- */
 #background-image::after {
   content: "";
   position: absolute;
   top: 0;
   right: 0;
-  width: 400px;
-  height: 600px;
+  width: 75%; /* Large overlap as seen in Madison image */
+  height: 100%;
+  z-index: 0;
 
-  /* Harmonized top-right accent gradient */
-  background: linear-gradient(to bottom, #1b1b1b 0%, #1f4c7a 50%, #12294a 100%);
+  /* Deep Navy with a hint of light on the edge */
+  background: linear-gradient(225deg, #15191f 0%, #0d1d36 50%, transparent 100%);
 
-  /* Deep inward curve */
-  clip-path: polygon(
-    100% 0%,      
-    100% 85%,     
-    30% 0%        
-  );
+  /* Creates that large, sweeping diagonal arch from top-right */
+  clip-path: ellipse(100% 120% at 110% -10%);
 }
