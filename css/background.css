@@ -7,64 +7,37 @@
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: #07090b;
 
-  /* Layer 1: The solid header and ticker frames */
   background:
+    /* Layer 1: Top and Bottom bars (The Frame) */
     linear-gradient(
       to bottom,
-      #15191f 0%,       /* Top Header: Thick to match Madison UI */
-      #15191f 11%,      
-      transparent 11%, 
-      transparent 86%,  
-      #15191f 86%,      /* Bottom Ticker: Matching the dark bar height */
-      #15191f 100%
+      #15191F 0%,       
+      #15191F 8%,       /* Top bar thickness */
+      transparent 8%, 
+      transparent 85%,  
+      #15191F 85%,      /* Bottom bar thickness */
+      #15191F 100%
     ),
-    /* Layer 2: The inner blue glass gradient */
+    /* Layer 2: Side bars (The Frame) */
+    linear-gradient(
+      to right,
+      #15191F 0%,       
+      #15191F 4%,       /* Left bar width */
+      transparent 4%, 
+      transparent 78%,  
+      #15191F 78%,      /* Right bar width */
+      #15191F 100%
+    ),
+    /* Layer 3: The "Window" - Brighter, punchier blue radial glow */
     radial-gradient(
-      circle at 45% 40%,
-      #1c437a 0%,       
-      #0d1d36 65%,      
-      #07090b 100%      
+      circle at 30% 30%,
+      #1c437a 0%,       /* Bright focal point */
+      #0d1d36 60%,      /* Deep navy transition */
+      #07090b 100%      /* Background edge */
     ) !important;
 
   background-size: cover !important;
   background-repeat: no-repeat !important;
   transition: top 400ms linear;
-  overflow: hidden;
-}
-
-/* ---------- LEFT PILLAR (The Sky Blue Curve) ---------- */
-#background-image::before {
-  content: "";
-  position: absolute;
-  left: -2%; /* Slightly tucked back to match edge thickness */
-  top: 0;
-  width: 25%; 
-  height: 100%;
-  z-index: 1;
-
-  /* Matches the lighter sky blue in the Madison image */
-  background: linear-gradient(135deg, #5a8dc0 0%, #3b669e 100%);
-
-  /* Re-creates the smooth inward 'bow' curve */
-  clip-path: ellipse(75% 100% at 0% 50%);
-  opacity: 0.95;
-}
-
-/* ---------- TOP-RIGHT WING (The Dark Arch) ---------- */
-#background-image::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 70%; 
-  height: 100%;
-  z-index: 0;
-
-  /* Deep Navy shadowing that blends into the background */
-  background: linear-gradient(215deg, #15191f 0%, #0d1d36 40%, transparent 80%);
-
-  /* The sweeping arch from the top-right corner */
-  clip-path: ellipse(100% 110% at 105% -5%);
 }
