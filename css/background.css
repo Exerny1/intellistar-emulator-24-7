@@ -9,47 +9,44 @@
   height: 100%;
 
   background:
-    /* Top bar (slim) */
+    /* Top bar */
     radial-gradient(
       circle at 20% 15%,
       rgba(50, 120, 190, 0.25) 0%,
       rgba(25, 70, 120, 0.20) 45%,
       rgba(12, 20, 32, 0.95) 80%,
       #07090b 100%
-    ) no-repeat,
+    ) top / 100% 7% no-repeat,
     
-    /* Bottom bar (thicker) */
+    /* Bottom bar */
     radial-gradient(
       circle at 20% 15%,
       rgba(50, 120, 190, 0.25) 0%,
       rgba(25, 70, 120, 0.20) 45%,
       rgba(12, 20, 32, 0.95) 80%,
       #07090b 100%
-    ) no-repeat,
+    ) bottom / 100% 18% no-repeat,
 
-    /* Left and right bars (thick) */
+    /* Left bar */
     radial-gradient(
       circle at 20% 15%,
       rgba(50, 120, 190, 0.25) 0%,
       rgba(25, 70, 120, 0.20) 45%,
       rgba(12, 20, 32, 0.95) 80%,
       #07090b 100%
-    ) no-repeat,
+    ) left / 60px 100% no-repeat,
+
+    /* Right bar */
+    radial-gradient(
+      circle at 20% 15%,
+      rgba(50, 120, 190, 0.25) 0%,
+      rgba(25, 70, 120, 0.20) 45%,
+      rgba(12, 20, 32, 0.95) 80%,
+      #07090b 100%
+    ) right / 60px 100% no-repeat,
 
     /* Main background */
     linear-gradient(to bottom, #163f6b 0%, #12294a 100%) !important;
-
-  background-size:
-    100% 7%,        /* top bar height */
-    100% 18%,       /* bottom bar height */
-    60px 100%,      /* left & right bar width, full height */
-    100% 100%;      /* main background fills everything */
-
-  background-position:
-    top,            /* top bar */
-    bottom,         /* bottom bar */
-    left,           /* left bar */
-    right;          /* right bar */
 
   background-repeat: no-repeat !important;
   transition: top 400ms linear;
