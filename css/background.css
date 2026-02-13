@@ -10,32 +10,47 @@
 
   background:
     /* Top bar (slim) */
-    linear-gradient(to bottom, #121212 0%, #121212 7%, transparent 7%),
-    
-    /* Bottom bar (thicker) */
-    linear-gradient(to top, #121212 0%, #121212 18%, transparent 18%),
-
-    /* Left and right bars (thick) */
-    linear-gradient(
-      to right,
-      #121212 0px,      /* left bar start */
-      #121212 60px,     /* left bar thickness */
-      transparent 60px, /* space for main content */
-      transparent calc(100% - 60px),
-      #121212 calc(100% - 60px),  /* right bar start */
-      #121212 100%      /* right bar end */
-    ),
-
-    /* Main background */
     radial-gradient(
       circle at 20% 15%,
       rgba(50, 120, 190, 0.25) 0%,
       rgba(25, 70, 120, 0.20) 45%,
       rgba(12, 20, 32, 0.95) 80%,
       #07090b 100%
-    ) !important;
+    ) no-repeat,
+    
+    /* Bottom bar (thicker) */
+    radial-gradient(
+      circle at 20% 15%,
+      rgba(50, 120, 190, 0.25) 0%,
+      rgba(25, 70, 120, 0.20) 45%,
+      rgba(12, 20, 32, 0.95) 80%,
+      #07090b 100%
+    ) no-repeat,
 
-  background-size: cover !important;
+    /* Left and right bars (thick) */
+    radial-gradient(
+      circle at 20% 15%,
+      rgba(50, 120, 190, 0.25) 0%,
+      rgba(25, 70, 120, 0.20) 45%,
+      rgba(12, 20, 32, 0.95) 80%,
+      #07090b 100%
+    ) no-repeat,
+
+    /* Main background */
+    linear-gradient(to bottom, #163f6b 0%, #12294a 100%) !important;
+
+  background-size:
+    100% 7%,        /* top bar height */
+    100% 18%,       /* bottom bar height */
+    60px 100%,      /* left & right bar width, full height */
+    100% 100%;      /* main background fills everything */
+
+  background-position:
+    top,            /* top bar */
+    bottom,         /* bottom bar */
+    left,           /* left bar */
+    right;          /* right bar */
+
   background-repeat: no-repeat !important;
   transition: top 400ms linear;
 }
