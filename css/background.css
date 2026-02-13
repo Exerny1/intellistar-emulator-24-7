@@ -10,21 +10,21 @@
   background-color: #050a12;
 
   background:
-    /* Layer 1: Matte Black Bars (Top & Bottom) */
+    /* Layer 1: Matte Black Top & Bottom Bars */
     linear-gradient(
       to bottom,
-      #0a0d12 0%,       
-      #0a0d12 8%,       
+      #121212 0%,       
+      #121212 8%,       
       transparent 8%, 
       transparent 88%,  
-      #0a0d12 88%,      
-      #0a0d12 100%
+      #121212 88%,      
+      #121212 100%
     ),
-    /* Layer 2: The "Fill" Zone - Deep Modern Navy */
+    /* Layer 2: The Inner 'Fill' - Modern High-Def Blue */
     radial-gradient(
-      circle at 50% 50%,
+      circle at 45% 45%,
       #163b72 0%,       
-      #0c1d36 60%,      
+      #0d1d36 65%,      
       #050a12 100%
     ) !important;
 
@@ -34,37 +34,29 @@
   overflow: hidden;
 }
 
-/* ---------- LEFT PILLAR: The Madison 'Lens' Sweep ---------- */
+/* ---------- REMOVED THE RIGHT CURVE (::after) ---------- */
+#background-image::after {
+  display: none !important;
+}
+
+/* ---------- THE IMPROVED LEFT PILLAR: The Red Line Sweep ---------- */
 #background-image::before {
   content: "";
   position: absolute;
   left: 0;
   top: 0;
   bottom: 0;
-  width: 30%;      /* Wider base to allow for the deep sweep */
+  width: 28%;      /* Wider width to accommodate the deep sweep */
   z-index: 10;     /* Sits ON TOP of the black bars */
 
-  background: #3d85c6; /* Solid Modern Steel Blue */
+  /* Modern TWC Steel Blue (Solid, Flat Color) */
+  background: #3d85c6; 
 
-  /* This clip-path follows your red line: 
-     It starts at the left edge, sweeps deep toward the center, 
-     and pulls back at the top/bottom corners. */
-  clip-path: ellipse(100% 70% at 0% 50%);
-}
+  /* This clip-path follows your red reference line perfectly.
+     It creates a 'Lens' effect where the shape is widest in the center
+     and pulls back away from the top-left and bottom-left corners. */
+  clip-path: ellipse(100% 75% at 0% 50%);
 
-/* ---------- RIGHT PILLAR: The Symmetrical Accent ---------- */
-#background-image::after {
-  content: "";
-  position: absolute;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  width: 15%;      /* Shorter accent as requested */
-  z-index: 10;
-
-  background: #295b8d; /* Darker accent blue */
-
-  /* Mirroring the sweep: It only covers about 'halfway' up/down 
-     the side to keep the corners clear as seen in your red marks. */
-  clip-path: ellipse(100% 50% at 100% 50%);
+  /* Optional: Modern edge-light to make it look revamped */
+  border-right: 2px solid rgba(255, 255, 255, 0.2);
 }
