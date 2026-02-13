@@ -9,45 +9,42 @@
   height: 100%;
 
   background:
-    /* Top bar */
-    radial-gradient(
-      circle at 20% 15%,
-      rgba(50, 120, 190, 0.25) 0%,
-      rgba(25, 70, 120, 0.20) 45%,
-      rgba(12, 20, 32, 0.95) 80%,
-      #07090b 100%
+    /* Top bar illusion */
+    linear-gradient(
+      to bottom,
+      rgba(50, 120, 190, 0.25),
+      rgba(25, 70, 120, 0.20) 50%,
+      rgba(12, 20, 32, 0.95) 100%
     ) top / 100% 10% no-repeat,
-    
-    /* Bottom bar */
-    radial-gradient(
-      circle at 20% 15%,
-      rgba(50, 120, 190, 0.25) 0%,
-      rgba(25, 70, 120, 0.20) 45%,
-      rgba(12, 20, 32, 0.95) 80%,
-      #07090b 100%
+
+    /* Bottom bar illusion */
+    linear-gradient(
+      to top,
+      rgba(50, 120, 190, 0.25),
+      rgba(25, 70, 120, 0.20) 50%,
+      rgba(12, 20, 32, 0.95) 100%
     ) bottom / 100% 18% no-repeat,
 
-    /* Left bar */
-    radial-gradient(
-      circle at 20% 15%,
-      rgba(50, 120, 190, 0.25) 0%,
-      rgba(25, 70, 120, 0.20) 45%,
-      rgba(12, 20, 32, 0.95) 80%,
-      #07090b 100%
+    /* Left bar illusion */
+    linear-gradient(
+      to right,
+      rgba(50, 120, 190, 0.25),
+      rgba(25, 70, 120, 0.20) 50%,
+      rgba(12, 20, 32, 0.95) 100%
     ) left / 80px 100% no-repeat,
 
-    /* Right bar */
-    radial-gradient(
-      circle at 20% 15%,
-      rgba(50, 120, 190, 0.25) 0%,
-      rgba(25, 70, 120, 0.20) 45%,
-      rgba(12, 20, 32, 0.95) 80%,
-      #07090b 100%
+    /* Right bar illusion */
+    linear-gradient(
+      to left,
+      rgba(50, 120, 190, 0.25),
+      rgba(25, 70, 120, 0.20) 50%,
+      rgba(12, 20, 32, 0.95) 100%
     ) right / 80px 100% no-repeat,
 
-    /* Main background */
+    /* Main center background */
     linear-gradient(to bottom, #163f6b 0%, #12294a 100%) !important;
 
   background-repeat: no-repeat !important;
+  background-size: cover !important;
   transition: top 400ms linear;
 }
