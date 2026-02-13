@@ -19,47 +19,14 @@
     linear-gradient(
       to bottom,
       #15191F 0%,       /* Top frame */
-      #15191F 7%,       
-      #12294a 7%,       /* Main background */
+      #15191F 7%,       /* top frame height */
+      #12294a 7%,       /* main background starts */
       #12294a 85%,      
-      #15191F 85%,      /* Bottom frame */
-      #15191F 100%      
+      #15191F 85%,      /* bottom frame starts */
+      #15191F 100%      /* bottom frame ends */
     ) !important;
 
   background-size: cover !important;
   background-repeat: no-repeat !important;
   transition: top 400ms linear;
-  overflow: hidden;
-}
-
-/* ---------- LEFT PINCHED PILLAR ---------- */
-#background-image::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 15%;       /* Keeps the logo and city name clear */
-  background: #3d85c6; 
-  z-index: 10;
-
-  /* Smooth inward 'C' curve following your red lines */
-  -webkit-mask-image: radial-gradient(circle at 180% 50%, transparent 78%, black 78%);
-  mask-image: radial-gradient(circle at 180% 50%, transparent 78%, black 78%);
-}
-
-/* ---------- RIGHT PINCHED PILLAR ---------- */
-#background-image::after {
-  content: "";
-  position: absolute;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  width: 25%;       /* Fills the empty space on the right side */
-  background: #3d85c6; 
-  z-index: 10;
-
-  /* Mirrored inward 'C' curve */
-  -webkit-mask-image: radial-gradient(circle at -80% 50%, transparent 78%, black 78%);
-  mask-image: radial-gradient(circle at -80% 50%, transparent 78%, black 78%);
 }
