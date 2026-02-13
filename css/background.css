@@ -9,31 +9,31 @@
   height: 100%;
 
   background:
-    /* Layer 1: Top and Bottom bars (Now on top to fill full width) */
+    /* Layer 1: Top and Bottom bars - spans full width */
     linear-gradient(
       to bottom,
       #1B2026 0%,       /* Top bar */
-      #1B2026 7.5%,     /* Matches the height in your UI */
+      #1B2026 7.5%,     
       transparent 7.5%, 
       transparent 88%,  
       #1B2026 88%,      /* Bottom bar */
       #1B2026 100%
     ),
-    /* Layer 2: Side bars (Restricted to the space between top/bottom bars) */
+    /* Layer 2: Side bars - Widened to meet the forecast box edges */
     linear-gradient(
       to right,
       #1B2026 0%,       /* Left bar */
-      #1B2026 4.5%,     /* Adjusted to match the red line placement */
-      transparent 4.5%, 
-      transparent 95.5%,
-      #1B2026 95.5%,    /* Right bar */
+      #1B2026 8.5%,     /* Increased from 4.5% to reach the box edge */
+      transparent 8.5%, 
+      transparent 73.5%,/* Window narrowed to match the box width */
+      #1B2026 73.5%,    /* Right bar starts at the end of the box */
       #1B2026 100%
     ),
-    /* Layer 3: Main background (The dark blue center) */
+    /* Layer 3: Main radial background */
     radial-gradient(
       circle at 20% 15%,
-      #12294a 0%,       /* Lightest part of the blue center */
-      #080c14 60%,      /* Deep navy falloff */
+      #12294a 0%,       
+      #080c14 60%,      
       #07090b 100%
     ) !important;
 
