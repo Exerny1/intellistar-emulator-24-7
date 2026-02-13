@@ -7,10 +7,10 @@
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: #050a12;
+  background-color: #07090b;
 
   background:
-    /* Layer 1: Matte Black Top & Bottom Bars */
+    /* Layer 1: Matte Black Bars */
     linear-gradient(
       to bottom,
       #121212 0%,       
@@ -20,12 +20,12 @@
       #121212 88%,      
       #121212 100%
     ),
-    /* Layer 2: The Inner 'Fill' - Modern High-Def Blue */
+    /* Layer 2: The Inner Fill */
     radial-gradient(
       circle at 45% 45%,
       #163b72 0%,       
       #0d1d36 65%,      
-      #050a12 100%
+      #07090b 100%
     ) !important;
 
   background-size: cover !important;
@@ -34,29 +34,32 @@
   overflow: hidden;
 }
 
-/* ---------- REMOVED THE RIGHT CURVE (::after) ---------- */
+/* ---------- REMOVE RIGHT SIDE FOR FOCUS ---------- */
 #background-image::after {
   display: none !important;
 }
 
-/* ---------- THE IMPROVED LEFT PILLAR: The Red Line Sweep ---------- */
+/* ---------- THE PINCHED LEFT PILLAR ---------- */
 #background-image::before {
   content: "";
   position: absolute;
   left: 0;
   top: 0;
   bottom: 0;
-  width: 28%;      /* Wider width to accommodate the deep sweep */
-  z-index: 10;     /* Sits ON TOP of the black bars */
+  /* Narrower width to ensure the logo is NEVER covered */
+  width: 12%;      
+  z-index: 10;
 
-  /* Modern TWC Steel Blue (Solid, Flat Color) */
-  background: #3d85c6; 
+  background: #3d85c6; /* Solid Modern Steel Blue */
 
-  /* This clip-path follows your red reference line perfectly.
-     It creates a 'Lens' effect where the shape is widest in the center
-     and pulls back away from the top-left and bottom-left corners. */
-  clip-path: ellipse(100% 75% at 0% 50%);
+  /* This is the key: 
+     It creates a circle centered off-screen to the RIGHT (160%).
+     The 'transparent' part is the 'scoop' that follows your red line,
+     leaving only the corners of the blue rectangle visible.
+  */
+  -webkit-mask-image: radial-gradient(circle at 160% 50%, transparent 75%, black 75%);
+  mask-image: radial-gradient(circle at 160% 50%, transparent 75%, black 75%);
 
-  /* Optional: Modern edge-light to make it look revamped */
-  border-right: 2px solid rgba(255, 255, 255, 0.2);
+  /* Optional: Modern edge highlight */
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
 }
