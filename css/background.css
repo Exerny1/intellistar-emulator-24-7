@@ -9,6 +9,11 @@
   height: 100%;
 
   background:
+    /* New Left Bar - stops at 12% to clear the logo/box */
+    linear-gradient(to right, #15191F 12%, transparent 12%),
+    /* New Right Bar - stops at 15% to fill that empty space */
+    linear-gradient(to left, #15191F 15%, transparent 15%),
+    /* Your original radial glow */
     radial-gradient(
       circle at 20% 15%,
       rgba(50, 120, 190, 0.25) 0%,
@@ -16,14 +21,15 @@
       rgba(12, 20, 32, 0.95) 80%,
       #07090b 100%
     ),
+    /* Your original top and bottom frames */
     linear-gradient(
       to bottom,
-      #15191F 0%,       /* Top frame */
-      #15191F 7%,       /* top frame height */
-      #12294a 7%,       /* main background starts */
+      #15191F 0%,       
+      #15191F 7%,       
+      #12294a 7%,       
       #12294a 85%,      
-      #15191F 85%,      /* bottom frame starts */
-      #15191F 100%      /* bottom frame ends */
+      #15191F 85%,      
+      #15191F 100%      
     ) !important;
 
   background-size: cover !important;
