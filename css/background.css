@@ -9,24 +9,24 @@
   height: 100%;
 
   background:
-    /* Layer 1: Top and Bottom bars - spans full width */
+    /* Layer 1: Top and Bottom bars - Full width */
     linear-gradient(
       to bottom,
       #1B2026 0%,       /* Top bar */
       #1B2026 7.5%,     
       transparent 7.5%, 
-      transparent 88%,  
-      #1B2026 88%,      /* Bottom bar */
+      transparent 80%,  /* Moved from 88% to 80% so bottom fills MORE */
+      #1B2026 80%,      /* Bottom bar starts higher up */
       #1B2026 100%
     ),
-    /* Layer 2: Side bars - Widened to meet the forecast box edges */
+    /* Layer 2: Side bars - Adjusted for the Forecast box */
     linear-gradient(
       to right,
       #1B2026 0%,       /* Left bar */
-      #1B2026 8.5%,     /* Increased from 4.5% to reach the box edge */
-      transparent 8.5%, 
-      transparent 73.5%,/* Window narrowed to match the box width */
-      #1B2026 73.5%,    /* Right bar starts at the end of the box */
+      #1B2026 6.5%,     /* Decreased from 8.5% to fill a "tad bit less" */
+      transparent 6.5%, 
+      transparent 73.5%,
+      #1B2026 73.5%,    /* Right bar stays flush with forecast edge */
       #1B2026 100%
     ),
     /* Layer 3: Main radial background */
