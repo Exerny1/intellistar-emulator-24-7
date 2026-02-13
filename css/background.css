@@ -9,32 +9,32 @@
   height: 100%;
 
   background:
-    /* Layer 1: Top and Bottom bars - Full width, now #15191F */
+    /* Layer 1: Top and Bottom bars - Thinner to make box taller */
     linear-gradient(
       to bottom,
-      #15191F 0%,       /* Top bar */
-      #15191F 7.5%,     
-      transparent 7.5%, 
-      transparent 80%,  
-      #15191F 80%,      /* Bottom bar */
+      #15191F 0%,       
+      #15191F 5%,       /* Reduced from 7.5% */
+      transparent 5%, 
+      transparent 85%,  /* Increased from 80% to lower the bottom bar */
+      #15191F 85%,      
       #15191F 100%
     ),
-    /* Layer 2: Side bars - Now #15191F */
+    /* Layer 2: Side bars - Thinner to make box wider */
     linear-gradient(
       to right,
-      #15191F 0%,       /* Left bar */
-      #15191F 6.5%,     
-      transparent 6.5%, 
-      transparent 73.5%,
-      #15191F 73.5%,    /* Right bar */
+      #15191F 0%,       
+      #15191F 4%,       /* Reduced from 6.5% */
+      transparent 4%, 
+      transparent 78%,  /* Increased from 73.5% to push right bar out */
+      #15191F 78%,    
       #15191F 100%
     ),
     /* Layer 3: Brighter Blue Radial Background */
     radial-gradient(
       circle at 20% 15%,
-      #235191 0%,       /* Brighter, more saturated blue "glow" */
-      #12294a 50%,      /* Deep navy transition */
-      #0a1629 100%      /* Dark blue-black edge */
+      #235191 0%,       
+      #12294a 50%,      
+      #0a1629 100%      
     ) !important;
 
   background-size: cover !important;
