@@ -8,20 +8,38 @@
   width: 100%;
   height: 100%;
 
-  /* Main dark radial background */
-  background: radial-gradient(
+  /* Order matters: top-most gradient first */
+  background:
+    /* Left and right bars */
+    linear-gradient(
+      to right,
+      #121212 0%,       /* left bar */
+      #121212 7%,       
+      transparent 7%,   
+      transparent 93%,  
+      #121212 93%,      /* right bar */
+      #121212 100%
+    ),
+    /* Top and bottom bars */
+    linear-gradient(
+      to bottom,
+      #121212 0%,       /* top bar */
+      #121212 7%,       
+      #12294a 7%,       /* main background */
+      #12294a 85%,      
+      #121212 85%,      /* bottom bar */
+      #121212 100%
+    ),
+    /* Main radial background */
+    radial-gradient(
       circle at 20% 15%,
       rgba(50, 120, 190, 0.15) 0%,
       rgba(20, 50, 90, 0.15) 45%,
       rgba(8, 12, 20, 0.95) 80%,
       #07090b 100%
-    );
+    ) !important;
 
-  /* Top bar */
-  box-shadow: inset 0 7% 0 0 #163f6b,   /* top bar start */
-              inset 0 -7% 0 0 #204d7f,  /* bottom bar start */
-              inset 50px 0 0 0 #163f6b, /* left bar */
-              inset -50px 0 0 0 #204d7f; /* right bar */
-
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
   transition: top 400ms linear;
 }
