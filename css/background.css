@@ -18,37 +18,24 @@
     ),
     linear-gradient(
       to bottom,
-      #121212 0%,      /* TOP bar */
-      #121212 7%,      
-      #163f6b 7%,      /* main background starts */
-      #12294a 85%,     
-      #121212 85%,     /* bottom bar */
+      #121212 0%,    /* top bar */
+      #121212 7%,    
+      #163f6b 7%,    /* main background starts */
+      #12294a 85%,   
+      #121212 85%,   /* bottom bar */
+      #121212 100%
+    ),
+    linear-gradient(
+      to right,
+      #121212 0%,    /* left bar */
+      #121212 50px,  /* width of left bar */
+      transparent 50px,
+      transparent calc(100% - 50px),
+      #121212 calc(100% - 50px), /* right bar */
       #121212 100%
     ) !important;
 
   background-size: cover !important;
   background-repeat: no-repeat !important;
   transition: top 400ms linear;
-}
-
-/* ---------- LEFT SIDE BAR ---------- */
-#background-image::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 50px;       /* bar width */
-  height: 100%;
-  background: #121212; /* same color as bars */
-}
-
-/* ---------- RIGHT SIDE BAR ---------- */
-#background-image::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 50px;       /* bar width */
-  height: 100%;
-  background: #121212; /* same color as bars */
 }
