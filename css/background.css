@@ -8,22 +8,21 @@
   width: 100%;
   height: 100%;
 
-  /* Main background with top & bottom bars (Intelistar blue gradient palette) */
   background:
     radial-gradient(
       circle at 20% 15%,
-      rgba(50, 120, 190, 0.15) 0%,  /* subtle highlight */
-      rgba(20, 50, 90, 0.15) 45%,    /* muted fade */
+      rgba(70, 150, 240, 0.2) 0%,  /* Brighter highlight */
+      rgba(20, 50, 90, 0.15) 45%,    
       rgba(8, 12, 20, 0.95) 80%,     
       #07090b 100%
     ),
     linear-gradient(
       to bottom,
-      #121212 0%,      /* top bar */
+      #121212 0%,      
       #121212 7%,      
-      #12294a 7%,      /* main background (bar color palette) */
+      #12294a 7%,      /* Fill blue remains the same for depth */
       #12294a 85%,     
-      #121212 85%,     /* bottom bar */
+      #121212 85%,     
       #121212 100%
     ) !important;
 
@@ -32,7 +31,7 @@
   transition: top 400ms linear;
 }
 
-/* ---------- LEFT PILLAR (Using same palette as bars) ---------- */
+/* ---------- LEFT PILLAR (Brighter & Solid) ---------- */
 #background-image::before {
   content: "";
   position: absolute;
@@ -41,10 +40,9 @@
   width: 150px;
   height: 100%;
 
-  /* Matches the background bar palette */
-  background: #12294a;
+  /* Brighter Madison Blue */
+  background: #3d85c6; 
 
-  /* Full inward curve using your original polygon points */
   clip-path: polygon(
     0% 0%,       
     100% 0%,     
@@ -56,22 +54,26 @@
   );
 }
 
-/* ---------- TOP-RIGHT CURVED ACCENT (Original Triangle) ---------- */
+/* ---------- RIGHT PILLAR (Extended to the Bottom Bar) ---------- */
 #background-image::after {
   content: "";
   position: absolute;
   top: 0;
   right: 0;
-  width: 400px;
-  height: 600px;
+  width: 250px;     /* Adjusted width for a sleeker look */
+  height: 85%;      /* Ends exactly where the bottom bar begins */
 
-  /* Matches the background bar palette */
-  background: #12294a;
+  /* Brighter Madison Blue */
+  background: #3d85c6;
 
-  /* Deep inward curve using your original triangle points */
+  /* Updated Polygon: Now a full-height inward "C" curve */
   clip-path: polygon(
     100% 0%,      
-    100% 85%,     
-    30% 0%        
+    0% 0%,        /* Top corner */
+    35% 25%,      /* Inward sweep */
+    45% 50%,      /* Middle pinch */
+    35% 75%,      /* Outward sweep */
+    0% 100%,      /* Bottom corner at the 85% line */
+    100% 100%     
   );
 }
