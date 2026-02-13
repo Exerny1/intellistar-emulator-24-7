@@ -8,7 +8,6 @@
   width: 100%;
   height: 100%;
 
-  /* Background stays as radial gradient */
   background:
     radial-gradient(
       circle at 20% 15%,
@@ -21,9 +20,9 @@
       to bottom,
       #121212 0%,      /* top bar */
       #121212 7%,      /* top bar height */
-      transparent 7%,  /* main background starts */
-      transparent 93%, 
-      #121212 93%,     /* bottom bar */
+      transparent 7%,  /* background begins */
+      transparent 85%, 
+      #121212 85%,     /* bottom bar */
       #121212 100%
     ) !important;
 
@@ -32,15 +31,15 @@
   transition: top 400ms linear;
 }
 
-/* ---------- LEFT PILLAR (solid color like bars) ---------- */
+/* ---------- LEFT PILLAR (solid, same as bars) ---------- */
 #background-image::before {
   content: "";
   position: absolute;
   left: 0;
   top: 0;
-  width: 150px;  
+  width: 150px;        /* thickness of the pillar */
   height: 100%;
-  background: #121212; /* matches bars */
+  background: #121212; /* matches bars exactly */
 
   clip-path: polygon(
     0% 0%,       
@@ -51,23 +50,22 @@
     100% 100%,   
     0% 100%      
   );
-  z-index: 2; /* ensures it sits above background */
 }
 
-/* ---------- RIGHT PILLAR (solid color like bars) ---------- */
+/* ---------- RIGHT PILLAR (solid, same as bars) ---------- */
 #background-image::after {
   content: "";
   position: absolute;
   top: 0;
   right: 0;
-  width: 400px;     
-  height: 600px;    
-  background: #121212; /* matches bars */
-  
+  width: 400px;       /* thickness of the pillar */
+  height: 600px;      /* how far it extends down */
+
+  background: #121212; /* matches bars exactly */
+
   clip-path: polygon(
-    100% 0%,     
-    100% 85%,    
-    30% 0%       
+    100% 0%,    /* top-right corner */
+    100% 85%,   /* bottom of curve */
+    30% 0%      /* inward scoop */
   );
-  z-index: 2; /* ensures it sits above background */
 }
