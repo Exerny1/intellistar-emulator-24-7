@@ -8,10 +8,10 @@
   width: 100%;
   height: 100%;
   
-  /* The "Window" - Solid black background for data clarity */
-  background-color: #07090b !important;
+  /* The "Window" - Solid deep navy background */
+  background-color: #070d1a !important;
 
-  /* Top and Bottom Horizontal Bars */
+  /* Horizontal bars (Top and Bottom) */
   background-image:
     linear-gradient(to bottom, #121212 0%, #121212 7%, transparent 7%),
     linear-gradient(to top, #121212 0%, #121212 15%, transparent 15%) !important;
@@ -22,35 +22,35 @@
   overflow: hidden;
 }
 
-/* ---------- LEFT PILLAR: Concave "Lens" Curve ---------- */
+/* ---------- LEFT PILLAR: The Madison Pinch ---------- */
 #background-image::before {
   content: "";
   position: absolute;
   left: 0;
   top: 0;
   bottom: 0;
-  width: 16%;       /* Narrow enough to clear the TWC logo */
+  width: 15%;       /* Narrow enough to stay behind the TWC logo */
   z-index: 10;
-  background: #3d85c6; /* Solid Modern Madison Blue */
+  background: #3d85c6; /* Vibrant Madison Blue */
 
-  /* This mask creates the 'scoop' effect from your red lines.
-     It makes the pillar thinnest in the center to clear the 'Now' text. */
-  -webkit-mask-image: radial-gradient(circle at 170% 50%, transparent 75%, black 75%);
-  mask-image: radial-gradient(circle at 170% 50%, transparent 75%, black 75%);
+  /* This mask "scoops" the curve inward toward the left bezel.
+     It ensures the pillar is at its thinnest point in the center. */
+  -webkit-mask-image: radial-gradient(circle at 175% 50%, transparent 75%, black 75%);
+  mask-image: radial-gradient(circle at 175% 50%, transparent 75%, black 75%);
 }
 
-/* ---------- RIGHT PILLAR: Symmetrical Fill ---------- */
+/* ---------- RIGHT PILLAR: Symmetrical Madison Sweep ---------- */
 #background-image::after {
   content: "";
   position: absolute;
   right: 0;
   top: 0;
   bottom: 0;
-  width: 25%;       /* Fills that empty space on the right side */
+  width: 25%;       /* Wider to fill the empty space on the right */
   z-index: 10;
-  background: #3d85c6; /* Solid Modern Madison Blue */
+  background: #3d85c6; /* Vibrant Madison Blue */
 
-  /* Mirrored scoop to wrap the right side of the screen */
-  -webkit-mask-image: radial-gradient(circle at -70% 50%, transparent 75%, black 75%);
-  mask-image: radial-gradient(circle at -70% 50%, transparent 75%, black 75%);
+  /* Mirrored scoop for the right side frame */
+  -webkit-mask-image: radial-gradient(circle at -75% 50%, transparent 75%, black 75%);
+  mask-image: radial-gradient(circle at -75% 50%, transparent 75%, black 75%);
 }
