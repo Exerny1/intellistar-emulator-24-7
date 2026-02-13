@@ -7,24 +7,24 @@
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: #050a12; /* Modern Deep Midnight */
+  background-color: #050a12;
 
   background:
-    /* Layer 1: Top & Bottom Bars - Ultra-dark matte finish */
+    /* Layer 1: Modern Matte Black Bars (Top & Bottom) */
     linear-gradient(
       to bottom,
       #0a0d12 0%,       
-      #0a0d12 9%,       
-      transparent 9%, 
-      transparent 86%,  
-      #0a0d12 86%,      
+      #0a0d12 8%,       /* Sleeker top bar */
+      transparent 8%, 
+      transparent 88%,  
+      #0a0d12 88%,      /* Sleeker bottom bar */
       #0a0d12 100%
     ),
-    /* Layer 2: Modern "Vivid" Blue fill (the space between pillars) */
+    /* Layer 2: The "Fill" - High-def modern radial blue */
     radial-gradient(
-      circle at 40% 40%,
-      #1a4b8f 0%,       
-      #0c1d36 70%,      
+      circle at 50% 50%,
+      #163b72 0%,       
+      #0c1d36 60%,      
       #050a12 100%
     ) !important;
 
@@ -34,43 +34,43 @@
   overflow: hidden;
 }
 
-/* ---------- MODERN LEFT PILLAR: Sharp Inward 'C' ---------- */
+/* ---------- MODERN LEFT PILLAR: Sharp Concave 'C' ---------- */
 #background-image::before {
   content: "";
   position: absolute;
   left: 0;
   top: 0;
   bottom: 0;
-  width: 22%; 
-  z-index: 10; /* Overlaps bars for that modern 'layered' feel */
+  width: 15%;      /* Narrower width to stay out of the way of text */
+  z-index: 10;     /* Sits ON TOP of the black bars */
 
-  /* Modern TWC Blue Gradient - Flat but with depth */
+  /* Modern TWC 'Steel Blue' */
   background: linear-gradient(180deg, #3d85c6 0%, #295b8d 100%);
 
-  /* Mask creates the smooth, deep inward 'C' scoop */
-  -webkit-mask-image: radial-gradient(circle at 145% 50%, transparent 68%, black 68%);
-  mask-image: radial-gradient(circle at 145% 50%, transparent 68%, black 68%);
+  /* Mask creates a sharp, smooth inward curve facing the LEFT edge */
+  -webkit-mask-image: radial-gradient(circle at 160% 50%, transparent 75%, black 75%);
+  mask-image: radial-gradient(circle at 160% 50%, transparent 75%, black 75%);
 
-  /* High-end edge lighting effect */
-  border-right: 2px solid rgba(255, 255, 255, 0.15);
+  /* Edge highlight for a 'revamped' 3D look */
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-/* ---------- MODERN RIGHT PILLAR: Darker Accent Curve ---------- */
+/* ---------- MODERN RIGHT PILLAR: Symmetrical Concave 'C' ---------- */
 #background-image::after {
   content: "";
   position: absolute;
   right: 0;
   top: 0;
   bottom: 0;
-  width: 18%; 
+  width: 15%; 
   z-index: 10;
 
-  /* Deep Navy/Cyan gradient */
-  background: linear-gradient(180deg, #1e3a5f 0%, #0d1b2e 100%);
+  /* Slightly darker accent blue */
+  background: linear-gradient(180deg, #295b8d 0%, #1a3a5f 100%);
 
-  /* Mirroring the inward scoop */
-  -webkit-mask-image: radial-gradient(circle at -45% 50%, transparent 68%, black 68%);
-  mask-image: radial-gradient(circle at -45% 50%, transparent 68%, black 68%);
+  /* Mirroring the inward scoop toward the RIGHT edge */
+  -webkit-mask-image: radial-gradient(circle at -60% 50%, transparent 75%, black 75%);
+  mask-image: radial-gradient(circle at -60% 50%, transparent 75%, black 75%);
   
-  border-left: 2px solid rgba(255, 255, 255, 0.05);
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
 }
