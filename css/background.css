@@ -8,28 +8,40 @@
   width: 100%;
   height: 100%;
 
-  /* Order matters: top-most gradient first */
+  /* Layer order: bars first, then main background */
   background:
-    /* Left and right bars */
-    linear-gradient(
-      to right,
-      #121212 0%,       /* left bar */
-      #121212 7%,       
-      transparent 7%,   
-      transparent 93%,  
-      #121212 93%,      /* right bar */
-      #121212 100%
-    ),
-    /* Top and bottom bars */
+    /* Left bar gradient */
     linear-gradient(
       to bottom,
-      #121212 0%,       /* top bar */
-      #121212 7%,       
-      #12294a 7%,       /* main background */
-      #12294a 85%,      
-      #121212 85%,      /* bottom bar */
-      #121212 100%
-    ),
+      #121212 0%, 
+      #163f6b 50%, 
+      #12294a 100%
+    ) left / 7% 100% no-repeat,
+
+    /* Right bar gradient */
+    linear-gradient(
+      to bottom,
+      #121212 0%, 
+      #163f6b 50%, 
+      #12294a 100%
+    ) right / 7% 100% no-repeat,
+
+    /* Top bar gradient */
+    linear-gradient(
+      to right,
+      #121212 0%, 
+      #163f6b 50%, 
+      #12294a 100%
+    ) top / 100% 7% no-repeat,
+
+    /* Bottom bar gradient */
+    linear-gradient(
+      to right,
+      #121212 0%, 
+      #163f6b 50%, 
+      #12294a 100%
+    ) bottom / 100% 15% no-repeat,
+
     /* Main radial background */
     radial-gradient(
       circle at 20% 15%,
@@ -37,7 +49,7 @@
       rgba(20, 50, 90, 0.15) 45%,
       rgba(8, 12, 20, 0.95) 80%,
       #07090b 100%
-    ) !important;
+    );
 
   background-size: cover !important;
   background-repeat: no-repeat !important;
