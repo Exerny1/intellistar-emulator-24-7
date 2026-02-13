@@ -9,12 +9,23 @@
   height: 100%;
 
   background:
-    /* Top bar */
+    /* Top bar (slim) */
     linear-gradient(to bottom, #121212 0%, #121212 7%, transparent 7%),
-    /* Bottom bar */
-    linear-gradient(to top, #121212 0%, #121212 7%, transparent 7%),
-    /* Left and right bars */
-    linear-gradient(to right, #121212 0px, #121212 50px, transparent 50px, transparent calc(100% - 50px), #121212 calc(100% - 50px), #121212 100%),
+    
+    /* Bottom bar (thicker) */
+    linear-gradient(to top, #121212 0%, #121212 18%, transparent 18%),
+
+    /* Left and right bars (thick) */
+    linear-gradient(
+      to right,
+      #121212 0px,      /* left bar start */
+      #121212 60px,     /* left bar thickness */
+      transparent 60px, /* space for main content */
+      transparent calc(100% - 60px),
+      #121212 calc(100% - 60px),  /* right bar start */
+      #121212 100%      /* right bar end */
+    ),
+
     /* Main background */
     radial-gradient(
       circle at 20% 15%,
