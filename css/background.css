@@ -7,25 +7,25 @@
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: #050a12;
+  background-color: #07090b;
 
   background:
-    /* Layer 1: Modern Matte Black Bars (Top & Bottom) */
+    /* Layer 1: Matte Black Top/Bottom Bars */
     linear-gradient(
       to bottom,
-      #0a0d12 0%,       
-      #0a0d12 8%,       /* Sleeker top bar */
+      #121212 0%,       
+      #121212 8%,       
       transparent 8%, 
       transparent 88%,  
-      #0a0d12 88%,      /* Sleeker bottom bar */
-      #0a0d12 100%
+      #121212 88%,      
+      #121212 100%
     ),
-    /* Layer 2: The "Fill" - High-def modern radial blue */
+    /* Layer 2: The Inner 'Fill' Blue */
     radial-gradient(
       circle at 50% 50%,
       #163b72 0%,       
-      #0c1d36 60%,      
-      #050a12 100%
+      #0d1d36 65%,      
+      #07090b 100%
     ) !important;
 
   background-size: cover !important;
@@ -34,43 +34,39 @@
   overflow: hidden;
 }
 
-/* ---------- MODERN LEFT PILLAR: Sharp Concave 'C' ---------- */
+/* ---------- LEFT SIDE: SOLID INWARD CURVE ---------- */
 #background-image::before {
   content: "";
   position: absolute;
   left: 0;
   top: 0;
   bottom: 0;
-  width: 15%;      /* Narrower width to stay out of the way of text */
-  z-index: 10;     /* Sits ON TOP of the black bars */
+  width: 20%; 
+  z-index: 10; /* Sits ON TOP of the bars */
 
-  /* Modern TWC 'Steel Blue' */
-  background: linear-gradient(180deg, #3d85c6 0%, #295b8d 100%);
+  /* Modern Steel Blue (Solid, No Transparency) */
+  background: #3d85c6; 
 
-  /* Mask creates a sharp, smooth inward curve facing the LEFT edge */
-  -webkit-mask-image: radial-gradient(circle at 160% 50%, transparent 75%, black 75%);
-  mask-image: radial-gradient(circle at 160% 50%, transparent 75%, black 75%);
-
-  /* Edge highlight for a 'revamped' 3D look */
-  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  /* This 'Mask' carves a circle OUT of the right side, 
+     creating the inward 'scoop' or 'C' shape. */
+  -webkit-mask-image: radial-gradient(circle at 155% 50%, transparent 72%, black 72%);
+  mask-image: radial-gradient(circle at 155% 50%, transparent 72%, black 72%);
 }
 
-/* ---------- MODERN RIGHT PILLAR: Symmetrical Concave 'C' ---------- */
+/* ---------- RIGHT SIDE: SOLID INWARD CURVE ---------- */
 #background-image::after {
   content: "";
   position: absolute;
   right: 0;
   top: 0;
   bottom: 0;
-  width: 15%; 
+  width: 20%; 
   z-index: 10;
 
-  /* Slightly darker accent blue */
-  background: linear-gradient(180deg, #295b8d 0%, #1a3a5f 100%);
+  /* Slightly darker TWC Royal Blue */
+  background: #295b8d;
 
-  /* Mirroring the inward scoop toward the RIGHT edge */
-  -webkit-mask-image: radial-gradient(circle at -60% 50%, transparent 75%, black 75%);
-  mask-image: radial-gradient(circle at -60% 50%, transparent 75%, black 75%);
-  
-  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  /* Mirrors the scoop on the right side */
+  -webkit-mask-image: radial-gradient(circle at -55% 50%, transparent 72%, black 72%);
+  mask-image: radial-gradient(circle at -55% 50%, transparent 72%, black 72%);
 }
