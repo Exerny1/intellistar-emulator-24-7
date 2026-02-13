@@ -7,63 +7,72 @@
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: #07090b;
 
-  background:
-    /* Layer 1: Top and Bottom bars - Solid Frame */
+  /* Sets the 'Fill' color first, then layers the frame gradients on top */
+  background-color: #12294a; 
+
+  background-image:
+    /* Layer 1: Top & Bottom Bars (Set to black) */
     linear-gradient(
       to bottom,
-      #15191f 0%,       
-      #15191f 9%,       
-      transparent 9%, 
+      #121212 0%,       
+      #121212 7%,       
+      transparent 7%,   
       transparent 85%,  
-      #15191f 85%,      
-      #15191f 100%
+      #121212 85%,      
+      #121212 100%
     ),
-    /* Layer 2: Muted Blue Radial Background */
+    /* Layer 2: The subtle glow effect to prevent it from looking 'flat' */
     radial-gradient(
-      circle at 35% 40%,
-      #142d4c 0%,       /* More muted blue center */
-      #0a1626 60%,      
-      #07090b 100%
+      circle at 20% 15%,
+      rgba(50, 120, 190, 0.2) 0%,
+      rgba(20, 50, 90, 0.1) 60%,
+      transparent 100%
     ) !important;
 
   background-size: cover !important;
   background-repeat: no-repeat !important;
   transition: top 400ms linear;
-  overflow: hidden;
 }
 
-/* ---------- LEFT PILLAR: CURVING INWARD TOWARD LEFT ---------- */
+/* ---------- LEFT PILLAR (Ensuring it sits between the bars) ---------- */
 #background-image::before {
   content: "";
   position: absolute;
   left: 0;
-  top: 0;
-  width: 15%; 
-  height: 100%;
-  z-index: 2;
+  top: 7%;    /* Starts where the top bar ends */
+  bottom: 15%; /* Ends where the bottom bar begins */
+  width: 150px;
+  z-index: 1;
 
-  /* Transparent Gradient */
-  background: linear-gradient(to right, rgba(27, 48, 77, 0.8), rgba(15, 25, 41, 0.4));
+  background: #12294a;
 
-  /* This pulls the curve INWARD toward the edge of the screen */
-  clip-path: ellipse(100% 120% at 100% 50%);
+  clip-path: polygon(
+    0% 0%,       
+    100% 0%,     
+    65% 25%,     
+    55% 50%,     
+    65% 75%,     
+    100% 100%,   
+    0% 100%      
+  );
 }
 
-/* ---------- RIGHT PILLAR: CURVING INWARD TOWARD RIGHT ---------- */
+/* ---------- TOP-RIGHT CURVED ACCENT (Fills corner under bar) ---------- */
 #background-image::after {
   content: "";
   position: absolute;
+  top: 7%;     
   right: 0;
-  top: 0;
-  width: 15%; /* Smaller, matching the left side */
-  height: 100%;
-  z-index: 2;
+  width: 400px;
+  height: 600px;
+  z-index: 1;
 
-  /* Transparent Gradient mirrored */
-  background: linear-gradient(to left, rgba(27, 48, 77, 0.8), rgba(15, 25, 41, 0.4));
+  background: #12294a;
 
-  /* This pulls the curve INWARD toward the right edge of the screen */
-  clip-path: ellipse(100% 120% at 0% 50%);
+  clip-path: polygon(
+    100% 0%,      
+    100% 85%,     
+    30% 0%        
+  );
 }
