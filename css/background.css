@@ -7,12 +7,10 @@
   top: 0;
   width: 100%;
   height: 100%;
+  background-color: #07090b;
 
-  /* Sets the 'Fill' color first, then layers the frame gradients on top */
-  background-color: #12294a; 
-
-  background-image:
-    /* Layer 1: Top & Bottom Bars (Set to black) */
+  background:
+    /* Layer 1: Top and Bottom bars - Solid #121212 */
     linear-gradient(
       to bottom,
       #121212 0%,       
@@ -22,57 +20,50 @@
       #121212 85%,      
       #121212 100%
     ),
-    /* Layer 2: The subtle glow effect to prevent it from looking 'flat' */
+    /* Layer 2: The Inner Blue Fill (the part you circled) */
     radial-gradient(
-      circle at 20% 15%,
-      rgba(50, 120, 190, 0.2) 0%,
-      rgba(20, 50, 90, 0.1) 60%,
-      transparent 100%
+      circle at 30% 35%,
+      #1c437a 0%,       /* Brightest blue behind the text */
+      #12294a 60%,      
+      #080c14 100%
     ) !important;
 
   background-size: cover !important;
   background-repeat: no-repeat !important;
   transition: top 400ms linear;
+  overflow: hidden;
 }
 
-/* ---------- LEFT PILLAR (Ensuring it sits between the bars) ---------- */
+/* ---------- LEFT GLASS PILLAR ---------- */
 #background-image::before {
   content: "";
   position: absolute;
   left: 0;
-  top: 7%;    /* Starts where the top bar ends */
-  bottom: 15%; /* Ends where the bottom bar begins */
-  width: 150px;
+  top: 7%;    /* Starts below top bar */
+  bottom: 15%; /* Ends above bottom bar */
+  width: 22%;  /* Width covers the area to the left of your forecast box */
   z-index: 1;
 
-  background: #12294a;
+  /* Semi-transparent blue gradient matching the broadcast glass */
+  background: linear-gradient(to right, rgba(90, 141, 192, 0.7), rgba(42, 77, 125, 0.4));
 
-  clip-path: polygon(
-    0% 0%,       
-    100% 0%,     
-    65% 25%,     
-    55% 50%,     
-    65% 75%,     
-    100% 100%,   
-    0% 100%      
-  );
+  /* Creates the smooth inward "Madison" curve */
+  clip-path: ellipse(85% 100% at -10% 50%);
 }
 
-/* ---------- TOP-RIGHT CURVED ACCENT (Fills corner under bar) ---------- */
+/* ---------- RIGHT GLASS PILLAR ---------- */
 #background-image::after {
   content: "";
   position: absolute;
-  top: 7%;     
   right: 0;
-  width: 400px;
-  height: 600px;
+  top: 7%;
+  bottom: 15%;
+  width: 25%; /* Covers the gap on the right of the forecast box */
   z-index: 1;
 
-  background: #12294a;
+  /* Darker navy transparency for the right side */
+  background: linear-gradient(to left, rgba(21, 25, 31, 0.8), rgba(13, 29, 54, 0.2));
 
-  clip-path: polygon(
-    100% 0%,      
-    100% 85%,     
-    30% 0%        
-  );
+  /* Creates the sweeping arch from the right */
+  clip-path: ellipse(100% 120% at 110% 40%);
 }
