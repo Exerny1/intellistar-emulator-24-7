@@ -1,3 +1,4 @@
+
 #background-image,
 .background-image,
 #background-image.below-screen,
@@ -8,24 +9,21 @@
   width: 100%;
   height: 100%;
 
-  /* Fill the entire background with the Intelistar Blue first */
-  background-color: #12294a; 
-
+  /* Main background with top & bottom bars (Intelistar blue gradient palette) */
   background:
-    /* Layer 1: The Glow - makes the "This Part" look modern */
     radial-gradient(
-      circle at 30% 30%,
-      rgba(50, 120, 190, 0.2) 0%,  
-      rgba(8, 12, 20, 0.4) 70%,     
-      transparent 100%
+      circle at 20% 15%,
+      rgba(50, 120, 190, 0.15) 0%,  /* subtle highlight */
+      rgba(20, 50, 90, 0.15) 45%,    /* muted fade */
+      rgba(8, 12, 20, 0.95) 80%,     
+      #07090b 100%
     ),
-    /* Layer 2: The Black Bars (Frame) */
     linear-gradient(
       to bottom,
       #121212 0%,      /* top bar */
       #121212 7%,      
-      transparent 7%,  /* Let the blue fill show through here */
-      transparent 85%,     
+      #12294a 7%,      /* main background (bar color palette) */
+      #12294a 85%,     
       #121212 85%,     /* bottom bar */
       #121212 100%
     ) !important;
@@ -33,10 +31,9 @@
   background-size: cover !important;
   background-repeat: no-repeat !important;
   transition: top 400ms linear;
-  overflow: hidden;
 }
 
-/* ---------- LEFT PILLAR (Your Original Polygon) ---------- */
+/* ---------- LEFT PILLAR (Using same palette as bars) ---------- */
 #background-image::before {
   content: "";
   position: absolute;
@@ -44,9 +41,11 @@
   top: 0;
   width: 150px;
   height: 100%;
-  background: #12294a;
-  z-index: 10;
 
+  /* Matches the background bar palette */
+  background: #12294a;
+
+  /* Full inward curve */
   clip-path: polygon(
     0% 0%,       
     100% 0%,     
@@ -58,19 +57,23 @@
   );
 }
 
-/* ---------- REFINED RIGHT PILLAR: Ends at bottom bar ---------- */
+/* ---------- TOP-RIGHT CURVED ACCENT (Using same palette as bars) ---------- */
 #background-image::after {
   content: "";
   position: absolute;
-  right: 0;
   top: 0;
-  width: 25%;      
-  /* Ends at 85% to perfectly meet the bottom bar */
-  height: 85%;    
-  background: #12294a;
-  z-index: 10;
+  right: 0;
+  width: 400px;
+  height: 600px;
 
-  /* Inward 'C' scoop that aligns with your red marks */
-  -webkit-mask-image: radial-gradient(circle at -60% 50%, transparent 72%, black 72%);
-  mask-image: radial-gradient(circle at -60% 50%, transparent 72%, black 72%);
+  /* Matches the background bar palette */
+  background: #12294a;
+
+  /* Deep inward curve */
+  clip-path: polygon(
+    100% 0%,      
+    100% 85%,     
+    30% 0%        
+  );
 }
+
