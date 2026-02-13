@@ -11,7 +11,7 @@
   background:
     radial-gradient(
       circle at 20% 15%,
-      rgba(70, 150, 240, 0.2) 0%,  /* Brighter highlight */
+      rgba(70, 150, 240, 0.2) 0%,  
       rgba(20, 50, 90, 0.15) 45%,    
       rgba(8, 12, 20, 0.95) 80%,     
       #07090b 100%
@@ -20,7 +20,7 @@
       to bottom,
       #121212 0%,      
       #121212 7%,      
-      #12294a 7%,      /* Fill blue remains the same for depth */
+      #12294a 7%,      
       #12294a 85%,     
       #121212 85%,     
       #121212 100%
@@ -31,7 +31,7 @@
   transition: top 400ms linear;
 }
 
-/* ---------- LEFT PILLAR (Brighter & Solid) ---------- */
+/* ---------- LEFT PILLAR (Original Polygon Style) ---------- */
 #background-image::before {
   content: "";
   position: absolute;
@@ -39,9 +39,8 @@
   top: 0;
   width: 150px;
   height: 100%;
-
-  /* Brighter Madison Blue */
   background: #3d85c6; 
+  z-index: 10;
 
   clip-path: polygon(
     0% 0%,       
@@ -54,26 +53,26 @@
   );
 }
 
-/* ---------- RIGHT PILLAR (Extended to the Bottom Bar) ---------- */
+/* ---------- RIGHT PILLAR: Extended & Longer Sweep ---------- */
 #background-image::after {
   content: "";
   position: absolute;
   top: 0;
   right: 0;
-  width: 250px;     /* Adjusted width for a sleeker look */
-  height: 85%;      /* Ends exactly where the bottom bar begins */
-
-  /* Brighter Madison Blue */
+  width: 320px;      /* Increased width to make the 'longer' curve feel bigger */
+  height: 85%;       /* Stops perfectly at the 85% mark (top of the bottom bar) */
   background: #3d85c6;
+  z-index: 10;
 
-  /* Updated Polygon: Now a full-height inward "C" curve */
+  /* This polygon creates a long, deep sweep that pulls 
+     inwards and lands exactly at the corner of the black rectangle */
   clip-path: polygon(
     100% 0%,      
-    0% 0%,        /* Top corner */
-    35% 25%,      /* Inward sweep */
-    45% 50%,      /* Middle pinch */
-    35% 75%,      /* Outward sweep */
-    0% 100%,      /* Bottom corner at the 85% line */
+    10% 0%,        /* Starts further left for a longer look */
+    30% 25%,      
+    45% 50%,       /* Deepest point of the scoop */
+    30% 75%,      
+    10% 100%,      /* Ends right at the boundary of the bottom bar */
     100% 100%     
   );
 }
