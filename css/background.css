@@ -7,25 +7,27 @@
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: #07090b;
+
+  /* Fill the entire background with the Intelistar Blue first */
+  background-color: #12294a; 
 
   background:
-    /* Layer 1: Matte Black Bars */
+    /* Layer 1: The Glow - makes the "This Part" look modern */
+    radial-gradient(
+      circle at 30% 30%,
+      rgba(50, 120, 190, 0.2) 0%,  
+      rgba(8, 12, 20, 0.4) 70%,     
+      transparent 100%
+    ),
+    /* Layer 2: The Black Bars (Frame) */
     linear-gradient(
       to bottom,
-      #121212 0%,       
-      #121212 8%,       
-      transparent 8%, 
-      transparent 88%,  
-      #121212 88%,      
+      #121212 0%,      /* top bar */
+      #121212 7%,      
+      transparent 7%,  /* Let the blue fill show through here */
+      transparent 85%,     
+      #121212 85%,     /* bottom bar */
       #121212 100%
-    ),
-    /* Layer 2: The Inner Fill */
-    radial-gradient(
-      circle at 45% 45%,
-      #163b72 0%,       
-      #0d1d36 65%,      
-      #07090b 100%
     ) !important;
 
   background-size: cover !important;
@@ -34,32 +36,41 @@
   overflow: hidden;
 }
 
-/* ---------- REMOVE RIGHT SIDE FOR FOCUS ---------- */
-#background-image::after {
-  display: none !important;
-}
-
-/* ---------- THE PINCHED LEFT PILLAR ---------- */
+/* ---------- LEFT PILLAR (Your Original Polygon) ---------- */
 #background-image::before {
   content: "";
   position: absolute;
   left: 0;
   top: 0;
-  bottom: 0;
-  /* Narrower width to ensure the logo is NEVER covered */
-  width: 12%;      
+  width: 150px;
+  height: 100%;
+  background: #12294a;
   z-index: 10;
 
-  background: #3d85c6; /* Solid Modern Steel Blue */
+  clip-path: polygon(
+    0% 0%,       
+    100% 0%,     
+    65% 25%,     
+    55% 50%,     
+    65% 75%,     
+    100% 100%,   
+    0% 100%      
+  );
+}
 
-  /* This is the key: 
-     It creates a circle centered off-screen to the RIGHT (160%).
-     The 'transparent' part is the 'scoop' that follows your red line,
-     leaving only the corners of the blue rectangle visible.
-  */
-  -webkit-mask-image: radial-gradient(circle at 160% 50%, transparent 75%, black 75%);
-  mask-image: radial-gradient(circle at 160% 50%, transparent 75%, black 75%);
+/* ---------- REFINED RIGHT PILLAR: Ends at bottom bar ---------- */
+#background-image::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 25%;      
+  /* Ends at 85% to perfectly meet the bottom bar */
+  height: 85%;    
+  background: #12294a;
+  z-index: 10;
 
-  /* Optional: Modern edge highlight */
-  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  /* Inward 'C' scoop that aligns with your red marks */
+  -webkit-mask-image: radial-gradient(circle at -60% 50%, transparent 72%, black 72%);
+  mask-image: radial-gradient(circle at -60% 50%, transparent 72%, black 72%);
 }
