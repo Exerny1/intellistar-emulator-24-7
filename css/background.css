@@ -9,21 +9,32 @@
   height: 100%;
 
   background:
-    radial-gradient(
-      circle at 20% 15%,
-      rgba(50, 120, 190, 0.25) 0%,
-      rgba(25, 70, 120, 0.20) 45%,
-      rgba(12, 20, 32, 0.95) 80%,
-      #07090b 100%
-    ),
+    /* Unified IntelliSTAR-style gradient frame for all edges */
     linear-gradient(
       to bottom,
-      #327EBD 0%,    /* top bar solid color */
-      #327EBD 7%,    /* top bar ends */
-      #07090b 7%,    /* main background starts */
-      #07090b 93%,   /* main background ends */
-      #327EBD 93%,   /* bottom bar solid color */
-      #327EBD 100%   /* bottom bar ends */
+      #0f203c 0%,       /* top bar start */
+      #1a3b60 7%,       /* subtle lighter blue for smooth transition */
+      #12294a 7%,       /* main background start */
+      #12294a 85%,      /* main background end */
+      #1a3b60 85%,      /* bottom bar start */
+      #0f203c 100%      /* bottom bar end */
+    ),
+    linear-gradient(
+      to right,
+      #0f203c 0%,       /* left bar start */
+      #1a3b60 7%,       /* subtle lighter blue for smooth transition */
+      transparent 7%,   
+      transparent 93%,  
+      #1a3b60 93%,      /* right bar start */
+      #0f203c 100%      /* right bar end */
+    ),
+    /* Radial main background */
+    radial-gradient(
+      circle at 20% 15%,
+      rgba(50, 120, 190, 0.15) 0%,
+      rgba(20, 50, 90, 0.15) 45%,
+      rgba(8, 12, 20, 0.95) 80%,
+      #07090b 100%
     ) !important;
 
   background-size: cover !important;
