@@ -7,10 +7,10 @@
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: #07090b;
+  background-color: #050a12;
 
   background:
-    /* Layer 1: Matte Black Top/Bottom Bars */
+    /* Layer 1: Matte Black Bars */
     linear-gradient(
       to bottom,
       #121212 0%,       
@@ -34,39 +34,36 @@
   overflow: hidden;
 }
 
-/* ---------- LEFT SIDE: SOLID INWARD CURVE ---------- */
+/* ---------- LEFT SIDE: FULL INWARD C-CURVE ---------- */
 #background-image::before {
   content: "";
   position: absolute;
   left: 0;
   top: 0;
   bottom: 0;
-  width: 20%; 
-  z-index: 10; /* Sits ON TOP of the bars */
+  width: 18%; 
+  z-index: 10;
 
-  /* Modern Steel Blue (Solid, No Transparency) */
-  background: #3d85c6; 
+  background: #3d85c6; /* Solid Modern Blue */
 
-  /* This 'Mask' carves a circle OUT of the right side, 
-     creating the inward 'scoop' or 'C' shape. */
-  -webkit-mask-image: radial-gradient(circle at 155% 50%, transparent 72%, black 72%);
-  mask-image: radial-gradient(circle at 155% 50%, transparent 72%, black 72%);
+  /* Deep inward scoop toward the left edge */
+  -webkit-mask-image: radial-gradient(circle at 160% 50%, transparent 72%, black 72%);
+  mask-image: radial-gradient(circle at 160% 50%, transparent 72%, black 72%);
 }
 
-/* ---------- RIGHT SIDE: SOLID INWARD CURVE ---------- */
+/* ---------- RIGHT SIDE: SHORT ACCENT CURVE ---------- */
 #background-image::after {
   content: "";
   position: absolute;
   right: 0;
   top: 0;
   bottom: 0;
-  width: 20%; 
+  width: 12%; /* Made narrower so it doesn't go halfway across */
   z-index: 10;
 
-  /* Slightly darker TWC Royal Blue */
-  background: #295b8d;
+  background: #295b8d; /* Darker accent blue */
 
-  /* Mirrors the scoop on the right side */
-  -webkit-mask-image: radial-gradient(circle at -55% 50%, transparent 72%, black 72%);
-  mask-image: radial-gradient(circle at -55% 50%, transparent 72%, black 72%);
+  /* Aggressive mask center to make the curve sharper and less 'deep' */
+  -webkit-mask-image: radial-gradient(circle at -80% 50%, transparent 75%, black 75%);
+  mask-image: radial-gradient(circle at -80% 50%, transparent 75%, black 75%);
 }
