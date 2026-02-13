@@ -12,22 +12,22 @@
     /* Left and right vertical bars */
     linear-gradient(
       to right,
-      #163854 0%,      /* solid dark blue left */
-      #163854 7%,      
+      #2e3b48 0%,      /* left bar - grayish blue */
+      #2e3b48 7%,      
       transparent 7%,  
       transparent 93%, 
-      #163854 93%,     /* solid dark blue right */
-      #163854 100%
+      #2e3b48 93%,     /* right bar - grayish blue */
+      #2e3b48 100%
     ),
     /* Top and bottom horizontal bars */
     linear-gradient(
       to bottom,
-      #163854 0%,      /* top bar */
-      #163854 7%,      
+      #2e3b48 0%,      /* top bar */
+      #2e3b48 7%,      
       #12294a 7%,      /* main background start */
       #12294a 85%,     
-      #163854 85%,     /* bottom bar */
-      #163854 100%
+      #2e3b48 85%,     /* bottom bar */
+      #2e3b48 100%
     ),
     /* Main radial background */
     radial-gradient(
