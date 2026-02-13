@@ -9,23 +9,16 @@
   height: 100%;
   background-color: #07090b;
 
+  /* Layer 1: The solid bars (Now sit BEHIND the curves) */
   background:
-    /* Layer 1: Top and Bottom bars - Solid #121212 */
     linear-gradient(
       to bottom,
       #121212 0%,       
       #121212 7%,       
-      transparent 7%,   
-      transparent 85%,  
+      #12294a 7%,       /* The "fill" part you circled */
+      #12294a 85%,     
       #121212 85%,      
       #121212 100%
-    ),
-    /* Layer 2: The Inner Blue Fill (the part you circled) */
-    radial-gradient(
-      circle at 30% 35%,
-      #1c437a 0%,       /* Brightest blue behind the text */
-      #12294a 60%,      
-      #080c14 100%
     ) !important;
 
   background-size: cover !important;
@@ -34,36 +27,36 @@
   overflow: hidden;
 }
 
-/* ---------- LEFT GLASS PILLAR ---------- */
+/* ---------- LEFT PILLAR: Large Inward 'C' Curve ---------- */
 #background-image::before {
   content: "";
   position: absolute;
   left: 0;
-  top: 7%;    /* Starts below top bar */
-  bottom: 15%; /* Ends above bottom bar */
-  width: 22%;  /* Width covers the area to the left of your forecast box */
-  z-index: 1;
+  top: 0;         /* Covers the top bar */
+  bottom: 0;      /* Covers the bottom bar */
+  width: 25%;     
+  z-index: 10;    /* Higher z-index to sit ON TOP of bars */
 
-  /* Semi-transparent blue gradient matching the broadcast glass */
-  background: linear-gradient(to right, rgba(90, 141, 192, 0.7), rgba(42, 77, 125, 0.4));
+  /* Madison Blue Palette: Semi-transparent Steel Blue */
+  background: linear-gradient(to right, rgba(74, 128, 184, 0.9), rgba(30, 60, 100, 0.5));
 
-  /* Creates the smooth inward "Madison" curve */
-  clip-path: ellipse(85% 100% at -10% 50%);
+  /* This creates the 'Large C' that curves INWARD toward the left edge */
+  clip-path: ellipse(120% 100% at 100% 50%);
 }
 
-/* ---------- RIGHT GLASS PILLAR ---------- */
+/* ---------- RIGHT PILLAR: Large Inward 'C' Curve ---------- */
 #background-image::after {
   content: "";
   position: absolute;
   right: 0;
-  top: 7%;
-  bottom: 15%;
-  width: 25%; /* Covers the gap on the right of the forecast box */
-  z-index: 1;
+  top: 0;         /* Covers the top bar */
+  bottom: 0;      /* Covers the bottom bar */
+  width: 25%;     
+  z-index: 10;    /* Higher z-index to sit ON TOP of bars */
 
-  /* Darker navy transparency for the right side */
-  background: linear-gradient(to left, rgba(21, 25, 31, 0.8), rgba(13, 29, 54, 0.2));
+  /* Darker Navy transparency for the right side */
+  background: linear-gradient(to left, rgba(20, 40, 70, 0.8), rgba(10, 20, 40, 0.3));
 
-  /* Creates the sweeping arch from the right */
-  clip-path: ellipse(100% 120% at 110% 40%);
+  /* This creates the 'Large C' that curves INWARD toward the right edge */
+  clip-path: ellipse(120% 100% at 0% 50%);
 }
