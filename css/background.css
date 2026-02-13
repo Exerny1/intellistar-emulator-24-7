@@ -19,7 +19,7 @@
     linear-gradient(
       to bottom,
       #121212 0%,      /* TOP bar */
-      #121212 7%,      /* slightly bigger */
+      #121212 7%,      
       #163f6b 7%,      /* main background starts */
       #12294a 85%,     
       #121212 85%,     /* bottom bar */
@@ -31,7 +31,7 @@
   transition: top 400ms linear;
 }
 
-/* ---------- LEFT PILLAR (Blends with Bars) ---------- */
+/* ---------- LEFT PILLAR (Part of Bars) ---------- */
 #background-image::before {
   content: "";
   position: absolute;
@@ -39,11 +39,8 @@
   top: 0;
   width: 150px;  
   height: 100%;
-  background: linear-gradient(
-    to bottom,
-    #163f6b 0%,    /* IntelliSTAR blue top */
-    #121212 85%    /* fades into bottom bar */
-  );
+  background: #121212;  /* SAME as top/bottom bars */
+
   clip-path: polygon(
     0% 0%,       
     100% 0%,     
@@ -55,7 +52,7 @@
   );
 }
 
-/* ---------- RIGHT PILLAR (Blends with Bars) ---------- */
+/* ---------- RIGHT PILLAR (Part of Bars) ---------- */
 #background-image::after {
   content: "";
   position: absolute;
@@ -64,11 +61,7 @@
   width: 400px;     
   height: 600px;    
 
-  background: linear-gradient(
-    to bottom,
-    #12294a 0%,   /* matches background near top */
-    #121212 85%   /* fades into bottom bar */
-  );
+  background: #121212; /* SAME as top/bottom bars */
 
   clip-path: polygon(
     100% 0%,     
