@@ -9,32 +9,32 @@
   height: 100%;
 
   background:
-    /* Layer 1: Top and Bottom bars - Full width */
+    /* Layer 1: Top and Bottom bars - Full width, now #15191F */
     linear-gradient(
       to bottom,
-      #1B2026 0%,       /* Top bar */
-      #1B2026 7.5%,     
+      #15191F 0%,       /* Top bar */
+      #15191F 7.5%,     
       transparent 7.5%, 
-      transparent 80%,  /* Moved from 88% to 80% so bottom fills MORE */
-      #1B2026 80%,      /* Bottom bar starts higher up */
-      #1B2026 100%
+      transparent 80%,  
+      #15191F 80%,      /* Bottom bar */
+      #15191F 100%
     ),
-    /* Layer 2: Side bars - Adjusted for the Forecast box */
+    /* Layer 2: Side bars - Now #15191F */
     linear-gradient(
       to right,
-      #1B2026 0%,       /* Left bar */
-      #1B2026 6.5%,     /* Decreased from 8.5% to fill a "tad bit less" */
+      #15191F 0%,       /* Left bar */
+      #15191F 6.5%,     
       transparent 6.5%, 
       transparent 73.5%,
-      #1B2026 73.5%,    /* Right bar stays flush with forecast edge */
-      #1B2026 100%
+      #15191F 73.5%,    /* Right bar */
+      #15191F 100%
     ),
-    /* Layer 3: Main radial background */
+    /* Layer 3: Brighter Blue Radial Background */
     radial-gradient(
       circle at 20% 15%,
-      #12294a 0%,       
-      #080c14 60%,      
-      #07090b 100%
+      #235191 0%,       /* Brighter, more saturated blue "glow" */
+      #12294a 50%,      /* Deep navy transition */
+      #0a1629 100%      /* Dark blue-black edge */
     ) !important;
 
   background-size: cover !important;
