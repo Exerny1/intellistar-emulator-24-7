@@ -32,7 +32,7 @@
   transition: top 400ms linear;
 }
 
-/* ---------- LEFT PILLAR (Using same palette as bars) ---------- */
+/* ---------- LEFT PILLAR (Gradient) ---------- */
 #background-image::before {
   content: "";
   position: absolute;
@@ -41,8 +41,12 @@
   width: 150px;
   height: 100%;
 
-  /* Matches the background bar palette */
-  background: #12294a;
+  /* Vertical gradient matching the bar palette */
+  background: linear-gradient(
+    to bottom,
+    #163f6b 0%,   /* lighter top */
+    #12294a 100%  /* darker bottom */
+  );
 
   /* Full inward curve */
   clip-path: polygon(
@@ -56,7 +60,7 @@
   );
 }
 
-/* ---------- TOP-RIGHT CURVED ACCENT (Using same palette as bars) ---------- */
+/* ---------- TOP-RIGHT CURVED ACCENT (Gradient) ---------- */
 #background-image::after {
   content: "";
   position: absolute;
@@ -65,8 +69,12 @@
   width: 400px;
   height: 600px;
 
-  /* Matches the background bar palette */
-  background: #12294a;
+  /* Vertical gradient matching the bar palette */
+  background: linear-gradient(
+    to bottom,
+    #163f6b 0%,   /* lighter top */
+    #12294a 100%  /* darker bottom */
+  );
 
   /* Deep inward curve */
   clip-path: polygon(
