@@ -8,21 +8,21 @@
   width: 100%;
   height: 100%;
 
-  /* Main background + top/bottom bars */
+  /* Main background with top & bottom bars (Intelistar blue gradient palette) */
   background:
     radial-gradient(
       circle at 20% 15%,
       rgba(50, 120, 190, 0.15) 0%,  /* subtle highlight */
       rgba(20, 50, 90, 0.15) 45%,    /* muted fade */
-      rgba(8, 12, 20, 0.95) 80%,     /* almost black */
+      rgba(8, 12, 20, 0.95) 80%,     
       #07090b 100%
     ),
     linear-gradient(
       to bottom,
       #121212 0%,      /* top bar */
       #121212 7%,      
-      #0c1f36 7%,      /* main background darker */
-      #081423 85%,     /* darker background */
+      #12294a 7%,      /* main background (bar color palette) */
+      #12294a 85%,     
       #121212 85%,     /* bottom bar */
       #121212 100%
     ) !important;
@@ -32,7 +32,7 @@
   transition: top 400ms linear;
 }
 
-/* ---------- LEFT PILLAR (Darker) ---------- */
+/* ---------- LEFT PILLAR (Using same palette as bars) ---------- */
 #background-image::before {
   content: "";
   position: absolute;
@@ -41,8 +41,8 @@
   width: 150px;
   height: 100%;
 
-  /* Dark muted pillar */
-  background: #081423;
+  /* Matches the background bar palette */
+  background: #12294a;
 
   /* Full inward curve */
   clip-path: polygon(
@@ -56,7 +56,7 @@
   );
 }
 
-/* ---------- TOP-RIGHT CURVED ACCENT (Darker) ---------- */
+/* ---------- TOP-RIGHT CURVED ACCENT (Using same palette as bars) ---------- */
 #background-image::after {
   content: "";
   position: absolute;
@@ -65,8 +65,8 @@
   width: 400px;
   height: 600px;
 
-  /* Dark muted accent */
-  background: #081423;
+  /* Matches the background bar palette */
+  background: #12294a;
 
   /* Deep inward curve */
   clip-path: polygon(
