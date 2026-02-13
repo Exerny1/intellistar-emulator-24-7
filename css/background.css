@@ -12,17 +12,17 @@
   background:
     radial-gradient(
       circle at 20% 15%,
-      rgba(50, 120, 190, 0.25) 0%,
-      rgba(25, 70, 120, 0.20) 45%,
-      rgba(12, 20, 32, 0.95) 80%,
+      rgba(50, 120, 190, 0.15) 0%,  /* subtle highlight */
+      rgba(20, 50, 90, 0.15) 45%,    /* muted fade */
+      rgba(8, 12, 20, 0.95) 80%,     /* almost black */
       #07090b 100%
     ),
     linear-gradient(
       to bottom,
       #121212 0%,      /* top bar */
       #121212 7%,      
-      #12294a 7%,       /* main background */
-      #0d1a2b 85%,      /* slightly darker */
+      #0c1f36 7%,      /* main background darker */
+      #081423 85%,     /* darker background */
       #121212 85%,     /* bottom bar */
       #121212 100%
     ) !important;
@@ -32,7 +32,7 @@
   transition: top 400ms linear;
 }
 
-/* ---------- LEFT WEATHERSCAN PILLAR ---------- */
+/* ---------- LEFT PILLAR (Darker) ---------- */
 #background-image::before {
   content: "";
   position: absolute;
@@ -41,10 +41,10 @@
   width: 150px;
   height: 100%;
 
-  /* Muted dark pillar */
-  background: #12294a;
+  /* Dark muted pillar */
+  background: #081423;
 
-  /* Full inward curve along the whole height */
+  /* Full inward curve */
   clip-path: polygon(
     0% 0%,       
     100% 0%,     
@@ -56,7 +56,7 @@
   );
 }
 
-/* ---------- TOP-RIGHT CURVED ACCENT ---------- */
+/* ---------- TOP-RIGHT CURVED ACCENT (Darker) ---------- */
 #background-image::after {
   content: "";
   position: absolute;
@@ -65,8 +65,8 @@
   width: 400px;
   height: 600px;
 
-  /* Muted dark top-right accent */
-  background: #12294a;
+  /* Dark muted accent */
+  background: #081423;
 
   /* Deep inward curve */
   clip-path: polygon(
