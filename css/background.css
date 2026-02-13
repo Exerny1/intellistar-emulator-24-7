@@ -7,22 +7,22 @@
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: #05070a; /* Dark base for better contrast */
+  background-color: #05070a;
 
   background:
-    /* Layer 1: Top & Bottom Bars (Full Width) */
+    /* Layer 1: Top and Bottom bars (Solid Frame) */
     linear-gradient(
       to bottom,
       #15191f 0%,       
-      #15191f 9%,       /* Aligns with header height */
+      #15191f 9%,       /* Aligns with your top UI bar */
       transparent 9%, 
       transparent 85%,  
-      #15191f 85%,      /* Aligns with ticker height */
+      #15191f 85%,      /* Aligns with your bottom ticker */
       #15191f 100%
     ),
-    /* Layer 2: The 'Glass' Glow - Positioned behind your central text */
+    /* Layer 2: The Inner Blue Glow */
     radial-gradient(
-      circle at 40% 45%,
+      circle at 45% 45%,
       #1c437a 0%,       
       #12294a 55%,      
       #05070a 100%
@@ -34,40 +34,41 @@
   overflow: hidden;
 }
 
-/* ---------- THE LEFT 'BOW' PILLAR ---------- */
-/* Using an ellipse to create the smooth glass curve behind the logo area */
+/* ---------- THE SOLID LEFT PILLAR (Inward Curve) ---------- */
 #background-image::before {
   content: "";
   position: absolute;
   left: 0;
   top: 0;
-  width: 28%; /* Wider to create that deep blue left third */
+  width: 18%; /* Adjusted width to avoid overlapping your header text */
   height: 100%;
-  z-index: 1;
+  z-index: 2;
 
-  /* Sky blue to Navy vertical gradient */
-  background: linear-gradient(180deg, #5a8dc0 0%, #2a4d7d 100%);
+  /* Solid Gradient matching the Madison light blue to dark navy */
+  background: linear-gradient(180deg, #5a8dc0 0%, #3b669e 50%, #2a4d7d 100%);
 
-  /* This creates the smooth 'inward' curve that follows the Weatherscan style */
-  clip-path: ellipse(85% 100% at -10% 50%);
-  opacity: 0.85;
+  /* This 'scoops' the pillar inward. 
+     The 'at -50% 50%' pushes the center of the circle off-screen to the left, 
+     creating a smooth inward-facing 'C' curve.
+  */
+  clip-path: ellipse(100% 80% at -50% 50%);
+  
+  /* Removed opacity to ensure it is 100% solid */
 }
 
-/* ---------- THE TOP-RIGHT 'WING' ---------- */
-/* Darker accent to frame the clock and town name */
+/* ---------- THE TOP-RIGHT WING ---------- */
 #background-image::after {
   content: "";
   position: absolute;
   top: 0;
   right: 0;
-  width: 60%; 
+  width: 50%; 
   height: 100%;
-  z-index: 0;
+  z-index: 1;
 
-  /* Deep shadow that makes the white text pop */
+  /* Deep shadow gradient to frame the right side */
   background: linear-gradient(225deg, #15191f 0%, #0d1d36 40%, transparent 80%);
 
-  /* Sweeping arch from the top-right */
+  /* Sweeping arch from the top-right corner */
   clip-path: ellipse(100% 100% at 110% -10%);
 }
-
