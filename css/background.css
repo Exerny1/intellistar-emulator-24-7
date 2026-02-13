@@ -1,47 +1,13 @@
-#background-image,
-.background-image,
-#background-image.below-screen,
-#background-image.above-screen {
-  position: relative;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-
-  background:
-    radial-gradient(
-      circle at 20% 15%,
-      rgba(50, 120, 190, 0.25) 0%,
-      rgba(25, 70, 120, 0.20) 45%,
-      rgba(12, 20, 32, 0.95) 80%,
-      #07090b 100%
-    ),
-    linear-gradient(
-      to bottom,
-      #121212 0%,      /* TOP bar */
-      #121212 7%,      /* slightly bigger */
-      #163f6b 7%,      /* main background starts */
-      #12294a 85%,     
-      #121212 85%,     /* bottom bar */
-      #121212 100%
-    ) !important;
-
-  background-size: cover !important;
-  background-repeat: no-repeat !important;
-  transition: top 400ms linear;
-}
-
-/* ---------- LEFT WEATHERSCAN PILLAR (Full inward curve) ---------- */
 #background-image::before {
   content: "";
   position: absolute;
   left: 0;
   top: 0;
-  width: 150px;  /* thicker pillar */
+  width: 150px;
   height: 100%;
 
-  /* Match the bar gradient color: use main dark-blue from bar */
-  background: linear-gradient(to bottom, #121212 0%, #163f6b 50%, #12294a 100%);
+  /* Harmonized pillar gradient, close to bars but distinct */
+  background: linear-gradient(to bottom, #1b1b1b 0%, #1f4c7a 50%, #12294a 100%);
 
   /* Full inward curve along the whole height */
   clip-path: polygon(
@@ -55,21 +21,20 @@
   );
 }
 
-/* Top-right curved accent - extra large and deep */
 #background-image::after {
   content: "";
   position: absolute;
   top: 0;
   right: 0;
-  width: 400px;      /* keep your thickness */
-  height: 600px;     /* goes farther down than before */
+  width: 400px;
+  height: 600px;
 
-  /* Match the bar gradient color */
-  background: linear-gradient(to bottom, #121212 0%, #163f6b 50%, #12294a 100%);
+  /* Harmonized top-right accent gradient */
+  background: linear-gradient(to bottom, #1b1b1b 0%, #1f4c7a 50%, #12294a 100%);
 
   clip-path: polygon(
-    100% 0%,      /* top-right corner */
-    100% 85%,     /* pushes the curve much lower */
-    30% 0%        /* deeper inward scoop */
+    100% 0%,      
+    100% 85%,     
+    30% 0%        
   );
 }
