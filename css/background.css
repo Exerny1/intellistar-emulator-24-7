@@ -8,36 +8,70 @@
   width: 100%;
   height: 100%;
 
+  /* Main background + top/bottom bars */
   background:
-    /* Layer 1: Top and Bottom bars */
-    linear-gradient(
-      to bottom,
-      #15191F 0%,       
-      #15191F 8%,       /* Top bar: Thicker header */
-      transparent 8%, 
-      transparent 90%,  /* Increased from 78% to make bottom smaller */
-      #15191F 90%,      /* Bottom bar: Now a thin footer */
-      #15191F 100%
-    ),
-    /* Layer 2: Side bars */
-    linear-gradient(
-      to right,
-      #15191F 0%,       
-      #15191F 4%,       
-      transparent 4%, 
-      transparent 78%,  
-      #15191F 78%,    
-      #15191F 100%
-    ),
-    /* Layer 3: Brighter Blue Radial Background */
     radial-gradient(
       circle at 20% 15%,
-      #235191 0%,       
-      #12294a 50%,      
-      #0a1629 100%      
+      rgba(50, 120, 190, 0.25) 0%,
+      rgba(25, 70, 120, 0.20) 45%,
+      rgba(12, 20, 32, 0.95) 80%,
+      #07090b 100%
+    ),
+    linear-gradient(
+      to bottom,
+      #121212 0%,      /* top bar */
+      #121212 7%,      
+      #163f6b 7%,      /* main background */
+      #12294a 85%,     
+      #121212 85%,     /* bottom bar */
+      #121212 100%
     ) !important;
 
   background-size: cover !important;
   background-repeat: no-repeat !important;
   transition: top 400ms linear;
+}
+
+/* ---------- LEFT WEATHERSCAN PILLAR ---------- */
+#background-image::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 150px;
+  height: 100%;
+
+  /* Harmonized pillar gradient close to bars */
+  background: linear-gradient(to bottom, #1b1b1b 0%, #1f4c7a 50%, #12294a 100%);
+
+  /* Full inward curve along the whole height */
+  clip-path: polygon(
+    0% 0%,       
+    100% 0%,     
+    65% 25%,     
+    55% 50%,     
+    65% 75%,     
+    100% 100%,   
+    0% 100%      
+  );
+}
+
+/* ---------- TOP-RIGHT CURVED ACCENT ---------- */
+#background-image::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 400px;
+  height: 600px;
+
+  /* Harmonized top-right accent gradient */
+  background: linear-gradient(to bottom, #1b1b1b 0%, #1f4c7a 50%, #12294a 100%);
+
+  /* Deep inward curve */
+  clip-path: polygon(
+    100% 0%,      
+    100% 85%,     
+    30% 0%        
+  );
 }
