@@ -9,8 +9,8 @@
   height: 100%;
 
   background:
-    /* 1. Left Vertical Bar: Fills from left edge to the start of the box */
-    linear-gradient(to right, #15191F 7.5%, transparent 7.5%),
+    /* 1. Left Vertical Bar: Increased to 10% to be "longer" */
+    linear-gradient(to right, #15191F 10%, transparent 10%),
     
     /* 2. Right Vertical Bar: Fills from right edge to the end of the box */
     linear-gradient(to left, #15191F 27%, transparent 27%),
@@ -26,7 +26,7 @@
       #15191F 100%      
     ),
 
-    /* 4. Your original radial glow (Bottom layer) */
+    /* 4. Your original radial glow */
     radial-gradient(
       circle at 20% 15%,
       rgba(50, 120, 190, 0.25) 0%,
