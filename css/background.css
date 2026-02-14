@@ -9,20 +9,20 @@
   height: 100%;
 
   background:
-    /* 1. Left Vertical Bar: Pulled back to 8.5% */
-    linear-gradient(to right, #15191F 8.5%, transparent 8.5%),
+    /* 1. Left Vertical Bar: Shorter (5%) to widen the view */
+    linear-gradient(to right, #15191F 5%, transparent 5%),
     
-    /* 2. Right Vertical Bar: Fixed at 27% to meet the forecast box edge */
-    linear-gradient(to left, #15191F 27%, transparent 27%),
+    /* 2. Right Vertical Bar: Shorter (15%) to widen the view */
+    linear-gradient(to left, #15191F 15%, transparent 15%),
     
-    /* 3. Your original Top/Bottom frames and center background */
+    /* 3. Top/Bottom frames (kept at your preferred height) */
     linear-gradient(
       to bottom,
       #15191F 0%,       
-      #15191F 7%,       
+      #15191F 7%,       /* Back to your original 7% */
       #12294a 7%,       
       #12294a 85%,      
-      #15191F 85%,      
+      #15191F 85%,      /* Back to your original 85% */
       #15191F 100%      
     ),
 
