@@ -9,13 +9,13 @@
   height: 100%;
 
   background:
-    /* 1. Left Vertical Bar (Color matched to your image) */
+    /* 1. Left Vertical Bar (Kept at 5% for widescreen look) */
     linear-gradient(to right, #12171f 5%, transparent 5%),
     
-    /* 2. Right Vertical Bar (Color matched to your image) */
-    linear-gradient(to left, #12171f 15%, transparent 15%),
+    /* 2. Right Vertical Bar: Increased to 25% to be "longer" */
+    linear-gradient(to left, #12171f 25%, transparent 25%),
     
-    /* 3. Top/Bottom frames (Color matched to your image) */
+    /* 3. Top/Bottom frames (Charcoal Navy color match) */
     linear-gradient(
       to bottom,
       #12171f 0%,       
@@ -26,7 +26,7 @@
       #12171f 100%      
     ),
 
-    /* 4. Your original radial glow remains the same */
+    /* 4. Your original radial glow */
     radial-gradient(
       circle at 20% 15%,
       rgba(50, 120, 190, 0.25) 0%,
