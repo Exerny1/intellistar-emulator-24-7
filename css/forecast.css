@@ -1,12 +1,12 @@
-#forecast-left-container.hidden{
+#forecast-left-container.hidden {
   left: -352px;
 }
 
-#forecast-right-container.hidden{
+#forecast-right-container.hidden {
   left: 882px;
 }
 
-.forecast-container{
+.forecast-container {
   height: 100%;
   transition: left 0.5s;
   position: relative;
@@ -14,59 +14,66 @@
   display: inline-block;
 }
 
-.forecast-left{
+/* Updated: Removed background and border to make it invisible */
+.forecast-left {
   width: 350px;
+  background: transparent !important;
+  border: none !important;
 }
 
-.forecast-right{
+/* Updated: Removed background and float-shadow to make it invisible */
+.forecast-right {
   width: 880px;
   float: right;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 
-.narrative{
+.narrative {
   height: 525px;
 }
 
-.narrative-left{
+.narrative-left {
   width: 410px;
   float: left;
 }
 
-.narrative-right{
+.narrative-right {
   width: 820px;
   float: right;
 }
 
-.narrative-temp{
+.narrative-temp {
   text-align: center;
   font-size: 130px;
 }
 
-.narrative-date{
+.narrative-date {
   text-align: center;
   width: 100%;
   margin-top: 20px;
 }
 
-.narrative-icon{
+.narrative-icon {
   height: 130px;
   width: 130px;
   margin: 0 auto;
   margin-top: 5px;
 }
 
-.narrative-precip{
+.narrative-precip {
   text-align: center;
   font-size: 42px;
   margin-left: 5px;
   margin-right: 5px;
 }
 
-.narrative-text{
+.narrative-text {
   margin: 20px 40px 0px 40px;
   font-size: 52px;
 }
 
-.tomorrow-night-text{
+.tomorrow-night-text {
   font-size: 48px;
 }
