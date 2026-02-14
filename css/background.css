@@ -12,34 +12,34 @@
   background-color: #003399 !important;
 
   background-image:
-    /* 1. THE LOGO - url is now explicitly here */
-    url('../img/favicon.png'),
-
-    /* 2. THE BARS - Charcoal navy frames (#12171f) */
+    /* 1. THE LOGO - I have moved this to its own clear line */
+    url("../img/favicon.png"),
+    
+    /* 2. THE BARS - Using the percentages we balanced earlier */
     linear-gradient(to right, #12171f 5%, transparent 5%),
     linear-gradient(to left, #12171f 25%, transparent 25%),
     linear-gradient(to bottom, #12171f 7%, transparent 7%),
     linear-gradient(to top, #12171f 16%, transparent 16%),
-
-    /* 3. THE DEPTH - Blue gradient for modern feel */
+    
+    /* 3. THE DEPTH - Bottom layer */
     linear-gradient(to bottom, #0044aa 0%, #002266 100%) !important;
 
-  /* This positions each layer in order */
-  background-position: 
-    88% 50%,     /* Logo: 88% from left (inside the 25% bar), 50% from top */
-    center,      /* Left Bar */
-    center,      /* Right Bar */
-    center,      /* Top Bar */
-    center,      /* Bottom Bar */
-    center !important; /* Blue Gradient */
-
+  /* We must define the size and position for EVERY layer listed above */
   background-size: 
-    100px auto,  /* Logo Size: 100px wide. Increase to 150px if it looks too small! */
-    cover, 
-    cover, 
-    cover, 
-    cover, 
-    cover !important;
+    120px auto,  /* Logo size */
+    100% 100%,   /* Left bar stretch */
+    100% 100%,   /* Right bar stretch */
+    100% 100%,   /* Top bar stretch */
+    100% 100%,   /* Bottom bar stretch */
+    100% 100% !important; /* Gradient stretch */
+
+  background-position: 
+    88% 50%,     /* Logo position (inside your 25% right bar) */
+    0% 0%,       /* Bars and gradient fixed to corners */
+    0% 0%, 
+    0% 0%, 
+    0% 0%, 
+    0% 0% !important;
 
   background-repeat: no-repeat !important;
   transition: top 400ms linear;
