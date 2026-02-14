@@ -9,29 +9,29 @@
   height: 100%;
 
   background:
-    /* 1. Left Vertical Bar (Kept at 5% for widescreen look) */
-    linear-gradient(to right, #12171f 5%, transparent 5%),
+    /* 1. Left Vertical Bar (7.5% Charcoal Navy) */
+    linear-gradient(to right, #12171f 7.5%, transparent 7.5%),
     
-    /* 2. Right Vertical Bar: Increased to 25% to be "longer" */
-    linear-gradient(to left, #12171f 25%, transparent 25%),
+    /* 2. Right Vertical Bar (Increased to 30% to fill the gap) */
+    linear-gradient(to left, #12171f 30%, transparent 30%),
     
-    /* 3. Top/Bottom frames (Charcoal Navy color match) */
+    /* 3. The New "TWC Broadcast Blue" Window */
     linear-gradient(
       to bottom,
       #12171f 0%,       
-      #12171f 7%,       
-      #12294a 7%,       
-      #12294a 85%,      
+      #12171f 7%,       /* Top Bar */
+      #0a1930 15%,      /* Deep TWC Navy start */
+      #12294a 50%,      /* Subtle mid-tone lift */
+      #0a1930 85%,      /* Deep TWC Navy end */
       #12171f 85%,      
-      #12171f 100%      
+      #12171f 100%      /* Bottom Bar */
     ),
 
-    /* 4. Your original radial glow */
+    /* 4. Enhanced Radial Glow for depth */
     radial-gradient(
-      circle at 20% 15%,
-      rgba(50, 120, 190, 0.25) 0%,
-      rgba(25, 70, 120, 0.20) 45%,
-      rgba(12, 20, 32, 0.95) 80%,
+      circle at 20% 30%,
+      rgba(70, 130, 200, 0.15) 0%,
+      rgba(10, 25, 48, 0.8) 70%,
       #07090b 100%
     ) !important;
 
