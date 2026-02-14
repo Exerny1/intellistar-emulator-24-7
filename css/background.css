@@ -8,31 +8,45 @@
   width: 100%;
   height: 100%;
 
-  /* The New Depth: Adds a subtle top-to-bottom dark fade to the blue */
-  background: 
-    /* 1. Left Bar: Solid Charcoal Navy (5%) */
+  /* The True TWC Blue Background */
+  background-color: #003399 !important;
+
+  background-image:
+    /* 1. The Logo on the Right: Positioned at 88% horizontal, 50% vertical */
+    url('../img/favicon.png'),
+
+    /* 2. Left Bar: Shorter (5%) */
     linear-gradient(to right, #12171f 5%, transparent 5%),
     
-    /* 2. Right Bar: Solid Charcoal Navy (25%) */
+    /* 3. Right Bar: Longer (25%) */
     linear-gradient(to left, #12171f 25%, transparent 25%),
     
-    /* 3. Top Bar: Solid Charcoal Navy (7%) */
+    /* 4. Top Bar: Solid Charcoal Navy (7%) */
     linear-gradient(to bottom, #12171f 7%, transparent 7%),
     
-    /* 4. Bottom Bar: Solid Charcoal Navy (16%) */
+    /* 5. Bottom Bar: Solid Charcoal Navy (16%) */
     linear-gradient(to top, #12171f 16%, transparent 16%),
 
-    /* 5. Depth Layer: A very soft glow centered behind the text area */
-    radial-gradient(
-      circle at 40% 45%, 
-      rgba(20, 80, 180, 0.4) 0%, 
-      transparent 70%
-    ),
-
-    /* 6. Base Blue: A subtle gradient from a richer blue to a deep navy */
+    /* 6. Base Blue depth fade */
     linear-gradient(to bottom, #0044aa 0%, #002266 100%) !important;
 
-  background-size: cover !important;
+  /* Specific settings for the Logo and the Gradients */
+  background-position: 
+    88% 50%,     /* Logo position: change 88% to move left/right, 50% for up/down */
+    center, 
+    center, 
+    center, 
+    center, 
+    center !important;
+
+  background-size: 
+    100px auto,  /* Logo Size: Adjust '100px' to make the logo bigger or smaller */
+    cover, 
+    cover, 
+    cover, 
+    cover, 
+    cover !important;
+
   background-repeat: no-repeat !important;
   transition: top 400ms linear;
 }
