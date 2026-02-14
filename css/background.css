@@ -9,29 +9,29 @@
   height: 100%;
 
   background:
-    /* 1. Left Vertical Bar (7.5% Charcoal Navy) */
+    /* 1. Left Bar: Solid Charcoal Navy (7.5%) */
     linear-gradient(to right, #12171f 7.5%, transparent 7.5%),
     
-    /* 2. Right Vertical Bar (Increased to 30% to fill the gap) */
+    /* 2. Right Bar: Solid Charcoal Navy (30%) */
     linear-gradient(to left, #12171f 30%, transparent 30%),
     
-    /* 3. The New "TWC Broadcast Blue" Window */
+    /* 3. The Top/Bottom Frames and Center Blue */
     linear-gradient(
       to bottom,
-      #12171f 0%,       
-      #12171f 7%,       /* Top Bar */
-      #0a1930 15%,      /* Deep TWC Navy start */
-      #12294a 50%,      /* Subtle mid-tone lift */
-      #0a1930 85%,      /* Deep TWC Navy end */
-      #12171f 85%,      
-      #12171f 100%      /* Bottom Bar */
+      #12171f 0%,       /* Top Bar */
+      #12171f 7%,       
+      #102547 7%,       /* Improved TWC Navy */
+      #102547 80%,      /* Adjusted from 85% to make the bottom taller */
+      #12171f 80%,      /* Bottom Bar starts higher up now */
+      #12171f 100%      
     ),
 
-    /* 4. Enhanced Radial Glow for depth */
+    /* 4. The underlying radial glow */
     radial-gradient(
-      circle at 20% 30%,
-      rgba(70, 130, 200, 0.15) 0%,
-      rgba(10, 25, 48, 0.8) 70%,
+      circle at 20% 15%,
+      rgba(50, 120, 190, 0.25) 0%,
+      rgba(25, 70, 120, 0.20) 45%,
+      rgba(12, 20, 32, 0.95) 80%,
       #07090b 100%
     ) !important;
 
