@@ -8,34 +8,23 @@
   width: 100%;
   height: 100%;
 
-  background:
-    /* 1. Left Bar: Solid Charcoal Navy (7.5%) */
+  /* This is the center background - The True TWC Blue */
+  background-color: #003399 !important;
+
+  background-image:
+    /* 1. Left Bar - Charcoal Navy (7.5% width) */
     linear-gradient(to right, #12171f 7.5%, transparent 7.5%),
     
-    /* 2. Right Bar: Solid Charcoal Navy (30%) */
+    /* 2. Right Bar - Charcoal Navy (30% width) */
     linear-gradient(to left, #12171f 30%, transparent 30%),
     
-    /* 3. The Top/Bottom Frames and Center Blue */
-    linear-gradient(
-      to bottom,
-      #12171f 0%,       /* Top Bar */
-      #12171f 7%,       
-      #102547 7%,       /* Improved TWC Navy */
-      #102547 80%,      /* Adjusted from 85% to make the bottom taller */
-      #12171f 80%,      /* Bottom Bar starts higher up now */
-      #12171f 100%      
-    ),
-
-    /* 4. The underlying radial glow */
-    radial-gradient(
-      circle at 20% 15%,
-      rgba(50, 120, 190, 0.25) 0%,
-      rgba(25, 70, 120, 0.20) 45%,
-      rgba(12, 20, 32, 0.95) 80%,
-      #07090b 100%
-    ) !important;
+    /* 3. Top and Bottom Bars - Charcoal Navy */
+    linear-gradient(to bottom, #12171f 7%, transparent 7%),
+    linear-gradient(to top, #12171f 20%, transparent 20%) !important;
 
   background-size: cover !important;
   background-repeat: no-repeat !important;
   transition: top 400ms linear;
 }
+
+/* Removing the radial glow temporarily to ensure the blue is exactly what you want */
