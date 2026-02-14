@@ -12,17 +12,17 @@
   background-color: #003399 !important;
 
   background-image:
-    /* 1. Left Bar: Shorter (5%) to open up the logo side */
+    /* 1. Left Bar: Shorter (5%) */
     linear-gradient(to right, #12171f 5%, transparent 5%),
     
-    /* 2. Right Bar: Longer (25%) to balance against the left */
+    /* 2. Right Bar: Longer (25%) to balance the frame */
     linear-gradient(to left, #12171f 25%, transparent 25%),
     
-    /* 3. Top Bar: Kept at 7% */
+    /* 3. Top Bar: Kept at 7% for the header */
     linear-gradient(to bottom, #12171f 7%, transparent 7%),
     
-    /* 4. Bottom Bar: Shortened to 12% as requested */
-    linear-gradient(to top, #12171f 12%, transparent 12%) !important;
+    /* 4. Bottom Bar: Increased to 16% to be "a bit taller" */
+    linear-gradient(to top, #12171f 16%, transparent 16%) !important;
 
   background-size: cover !important;
   background-repeat: no-repeat !important;
