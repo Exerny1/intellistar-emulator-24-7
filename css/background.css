@@ -9,13 +9,13 @@
   height: 100%;
 
   background:
-    /* 1. Left Vertical Bar: Increased to 12% to reach the box edge */
-    linear-gradient(to right, #15191F 12%, transparent 12%),
+    /* 1. Left Vertical Bar: Pulled back to 8.5% */
+    linear-gradient(to right, #15191F 8.5%, transparent 8.5%),
     
-    /* 2. Right Vertical Bar: Fixed at 27% to fill the empty space */
+    /* 2. Right Vertical Bar: Fixed at 27% to meet the forecast box edge */
     linear-gradient(to left, #15191F 27%, transparent 27%),
     
-    /* 3. Original Top/Bottom frames and center background */
+    /* 3. Your original Top/Bottom frames and center background */
     linear-gradient(
       to bottom,
       #15191F 0%,       
@@ -26,7 +26,7 @@
       #15191F 100%      
     ),
 
-    /* 4. Original radial glow */
+    /* 4. Your original radial glow */
     radial-gradient(
       circle at 20% 15%,
       rgba(50, 120, 190, 0.25) 0%,
