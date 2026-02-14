@@ -8,39 +8,33 @@
   width: 100%;
   height: 100%;
 
-  /* The True TWC Blue Background */
+  /* Base TWC Blue */
   background-color: #003399 !important;
 
   background-image:
-    /* 1. The Logo on the Right: Positioned at 88% horizontal, 50% vertical */
+    /* 1. THE LOGO - url is now explicitly here */
     url('../img/favicon.png'),
 
-    /* 2. Left Bar: Shorter (5%) */
+    /* 2. THE BARS - Charcoal navy frames (#12171f) */
     linear-gradient(to right, #12171f 5%, transparent 5%),
-    
-    /* 3. Right Bar: Longer (25%) */
     linear-gradient(to left, #12171f 25%, transparent 25%),
-    
-    /* 4. Top Bar: Solid Charcoal Navy (7%) */
     linear-gradient(to bottom, #12171f 7%, transparent 7%),
-    
-    /* 5. Bottom Bar: Solid Charcoal Navy (16%) */
     linear-gradient(to top, #12171f 16%, transparent 16%),
 
-    /* 6. Base Blue depth fade */
+    /* 3. THE DEPTH - Blue gradient for modern feel */
     linear-gradient(to bottom, #0044aa 0%, #002266 100%) !important;
 
-  /* Specific settings for the Logo and the Gradients */
+  /* This positions each layer in order */
   background-position: 
-    88% 50%,     /* Logo position: change 88% to move left/right, 50% for up/down */
-    center, 
-    center, 
-    center, 
-    center, 
-    center !important;
+    88% 50%,     /* Logo: 88% from left (inside the 25% bar), 50% from top */
+    center,      /* Left Bar */
+    center,      /* Right Bar */
+    center,      /* Top Bar */
+    center,      /* Bottom Bar */
+    center !important; /* Blue Gradient */
 
   background-size: 
-    100px auto,  /* Logo Size: Adjust '100px' to make the logo bigger or smaller */
+    100px auto,  /* Logo Size: 100px wide. Increase to 150px if it looks too small! */
     cover, 
     cover, 
     cover, 
