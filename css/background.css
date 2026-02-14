@@ -8,23 +8,23 @@
   width: 100%;
   height: 100%;
 
-  /* This is the center background - The True TWC Blue */
+  /* Center Window Color: Classic TWC Royal Blue */
   background-color: #003399 !important;
 
   background-image:
-    /* 1. Left Bar - Charcoal Navy (7.5% width) */
-    linear-gradient(to right, #12171f 7.5%, transparent 7.5%),
+    /* 1. Left Bar: Shortened to 6% (clears logo perfectly) */
+    linear-gradient(to right, #12171f 6%, transparent 6%),
     
-    /* 2. Right Bar - Charcoal Navy (30% width) */
-    linear-gradient(to left, #12171f 30%, transparent 30%),
+    /* 2. Right Bar: Shortened to 20% (waxes the gap without being too thick) */
+    linear-gradient(to left, #12171f 20%, transparent 20%),
     
-    /* 3. Top and Bottom Bars - Charcoal Navy */
+    /* 3. Top Bar: Kept at 7% for that thin header look */
     linear-gradient(to bottom, #12171f 7%, transparent 7%),
-    linear-gradient(to top, #12171f 20%, transparent 20%) !important;
+    
+    /* 4. Bottom Bar: Shortened to 15% (giving the 'Beyond' bar room) */
+    linear-gradient(to top, #12171f 15%, transparent 15%) !important;
 
   background-size: cover !important;
   background-repeat: no-repeat !important;
   transition: top 400ms linear;
 }
-
-/* Removing the radial glow temporarily to ensure the blue is exactly what you want */
