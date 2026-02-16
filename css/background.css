@@ -8,40 +8,70 @@
   width: 100%;
   height: 100%;
 
-  /* Base TWC Blue */
-  background-color: #003399 !important;
+  /* Main background with top & bottom bars (Intelistar blue gradient palette) */
+  background:
+    radial-gradient(
+      circle at 20% 15%,
+      rgba(50, 120, 190, 0.15) 0%,  /* subtle highlight */
+      rgba(20, 50, 90, 0.15) 45%,    /* muted fade */
+      rgba(8, 12, 20, 0.95) 80%,     
+      #07090b 100%
+    ),
+    linear-gradient(
+      to bottom,
+      #121212 0%,      /* top bar */
+      #121212 7%,      
+      #12294a 7%,      /* main background (bar color palette) */
+      #12294a 85%,     
+      #121212 85%,     /* bottom bar */
+      #121212 100%
+    ) !important;
 
-  background-image:
-    /* 1. THE LOGO - Updated path to point to your (Logos) folder */
-    url('../Logos/favicon.png'),
-    
-    /* 2. THE BARS - Charcoal navy frames (#12171f) */
-    linear-gradient(to right, #12171f 5%, transparent 5%),
-    linear-gradient(to left, #12171f 25%, transparent 25%),
-    linear-gradient(to bottom, #12171f 7%, transparent 7%),
-    linear-gradient(to top, #12171f 16%, transparent 16%),
-    
-    /* 3. THE DEPTH - Blue gradient for modern feel */
-    linear-gradient(to bottom, #0044aa 0%, #002266 100%) !important;
-
-  /* Sizing for each layer in order */
-  background-size: 
-    120px auto,  /* Logo size: 120px wide */
-    100% 100%,   /* Left Bar */
-    100% 100%,   /* Right Bar */
-    100% 100%,   /* Top Bar */
-    100% 100%,   /* Bottom Bar */
-    100% 100% !important; /* Blue Gradient */
-
-  /* Positioning for each layer in order */
-  background-position: 
-    88% 50%,     /* Logo: Centered in the 25% right bar */
-    0% 0%, 
-    0% 0%, 
-    0% 0%, 
-    0% 0%, 
-    0% 0% !important;
-
+  background-size: cover !important;
   background-repeat: no-repeat !important;
   transition: top 400ms linear;
+}
+
+/* ---------- LEFT PILLAR (Using same palette as bars) ---------- */
+#background-image::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 150px;
+  height: 100%;
+
+  /* Matches the background bar palette */
+  background: #12294a;
+
+  /* Full inward curve */
+  clip-path: polygon(
+    0% 0%,       
+    100% 0%,     
+    65% 25%,     
+    55% 50%,     
+    65% 75%,     
+    100% 100%,   
+    0% 100%      
+  );
+}
+
+/* ---------- TOP-RIGHT CURVED ACCENT (Using same palette as bars) ---------- */
+#background-image::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 400px;
+  height: 600px;
+
+  /* Matches the background bar palette */
+  background: #12294a;
+
+  /* Deep inward curve */
+  clip-path: polygon(
+    100% 0%,      
+    100% 85%,     
+    30% 0%        
+  );
 }
