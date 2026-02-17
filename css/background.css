@@ -8,23 +8,23 @@
   width: 100%;
   height: 100%;
 
-  /* KEEP original background */
   background:
+    /* 1. THE RADIAL GLOW: Makes the center "pop" like the reference image */
     radial-gradient(
-      circle at 20% 15%,
-      rgba(50, 120, 190, 0.25) 0%,
-      rgba(25, 70, 120, 0.20) 45%,
-      rgba(12, 20, 32, 0.95) 80%,
-      #07090b 100%
+      circle at 40% 50%,
+      rgba(0, 119, 255, 0.4) 0%,   /* Bright Electric Blue glow */
+      rgba(0, 68, 204, 0.1) 60%,   /* Fades out before hitting bars */
+      transparent 100%
     ),
+    /* 2. THE MAIN LAYOUT: Solid charcoal bars and bright blue center */
     linear-gradient(
       to bottom,
-      #001021 0%,      /* solid top bar */
-      #001021 7%,
-      #12294a 7%,      /* original main background */
-      #12294a 85%,
-      #001021 85%,     /* solid bottom bar */
-      #001021 100%
+      #0f141a 0%,      /* Top Bar: Deep Charcoal from image */
+      #0f141a 7%,
+      #0044cc 7%,      /* Center: Brighter TWC Blue */
+      #0044cc 84%,
+      #0f141a 84%,     /* Bottom Bar: Deep Charcoal */
+      #0f141a 100%
     ) !important;
 
   background-size: cover !important;
