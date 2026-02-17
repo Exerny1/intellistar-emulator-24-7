@@ -9,17 +9,17 @@
   height: 100%;
 
   background:
-    /* THE MAIN LAYOUT: Deep charcoal bars and a shadowed blue gradient center */
+    /* THE MAIN LAYOUT: Deep charcoal bars and a soft-transition blue center */
     linear-gradient(
       to bottom,
-      #0f141a 0%,      /* Top Bar: Deep Charcoal */
-      #0f141a 7%,
-      #081b33 7%,      /* Center Start: Darker blue near the top edge */
-      #12294a 30%,     /* Center Middle: Richer TWC blue */
-      #12294a 70%,     /* Center Middle: Richer TWC blue */
-      #081b33 84%,     /* Center End: Darker blue near the bottom edge */
-      #0f141a 84%,     /* Bottom Bar: Deep Charcoal */
-      #0f141a 100%
+      #0b0e11 0%,      /* TOP BAR: Solid Deep Charcoal */
+      #0b0e11 7%,
+      #050c18 7%,      /* TOP TRANSITION: Dark Navy edge */
+      #132a4d 40%,     /* CENTER HIGHLIGHT: Subtle TWC Blue */
+      #132a4d 60%,     /* CENTER HIGHLIGHT: Subtle TWC Blue */
+      #050c18 84%,     /* BOTTOM TRANSITION: Dark Navy edge */
+      #0b0e11 84%,     /* BOTTOM BAR: Solid Deep Charcoal */
+      #0b0e11 100%
     ) !important;
 
   background-size: cover !important;
