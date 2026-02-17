@@ -9,17 +9,18 @@
   height: 100%;
 
   background:
-    /* THE MAIN LAYOUT: Deep charcoal bars and a soft-transition blue center */
+    /* THE MAIN LAYOUT: Solid charcoal bars with a separate dark gradient center */
     linear-gradient(
       to bottom,
-      #0b0e11 0%,      /* TOP BAR: Solid Deep Charcoal */
-      #0b0e11 7%,
-      #050c18 7%,      /* TOP TRANSITION: Dark Navy edge */
-      #132a4d 40%,     /* CENTER HIGHLIGHT: Subtle TWC Blue */
-      #132a4d 60%,     /* CENTER HIGHLIGHT: Subtle TWC Blue */
-      #050c18 84%,     /* BOTTOM TRANSITION: Dark Navy edge */
-      #0b0e11 84%,     /* BOTTOM BAR: Solid Deep Charcoal */
-      #0b0e11 100%
+      #0b0e11 0%,      /* TOP BAR START */
+      #0b0e11 7%,      /* TOP BAR END (Hard stop) */
+      
+      #081221 7.1%,    /* CENTER GRADIENT START (Darker blue) */
+      #132a4d 50%,     /* CENTER GRADIENT MIDDLE */
+      #081221 83.9%,   /* CENTER GRADIENT END (Darker blue) */
+      
+      #0b0e11 84%,     /* BOTTOM BAR START (Hard stop) */
+      #0b0e11 100%     /* BOTTOM BAR END */
     ) !important;
 
   background-size: cover !important;
