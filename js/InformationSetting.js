@@ -5,8 +5,9 @@ function setGreetingPage(){
   getElement("crawl-text").innerHTML = CONFIG.crawl;
 }
 
+// Logic removed to hide the bottom timeline names and progress bars
 function setTimelineEvents(){
-  var eventContainer = getElement('timeline-event-container');
+  /* var eventContainer = getElement('timeline-event-container');
   var progreessBarStack = getElement('progress-stack');
   for(var i = 0; i < pageOrder.length; i++){
     var eventElement = document.createElement("div");
@@ -22,6 +23,7 @@ function setTimelineEvents(){
       progreessBarStack.appendChild(progressElement);
     }
   }
+  */
 }
 
 function setCurrentConditions(){
@@ -33,11 +35,12 @@ function setCurrentConditions(){
   getElement('ccicon').href.baseVal = 'assets/icons/conditions/' + currentIcon +'.svg';
 }
 
+// Logic removed to hide the timeline icons (thermometer, calendar, etc.)
 function createLogoElements(){
+  /*
   var alreadyAddedLogos = [];
   for(var p = 0; p < pageOrder.length; p++){
     for (var s = 0; s < pageOrder[p].subpages.length; s++) {
-      //for every single sub page
       var currentPage = getPageLogoFileName(pageOrder[p].subpages[s].name);
 
       if(!alreadyAddedLogos.includes(currentPage)){
@@ -51,11 +54,10 @@ function createLogoElements(){
       }
     }
   }
+  */
 }
 
-// This is the invidual day stuff (Today, Tomorrow, etc.)
 function setForecast(){
-  // Store all the needed elements as arrays so that they can be referenced in loops
   var forecastNarrativeElement=
     [getElement("today-narrative-text"),
      getElement("tonight-narrative-text"),
@@ -94,7 +96,7 @@ function setForecast(){
   }
 }
 
-function setOutlook(){ // Also known as 7day page
+function setOutlook(){ 
   for (var i = 0; i < 7; i++) {
     var textElement = getElement("day" + i + "-text");
     var highElement = getElement("day" + i + "-high");
@@ -111,10 +113,9 @@ function setOutlook(){ // Also known as 7day page
     iconElement.innerHTML = '';
     iconElement.appendChild(icon);
 
-    // Set weekends to transparent
     var isWeekend = dayIndex == 0 || dayIndex == 6;
     if(isWeekend){
-      containerElement.style.backgroundColor = "transparent"; //weekend
+      containerElement.style.backgroundColor = "transparent"; 
     }
     textElement.innerHTML = WEEKDAY[dayIndex];
 
@@ -139,8 +140,6 @@ function setAlertPage(){
   }
 }
 
-/* Because the first page always animates in from bottom, check if
-   current page is first and set either left or top to 0px. */
 function setInitialPositionCurrentPage(){
   if(pageOrder[0].subpages[0].name == 'current-page'){
     getElement('current-page').style.left = '0px';
@@ -152,34 +151,15 @@ function setInitialPositionCurrentPage(){
 
 function getPageLogoFileName(subPageName){
   switch (subPageName) {
-    case "single-alert-page":
-      return "8logo.svg";
-
-    case "multiple-alerts-page":
-      return "8logo.svg";
-
-    case "current-page":
-      return "thermometer.svg";
-
-    case "radar-page":
-      return "radar1.svg";
-
-    case "zoomed-radar-page":
-      return "radar2.svg";
-
-    case "today-page":
-      return "calendar.svg";
-
-    case "tonight-page":
-      return "calendar.svg";
-
-    case "tomorrow-page":
-      return "calendar.svg";
-
-    case "tomorrow-night-page":
-      return "calendar.svg";
-
-    case "7day-page":
-      return "week.svg";
+    case "single-alert-page": return "8logo.svg";
+    case "multiple-alerts-page": return "8logo.svg";
+    case "current-page": return "thermometer.svg";
+    case "radar-page": return "radar1.svg";
+    case "zoomed-radar-page": return "radar2.svg";
+    case "today-page": return "calendar.svg";
+    case "tonight-page": return "calendar.svg";
+    case "tomorrow-page": return "calendar.svg";
+    case "tomorrow-night-page": return "calendar.svg";
+    case "7day-page": return "week.svg";
   }
 }
