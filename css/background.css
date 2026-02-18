@@ -9,22 +9,17 @@
   height: 100%;
 
   background:
-    /* 1. VERTICAL SIDE BARS (Left and Right) */
-    linear-gradient(to right, 
-      #1a222c 0%, #1a222c 5%,       /* Left bar: 5% wide */
-      transparent 5%, transparent 95%, 
-      #1a222c 95%, #1a222c 100%    /* Right bar: 5% wide */
-    ),
-    /* 2. HORIZONTAL BARS AND CENTER (Top and Bottom) */
-    linear-gradient(to bottom,
-      #1a222c 0%,      /* TOP BAR */
+    /* THE MAIN LAYOUT: Solid top/bottom bars with sharp edges and no side bars */
+    linear-gradient(
+      to bottom,
+      #1a222c 0%,      /* TOP BAR START */
       #1a222c 7%,      /* TOP BAR END (Hard stop) */
       
-      #0a2a5a 7%,      /* CENTER BLUE START (Matching 7% exactly removes fade) */
+      #0a2a5a 7%,      /* CENTER BLUE START (Matches 7% exactly to remove fade) */
       #1e4a8a 50%,     /* CENTER HIGHLIGHT */
-      #0a2a5a 92%,     /* CENTER BLUE END (Matching 92% exactly removes fade) */
+      #0a2a5a 92%,     /* CENTER BLUE END (Matches 92% exactly to remove fade) */
       
-      #1a222c 92%,     /* BOTTOM BAR START */
+      #1a222c 92%,     /* BOTTOM BAR START (Pushed down for text clearance) */
       #1a222c 100%     /* BOTTOM BAR END */
     ) !important;
 
