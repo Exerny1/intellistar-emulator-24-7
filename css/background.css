@@ -9,23 +9,17 @@
   height: 100%;
 
   background:
-    /* 1. SIDE BARS: Solid charcoal framing on left (5%) and right (75%) */
-    linear-gradient(to right, 
-      #1a222c 0%, #1a222c 5%, 
-      transparent 5%, transparent 75%, 
-      #1a222c 75%, #1a222c 100%
-    ),
-
-    /* 2. MAIN HORIZONTAL BARS + CENTER BLUE GRADIENT */
-    linear-gradient(to bottom,
+    /* THE MAIN LAYOUT: Top and Bottom bars only, zero side bars */
+    linear-gradient(
+      to bottom,
       #1a222c 0%,      /* TOP BAR START */
-      #1a222c 8%,      /* TOP BAR END: Kept small (8%) for a sleek header */
+      #1a222c 8%,      /* TOP BAR END (Shortened for a sleek look) */
       
-      #0a2a5a 8%,      /* CENTER BLUE START (Hard stop) */
+      #0a2a5a 8%,      /* CENTER BLUE START (Matching 8% exactly removes fade) */
       #1e4a8a 50%,     /* CENTER BLUE HIGHLIGHT */
-      #0a2a5a 82%,     /* CENTER BLUE END */
+      #0a2a5a 82%,     /* CENTER BLUE END (Matching 82% exactly removes fade) */
       
-      #1a222c 82%,     /* BOTTOM BAR START: Raised to clear the ticker */
+      #1a222c 82%,     /* BOTTOM BAR START */
       #1a222c 100%     /* BOTTOM BAR END */
     ) !important;
 
