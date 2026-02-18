@@ -9,18 +9,22 @@
   height: 100%;
 
   background:
-    /* THE MAIN LAYOUT: Solid top/bottom bars with sharp edges and no side bars */
-    linear-gradient(
-      to bottom,
-      #1a222c 0%,      /* TOP BAR START */
-      #1a222c 7%,      /* TOP BAR END (Hard stop) */
+    /* 1. RIGHT VERTICAL BAR: Closes the frame on the right side */
+    linear-gradient(to right, 
+      transparent 0%, transparent 75%, 
+      #1a222c 75%, #1a222c 100%
+    ),
+    /* 2. TOP & BOTTOM HORIZONTAL BARS: Adjusted to hug the weather box */
+    linear-gradient(to bottom,
+      #1a222c 0%,      /* Top Bar Start */
+      #1a222c 18%,     /* Top Bar End: Lowered to meet the Logo/City header */
       
-      #0a2a5a 7%,      /* CENTER BLUE START (Matches 7% exactly to remove fade) */
-      #1e4a8a 50%,     /* CENTER HIGHLIGHT */
-      #0a2a5a 92%,     /* CENTER BLUE END (Matches 92% exactly to remove fade) */
+      #0a2a5a 18%,     /* Center Blue Start */
+      #1e4a8a 50%,     /* Center Blue Highlight */
+      #0a2a5a 78%,     /* Center Blue End */
       
-      #1a222c 92%,     /* BOTTOM BAR START (Pushed down for text clearance) */
-      #1a222c 100%     /* BOTTOM BAR END */
+      #1a222c 78%,     /* Bottom Bar Start: Raised to meet the bottom of the Forecast box */
+      #1a222c 100%     /* Bottom Bar End */
     ) !important;
 
   background-size: cover !important;
