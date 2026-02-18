@@ -9,17 +9,17 @@
   height: 100%;
 
   background:
-    /* THE MAIN LAYOUT: Separated brighter bars and a vibrant gradient center */
+    /* THE MAIN LAYOUT: Separated bars and a vibrant gradient center */
     linear-gradient(
       to bottom,
-      #1a222c 0%,      /* TOP BAR START: Brighter Gunmetal Grey */
-      #1a222c 7%,      /* TOP BAR END (Hard stop) */
+      #1a222c 0%,      /* TOP BAR START */
+      #1a222c 7%,      /* TOP BAR END (7% thickness) */
       
-      #0a2a5a 7.1%,    /* CENTER GRADIENT START: Brighter Deep Blue */
-      #1e4a8a 50%,     /* CENTER GRADIENT MIDDLE: Luminous TWC Blue */
-      #0a2a5a 83.9%,   /* CENTER GRADIENT END: Brighter Deep Blue */
+      #0a2a5a 7.1%,    /* CENTER START */
+      #1e4a8a 50%,     /* CENTER HIGHLIGHT */
+      #0a2a5a 91.9%,   /* CENTER END (Now lower to meet the text) */
       
-      #1a222c 84%,     /* BOTTOM BAR START (Hard stop) */
+      #1a222c 92%,     /* BOTTOM BAR START (Pushed down to 92%) */
       #1a222c 100%     /* BOTTOM BAR END */
     ) !important;
 
