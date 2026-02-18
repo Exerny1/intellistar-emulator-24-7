@@ -1,0 +1,42 @@
+#background-image,
+.background-image,
+#background-image.below-screen,
+#background-image.above-screen {
+  position: relative;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+
+  background:
+    /* 1. THE LOGO PATCH: Integrated directly into the background stack */
+    /* This creates a sharp blue box in the top-left while the rest of the top bar stays charcoal */
+    linear-gradient(to right, 
+      #0055ff 0%, #0055ff 35%, 
+      transparent 35.1%
+    ) 0 0 / 100% 20% no-repeat,
+
+    /* 2. SIDE BARS (Left and Right) */
+    linear-gradient(to right, 
+      #1a222c 0%, #1a222c 5%,       /* Left Bar */
+      transparent 5%, transparent 75%, 
+      #1a222c 75%, #1a222c 100%    /* Right Bar */
+    ),
+
+    /* 3. TOP & BOTTOM BARS + CENTER GRADIENT */
+    linear-gradient(to bottom,
+      #1a222c 0%,      /* TOP BAR START */
+      #1a222c 20%,     /* TOP BAR END: Increased from 15% to 20% to be "slightly longer" */
+      
+      #0a2a5a 20%,     /* CENTER BLUE START (Hard stop at 20%) */
+      #1e4a8a 50%,     /* CENTER HIGHLIGHT */
+      #0a2a5a 78%,     /* CENTER BLUE END */
+      
+      #1a222c 78%,     /* BOTTOM BAR START */
+      #1a222c 100%     /* BOTTOM BAR END */
+    ) !important;
+
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  transition: top 400ms linear;
+}
