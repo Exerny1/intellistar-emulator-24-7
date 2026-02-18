@@ -9,21 +9,22 @@
   height: 100%;
 
   background:
-    /* 1. RIGHT VERTICAL BAR: Closes the frame on the right side */
+    /* 1. SIDE BARS (Left and Right) */
     linear-gradient(to right, 
-      transparent 0%, transparent 75%, 
-      #1a222c 75%, #1a222c 100%
+      #1a222c 0%, #1a222c 5%,       /* Left Bar: 5% thickness */
+      transparent 5%, transparent 75%, 
+      #1a222c 75%, #1a222c 100%    /* Right Bar: Closes at 75% */
     ),
-    /* 2. TOP & BOTTOM HORIZONTAL BARS: Adjusted to hug the weather box */
+    /* 2. TOP & BOTTOM BARS (Horizontal) */
     linear-gradient(to bottom,
       #1a222c 0%,      /* Top Bar Start */
-      #1a222c 18%,     /* Top Bar End: Lowered to meet the Logo/City header */
+      #1a222c 5%,      /* Top Bar End: Shorter (5%) so Logo/City fits below it */
       
-      #0a2a5a 18%,     /* Center Blue Start */
+      #0a2a5a 5%,      /* Center Blue Start */
       #1e4a8a 50%,     /* Center Blue Highlight */
-      #0a2a5a 78%,     /* Center Blue End */
+      #0a2a5a 88%,     /* Center Blue End */
       
-      #1a222c 78%,     /* Bottom Bar Start: Raised to meet the bottom of the Forecast box */
+      #1a222c 88%,     /* Bottom Bar Start: Set to 88% to stay under the box */
       #1a222c 100%     /* Bottom Bar End */
     ) !important;
 
