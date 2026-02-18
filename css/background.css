@@ -9,17 +9,17 @@
   height: 100%;
 
   background:
-    /* THE MAIN LAYOUT: Top and Bottom bars only, zero side bars */
+    /* THE MAIN LAYOUT: Teeny top bar and a perfectly aligned bottom bar */
     linear-gradient(
       to bottom,
       #1a222c 0%,      /* TOP BAR START */
-      #1a222c 8%,      /* TOP BAR END (Shortened for a sleek look) */
+      #1a222c 6%,      /* TOP BAR END: Reduced to 6% for that "teeny" look */
       
-      #0a2a5a 8%,      /* CENTER BLUE START (Matching 8% exactly removes fade) */
+      #0a2a5a 6%,      /* CENTER BLUE START (Hard stop) */
       #1e4a8a 50%,     /* CENTER BLUE HIGHLIGHT */
-      #0a2a5a 82%,     /* CENTER BLUE END (Matching 82% exactly removes fade) */
+      #0a2a5a 91.5%,   /* CENTER BLUE END (Hard stop) */
       
-      #1a222c 82%,     /* BOTTOM BAR START */
+      #1a222c 91.5%,   /* BOTTOM BAR START: Set to 91.5% to hit the top of the text */
       #1a222c 100%     /* BOTTOM BAR END */
     ) !important;
 
