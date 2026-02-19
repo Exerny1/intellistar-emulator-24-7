@@ -1,15 +1,17 @@
+/* Updated classes to match your new variables and font */
+
 .regular-text {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Roboto Condensed', sans-serif; /* Changed to Condensed */
   font-weight: 400;
-  font-size: 47px; /* was 54px */
-  color: white;
+  font-size: 47px; 
+  color: var(--textColour2); /* Using your new white variable */
   text-shadow: 2px 2px 2px rgba(0,0,0,0.15);
 }
 
 .strong-text {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Roboto Condensed', sans-serif; /* Changed to Condensed */
   font-weight: 700;
-  font-size: 47px; /* was 52px */
-  color: white;
+  font-size: 47px; 
+  color: var(--textColour2); /* Consistent color variable */
   text-shadow: 4px 4px 4px rgba(0,0,0,0.25);
 }
