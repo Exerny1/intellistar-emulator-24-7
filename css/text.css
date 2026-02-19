@@ -1,17 +1,16 @@
-/* Clean, Shadow-free 2026 Local Prime UI */
-
-.regular-text {
-  font-family: 'Roboto Condensed', sans-serif;
+These: .regular-text {
+  font-family: 'Roboto', sans-serif;
   font-weight: 400;
-  font-size: 47px;
-  color: var(--textColour2); /* #ffffff */
-  text-shadow: none; /* Shadow removed */
+  font-size: 47px; /* was 54px */
+  color: white;
+  text-shadow: 2px 2px 2px rgba(0,0,0,0.15);
 }
 
 .strong-text {
-  font-family: 'Roboto Condensed', sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-weight: 700;
-  font-size: 47px;
-  color: var(--textColour2); /* #ffffff */
-  text-shadow: none; /* Shadow removed */
+  font-size: 47px; /* was 52px */
+  color: white;
+  text-shadow: 4px 4px 4px rgba(0,0,0,0.25);
 }
+
