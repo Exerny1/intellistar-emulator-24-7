@@ -1,4 +1,4 @@
-These: .regular-text {
+.regular-text {
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
   font-size: 47px; /* was 54px */
@@ -13,4 +13,3 @@ These: .regular-text {
   color: white;
   text-shadow: 4px 4px 4px rgba(0,0,0,0.25);
 }
-
