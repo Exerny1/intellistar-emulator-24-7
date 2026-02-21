@@ -4,17 +4,18 @@
 #background-image.above-screen {
   position: absolute !important;
   left: 0 !important;
-  top: 0 !important; /* Forces it to stay at the top */
+  top: 0 !important;
   width: 100% !important;
   height: 100% !important;
   
-  /* Remove the animation */
   transition: none !important; 
+  transform: none !important;
+  
   background-repeat: no-repeat;
   background-size: cover !important;
 }
 
-/* THE OVERLAY: Stays pinned to the background element */
+/* THE OVERLAY: Stronger blue tint applied here */
 #background-image::after {
   content: "";
   position: absolute;
@@ -26,14 +27,14 @@
   
   background: linear-gradient(
     to bottom,
-    #1a222c 0%,      /* TOP BAR */
+    #1a222c 0%,      /* TOP BAR (Solid charcoal) */
     #1a222c 8%,      /* TOP BAR END */
     
-    rgba(10, 42, 90, 0.3) 8%,    /* LIGHT BLUE TINT */
-    rgba(30, 74, 138, 0.1) 50%,  /* HIGHLIGHT */
-    rgba(10, 42, 90, 0.3) 94%,   /* LIGHT BLUE TINT END */
+    rgba(10, 42, 90, 0.65) 8%,   /* STRONGER BLUE TINT (65% opacity) */
+    rgba(30, 74, 138, 0.45) 50%, /* STRONGER HIGHLIGHT (45% opacity) */
+    rgba(10, 42, 90, 0.65) 94%,  /* STRONGER BLUE TINT END */
     
-    #1a222c 94%,     /* BOTTOM BAR START */
+    #1a222c 94%,     /* BOTTOM BAR START (Solid charcoal) */
     #1a222c 100%     /* BOTTOM BAR END */
   );
   pointer-events: none;
