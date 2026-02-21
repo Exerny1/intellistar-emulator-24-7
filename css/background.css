@@ -9,20 +9,22 @@
   height: 100%;
 
   background:
-    /* THE MAIN LAYOUT: Teeny top bar and a perfectly aligned bottom bar */
+    /* THE MAIN LAYOUT: Solid bars with a transparent blue "wash" in the center */
     linear-gradient(
       to bottom,
-      #1a222c 0%,      /* TOP BAR START */
-      #1a222c 6%,      /* TOP BAR END: Reduced to 6% for that "teeny" look */
+      #1a222c 0%,      /* TOP BAR (Solid) */
+      #1a222c 8%,      /* TOP BAR END (Hard stop) */
       
-      #0a2a5a 6%,      /* CENTER BLUE START (Hard stop) */
-      #1e4a8a 50%,     /* CENTER BLUE HIGHLIGHT */
-      #0a2a5a 91.5%,   /* CENTER BLUE END (Hard stop) */
+      rgba(10, 42, 90, 0.6) 8%,    /* CENTER BLUE START (60% opaque) */
+      rgba(30, 74, 138, 0.4) 50%,  /* CENTER HIGHLIGHT (40% opaque) */
+      rgba(10, 42, 90, 0.6) 82%,   /* CENTER BLUE END (60% opaque) */
       
-      #1a222c 91.5%,   /* BOTTOM BAR START: Set to 91.5% to hit the top of the text */
+      #1a222c 82%,     /* BOTTOM BAR (Solid) */
       #1a222c 100%     /* BOTTOM BAR END */
     ) !important;
 
+  /* This ensures the stock images behind the gradient are visible */
+  background-blend-mode: overlay; 
   background-size: 100% 100% !important;
   background-repeat: no-repeat !important;
   transition: top 400ms linear;
