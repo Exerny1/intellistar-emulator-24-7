@@ -14,32 +14,30 @@
   background-repeat: no-repeat;
   background-size: cover !important;
   z-index: 0 !important;
-  /* Prevent any tiny pixel shifts from showing white edges */
   overflow: hidden; 
 }
 
-/* THE OVERLAY: Extended bottom bar to eliminate bezel gaps */
+/* THE OVERLAY: Sleek top bar + Gap-sealing bottom bar */
 #background-image::after {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  /* We extend the height slightly to push the bar deep into the bezel */
-  height: 105%; 
+  height: 105%; /* Keeps the "over-extend" for the bottom bezel */
   z-index: 1;
   
   background: linear-gradient(
     to bottom,
     #1a222c 0%,      /* TOP BAR START */
-    #1a222c 8%,      /* TOP BAR END */
+    #1a222c 8%,      /* TOP BAR END: Restored to sleek 8% */
     
-    rgba(10, 42, 90, 0.75) 8%,   /* SATURATED BLUE TINT */
+    rgba(10, 42, 90, 0.75) 8%,   /* STRONGER BLUE TINT */
     rgba(30, 74, 138, 0.55) 50%, /* CENTER HIGHLIGHT */
     rgba(10, 42, 90, 0.75) 91%,  /* BLUE TINT END */
     
-    #1a222c 91%,     /* BOTTOM BAR START */
-    #1a222c 105%     /* BOTTOM BAR END: Pushed past the 100% edge */
+    #1a222c 91%,     /* BOTTOM BAR START: Kept at 91% for height */
+    #1a222c 105%     /* BOTTOM BAR END: Pushed past 100% to fill gaps */
   );
   pointer-events: none;
 }
