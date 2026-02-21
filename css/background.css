@@ -1,35 +1,43 @@
-#background-image,
-.background-image {
-  position: relative;
-  left: 0 !important;
-  top: 0 !important;
-  width: 100% !important;
-  height: 100% !important;
+/* 1. THE BARS LAYER: Locked to the screen, independent of the image */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2; /* Sits ON TOP of the image, but BEHIND the text */
+  pointer-events: none;
   
-  /* LAYER 1: The Bars & Tint | LAYER 2: The actual Stock Image */
-  background: 
-    linear-gradient(
-      to bottom,
-      #1a222c 0%,      /* TOP BAR */
-      #1a222c 8%,      /* TOP BAR END */
-      
-      rgba(10, 42, 90, 0.4) 8%,    /* CENTER TINT START */
-      rgba(30, 74, 138, 0.2) 50%,  /* CENTER TINT HIGHLIGHT */
-      rgba(10, 42, 90, 0.4) 92%,   /* CENTER TINT END (Pushed down) */
-      
-      #1a222c 92%,     /* BOTTOM BAR START (Shortened/Pushed down) */
-      #1a222c 100%     /* BOTTOM BAR END */
-    ),
-    url('../images/stock-bg.jpg') !important; /* The !important locks the whole stack */
+  background: linear-gradient(
+    to bottom,
+    #1a222c 0%,      /* TOP BAR */
+    #1a222c 8%,      /* TOP BAR END */
+    
+    rgba(10, 42, 90, 0.4) 8%,    /* BLUE TINT START */
+    rgba(30, 74, 138, 0.2) 50%,  /* BLUE TINT HIGHLIGHT */
+    rgba(10, 42, 90, 0.4) 92%,   /* BLUE TINT END */
+    
+    #1a222c 92%,     /* BOTTOM BAR START (Shortened) */
+    #1a222c 100%     /* BOTTOM BAR END */
+  ) !important;
+}
 
-  background-size: cover !important;
-  background-position: center !important;
-  background-repeat: no-repeat !important;
+/* 2. THE IMAGE LAYER: The script can now change this freely */
+#background-image {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1; /* Sits BEHIND the bars */
+  background-size: cover;
+  background-position: center;
   transition: top 400ms linear;
 }
 
-/* This ensures the weather content (text/boxes) stays above the background layers */
-#main-container, .weather-box, .ticker {
+/* 3. THE TEXT LAYER: Ensures weather boxes stay on the very top */
+#container, .weather-data, .logo-area {
   position: relative;
-  z-index: 10;
+  z-index: 10 !important;
 }
