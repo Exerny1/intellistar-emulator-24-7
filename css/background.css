@@ -1,3 +1,4 @@
+/* KEEP THE ORIGINAL MOVEMENT LOGIC */
 #background-image,
 .background-image {
   position: relative;
@@ -5,27 +6,41 @@
   top: 0;
   width: 100%;
   height: 100%;
-  
-  /* The first gradient is the TOP layer (Bars), the second is the BOTTOM layer (Tint) */
-  /* The Script will then inject the image as a third layer underneath these */
-  background-image: 
-    linear-gradient(
-      to bottom,
-      #1a222c 0%, #1a222c 8%, 
-      transparent 8.1%, transparent 91.9%, 
-      #1a222c 92%, #1a222c 100%
-    ),
-    linear-gradient(
-      to bottom,
-      rgba(10, 42, 90, 0.4) 0%, 
-      rgba(30, 74, 138, 0.2) 50%, 
-      rgba(10, 42, 90, 0.4) 100%
-    ) !important;
-
+  transition: top 400ms linear; /* The original animation speed */
   background-size: cover !important;
   background-repeat: no-repeat !important;
-  transition: top 400ms linear;
 }
 
-#background-image.below-screen { top: 100%; }
-#background-image.above-screen { top: -100%; }
+/* THE OVERLAY: This adds the bars and tint without blocking the stock image */
+#background-image::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  
+  /* This gradient creates the bars and the see-through blue tint */
+  background: linear-gradient(
+    to bottom,
+    #1a222c 0%,      /* TOP BAR */
+    #1a222c 8%,      /* TOP BAR END */
+    
+    rgba(10, 42, 90, 0.4) 8%,    /* BLUE TINT START */
+    rgba(30, 74, 138, 0.2) 50%,  /* BLUE TINT HIGHLIGHT */
+    rgba(10, 42, 90, 0.4) 92%,   /* BLUE TINT END */
+    
+    #1a222c 92%,     /* BOTTOM BAR START (92% makes it thin) */
+    #1a222c 100%     /* BOTTOM BAR END */
+  );
+  pointer-events: none; /* Stops the bars from interfering with mouse clicks */
+}
+
+/* THE ORIGINAL ANIMATION CLASSES */
+#background-image.below-screen {
+  top: 100%;
+}
+
+#background-image.above-screen {
+  top: -100%;
+}
