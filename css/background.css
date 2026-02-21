@@ -9,22 +9,20 @@
   height: 100%;
 
   background:
-    /* THE MAIN LAYOUT: Solid bars with a transparent blue "wash" in the center */
+    /* THE MAIN LAYOUT: Solid charcoal bars with a transparent blue wash */
     linear-gradient(
       to bottom,
-      #1a222c 0%,      /* TOP BAR (Solid) */
+      #1a222c 0%,      /* TOP BAR (Solid Gunmetal Charcoal) */
       #1a222c 8%,      /* TOP BAR END (Hard stop) */
       
-      rgba(10, 42, 90, 0.6) 8%,    /* CENTER BLUE START (60% opaque) */
-      rgba(30, 74, 138, 0.4) 50%,  /* CENTER HIGHLIGHT (40% opaque) */
-      rgba(10, 42, 90, 0.6) 82%,   /* CENTER BLUE END (60% opaque) */
+      rgba(10, 42, 90, 0.5) 8%,    /* CENTER BLUE START (Translucent) */
+      rgba(30, 74, 138, 0.3) 50%,  /* CENTER HIGHLIGHT (More Transparent) */
+      rgba(10, 42, 90, 0.5) 82%,   /* CENTER BLUE END (Translucent) */
       
-      #1a222c 82%,     /* BOTTOM BAR (Solid) */
+      #1a222c 82%,     /* BOTTOM BAR (Solid Gunmetal Charcoal) */
       #1a222c 100%     /* BOTTOM BAR END */
     ) !important;
 
-  /* This ensures the stock images behind the gradient are visible */
-  background-blend-mode: overlay; 
   background-size: 100% 100% !important;
   background-repeat: no-repeat !important;
   transition: top 400ms linear;
