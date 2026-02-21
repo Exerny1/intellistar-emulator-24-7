@@ -14,16 +14,18 @@
   background-repeat: no-repeat;
   background-size: cover !important;
   z-index: 0 !important;
+  /* Prevent any tiny pixel shifts from showing white edges */
+  overflow: hidden; 
 }
 
-/* THE OVERLAY: Extended to 105% to eliminate bottom gaps */
+/* THE OVERLAY: Extended bottom bar to eliminate bezel gaps */
 #background-image::after {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  /* Height is slightly over 100% to ensure no pixel gaps at the floor */
+  /* We extend the height slightly to push the bar deep into the bezel */
   height: 105%; 
   z-index: 1;
   
@@ -37,7 +39,7 @@
     rgba(10, 42, 90, 0.75) 91%,  /* BLUE TINT END */
     
     #1a222c 91%,     /* BOTTOM BAR START */
-    #1a222c 100%     /* BOTTOM BAR END: Fills to 100% plus overflow */
+    #1a222c 105%     /* BOTTOM BAR END: Pushed past the 100% edge */
   );
   pointer-events: none;
 }
