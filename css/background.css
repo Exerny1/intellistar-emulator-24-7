@@ -1,43 +1,31 @@
-/* 1. THE BARS LAYER: Locked to the screen, independent of the image */
-body::before {
-  content: "";
-  position: fixed;
-  top: 0;
+#background-image,
+.background-image {
+  position: relative;
   left: 0;
+  top: 0;
   width: 100%;
   height: 100%;
-  z-index: 2; /* Sits ON TOP of the image, but BEHIND the text */
-  pointer-events: none;
   
-  background: linear-gradient(
-    to bottom,
-    #1a222c 0%,      /* TOP BAR */
-    #1a222c 8%,      /* TOP BAR END */
-    
-    rgba(10, 42, 90, 0.4) 8%,    /* BLUE TINT START */
-    rgba(30, 74, 138, 0.2) 50%,  /* BLUE TINT HIGHLIGHT */
-    rgba(10, 42, 90, 0.4) 92%,   /* BLUE TINT END */
-    
-    #1a222c 92%,     /* BOTTOM BAR START (Shortened) */
-    #1a222c 100%     /* BOTTOM BAR END */
-  ) !important;
-}
+  /* The first gradient is the TOP layer (Bars), the second is the BOTTOM layer (Tint) */
+  /* The Script will then inject the image as a third layer underneath these */
+  background-image: 
+    linear-gradient(
+      to bottom,
+      #1a222c 0%, #1a222c 8%, 
+      transparent 8.1%, transparent 91.9%, 
+      #1a222c 92%, #1a222c 100%
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(10, 42, 90, 0.4) 0%, 
+      rgba(30, 74, 138, 0.2) 50%, 
+      rgba(10, 42, 90, 0.4) 100%
+    ) !important;
 
-/* 2. THE IMAGE LAYER: The script can now change this freely */
-#background-image {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1; /* Sits BEHIND the bars */
-  background-size: cover;
-  background-position: center;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
   transition: top 400ms linear;
 }
 
-/* 3. THE TEXT LAYER: Ensures weather boxes stay on the very top */
-#container, .weather-data, .logo-area {
-  position: relative;
-  z-index: 10 !important;
-}
+#background-image.below-screen { top: 100%; }
+#background-image.above-screen { top: -100%; }
