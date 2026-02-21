@@ -17,28 +17,27 @@
   overflow: hidden; 
 }
 
-/* THE OVERLAY: Sleek top bar + Extra thick, gap-sealing bottom bar */
+/* THE OVERLAY: Sleeker top, much taller/longer bottom */
 #background-image::after {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  /* Height set to 105% to push the charcoal bar deep into the bezel */
-  height: 105%; 
+  height: 105%; /* Keeps the "over-extend" for the bottom bezel */
   z-index: 1;
   
   background: linear-gradient(
     to bottom,
     #1a222c 0%,      /* TOP BAR START */
-    #1a222c 8%,      /* TOP BAR END: Kept at 8% for that sleek look */
+    #1a222c 6.5%,    /* TOP BAR END: Reduced from 8% to 6.5% for "teeny tiny" sleekness */
     
-    rgba(10, 42, 90, 0.75) 8%,   /* SATURATED BLUE TINT */
-    rgba(30, 74, 138, 0.55) 50%, /* CENTER HIGHLIGHT */
-    rgba(10, 42, 90, 0.75) 89%,  /* BLUE TINT END: Adjusted to meet the thicker bar */
+    rgba(10, 42, 90, 0.75) 6.5%, /* BLUE TINT START */
+    rgba(30, 74, 138, 0.55) 50%, 
+    rgba(10, 42, 90, 0.75) 86%,  /* BLUE TINT END: Lowered to meet taller bar */
     
-    #1a222c 89%,     /* BOTTOM BAR START: Raised to 89% to make it thicker */
-    #1a222c 105%     /* BOTTOM BAR END: Extended past 100% to fill bezel gaps */
+    #1a222c 86%,     /* BOTTOM BAR START: Raised from 89% to 86% to make it "longer" */
+    #1a222c 105%     /* BOTTOM BAR END: Fills past 100% to seal gaps */
   );
   pointer-events: none;
 }
