@@ -16,7 +16,7 @@
   z-index: 0 !important;
 }
 
-/* THE OVERLAY: Raised and thickened bottom bar */
+/* THE OVERLAY: Adjusted bottom bar and stronger tint */
 #background-image::after {
   content: "";
   position: absolute;
@@ -31,17 +31,17 @@
     #1a222c 0%,      /* TOP BAR START */
     #1a222c 8%,      /* TOP BAR END */
     
-    rgba(10, 42, 90, 0.7) 8%,    /* STRONGER BLUE TINT */
-    rgba(30, 74, 138, 0.5) 50%,  /* CENTER HIGHLIGHT */
-    rgba(10, 42, 90, 0.7) 88%,   /* BLUE TINT END (Raised to meet new bar) */
+    rgba(10, 42, 90, 0.75) 8%,   /* SATURATED BLUE TINT */
+    rgba(30, 74, 138, 0.55) 50%, /* CENTER HIGHLIGHT */
+    rgba(10, 42, 90, 0.75) 91%,  /* BLUE TINT END (Lowered to 91%) */
     
-    #1a222c 88%,     /* BOTTOM BAR START: Raised up from 94% to 88% */
-    #1a222c 100%     /* BOTTOM BAR END: Extended slightly more to the floor */
+    #1a222c 91%,     /* BOTTOM BAR START: Lowered slightly from 88% */
+    #1a222c 100%     /* BOTTOM BAR END: Fills to the very edge */
   );
   pointer-events: none;
 }
 
-/* KEEPS TEXT ON TOP */
+/* KEEPS WEATHER DATA ON TOP */
 #container, .weather-box, .ticker, .logo-area, .location-header {
   position: relative !important;
   z-index: 10 !important;
