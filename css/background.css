@@ -13,9 +13,11 @@
   
   background-repeat: no-repeat;
   background-size: cover !important;
+  /* Ensure the main background container is at the bottom of the stack */
+  z-index: 0 !important;
 }
 
-/* THE OVERLAY: Stronger blue tint applied here */
+/* THE OVERLAY: The blue "Atmosphere" and Charcoal Bars */
 #background-image::after {
   content: "";
   position: absolute;
@@ -23,19 +25,27 @@
   left: 0;
   width: 100%;
   height: 100%;
+  /* This sits on the image, but the text is in a different container above it */
   z-index: 1;
   
   background: linear-gradient(
     to bottom,
-    #1a222c 0%,      /* TOP BAR (Solid charcoal) */
+    #1a222c 0%,      /* TOP BAR */
     #1a222c 8%,      /* TOP BAR END */
     
-    rgba(10, 42, 90, 0.65) 8%,   /* STRONGER BLUE TINT (65% opacity) */
-    rgba(30, 74, 138, 0.45) 50%, /* STRONGER HIGHLIGHT (45% opacity) */
-    rgba(10, 42, 90, 0.65) 94%,  /* STRONGER BLUE TINT END */
+    rgba(10, 42, 90, 0.7) 8%,    /* STRONGER BLUE TINT (70%) */
+    rgba(30, 74, 138, 0.5) 50%,  /* CENTER HIGHLIGHT (50%) */
+    rgba(10, 42, 90, 0.7) 94%,   /* STRONGER BLUE TINT END */
     
-    #1a222c 94%,     /* BOTTOM BAR START (Solid charcoal) */
+    #1a222c 94%,     /* BOTTOM BAR START */
     #1a222c 100%     /* BOTTOM BAR END */
   );
   pointer-events: none;
+}
+
+/* FORCE THE WEATHER TEXT TO BE ON TOP */
+/* Replace these class names with the actual ones used in your project if different */
+#container, .weather-box, .ticker, .logo-area, .location-header {
+  position: relative !important;
+  z-index: 10 !important;
 }
