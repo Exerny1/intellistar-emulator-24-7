@@ -340,7 +340,6 @@ function showEnding(){
     stayUpdated();
   }
   else{
-    itsAmazingOutThere();
   }
 }
 
