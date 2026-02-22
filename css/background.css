@@ -15,14 +15,13 @@
   overflow: hidden; 
 }
 
-/* THE OVERLAY: Maximized bottom bar height */
+/* THE OVERLAY: Trimmed bottom bar for perfect spacing */
 #background-image::after {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  /* Height at 110% to stay buried in the bezel */
   height: 110%; 
   z-index: 1;
   
@@ -33,10 +32,10 @@
     
     rgba(10, 42, 90, 0.75) 6.5%, 
     rgba(30, 74, 138, 0.55) 50%, 
-    rgba(10, 42, 90, 0.75) 82%,  /* BLUE TINT END: Meeting the even taller bar */
+    rgba(10, 42, 90, 0.75) 83%,  /* BLUE TINT END: Adjusted for the trim */
     
-    #1a222c 82%,     /* BOTTOM BAR TOP: Raised to 82% to be much taller */
-    #1a222c 110%     /* BOTTOM BAR BOTTOM: Extra deep bleed */
+    #1a222c 83%,     /* BOTTOM BAR TOP: Trimmed from 82% to 83% for a tiny sliver of room */
+    #1a222c 110%     /* BOTTOM BAR BOTTOM: Deep bleed remains for gap sealing */
   );
   pointer-events: none;
 }
