@@ -15,28 +15,28 @@
   overflow: hidden; 
 }
 
-/* THE OVERLAY: Taller bottom bar to hide the blur */
+/* THE OVERLAY: Maximized bottom bar height */
 #background-image::after {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  /* Increased height to 110% to push deep into the bezel */
+  /* Height at 110% to stay buried in the bezel */
   height: 110%; 
   z-index: 1;
   
   background: linear-gradient(
     to bottom,
     #1a222c 0%, 
-    #1a222c 6.5%,    /* TOP BAR: Sleek 6.5% header */
+    #1a222c 6.5%,    /* TOP BAR: Sleek header */
     
     rgba(10, 42, 90, 0.75) 6.5%, 
     rgba(30, 74, 138, 0.55) 50%, 
-    rgba(10, 42, 90, 0.75) 85%,  /* BLUE TINT END: Meeting the new taller bar */
+    rgba(10, 42, 90, 0.75) 82%,  /* BLUE TINT END: Meeting the even taller bar */
     
-    #1a222c 85%,     /* BOTTOM BAR TOP: Raised to 85% to hide the image blur */
-    #1a222c 110%     /* BOTTOM BAR BOTTOM: Extra deep bleed to seal the bezel */
+    #1a222c 82%,     /* BOTTOM BAR TOP: Raised to 82% to be much taller */
+    #1a222c 110%     /* BOTTOM BAR BOTTOM: Extra deep bleed */
   );
   pointer-events: none;
 }
