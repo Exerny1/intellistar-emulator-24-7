@@ -5,34 +5,31 @@
   height: 140px;
   position: absolute;
   opacity: 1;
-  /* Keeps the container itself from fading or moving */
   transition: none !important; 
 }
 
 #amazing-text {
-  /* Hide the text completely */
-  display: none !important;
+  display: none !important; /* Hide text as requested previously */
 }
 
 #amazing-logo {
   position: absolute;
-  /* Center the logo or keep it at 0 */
   left: 0px !important; 
   height: 83%;
   top: 50%;
-  /* Start hidden (scaled to 0) as per original logic */
-  transform: translateY(-50%) scale(0, 0);
-  /* Retain the "pop-in" animation but remove the "sliding" movement */
-  transition: transform 200ms 300ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  /* STARTING STATE: Shrunk to nothing */
+  transform: translateY(-50%) scale(0, 0); 
+  
+  /* ANIMATION: The "Pop" effect using the bouncy cubic-bezier */
+  transition: transform 300ms 500ms cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
 }
 
-/* When the script adds .shown, only the scale changes, not the position */
+/* TRIGGERED STATE: Pops up to full size */
 #amazing-logo.shown {
   transform: translateY(-50%) scale(1, 1) !important;
   left: 0px !important; 
 }
 
-/* Prevents the entire container from hiding if the script triggers it */
 #amazing-container.hide {
   top: 445px !important;
   opacity: 1 !important;
