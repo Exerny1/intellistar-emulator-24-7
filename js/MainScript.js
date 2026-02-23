@@ -1,8 +1,8 @@
-// Timeline sequences (7-day outlook set to 18000ms, Greeting 8000ms handled in executeGreetingPage)
-const MORNING = [{name: "Now", subpages: [{name: "current-page", duration: 9000}, {name: "radar-page", duration: 8000}]},{name: "Today", subpages: [{name: "today-page", duration: 10000}]},{name: "Tonight", subpages: [{name: "tonight-page", duration: 10000}]},{name: "Beyond", subpages: [{name: "tomorrow-page", duration: 10000}, {name: "7day-page", duration: 18000}]},]
-const NIGHT = [{name: "Now", subpages: [{name: "current-page", duration: 9000}, {name: "radar-page", duration: 8000}]},{name: "Tonight", subpages: [{name: "tonight-page", duration: 10000}]},{name: "Beyond", subpages: [{name: "tomorrow-page", duration: 10000}, {name: "tomorrow-night-page", duration: 10000}, {name: "7day-page", duration: 18000}]},]
-const SINGLE = [{name: "Alert", subpages: [{name: "single-alert-page", duration: 7000}]},{name: "Now", subpages: [{name: "current-page", duration: 8000}, {name: "radar-page", duration: 8000}, {name: "zoomed-radar-page", duration: 8000}]},{name: "Tonight", subpages: [{name: "tonight-page", duration: 8000}]},{name: "Beyond", subpages: [{name: "tomorrow-page", duration: 8000}, {name: "7day-page", duration: 18000}]},]
-const MULTIPLE = [{name: "Alerts", subpages: [{name: "multiple-alerts-page", duration: 7000}]},{name: "Now", subpages: [{name: "current-page", duration: 8000}, {name: "radar-page", duration: 8000}, {name: "zoomed-radar-page", duration: 8000}]},{name: "Tonight", subpages: [{name: "tonight-page", duration: 8000}]},{name: "Beyond", subpages: [{name: "tomorrow-page", duration: 8000}, {name: "7day-page", duration: 18000}]},]
+// All slides set to 17000ms (17 seconds)
+const MORNING = [{name: "Now", subpages: [{name: "current-page", duration: 17000}, {name: "radar-page", duration: 17000}]},{name: "Today", subpages: [{name: "today-page", duration: 17000}]},{name: "Tonight", subpages: [{name: "tonight-page", duration: 17000}]},{name: "Beyond", subpages: [{name: "tomorrow-page", duration: 17000}, {name: "7day-page", duration: 17000}]},]
+const NIGHT = [{name: "Now", subpages: [{name: "current-page", duration: 17000}, {name: "radar-page", duration: 17000}]},{name: "Tonight", subpages: [{name: "tonight-page", duration: 17000}]},{name: "Beyond", subpages: [{name: "tomorrow-page", duration: 17000}, {name: "tomorrow-night-page", duration: 17000}, {name: "7day-page", duration: 17000}]},]
+const SINGLE = [{name: "Alert", subpages: [{name: "single-alert-page", duration: 17000}]},{name: "Now", subpages: [{name: "current-page", duration: 17000}, {name: "radar-page", duration: 17000}, {name: "zoomed-radar-page", duration: 17000}]},{name: "Tonight", subpages: [{name: "tonight-page", duration: 17000}]},{name: "Beyond", subpages: [{name: "tomorrow-page", duration: 17000}, {name: "7day-page", duration: 17000}]},]
+const MULTIPLE = [{name: "Alerts", subpages: [{name: "multiple-alerts-page", duration: 17000}]},{name: "Now", subpages: [{name: "current-page", duration: 17000}, {name: "radar-page", duration: 17000}, {name: "zoomed-radar-page", duration: 17000}]},{name: "Tonight", subpages: [{name: "tonight-page", duration: 17000}]},{name: "Beyond", subpages: [{name: "tomorrow-page", duration: 17000}, {name: "7day-page", duration: 17000}]},]
 const WEEKDAY = ["SUN",  "MON", "TUES", "WED", "THU", "FRI", "SAT"];
 
 const jingle = new Audio("assets/music/jingle.wav")
@@ -121,7 +121,7 @@ function executeGreetingPage(){
     let el = getElement(page);
     if (el) {
         el.style.left = '0px'; 
-        el.style.top = '100%'; // Start below
+        el.style.top = '150px'; 
         el.style.opacity = '0';
         el.style.visibility = 'hidden'; 
     }
@@ -137,8 +137,8 @@ function executeGreetingPage(){
   getElement('greeting-text').classList.add('shown');
   getElement('local-logo-container').classList.add("shown");
   
-  // Greeting duration: 8 seconds
-  setTimeout(clearGreetingPage, 8000);
+  // Greeting now 6 seconds
+  setTimeout(clearGreetingPage, 6000);
 }
 
 function clearGreetingPage(){
@@ -195,15 +195,16 @@ function executePage(pageIndex, subPageIndex){
     currentLogoIndex++;
   }
 
-  // INCOMING SLIDE: Start below (100%) and slide up to center
+  // SMOOTH SLIDE UP TRANSITION
   currentSubPageElement.style.transition = 'none';
   currentSubPageElement.style.left = '0px';
-  currentSubPageElement.style.top = '100%'; 
-  currentSubPageElement.style.opacity = '1';
-  void currentSubPageElement.offsetWidth; // Force reflow
+  currentSubPageElement.style.top = '150px'; 
+  currentSubPageElement.style.opacity = '0';
+  void currentSubPageElement.offsetWidth; 
 
-  currentSubPageElement.style.transition = 'top 1s ease-in-out';
+  currentSubPageElement.style.transition = 'opacity 0.8s ease-out, top 0.8s ease-out';
   currentSubPageElement.style.top = '0px';
+  currentSubPageElement.style.opacity = '1';
 
   var isLastPage = pageIndex >= pageOrder.length-1 && subPageIndex >= pageOrder[pageOrder.length-1].subpages.length-1;
   if(isLastPage)
@@ -236,20 +237,19 @@ function clearPage(pageIndex, subPageIndex){
     resetProgressBar();
   }
 
-  // OUTGOING SLIDE: Slide from center (0px) up to -100%
-  currentSubPageElement.style.transition = 'top 1s ease-in-out, opacity 1s ease-in-out';
-  
+  // Smooth drift up and fade out for all exits
+  currentSubPageElement.style.transition = 'opacity 0.8s ease-in, top 0.8s ease-in';
+  currentSubPageElement.style.opacity = '0';
+  currentSubPageElement.style.top = '-50px';
+
   if(isLastPage){
-    // Final Fade Out for 7-Day Outlook
-    currentSubPageElement.style.opacity = '0';
     endSequence();
   } else {
-    currentSubPageElement.style.top = '-100%';
     setTimeout(() => { 
-        if(currentSubPageElement.style.top === '-100%') {
+        if(currentSubPageElement.style.opacity === '0') {
             currentSubPageElement.style.visibility = 'hidden'; 
         }
-    }, 1000);
+    }, 800);
   }
 }
 
@@ -376,8 +376,8 @@ function silentRestart(){
     if (el) {
       el.style.transition = 'none';
       el.style.left = '0px'; 
-      el.style.top = '100%'; // Reset to bottom
-      el.style.opacity = '1';
+      el.style.top = '150px';
+      el.style.opacity = '0';
       el.style.visibility = 'hidden'; 
       el.classList.remove('shown', 'hidden', 'extend'); 
     }
