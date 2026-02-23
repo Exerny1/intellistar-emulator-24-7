@@ -1,4 +1,4 @@
-// Timings: Weather 17s, Greeting 6s
+// Timings
 const MORNING = [{name: "Now", subpages: [{name: "current-page", duration: 17000}, {name: "radar-page", duration: 17000}]},{name: "Today", subpages: [{name: "today-page", duration: 17000}]},{name: "Tonight", subpages: [{name: "tonight-page", duration: 17000}]},{name: "Beyond", subpages: [{name: "tomorrow-page", duration: 17000}, {name: "7day-page", duration: 17000}]},]
 const NIGHT = [{name: "Now", subpages: [{name: "current-page", duration: 17000}, {name: "radar-page", duration: 17000}]},{name: "Tonight", subpages: [{name: "tonight-page", duration: 17000}]},{name: "Beyond", subpages: [{name: "tomorrow-page", duration: 17000}, {name: "tomorrow-night-page", duration: 17000}, {name: "7day-page", duration: 17000}]},]
 const SINGLE = [{name: "Alert", subpages: [{name: "single-alert-page", duration: 17000}]},{name: "Now", subpages: [{name: "current-page", duration: 17000}, {name: "radar-page", duration: 17000}, {name: "zoomed-radar-page", duration: 17000}]},{name: "Tonight", subpages: [{name: "tonight-page", duration: 17000}]},{name: "Beyond", subpages: [{name: "tomorrow-page", duration: 17000}, {name: "7day-page", duration: 17000}]},]
@@ -48,16 +48,6 @@ function scheduleTimeline(){
   setInformation();
 }
 
-function revealTimeline(){
-  getElement('timeline-event-container').classList.add('shown');
-  getElement('progressbar-container').classList.add('shown');
-  getElement('logo-stack').classList.add('shown');
-  var timelineElements = document.querySelectorAll(".timeline-item");
-  for (var i = 0; i < timelineElements.length; i++) {
-    timelineElements[i].style.top = '0px';
-  }
-}
-
 function setInformation(){
   setGreetingPage();
   checkStormMusic();
@@ -76,7 +66,7 @@ function setMainBackground(){
 }
 
 function checkStormMusic(){
-  if(currentCondition.toLowerCase().includes("storm")){
+  if(currentCondition && currentCondition.toLowerCase().includes("storm")){
     music= new Audio("assets/music/storm.wav");
   }
 }
@@ -157,8 +147,8 @@ function executePage(pageIndex, subPageIndex){
   currentSubPageElement.style.opacity = '1';
   void currentSubPageElement.offsetWidth; 
 
-  // FASTER TRANSITION (0.8s)
-  currentSubPageElement.style.transition = 'top 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+  // SNAPPY 0.6s Roll
+  currentSubPageElement.style.transition = 'top 0.6s cubic-bezier(0.25, 1, 0.5, 1)';
   currentSubPageElement.style.top = '0px';
 
   if(subPageIndex === 0){
@@ -177,14 +167,10 @@ function executePage(pageIndex, subPageIndex){
   }
 
   if(currentSubPageName == "current-page"){
-    setTimeout(loadCC, 800);
+    setTimeout(loadCC, 600);
     setTimeout(scrollCC, currentSubPageDuration / 2);
     animateValue('cc-temperature-text', -20, currentTemperature, 2500, 1);
     animateDialFill('cc-dial-color', currentTemperature, 2500);
-  } else if(currentSubPageName == 'radar-page'){
-    startRadar();
-  } else if(currentSubPageName == 'zoomed-radar-page'){
-    startZoomedRadar();
   }
 }
 
@@ -198,8 +184,8 @@ function clearPage(pageIndex, subPageIndex){
 
   if((currentPage.subpages.length - 1) == subPageIndex && !isLastPage) resetProgressBar();
 
-  // FASTER TRANSITION (0.8s)
-  currentSubPageElement.style.transition = 'top 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.8s ease-in';
+  // SNAPPY 0.6s Roll Exit
+  currentSubPageElement.style.transition = 'top 0.6s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.6s ease-in';
   currentSubPageElement.style.top = '-1080px';
   
   if(isLastPage) {
@@ -208,7 +194,7 @@ function clearPage(pageIndex, subPageIndex){
   } else {
     setTimeout(() => { 
         if(currentSubPageElement.style.top === '-1080px') currentSubPageElement.style.visibility = 'hidden'; 
-    }, 900);
+    }, 700);
   }
 }
 
@@ -218,9 +204,6 @@ function resetProgressBar(){
   void getElement('progressbar').offsetWidth;
 }
 
-function startRadar(){ getElement('radar-container').appendChild(radarImage); }
-function startZoomedRadar(){ getElement('zoomed-radar-container').appendChild(zoomedRadarImage); }
-
 function loadCC(){
   var ccElements = document.querySelectorAll(".cc-vertical-group");
   for (var i = 0; i < ccElements.length; i++) { ccElements[i].style.top = '0px'; }
@@ -229,33 +212,20 @@ function loadCC(){
 function scrollCC(){
   var ccElements = document.querySelectorAll(".cc-vertical-group");
   for (var i = 0; i < ccElements.length; i++) { ccElements[i].style.top = '-80px'; }
-  var pressureArray = pressure.toString().split('.');
   animateValue("cc-visibility", 0, visibility, 800, 1);
   animateValue("cc-humidity", 0, humidity, 1000, 1);
   animateValue("cc-dewpoint", 0, dewPoint, 1200, 1);
-  if (CONFIG.units === 'e') {
-    animateValue("cc-pressure1", 0, pressureArray[0], 1400, 1);
-    animateValue("cc-pressure2", 0, (pressureArray[1] || "00"), 1400, 2);
-  } else {
-    animateValue("cc-pressure1", 800, pressureArray[0], 1400, 3);
-  }
 }
 
-function endSequence(){ clearInfoBar(); }
-
-function clearInfoBar(){
-  getElement("infobar-twc-logo").classList.add("hidden");
-  getElement("infobar-local-logo").classList.add("hidden");
-  getElement("infobar-location-container").classList.add("hidden");
-  getElement("infobar-time-container").classList.add("hidden");
-  setTimeout(clearElements, 200);
-}
-
-function clearElements(){
-  getElement("outlook-titlebar").classList.add('hidden');
-  getElement("content-container").classList.add("expand");
-  getElement("timeline-container").style.visibility = "hidden";
-  setTimeout(clearEnd, 2000);
+function endSequence(){ 
+    getElement("infobar-twc-logo").classList.add("hidden");
+    getElement("infobar-local-logo").classList.add("hidden");
+    getElement("infobar-location-container").classList.add("hidden");
+    getElement("infobar-time-container").classList.add("hidden");
+    setTimeout(() => {
+        getElement("content-container").classList.add("expand");
+        setTimeout(clearEnd, 2000);
+    }, 200);
 }
 
 function clearEnd(){
@@ -268,9 +238,8 @@ function silentRestart(){
   var id = window.setTimeout(function() {}, 0);
   while (id--) { window.clearTimeout(id); }
   currentLogoIndex = 0;
-  currentLogo = undefined;
   
-  const resetList = ['infobar-twc-logo', 'infobar-local-logo', 'infobar-location-container', 'infobar-time-container', 'outlook-titlebar', 'content-container', 'background-image', 'hello-text', 'hello-location-text', 'greeting-text', 'crawler-container', 'progressbar'];
+  const resetList = ['infobar-twc-logo', 'infobar-local-logo', 'infobar-location-container', 'infobar-time-container', 'content-container', 'background-image', 'hello-text', 'hello-location-text', 'greeting-text', 'crawler-container', 'progressbar'];
   resetList.forEach(id => {
     let el = getElement(id);
     if(el) {
@@ -280,9 +249,7 @@ function silentRestart(){
     }
   });
 
-  getElement('crawl-text').classList.remove('animate');
   getElement('background-image').classList.add("below-screen");
-  
   if (typeof weather !== 'undefined') weather.load(); 
   else scheduleTimeline();
 }
@@ -381,7 +348,7 @@ function startCrawl(){
 
 function calculateCrawlSpeed() {
   var crawlTextElement = getElement('crawl-text');
-  var elementLength = crawlTextElement.innerHTML.length;
+  var elementLength = crawlTextElement.innerHTML.length || 100;
   var timeTaken = (elementLength < (crawlScreenTime*crawlSpeedCasual) - crawlSpace) ? (elementLength + crawlSpace) / crawlSpeedCasual : (elementLength > (crawlScreenTime*crawlSpeedFast)) ? elementLength / crawlSpeedFast : crawlScreenTime;
   crawlTextElement.style.animationDuration = timeTaken + "s";
 }
