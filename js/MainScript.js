@@ -1,8 +1,8 @@
-// All slides set to 20000ms (20 seconds)
-const MORNING = [{name: "Now", subpages: [{name: "current-page", duration: 20000}, {name: "radar-page", duration: 20000}]},{name: "Today", subpages: [{name: "today-page", duration: 20000}]},{name: "Tonight", subpages: [{name: "tonight-page", duration: 20000}]},{name: "Beyond", subpages: [{name: "tomorrow-page", duration: 20000}, {name: "7day-page", duration: 20000}]},]
-const NIGHT = [{name: "Now", subpages: [{name: "current-page", duration: 20000}, {name: "radar-page", duration: 20000}]},{name: "Tonight", subpages: [{name: "tonight-page", duration: 20000}]},{name: "Beyond", subpages: [{name: "tomorrow-page", duration: 20000}, {name: "tomorrow-night-page", duration: 20000}, {name: "7day-page", duration: 20000}]},]
-const SINGLE = [{name: "Alert", subpages: [{name: "single-alert-page", duration: 20000}]},{name: "Now", subpages: [{name: "current-page", duration: 20000}, {name: "radar-page", duration: 20000}, {name: "zoomed-radar-page", duration: 20000}]},{name: "Tonight", subpages: [{name: "tonight-page", duration: 20000}]},{name: "Beyond", subpages: [{name: "tomorrow-page", duration: 20000}, {name: "7day-page", duration: 20000}]},]
-const MULTIPLE = [{name: "Alerts", subpages: [{name: "multiple-alerts-page", duration: 20000}]},{name: "Now", subpages: [{name: "current-page", duration: 20000}, {name: "radar-page", duration: 20000}, {name: "zoomed-radar-page", duration: 20000}]},{name: "Tonight", subpages: [{name: "tonight-page", duration: 20000}]},{name: "Beyond", subpages: [{name: "tomorrow-page", duration: 20000}, {name: "7day-page", duration: 20000}]},]
+// Timeline sequences (7-day outlook set to 15000ms)
+const MORNING = [{name: "Now", subpages: [{name: "current-page", duration: 9000}, {name: "radar-page", duration: 8000}]},{name: "Today", subpages: [{name: "today-page", duration: 10000}]},{name: "Tonight", subpages: [{name: "tonight-page", duration: 10000}]},{name: "Beyond", subpages: [{name: "tomorrow-page", duration: 10000}, {name: "7day-page", duration: 15000}]},]
+const NIGHT = [{name: "Now", subpages: [{name: "current-page", duration: 9000}, {name: "radar-page", duration: 8000}]},{name: "Tonight", subpages: [{name: "tonight-page", duration: 10000}]},{name: "Beyond", subpages: [{name: "tomorrow-page", duration: 10000}, {name: "tomorrow-night-page", duration: 10000}, {name: "7day-page", duration: 15000}]},]
+const SINGLE = [{name: "Alert", subpages: [{name: "single-alert-page", duration: 7000}]},{name: "Now", subpages: [{name: "current-page", duration: 8000}, {name: "radar-page", duration: 8000}, {name: "zoomed-radar-page", duration: 8000}]},{name: "Tonight", subpages: [{name: "tonight-page", duration: 8000}]},{name: "Beyond", subpages: [{name: "tomorrow-page", duration: 8000}, {name: "7day-page", duration: 15000}]},]
+const MULTIPLE = [{name: "Alerts", subpages: [{name: "multiple-alerts-page", duration: 7000}]},{name: "Now", subpages: [{name: "current-page", duration: 8000}, {name: "radar-page", duration: 8000}, {name: "zoomed-radar-page", duration: 8000}]},{name: "Tonight", subpages: [{name: "tonight-page", duration: 8000}]},{name: "Beyond", subpages: [{name: "tomorrow-page", duration: 8000}, {name: "7day-page", duration: 15000}]},]
 const WEEKDAY = ["SUN",  "MON", "TUES", "WED", "THU", "FRI", "SAT"];
 
 const jingle = new Audio("assets/music/jingle.wav")
@@ -121,6 +121,7 @@ function executeGreetingPage(){
     let el = getElement(page);
     if (el) {
         el.style.left = '101%'; 
+        el.style.top = '0px';
         el.style.opacity = '0';
         el.style.visibility = 'hidden'; 
     }
@@ -135,7 +136,9 @@ function executeGreetingPage(){
   getElement('hello-location-text').classList.add('shown');
   getElement('greeting-text').classList.add('shown');
   getElement('local-logo-container').classList.add("shown");
-  setTimeout(clearGreetingPage, 2500);
+  
+  // Greeting Slide is now 10 seconds (10000ms)
+  setTimeout(clearGreetingPage, 10000);
 }
 
 function clearGreetingPage(){
@@ -174,7 +177,6 @@ function executePage(pageIndex, subPageIndex){
   if(!currentSubPageElement) return;
 
   currentSubPageElement.style.visibility = 'visible';
-  currentSubPageElement.style.opacity = '1';
 
   if(subPageIndex === 0){
     var pageTime = 0;
@@ -193,14 +195,26 @@ function executePage(pageIndex, subPageIndex){
     currentLogoIndex++;
   }
 
-  currentSubPageElement.style.transitionDuration = '0s';
-  currentSubPageElement.style.top = '0px'; 
-  currentSubPageElement.style.left = '101%';
-  void currentSubPageElement.offsetWidth; 
-
-  currentSubPageElement.style.transitionDuration = ''; 
-  currentSubPageElement.style.transitionDelay = '0.5s';
-  currentSubPageElement.style.left = '0px';
+  // Vertical Fade-Up for 7-Day Outlook
+  if(currentSubPageName == "7day-page") {
+    currentSubPageElement.style.transition = 'none';
+    currentSubPageElement.style.left = '0px';
+    currentSubPageElement.style.top = '100px'; 
+    currentSubPageElement.style.opacity = '0';
+    void currentSubPageElement.offsetWidth; 
+    currentSubPageElement.style.transition = 'opacity 1s ease-out, top 1s ease-out';
+    currentSubPageElement.style.top = '0px';
+    currentSubPageElement.style.opacity = '1';
+  } else {
+    currentSubPageElement.style.transition = 'none';
+    currentSubPageElement.style.top = '0px'; 
+    currentSubPageElement.style.left = '101%';
+    currentSubPageElement.style.opacity = '1';
+    void currentSubPageElement.offsetWidth; 
+    currentSubPageElement.style.transition = 'left 0.6s ease-in-out'; 
+    currentSubPageElement.style.transitionDelay = '0.5s';
+    currentSubPageElement.style.left = '0px';
+  }
 
   var isLastPage = pageIndex >= pageOrder.length-1 && subPageIndex >= pageOrder[pageOrder.length-1].subpages.length-1;
   if(isLastPage)
@@ -234,9 +248,8 @@ function clearPage(pageIndex, subPageIndex){
   }
 
   if(isLastPage){
-    currentSubPageElement.style.transition = 'opacity 1s ease-in-out, left 0.6s ease-in-out';
+    currentSubPageElement.style.transition = 'opacity 1s ease-in-out';
     currentSubPageElement.style.opacity = '0';
-    currentSubPageElement.style.left = '-101%';
     endSequence();
   }
   else{
@@ -358,7 +371,7 @@ function clearEnd(){
 }
 
 function silentRestart(){
-  console.log("Universal Slow Reset...");
+  console.log("Deep Fade Reset...");
 
   var id = window.setTimeout(function() {}, 0);
   while (id--) { window.clearTimeout(id); }
@@ -396,6 +409,7 @@ function silentRestart(){
       el.classList.remove('shown', 'hidden', 'expand', 'above-screen', 'below-screen', 'hide', 'animate', 'extend');
       el.style.left = ''; 
       el.style.top = '';
+      el.style.opacity = '';
     }
   });
 
