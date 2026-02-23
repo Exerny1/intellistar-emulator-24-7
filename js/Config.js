@@ -1,6 +1,6 @@
 window.CONFIG = {
   crawl: `The Weather Channel is Amercas #1 weather network. Trusted. Reliable. Accurate.         For more information on your weather switch to normal programming.`,
-  greeting: 'This is your weather',
+  greeting: 'Your watching WeatherNOW Manassas',
   language: 'en-US', // Supported in TWC API
   countryCode: 'US', // Supported in TWC API (for postal key)
   units: 'e', // Supported in TWC API (e = English (imperial), m = Metric, h = Hybrid (UK)),
