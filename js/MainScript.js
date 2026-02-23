@@ -99,7 +99,7 @@ function executeGreetingPage(){
     let el = getElement(page);
     if (el) {
         el.style.left = '0px'; 
-        el.style.top = '1080px'; // Off-screen bottom
+        el.style.top = '1080px'; 
         el.style.opacity = '0';
         el.style.visibility = 'hidden'; 
     }
@@ -112,7 +112,7 @@ function executeGreetingPage(){
   getElement('greeting-text').classList.add('shown');
   getElement('local-logo-container').classList.add("shown");
   
-  setTimeout(clearGreetingPage, 6000); // 6 second greeting
+  setTimeout(clearGreetingPage, 6000); 
 }
 
 function clearGreetingPage(){
@@ -168,13 +168,13 @@ function executePage(pageIndex, subPageIndex){
     currentLogoIndex++;
   }
 
-  // ENTER FROM BELOW: Slide up into position
+  // SNAPPY ENTER: 0.8s
   currentSubPageElement.style.transition = 'none';
   currentSubPageElement.style.top = '1080px'; 
   currentSubPageElement.style.opacity = '1';
   void currentSubPageElement.offsetWidth; 
 
-  currentSubPageElement.style.transition = 'top 1.2s cubic-bezier(0.45, 0, 0.55, 1)';
+  currentSubPageElement.style.transition = 'top 0.8s cubic-bezier(0.25, 0.1, 0.25, 1)';
   currentSubPageElement.style.top = '0px';
 
   if(currentSubPageName == "current-page"){
@@ -198,18 +198,20 @@ function clearPage(pageIndex, subPageIndex){
 
   if(isNewPage && !isLastPage) resetProgressBar();
 
-  // EXIT TO TOP: Slide up while next slide enters from bottom
-  currentSubPageElement.style.transition = 'top 1.2s cubic-bezier(0.45, 0, 0.55, 1), opacity 1.2s ease-in';
-  currentSubPageElement.style.top = '-1080px';
-  if(isLastPage) currentSubPageElement.style.opacity = '0'; // Fade out at the very end
-
-  if(isLastPage) endSequence();
-  else {
+  if(isLastPage){
+    // LAST SLIDE: Fade out only, do not slide up
+    currentSubPageElement.style.transition = 'opacity 1.5s ease-in';
+    currentSubPageElement.style.opacity = '0';
+    endSequence();
+  } else {
+    // REGULAR SLIDE: Slide up snappy (0.8s)
+    currentSubPageElement.style.transition = 'top 0.8s cubic-bezier(0.25, 0.1, 0.25, 1)';
+    currentSubPageElement.style.top = '-1080px';
     setTimeout(() => { 
         if(currentSubPageElement.style.top === '-1080px') {
             currentSubPageElement.style.visibility = 'hidden'; 
         }
-    }, 1300);
+    }, 900);
   }
 }
 
@@ -275,12 +277,13 @@ function clearEnd(){
 }
 
 function silentRestart(){
+  console.log("Cleaning up for restart...");
   var id = window.setTimeout(function() {}, 0);
   while (id--) { window.clearTimeout(id); }
+  
   currentLogoIndex = 0;
   currentLogo = undefined;
-  getElement('content-container').style.visibility = 'hidden';
-
+  
   const allSubPages = ['current-page', 'radar-page', 'zoomed-radar-page', 'today-page', 'tonight-page', 'tomorrow-page', 'tomorrow-night-page', '7day-page', 'single-alert-page', 'multiple-alerts-page'];
   allSubPages.forEach(page => {
     let el = getElement(page);
@@ -293,8 +296,24 @@ function silentRestart(){
     }
   });
 
-  getElement('content-container').style.visibility = 'visible';
+  const elementsToReset = [
+    'infobar-twc-logo', 'infobar-local-logo', 
+    'infobar-location-container', 'infobar-time-container', 
+    'timeline-event-container', 'progressbar-container', 'logo-stack',
+    'crawler-container', 'hello-text', 'hello-location-text', 
+    'greeting-text', 'updated-text', 'updated-logo',
+    'outlook-titlebar', 'forecast-left-container', 'forecast-right-container'
+  ];
+
+  elementsToReset.forEach(id => {
+    let el = getElement(id);
+    if (el) el.classList.remove('shown', 'hidden', 'expand', 'above-screen', 'below-screen', 'hide', 'animate', 'extend');
+  });
+
+  getElement('content-container').classList.remove("above-screen", "expand");
+  getElement('background-image').classList.remove("above-screen");
   getElement('background-image').classList.add("below-screen");
+
   setClockTime();
   if (typeof weather !== 'undefined' && weather.load) weather.load(); 
   else scheduleTimeline();
