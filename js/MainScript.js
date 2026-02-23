@@ -159,6 +159,8 @@ function executePage(pageIndex, subPageIndex){
   var subPageCount = currentPage.subpages.length
   var currentSubPageDuration = currentPage.subpages[subPageIndex].duration;
 
+  if(!currentSubPageElement) return;
+
   if(subPageIndex === 0){
     var pageTime = 0;
     for (var i = 0; i < subPageCount; i++) {
@@ -176,14 +178,10 @@ function executePage(pageIndex, subPageIndex){
     currentLogoIndex++;
   }
 
+  // FORCE MOVE TO CENTER
   currentSubPageElement.style.transitionDelay = '0.5s';
-  if(pageIndex === 0 && subPageIndex == 0){
-    currentSubPageElement.style.top = '0px';
-    currentSubPageElement.style.left = '0px';
-  }
-  else{
-    currentSubPageElement.style.left = '0px';
-  }
+  currentSubPageElement.style.top = '0px';
+  currentSubPageElement.style.left = '0px';
 
   var isLastPage = pageIndex >= pageOrder.length-1 && subPageIndex >= pageOrder[pageOrder.length-1].subpages.length-1;
   if(isLastPage)
@@ -209,6 +207,8 @@ function clearPage(pageIndex, subPageIndex){
   var currentSubPageElement = getElement(currentSubPageName);
   var isNewPage = (currentPage.subpages.length - 1) == subPageIndex;
   var isLastPage = (pageIndex >= pageOrder.length - 1) && (subPageIndex >= pageOrder[pageIndex].subpages.length - 1);
+
+  if(!currentSubPageElement) return;
 
   if(isNewPage && !isLastPage){
     resetProgressBar();
@@ -336,7 +336,7 @@ function silentRestart(){
   currentLogoIndex = 0;
   currentLogo = undefined;
   
-  // 2. Clear Timers (Kills overlapping loops)
+  // 2. Clear Timers 
   var id = window.setTimeout(function() {}, 0);
   while (id--) { window.clearTimeout(id); }
 
