@@ -207,9 +207,8 @@ function clearPage(pageIndex, subPageIndex){
   var currentPage = pageOrder[pageIndex];
   var currentSubPageName = currentPage.subpages[subPageIndex].name;
   var currentSubPageElement = getElement(currentSubPageName);
-  var subPageCount = currentPage.subpages.length
-  var isNewPage = subPageCount-1 == subPageIndex;
-  var isLastPage = pageIndex >= pageOrder.length-1 && subPageIndex >= pageOrder[pageOrder.length-1].subpages.length-1;
+  var isNewPage = (currentPage.subpages.length - 1) == subPageIndex;
+  var isLastPage = (pageIndex >= pageOrder.length - 1) && (subPageIndex >= pageOrder[pageIndex].subpages.length - 1);
 
   if(isNewPage && !isLastPage){
     resetProgressBar();
@@ -331,24 +330,34 @@ function clearEnd(){
 }
 
 function silentRestart(){
-  console.log("Starting Hard Reset Sequence...");
+  console.log("Deep Cleaning UI...");
 
-  // 1. Reset Global Counters
-  currentLogoIndex = 0;
-  currentLogo = undefined;
-  
-  // 2. Kill all active intervals/timeouts
+  // 1. Kill Timers
   var id = window.setTimeout(function() {}, 0);
   while (id--) { window.clearTimeout(id); }
 
-  // 3. Reset CSS classes and Manual Position Overrides
+  // 2. Global variable reset
+  currentLogoIndex = 0;
+  currentLogo = undefined;
+  
+  // 3. Reset EVERY subpage position explicitly to prevent overlays
+  const allSubPages = ['current-page', 'radar-page', 'zoomed-radar-page', 'today-page', 'tonight-page', 'tomorrow-page', 'tomorrow-night-page', '7day-page', 'single-alert-page', 'multiple-alerts-page'];
+  allSubPages.forEach(page => {
+    let el = getElement(page);
+    if (el) {
+      el.style.left = '101%'; 
+      el.style.top = '101%';
+      el.style.transitionDelay = '0s';
+    }
+  });
+
+  // 4. Wipe animation classes
   const elementsToReset = [
     'content-container', 'infobar-twc-logo', 'infobar-local-logo', 
     'infobar-location-container', 'infobar-time-container', 
     'timeline-event-container', 'progressbar-container', 'logo-stack',
     'crawler-container', 'background-image', 'hello-text', 
-    'hello-location-text', 'greeting-text', '7day-page', 'today-page',
-    'tomorrow-page', 'tonight-page', 'radar-page', 'current-page'
+    'hello-location-text', 'greeting-text', 'updated-text', 'updated-logo'
   ];
 
   elementsToReset.forEach(id => {
@@ -357,15 +366,14 @@ function silentRestart(){
       el.classList.remove('shown', 'hidden', 'expand', 'above-screen', 'below-screen', 'hide', 'animate', 'extend');
       el.style.left = ''; 
       el.style.top = '';
-      el.style.transitionDelay = '0s'; // Clear delays so they reset instantly
     }
   });
 
-  // 4. Specifically Reset Vertical Groups (The "Hidden" Slides)
+  // 5. Reset Vertical CC Groups
   const ccGroups = document.querySelectorAll(".cc-vertical-group");
   ccGroups.forEach(el => el.style.top = '100%'); 
 
-  // 5. Restart Background Data & Clock
+  // 6. Restart
   setClockTime();
   if (typeof weather !== 'undefined' && weather.load) {
       weather.load();
