@@ -1,8 +1,8 @@
-// Preset timeline sequences - DURATIONS INCREASED
-const MORNING = [{name: "Now", subpages: [{name: "current-page", duration: 12000}, {name: "radar-page", duration: 10000}]},{name: "Today", subpages: [{name: "today-page", duration: 12000}]},{name: "Tonight", subpages: [{name: "tonight-page", duration: 12000}]},{name: "Beyond", subpages: [{name: "tomorrow-page", duration: 12000}, {name: "7day-page", duration: 15000}]},]
-const NIGHT = [{name: "Now", subpages: [{name: "current-page", duration: 12000}, {name: "radar-page", duration: 10000}]},{name: "Tonight", subpages: [{name: "tonight-page", duration: 12000}]},{name: "Beyond", subpages: [{name: "tomorrow-page", duration: 12000}, {name: "tomorrow-night-page", duration: 12000}, {name: "7day-page", duration: 15000}]},]
-const SINGLE = [{name: "Alert", subpages: [{name: "single-alert-page", duration: 9000}]},{name: "Now", subpages: [{name: "current-page", duration: 10000}, {name: "radar-page", duration: 10000}, {name: "zoomed-radar-page", duration: 10000}]},{name: "Tonight", subpages: [{name: "tonight-page", duration: 10000}]},{name: "Beyond", subpages: [{name: "tomorrow-page", duration: 10000}, {name: "7day-page", duration: 15000}]},]
-const MULTIPLE = [{name: "Alerts", subpages: [{name: "multiple-alerts-page", duration: 9000}]},{name: "Now", subpages: [{name: "current-page", duration: 10000}, {name: "radar-page", duration: 10000}, {name: "zoomed-radar-page", duration: 10000}]},{name: "Tonight", subpages: [{name: "tonight-page", duration: 10000}]},{name: "Beyond", subpages: [{name: "tomorrow-page", duration: 10000}, {name: "7day-page", duration: 15000}]},]
+// Updated timeline sequences with 20000ms (20 seconds) for the 7-day outlook
+const MORNING = [{name: "Now", subpages: [{name: "current-page", duration: 9000}, {name: "radar-page", duration: 8000}]},{name: "Today", subpages: [{name: "today-page", duration: 10000}]},{name: "Tonight", subpages: [{name: "tonight-page", duration: 10000}]},{name: "Beyond", subpages: [{name: "tomorrow-page", duration: 10000}, {name: "7day-page", duration: 20000}]},]
+const NIGHT = [{name: "Now", subpages: [{name: "current-page", duration: 9000}, {name: "radar-page", duration: 8000}]},{name: "Tonight", subpages: [{name: "tonight-page", duration: 10000}]},{name: "Beyond", subpages: [{name: "tomorrow-page", duration: 10000}, {name: "tomorrow-night-page", duration: 10000}, {name: "7day-page", duration: 20000}]},]
+const SINGLE = [{name: "Alert", subpages: [{name: "single-alert-page", duration: 7000}]},{name: "Now", subpages: [{name: "current-page", duration: 8000}, {name: "radar-page", duration: 8000}, {name: "zoomed-radar-page", duration: 8000}]},{name: "Tonight", subpages: [{name: "tonight-page", duration: 8000}]},{name: "Beyond", subpages: [{name: "tomorrow-page", duration: 8000}, {name: "7day-page", duration: 20000}]},]
+const MULTIPLE = [{name: "Alerts", subpages: [{name: "multiple-alerts-page", duration: 7000}]},{name: "Now", subpages: [{name: "current-page", duration: 8000}, {name: "radar-page", duration: 8000}, {name: "zoomed-radar-page", duration: 8000}]},{name: "Tonight", subpages: [{name: "tonight-page", duration: 8000}]},{name: "Beyond", subpages: [{name: "tomorrow-page", duration: 8000}, {name: "7day-page", duration: 20000}]},]
 const WEEKDAY = ["SUN",  "MON", "TUES", "WED", "THU", "FRI", "SAT"];
 
 const jingle = new Audio("assets/music/jingle.wav")
@@ -234,10 +234,9 @@ function clearPage(pageIndex, subPageIndex){
   }
 
   if(isLastPage){
-    // FADE AWAY UP EFFECT
-    currentSubPageElement.style.transition = 'opacity 1s ease-in-out, top 1s ease-in-out';
+    currentSubPageElement.style.transition = 'opacity 1s ease-in-out, left 0.6s ease-in-out';
     currentSubPageElement.style.opacity = '0';
-    currentSubPageElement.style.top = '-100%'; // Moves it up instead of left
+    currentSubPageElement.style.left = '-101%';
     endSequence();
   }
   else{
@@ -359,7 +358,7 @@ function clearEnd(){
 }
 
 function silentRestart(){
-  console.log("Deep Fade-Up Reset...");
+  console.log("Deep Fade Reset...");
 
   var id = window.setTimeout(function() {}, 0);
   while (id--) { window.clearTimeout(id); }
