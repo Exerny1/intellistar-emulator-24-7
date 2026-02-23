@@ -116,11 +116,14 @@ function hideSettings(){
 }
 
 function executeGreetingPage(){
-  // Shield: Off-screen all subpages so they can't bleed into the greeting
+  // Shield: Off-screen and hide all subpages so they can't bleed into the greeting
   const allSubPages = ['current-page', 'radar-page', 'zoomed-radar-page', 'today-page', 'tonight-page', 'tomorrow-page', 'tomorrow-night-page', '7day-page', 'single-alert-page', 'multiple-alerts-page'];
   allSubPages.forEach(page => {
     let el = getElement(page);
-    if (el) el.style.left = '101%'; 
+    if (el) {
+        el.style.left = '101%'; 
+        el.style.visibility = 'hidden'; // Force hidden during greeting
+    }
   });
 
   getElement('background-image').classList.remove("above-screen", "below-screen");
@@ -170,6 +173,9 @@ function executePage(pageIndex, subPageIndex){
 
   if(!currentSubPageElement) return;
 
+  // Re-enable visibility just before animating in
+  currentSubPageElement.style.visibility = 'visible';
+
   if(subPageIndex === 0){
     var pageTime = 0;
     for (var i = 0; i < subPageCount; i++) {
@@ -187,7 +193,6 @@ function executePage(pageIndex, subPageIndex){
     currentLogoIndex++;
   }
 
-  // Force Horizontal Start
   currentSubPageElement.style.transitionDuration = '0s';
   currentSubPageElement.style.top = '0px'; 
   currentSubPageElement.style.left = '101%';
@@ -234,6 +239,8 @@ function clearPage(pageIndex, subPageIndex){
   else{
     currentSubPageElement.style.transitionDelay = '0s';
     currentSubPageElement.style.left = '-101%';
+    // Hide after sliding out to prevent "ghost" returns
+    setTimeout(() => { if(currentSubPageElement.style.left === '-101%') currentSubPageElement.style.visibility = 'hidden'; }, 600);
   }
 }
 
@@ -316,6 +323,10 @@ function clearInfoBar(){
 }
 
 function clearElements(){
+  // FLICKER KILLER: Immediately hide the 7-day outlook element so it can't return
+  let sevenDay = getElement('7day-page');
+  if(sevenDay) sevenDay.style.visibility = 'hidden';
+
   getElement("outlook-titlebar").classList.add('hidden');
   getElement("forecast-left-container").classList.add('hidden');
   getElement("forecast-right-container").classList.add('hidden');
@@ -340,24 +351,20 @@ function stayUpdated(){
 function clearEnd(){
   getElement('background-image').classList.add("above-screen");
   getElement('content-container').classList.add("above-screen");
-  // Delayed restart to allow exit animation to complete
   setTimeout(silentRestart, 1000);
 }
 
 function silentRestart(){
   console.log("Synchronized Reset...");
 
-  // Kill all pending timers from previous loop
   var id = window.setTimeout(function() {}, 0);
   while (id--) { window.clearTimeout(id); }
 
   currentLogoIndex = 0;
   currentLogo = undefined;
   
-  // Hide container to prevent flicker while rearranging
   getElement('content-container').style.visibility = 'hidden';
 
-  // 1. Reset Subpages
   const allSubPages = ['current-page', 'radar-page', 'zoomed-radar-page', 'today-page', 'tonight-page', 'tomorrow-page', 'tomorrow-night-page', '7day-page', 'single-alert-page', 'multiple-alerts-page'];
   allSubPages.forEach(page => {
     let el = getElement(page);
@@ -365,11 +372,11 @@ function silentRestart(){
       el.style.transitionDuration = '0s';
       el.style.left = '101%'; 
       el.style.top = '0px';
+      el.style.visibility = 'hidden'; // Keep them all hidden
       el.classList.remove('shown', 'hidden', 'extend'); 
     }
   });
 
-  // 2. Clear Exit Classes
   const elementsToReset = [
     'content-container', 'infobar-twc-logo', 'infobar-local-logo', 
     'infobar-location-container', 'infobar-time-container', 
@@ -388,7 +395,6 @@ function silentRestart(){
     }
   });
 
-  // Reset stage visibility
   getElement('content-container').style.visibility = 'visible';
   getElement('background-image').classList.add("below-screen");
 
