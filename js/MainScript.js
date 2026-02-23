@@ -1,4 +1,4 @@
-// All slides set to 17000ms (17 seconds)
+// All weather slides set to 17000ms, Greeting is 6000ms
 const MORNING = [{name: "Now", subpages: [{name: "current-page", duration: 17000}, {name: "radar-page", duration: 17000}]},{name: "Today", subpages: [{name: "today-page", duration: 17000}]},{name: "Tonight", subpages: [{name: "tonight-page", duration: 17000}]},{name: "Beyond", subpages: [{name: "tomorrow-page", duration: 17000}, {name: "7day-page", duration: 17000}]},]
 const NIGHT = [{name: "Now", subpages: [{name: "current-page", duration: 17000}, {name: "radar-page", duration: 17000}]},{name: "Tonight", subpages: [{name: "tonight-page", duration: 17000}]},{name: "Beyond", subpages: [{name: "tomorrow-page", duration: 17000}, {name: "tomorrow-night-page", duration: 17000}, {name: "7day-page", duration: 17000}]},]
 const SINGLE = [{name: "Alert", subpages: [{name: "single-alert-page", duration: 17000}]},{name: "Now", subpages: [{name: "current-page", duration: 17000}, {name: "radar-page", duration: 17000}, {name: "zoomed-radar-page", duration: 17000}]},{name: "Tonight", subpages: [{name: "tonight-page", duration: 17000}]},{name: "Beyond", subpages: [{name: "tomorrow-page", duration: 17000}, {name: "7day-page", duration: 17000}]},]
@@ -6,7 +6,6 @@ const MULTIPLE = [{name: "Alerts", subpages: [{name: "multiple-alerts-page", dur
 const WEEKDAY = ["SUN",  "MON", "TUES", "WED", "THU", "FRI", "SAT"];
 
 const jingle = new Audio("assets/music/jingle.wav")
-
 const crawlSpeedCasual = 10; 
 const crawlSpeedFast = 20; 
 const crawlScreenTime = 45; 
@@ -21,7 +20,6 @@ var music;
 window.onload = function () {
   CONFIG.addLocationOption('airport-code', 'Airport', 'ATL or KATL')
   CONFIG.addLocationOption('zip-code', 'Postal', '00000')
-
   CONFIG.addOption('crawlText', 'Crawl Text', 'Text that scrolls along the bottom')
   CONFIG.addOption('greetingText', 'Greeting Text', 'Message (or joke) that appears at the start')
   CONFIG.load();
@@ -35,34 +33,16 @@ window.onload = function () {
   }
 }
 
-function toggleAdvancedSettings(){
-  let advancedSettingsOptions = getElement('advanced-settings-options')
-  let advancedOptionsText = getElement('advanced-options-text')
-  var advancedSettingsHidden = advancedSettingsOptions.classList.contains('hidden')
-  if(advancedSettingsHidden){
-    advancedSettingsOptions.classList.remove('hidden')
-    advancedOptionsText.innerHTML = 'Hide advanced options'
-  } else {
-    advancedSettingsOptions.classList.add('hidden')
-    advancedOptionsText.innerHTML = 'Show advanced options'
-  }
-}
-
 function preLoadMusic(){
   var index = Math.floor(Math.random() * 12) + 1;
   music = new Audio("assets/music/" + index + ".wav");
 }
 
 function scheduleTimeline(){
-  if(alerts.length == 1){
-    pageOrder = SINGLE;
-  }else if(alerts.length > 1){
-    pageOrder = MULTIPLE;
-  }else if(isDay){
-    pageOrder = MORNING;
-  }else{
-    pageOrder = NIGHT;
-  }
+  if(alerts.length == 1) pageOrder = SINGLE;
+  else if(alerts.length > 1) pageOrder = MULTIPLE;
+  else if(isDay) pageOrder = MORNING;
+  else pageOrder = NIGHT;
   setInformation();
 }
 
@@ -106,9 +86,7 @@ function startAnimation(){
   executeGreetingPage();
 }
 
-function startMusic(){
-  music.play();
-}
+function startMusic(){ music.play(); }
 
 function hideSettings(){
   getElement('settings-prompt').classList.add('hide');
@@ -121,15 +99,12 @@ function executeGreetingPage(){
     let el = getElement(page);
     if (el) {
         el.style.left = '0px'; 
-        el.style.top = '150px'; 
+        el.style.top = '1080px'; // Off-screen bottom
         el.style.opacity = '0';
         el.style.visibility = 'hidden'; 
     }
   });
 
-  getElement('background-image').classList.remove("above-screen", "below-screen");
-  getElement('content-container').classList.remove("above-screen", "expand");
-  
   getElement('content-container').classList.add('shown');
   getElement('infobar-twc-logo').classList.add('shown');
   getElement('hello-text').classList.add('shown');
@@ -137,8 +112,7 @@ function executeGreetingPage(){
   getElement('greeting-text').classList.add('shown');
   getElement('local-logo-container').classList.add("shown");
   
-  // Greeting now 6 seconds
-  setTimeout(clearGreetingPage, 6000);
+  setTimeout(clearGreetingPage, 6000); // 6 second greeting
 }
 
 function clearGreetingPage(){
@@ -171,7 +145,6 @@ function executePage(pageIndex, subPageIndex){
   var currentPage = pageOrder[pageIndex];
   var currentSubPageName = currentPage.subpages[subPageIndex].name;
   var currentSubPageElement = getElement(currentSubPageName);
-  var subPageCount = currentPage.subpages.length
   var currentSubPageDuration = currentPage.subpages[subPageIndex].duration;
 
   if(!currentSubPageElement) return;
@@ -180,7 +153,7 @@ function executePage(pageIndex, subPageIndex){
 
   if(subPageIndex === 0){
     var pageTime = 0;
-    for (var i = 0; i < subPageCount; i++) {
+    for (var i = 0; i < currentPage.subpages.length; i++) {
       pageTime += currentPage.subpages[i].duration;
     }
       getElement('progressbar').style.transitionDuration = pageTime + "ms";
@@ -195,20 +168,14 @@ function executePage(pageIndex, subPageIndex){
     currentLogoIndex++;
   }
 
-  // SMOOTH SLIDE UP TRANSITION
+  // ENTER FROM BELOW: Slide up into position
   currentSubPageElement.style.transition = 'none';
-  currentSubPageElement.style.left = '0px';
-  currentSubPageElement.style.top = '150px'; 
-  currentSubPageElement.style.opacity = '0';
+  currentSubPageElement.style.top = '1080px'; 
+  currentSubPageElement.style.opacity = '1';
   void currentSubPageElement.offsetWidth; 
 
-  currentSubPageElement.style.transition = 'opacity 0.8s ease-out, top 0.8s ease-out';
+  currentSubPageElement.style.transition = 'top 1.2s cubic-bezier(0.45, 0, 0.55, 1)';
   currentSubPageElement.style.top = '0px';
-  currentSubPageElement.style.opacity = '1';
-
-  var isLastPage = pageIndex >= pageOrder.length-1 && subPageIndex >= pageOrder[pageOrder.length-1].subpages.length-1;
-  if(isLastPage)
-    setTimeout(hideCrawl, 2000);
 
   if(currentSubPageName == "current-page"){
     setTimeout(loadCC, 1000);
@@ -216,12 +183,8 @@ function executePage(pageIndex, subPageIndex){
     animateValue('cc-temperature-text', -20, currentTemperature, 2500, 1);
     animateDialFill('cc-dial-color', currentTemperature, 2500);
   }
-  else if(currentSubPageName == 'radar-page'){
-    startRadar();
-  }
-  else if(currentSubPageName == 'zoomed-radar-page'){
-    startZoomedRadar();
-  }
+  else if(currentSubPageName == 'radar-page') startRadar();
+  else if(currentSubPageName == 'zoomed-radar-page') startZoomedRadar();
 }
 
 function clearPage(pageIndex, subPageIndex){
@@ -233,23 +196,20 @@ function clearPage(pageIndex, subPageIndex){
 
   if(!currentSubPageElement) return;
 
-  if(isNewPage && !isLastPage){
-    resetProgressBar();
-  }
+  if(isNewPage && !isLastPage) resetProgressBar();
 
-  // Smooth drift up and fade out for all exits
-  currentSubPageElement.style.transition = 'opacity 0.8s ease-in, top 0.8s ease-in';
-  currentSubPageElement.style.opacity = '0';
-  currentSubPageElement.style.top = '-50px';
+  // EXIT TO TOP: Slide up while next slide enters from bottom
+  currentSubPageElement.style.transition = 'top 1.2s cubic-bezier(0.45, 0, 0.55, 1), opacity 1.2s ease-in';
+  currentSubPageElement.style.top = '-1080px';
+  if(isLastPage) currentSubPageElement.style.opacity = '0'; // Fade out at the very end
 
-  if(isLastPage){
-    endSequence();
-  } else {
+  if(isLastPage) endSequence();
+  else {
     setTimeout(() => { 
-        if(currentSubPageElement.style.opacity === '0') {
+        if(currentSubPageElement.style.top === '-1080px') {
             currentSubPageElement.style.visibility = 'hidden'; 
         }
-    }, 800);
+    }, 1300);
   }
 }
 
@@ -259,13 +219,8 @@ function resetProgressBar(){
   void getElement('progressbar').offsetWidth;
 }
 
-function startRadar(){
-  getElement('radar-container').appendChild(radarImage);
-}
-
-function startZoomedRadar(){
-  getElement('zoomed-radar-container').appendChild(zoomedRadarImage);
-}
+function startRadar(){ getElement('radar-container').appendChild(radarImage); }
+function startZoomedRadar(){ getElement('zoomed-radar-container').appendChild(zoomedRadarImage); }
 
 function loadCC(){
   var ccElements = document.querySelectorAll(".cc-vertical-group");
@@ -281,47 +236,11 @@ function scrollCC(){
   }
   var pressureArray = pressure.toString().split('.');
   animateValue("cc-visibility", 0, visibility, 800, 1);
-  if(CONFIG.units != 'm') {
-      getElement("cc-visibility-unit-metric").style.fontSize = "0px";
-      getElement("cc-visibility-unit-metric").style.visibility = "hidden";
-  } else {
-      getElement("cc-visibility-unit-imperial").style.fontSize = "0px";
-      getElement("cc-visibility-unit-imperial").style.visibility = "hidden";
-  }
   animateValue("cc-humidity", 0, humidity, 1000, 1);
   animateValue("cc-dewpoint", 0, dewPoint, 1200, 1);
-  if (CONFIG.units === 'e') {
-    animateValue("cc-pressure1", 0, pressureArray[0], 1400, 1);
-    animateValue("cc-pressure2", 0, pressureArray[1], 1400, 2);
-    getElement("cc-pressure-metric").style.fontSize = "0px";
-    getElement("cc-pressure-metric").style.visibility = "hidden";
-  } else {
-      animateValue("cc-pressure1", 800, pressureArray[0], 1400, 3);
-      getElement("cc-pressure2").style.visibility = "hidden";
-      getElement("cc-pressure2").style.fontSize = "0px";
-      getElement("cc-pressure-decimal").style.visibility = "hidden";
-      getElement("cc-pressure-decimal").style.fontSize = "0px";
-  }
 }
 
-function endSequence(){
-  clearInfoBar();
-}
-
-function twcLogoClick() {
-  var alertMessageShown = getElement('alert-message').classList.contains('shown');
-  if(alertMessageShown) return;
-  var loopStatus = localStorage.getItem('loop');
-  if(loopStatus == "y"){
-    localStorage.setItem('loop', 'n');
-    CONFIG.loop = false;
-  }
-  else{
-    localStorage.setItem('loop', 'y');
-    CONFIG.loop = true;
-  }
-  showLoopMessage();
-}
+function endSequence(){ clearInfoBar(); }
 
 function clearInfoBar(){
   getElement("infobar-twc-logo").classList.add("hidden");
@@ -341,11 +260,7 @@ function clearElements(){
   setTimeout(clearEnd, 2000);
 }
 
-function showEnding(){
-  if(alertsActive){
-    stayUpdated();
-  }
-}
+function showEnding(){ if(alertsActive) stayUpdated(); }
 
 function stayUpdated(){
   getElement('updated-text').classList.add('extend');
@@ -360,14 +275,10 @@ function clearEnd(){
 }
 
 function silentRestart(){
-  console.log("Deep Fade Reset...");
-
   var id = window.setTimeout(function() {}, 0);
   while (id--) { window.clearTimeout(id); }
-
   currentLogoIndex = 0;
   currentLogo = undefined;
-  
   getElement('content-container').style.visibility = 'hidden';
 
   const allSubPages = ['current-page', 'radar-page', 'zoomed-radar-page', 'today-page', 'tonight-page', 'tomorrow-page', 'tomorrow-night-page', '7day-page', 'single-alert-page', 'multiple-alerts-page'];
@@ -375,59 +286,25 @@ function silentRestart(){
     let el = getElement(page);
     if (el) {
       el.style.transition = 'none';
-      el.style.left = '0px'; 
-      el.style.top = '150px';
+      el.style.top = '1080px';
       el.style.opacity = '0';
       el.style.visibility = 'hidden'; 
       el.classList.remove('shown', 'hidden', 'extend'); 
     }
   });
 
-  const elementsToReset = [
-    'content-container', 'infobar-twc-logo', 'infobar-local-logo', 
-    'infobar-location-container', 'infobar-time-container', 
-    'timeline-event-container', 'progressbar-container', 'logo-stack',
-    'crawler-container', 'background-image', 'hello-text', 
-    'hello-location-text', 'greeting-text', 'updated-text', 'updated-logo',
-    'outlook-titlebar', 'forecast-left-container', 'forecast-right-container'
-  ];
-
-  elementsToReset.forEach(id => {
-    let el = getElement(id);
-    if (el) {
-      el.classList.remove('shown', 'hidden', 'expand', 'above-screen', 'below-screen', 'hide', 'animate', 'extend');
-      el.style.left = ''; 
-      el.style.top = '';
-      el.style.opacity = '';
-    }
-  });
-
   getElement('content-container').style.visibility = 'visible';
   getElement('background-image').classList.add("below-screen");
-
-  const ccGroups = document.querySelectorAll(".cc-vertical-group");
-  ccGroups.forEach(el => el.style.top = '100%'); 
-
   setClockTime();
-  if (typeof weather !== 'undefined' && weather.load) {
-      weather.load(); 
-  } else {
-      scheduleTimeline();
-  }
-}
-
-function loadInfoBar(){
-  getElement("infobar-local-logo").classList.add("shown");
-  getElement("infobar-location-container").classList.add("shown");
-  getElement("infobar-time-container").classList.add("shown");
+  if (typeof weather !== 'undefined' && weather.load) weather.load(); 
+  else scheduleTimeline();
 }
 
 function setClockTime(){
   var currentTime = new Date();
   var h = currentTime.getHours();
   var m = currentTime.getMinutes();
-  if(h == 0) h = 12;
-  else if(h > 12) h = h - 12;
+  if(h == 0) h = 12; else if(h > 12) h = h - 12;
   if(m < 10) m = "0" + m;
   getElement("infobar-time-text").innerHTML = h + ":" + m;
   setTimeout(setClockTime, 5000);
@@ -436,7 +313,6 @@ function setClockTime(){
 function animateValue(id, start, end, duration, pad) {
   var obj = getElement(id);
   if(!obj) return;
-  if(start == end){ obj.innerHTML = end; return; }
   var range = end - start;
   var current = start;
   var increment = end > start? 1 : -1;
@@ -453,7 +329,6 @@ function animateDialFill(id, temperature, duration) {
   var end = temperature;
   var obj = getElement(id);
   if(!obj) return;
-  if(start == end){ obj.style.fill = getTemperatureColor(temperature); return; }
   var range = end - start;
   var current = start;
   var increment = end > start? 1 : -1;
@@ -475,28 +350,16 @@ function getTemperatureColor(temperature){
   if(temperature < -20) return 'rgb(0, 0, 255)';
   if(temperature > 100) return 'rgb(201, 42, 42)';
   var calculatedColor = [0, 0, 0]
-  if(temperature < 40){
-    var percent = (temperature + 20)/60
-    calculatedColor = interpolateColor([24, 100, 171], [77, 171, 247], percent)
-  } else if(temperature < 60){
-    var percent = (temperature - 40)/20
-    calculatedColor = interpolateColor([77, 171, 247], [255, 212, 59], percent)
-  } else if(temperature < 80){
-    var percent = (temperature - 60)/20
-    calculatedColor = interpolateColor([255, 212, 59], [247, 103, 7], percent)
-  } else {
-    var percent = (temperature - 80)/20
-    calculatedColor = interpolateColor([247, 103, 7], [201, 42, 42], percent)
-  }
+  if(temperature < 40){ var percent = (temperature + 20)/60; calculatedColor = interpolateColor([24, 100, 171], [77, 171, 247], percent); }
+  else if(temperature < 60){ var percent = (temperature - 40)/20; calculatedColor = interpolateColor([77, 171, 247], [255, 212, 59], percent); }
+  else if(temperature < 80){ var percent = (temperature - 60)/20; calculatedColor = interpolateColor([255, 212, 59], [247, 103, 7], percent); }
+  else { var percent = (temperature - 80)/20; calculatedColor = interpolateColor([247, 103, 7], [201, 42, 42], percent); }
   return 'rgb(' + calculatedColor[0] + ', ' + calculatedColor[1] + ', ' + calculatedColor[2] + ')'
 }
 
 var interpolateColor = function(color1, color2, factor) {
-  if (arguments.length < 3) factor = 0.5;
   var result = color1.slice();
-  for (var i=0;i<3;i++) {
-    result[i] = Math.round(result[i] + factor*(color2[i]-color1[i]));
-  }
+  for (var i=0;i<3;i++) { result[i] = Math.round(result[i] + factor*(color2[i]-color1[i])); }
   return result;
 };
 
@@ -505,9 +368,7 @@ window.onresize = resizeWindow;
 function resizeWindow(){
   var ww = window.innerWidth;
   var wh = window.innerHeight;
-  var newScale = 1;
-  if(ww/wh < baseSize.w/baseSize.h) newScale = ww / baseSize.w;
-  else newScale = wh / baseSize.h;
+  var newScale = (ww/wh < baseSize.w/baseSize.h) ? ww / baseSize.w : wh / baseSize.h;
   getElement('render-frame').style.transform = 'scale(' + newScale + ',' +  newScale + ')';
 }
 
@@ -521,31 +382,17 @@ function showCrawl(){
 }
 
 function hideCrawl(){ getElement('crawler-container').classList.add("hidden"); }
-
-function startCrawl(){
-  calculateCrawlSpeed();
-  getElement('crawl-text').classList.add('animate');
-}
+function startCrawl(){ calculateCrawlSpeed(); getElement('crawl-text').classList.add('animate'); }
 
 function calculateCrawlSpeed() {
   var crawlTextElement = getElement('crawl-text');
   var elementLength = crawlTextElement.innerHTML.length;
-  var timeTaken;
-  if (elementLength < ( crawlScreenTime*crawlSpeedCasual) - crawlSpace ) timeTaken = (elementLength + crawlSpace) / crawlSpeedCasual;
-  else if (elementLength > (crawlScreenTime*crawlSpeedFast)) timeTaken = elementLength / crawlSpeedFast;
-  else timeTaken = crawlScreenTime;
+  var timeTaken = (elementLength < (crawlScreenTime*crawlSpeedCasual) - crawlSpace) ? (elementLength + crawlSpace) / crawlSpeedCasual : (elementLength > (crawlScreenTime*crawlSpeedFast)) ? elementLength / crawlSpeedFast : crawlScreenTime;
   crawlTextElement.style.animationDuration = timeTaken + "s";
 }
-
-function showLoopMessage(){
-  var loopStatus = ((CONFIG.loop) ? 'enabled' : 'disabled');
-  alert("Looping " + loopStatus + ", click TWC logo to toggle");
-}
-
-function hideAlertMessage(){ getElement('alert-message').classList.remove('shown'); }
 
 function alert(message){
   getElement('alert-message').innerHTML = message;
   getElement('alert-message').classList.add('shown');
-  setTimeout(hideAlertMessage, 2000);
+  setTimeout(() => getElement('alert-message').classList.remove('shown'), 2000);
 }
