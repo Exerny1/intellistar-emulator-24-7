@@ -1,4 +1,4 @@
-// Updated timeline sequences (7-day outlook set to 18000ms)
+// Timeline sequences (7-day outlook set to 18000ms, Greeting 8000ms handled in executeGreetingPage)
 const MORNING = [{name: "Now", subpages: [{name: "current-page", duration: 9000}, {name: "radar-page", duration: 8000}]},{name: "Today", subpages: [{name: "today-page", duration: 10000}]},{name: "Tonight", subpages: [{name: "tonight-page", duration: 10000}]},{name: "Beyond", subpages: [{name: "tomorrow-page", duration: 10000}, {name: "7day-page", duration: 18000}]},]
 const NIGHT = [{name: "Now", subpages: [{name: "current-page", duration: 9000}, {name: "radar-page", duration: 8000}]},{name: "Tonight", subpages: [{name: "tonight-page", duration: 10000}]},{name: "Beyond", subpages: [{name: "tomorrow-page", duration: 10000}, {name: "tomorrow-night-page", duration: 10000}, {name: "7day-page", duration: 18000}]},]
 const SINGLE = [{name: "Alert", subpages: [{name: "single-alert-page", duration: 7000}]},{name: "Now", subpages: [{name: "current-page", duration: 8000}, {name: "radar-page", duration: 8000}, {name: "zoomed-radar-page", duration: 8000}]},{name: "Tonight", subpages: [{name: "tonight-page", duration: 8000}]},{name: "Beyond", subpages: [{name: "tomorrow-page", duration: 8000}, {name: "7day-page", duration: 18000}]},]
@@ -121,7 +121,7 @@ function executeGreetingPage(){
     let el = getElement(page);
     if (el) {
         el.style.left = '0px'; 
-        el.style.top = '100px'; 
+        el.style.top = '100%'; // Start below
         el.style.opacity = '0';
         el.style.visibility = 'hidden'; 
     }
@@ -195,16 +195,15 @@ function executePage(pageIndex, subPageIndex){
     currentLogoIndex++;
   }
 
-  // GLOBAL SMOOTH SLIDE UP FOR ALL PAGES
+  // INCOMING SLIDE: Start below (100%) and slide up to center
   currentSubPageElement.style.transition = 'none';
   currentSubPageElement.style.left = '0px';
-  currentSubPageElement.style.top = '150px'; // Initial offset for slide up
-  currentSubPageElement.style.opacity = '0';
+  currentSubPageElement.style.top = '100%'; 
+  currentSubPageElement.style.opacity = '1';
   void currentSubPageElement.offsetWidth; // Force reflow
 
-  currentSubPageElement.style.transition = 'opacity 0.8s ease-out, top 0.8s ease-out';
+  currentSubPageElement.style.transition = 'top 1s ease-in-out';
   currentSubPageElement.style.top = '0px';
-  currentSubPageElement.style.opacity = '1';
 
   var isLastPage = pageIndex >= pageOrder.length-1 && subPageIndex >= pageOrder[pageOrder.length-1].subpages.length-1;
   if(isLastPage)
@@ -237,20 +236,20 @@ function clearPage(pageIndex, subPageIndex){
     resetProgressBar();
   }
 
-  // Handle the fade-out/slide-out for all pages
-  currentSubPageElement.style.transition = 'opacity 0.8s ease-in, top 0.8s ease-in';
-  currentSubPageElement.style.opacity = '0';
-  currentSubPageElement.style.top = '-50px'; // Slight upward movement on exit
-
+  // OUTGOING SLIDE: Slide from center (0px) up to -100%
+  currentSubPageElement.style.transition = 'top 1s ease-in-out, opacity 1s ease-in-out';
+  
   if(isLastPage){
-    // Final end sequence call
+    // Final Fade Out for 7-Day Outlook
+    currentSubPageElement.style.opacity = '0';
     endSequence();
   } else {
+    currentSubPageElement.style.top = '-100%';
     setTimeout(() => { 
-        if(currentSubPageElement.style.opacity === '0') {
+        if(currentSubPageElement.style.top === '-100%') {
             currentSubPageElement.style.visibility = 'hidden'; 
         }
-    }, 800);
+    }, 1000);
   }
 }
 
@@ -377,8 +376,8 @@ function silentRestart(){
     if (el) {
       el.style.transition = 'none';
       el.style.left = '0px'; 
-      el.style.top = '150px';
-      el.style.opacity = '0';
+      el.style.top = '100%'; // Reset to bottom
+      el.style.opacity = '1';
       el.style.visibility = 'hidden'; 
       el.classList.remove('shown', 'hidden', 'extend'); 
     }
