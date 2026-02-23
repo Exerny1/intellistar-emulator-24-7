@@ -19,8 +19,9 @@
 
 .page-content-container{
   height: 525px;
+  background-color: rgba(0, 0, 0, 0.25);
 }
 
 .shaded-page-content{
-  background-color: rgba(0, 0, 0, 0.25);
+  /* Leave this empty to prevent double-shading */
 }
