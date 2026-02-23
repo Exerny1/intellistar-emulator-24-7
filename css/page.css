@@ -17,14 +17,8 @@
   left: 101%;
 }
 
-/* THE MASTER CENTER FIX */
 .page-content-container{
   height: 525px;
-  width: 1150px;       /* Width of the dial + the text area */
-  position: absolute;   /* Needed for the centering math */
-  left: 50% !important; /* Move to horizontal middle */
-  top: 48% !important;  /* Move to vertical middle */
-  transform: translate(-50%, -50%) !important; /* Pulls the box to dead center */
 }
 
 .shaded-page-content{
