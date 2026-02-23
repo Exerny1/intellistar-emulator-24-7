@@ -116,13 +116,13 @@ function hideSettings(){
 }
 
 function executeGreetingPage(){
-  // Shield: Off-screen and hide all subpages so they can't bleed into the greeting
+  // Shield: Off-screen and hide all subpages
   const allSubPages = ['current-page', 'radar-page', 'zoomed-radar-page', 'today-page', 'tonight-page', 'tomorrow-page', 'tomorrow-night-page', '7day-page', 'single-alert-page', 'multiple-alerts-page'];
   allSubPages.forEach(page => {
     let el = getElement(page);
     if (el) {
         el.style.left = '101%'; 
-        el.style.visibility = 'hidden'; // Force hidden during greeting
+        el.style.visibility = 'hidden'; 
     }
   });
 
@@ -173,7 +173,7 @@ function executePage(pageIndex, subPageIndex){
 
   if(!currentSubPageElement) return;
 
-  // Re-enable visibility just before animating in
+  // Make visible only when executing
   currentSubPageElement.style.visibility = 'visible';
 
   if(subPageIndex === 0){
@@ -239,8 +239,12 @@ function clearPage(pageIndex, subPageIndex){
   else{
     currentSubPageElement.style.transitionDelay = '0s';
     currentSubPageElement.style.left = '-101%';
-    // Hide after sliding out to prevent "ghost" returns
-    setTimeout(() => { if(currentSubPageElement.style.left === '-101%') currentSubPageElement.style.visibility = 'hidden'; }, 600);
+    // FIX: Kill visibility AFTER the 600ms slide-out is done
+    setTimeout(() => { 
+        if(currentSubPageElement.style.left === '-101%') {
+            currentSubPageElement.style.visibility = 'hidden'; 
+        }
+    }, 600);
   }
 }
 
@@ -323,9 +327,12 @@ function clearInfoBar(){
 }
 
 function clearElements(){
-  // FLICKER KILLER: Immediately hide the 7-day outlook element so it can't return
+  // Force 7-day to hide immediately as it slides away to prevent ghosting
   let sevenDay = getElement('7day-page');
-  if(sevenDay) sevenDay.style.visibility = 'hidden';
+  if(sevenDay) {
+      sevenDay.style.left = '-101%';
+      setTimeout(() => { sevenDay.style.visibility = 'hidden'; }, 600);
+  }
 
   getElement("outlook-titlebar").classList.add('hidden');
   getElement("forecast-left-container").classList.add('hidden');
@@ -355,7 +362,7 @@ function clearEnd(){
 }
 
 function silentRestart(){
-  console.log("Synchronized Reset...");
+  console.log("Deep Synchronized Reset...");
 
   var id = window.setTimeout(function() {}, 0);
   while (id--) { window.clearTimeout(id); }
@@ -372,7 +379,7 @@ function silentRestart(){
       el.style.transitionDuration = '0s';
       el.style.left = '101%'; 
       el.style.top = '0px';
-      el.style.visibility = 'hidden'; // Keep them all hidden
+      el.style.visibility = 'hidden'; 
       el.classList.remove('shown', 'hidden', 'extend'); 
     }
   });
