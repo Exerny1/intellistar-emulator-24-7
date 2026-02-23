@@ -7,16 +7,15 @@
   /* Keep as is */
 }
 
-/* THE FIX: Centered and enlarged without overlapping the header */
+/* THE FIX: Centered, Large, and Non-Bold */
 #cc-container{
   position: absolute;
-  /* Pushed slightly right of absolute center to respect the dial/header */
-  left: 58% !important; 
+  /* Increased to 62% to push it further away from the icon dial */
+  left: 62% !important; 
   transform: translateX(-50%) !important;
-  width: 800px;
+  width: 900px !important; 
   height: 400px;
-  /* Lowered slightly to stay away from the Manassas/Time bar */
-  top: 130px !important; 
+  top: 135px !important; 
 }
 
 #cc-dial{
@@ -45,13 +44,15 @@
 
 .cc-text{
   line-height: 100px;
-  font-size: 78px;    /* Even bigger for that "Big Screen" look */
-  font-weight: bold;
-  white-space: nowrap; /* Prevents text from jumping to the next line */
+  font-size: 78px;
+  /* REMOVED BOLD: Set back to normal weight */
+  font-weight: normal !important; 
+  white-space: nowrap;
 }
 
 .cc-left{
-  width: 380px;       /* Widened to handle longer words like "FEELS LIKE" */
+  /* Widened to 400px to ensure "FEELS LIKE" doesn't touch the numbers */
+  width: 400px !important; 
 }
 
 .cc-line2{
