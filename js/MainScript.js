@@ -7,10 +7,10 @@ const WEEKDAY = ["SUN",  "MON", "TUES", "WED", "THU", "FRI", "SAT"];
 
 const jingle = new Audio("assets/music/jingle.wav")
 
-const crawlSpeedCasual = 10; 
-const crawlSpeedFast = 20; 
-const crawlScreenTime = 45; 
-const crawlSpace = 70; 
+const crawlSpeedCasual = 10; // A normal reading pace, in characters per second
+const crawlSpeedFast = 20; // A fast reading pace, in characters per second
+const crawlScreenTime = 45; // Shortest time crawl will be on screen, in seconds
+const crawlSpace = 70; // Approx number of characters that can fix in the crawl bar. Used for crawl speed calcs
 
 var isDay = true;
 var currentLogo;
@@ -19,6 +19,7 @@ var pageOrder;
 var music;
 
 window.onload = function () {
+
   CONFIG.addLocationOption('airport-code', 'Airport', 'ATL or KATL')
   CONFIG.addLocationOption('zip-code', 'Postal', '00000')
 
@@ -38,11 +39,14 @@ window.onload = function () {
 function toggleAdvancedSettings(){
   let advancedSettingsOptions = getElement('advanced-settings-options')
   let advancedOptionsText = getElement('advanced-options-text')
+
   var advancedSettingsHidden = advancedSettingsOptions.classList.contains('hidden')
+
   if(advancedSettingsHidden){
     advancedSettingsOptions.classList.remove('hidden')
     advancedOptionsText.innerHTML = 'Hide advanced options'
-  } else {
+  }
+  else{
     advancedSettingsOptions.classList.add('hidden')
     advancedOptionsText.innerHTML = 'Show advanced options'
   }
@@ -53,6 +57,8 @@ function preLoadMusic(){
   music = new Audio("assets/music/" + index + ".wav");
 }
 
+/* Set the timeline page order depending on time of day and if
+alerts are present */
 function scheduleTimeline(){
   if(alerts.length == 1){
     pageOrder = SINGLE;
@@ -76,6 +82,8 @@ function revealTimeline(){
   }
 }
 
+/* Now that all the fetched information is stored in memory, display them in
+the appropriate elements */
 function setInformation(){
   setGreetingPage();
   checkStormMusic();
@@ -101,6 +109,7 @@ function checkStormMusic(){
 
 function startAnimation(){
   setInitialPositionCurrentPage();
+
   jingle.play();
   setTimeout(startMusic, 5000)
   executeGreetingPage();
@@ -111,6 +120,7 @@ function startMusic(){
 }
 
 function hideSettings(){
+  // Animate settings prompt out
   getElement('settings-prompt').classList.add('hide');
   getElement('settings-container').style.pointerEvents = 'none';
 }
@@ -127,22 +137,28 @@ function executeGreetingPage(){
 }
 
 function clearGreetingPage(){
+  // Remove transition delay from greeting
   getElement('greeting-text').classList.remove('shown');
   getElement('local-logo-container').classList.remove('shown');
+
+  // Hide everything
   getElement('greeting-text').classList.add('hidden');
   getElement('hello-text-container').classList.add('hidden');
   getElement("hello-location-container").classList.add("hidden");
   getElement("local-logo-container").classList.add("hidden");
+
   schedulePages();
   loadInfoBar();
   revealTimeline();
   setTimeout(showCrawl, 3000);
 }
 
+// Set start and end times for every sub page.
 function schedulePages(){
   var cumlativeTime = 0;
   for(var p = 0; p < pageOrder.length; p++){
     for (var s = 0; s < pageOrder[p].subpages.length; s++) {
+      //for every single sub page
       var startTime = cumlativeTime;
       var clearTime = cumlativeTime + pageOrder[p].subpages[s].duration;
       setTimeout(executePage, startTime, p, s);
@@ -188,6 +204,7 @@ function executePage(pageIndex, subPageIndex){
   if(isLastPage)
     setTimeout(hideCrawl, 2000);
 
+
   if(currentSubPageName == "current-page"){
     setTimeout(loadCC, 1000);
     setTimeout(scrollCC, currentSubPageDuration / 2);
@@ -200,6 +217,8 @@ function executePage(pageIndex, subPageIndex){
   else if(currentSubPageName == 'zoomed-radar-page'){
     startZoomedRadar();
   }
+  else if(currentSubPageName == "7day-page"){
+  }
 }
 
 function clearPage(pageIndex, subPageIndex){
@@ -207,6 +226,8 @@ function clearPage(pageIndex, subPageIndex){
   var currentSubPageName = currentPage.subpages[subPageIndex].name;
   var currentSubPageElement = getElement(currentSubPageName);
   var subPageCount = currentPage.subpages.length
+  var currentSubPageDuration = currentPage.subpages[subPageIndex].duration;
+
   var isNewPage = subPageCount-1 == subPageIndex;
   var isLastPage = pageIndex >= pageOrder.length-1 && subPageIndex >= pageOrder[pageOrder.length-1].subpages.length-1;
 
@@ -249,10 +270,11 @@ function scrollCC(){
   for (var i = 0; i < ccElements.length; i++) {
     ccElements[i].style.top = '-80px';
   }
+  // Split decimal into 2 objects so that we can animate them individually.
   var pressureArray = pressure.toString().split('.');
   animateValue("cc-visibility", 0, visibility, 800, 1);
   if(CONFIG.units != 'm') {
-      getElement("cc-visibility-unit-metric").style.fontSize = "0px";
+      getElement("cc-visibility-unit-metric").style.fontSize = "0px";		//Doing the work twice, for good reason: if we simply hide it, the spacing left by the word still exists; if we simply set the size to zero, then it might still be visible at extreme zoom levels.
       getElement("cc-visibility-unit-metric").style.visibility = "hidden";
   } else {
       getElement("cc-visibility-unit-imperial").style.fontSize = "0px";
@@ -260,20 +282,21 @@ function scrollCC(){
   }
   animateValue("cc-humidity", 0, humidity, 1000, 1);
   animateValue("cc-dewpoint", 0, dewPoint, 1200, 1);
-  if (CONFIG.units === 'e') {
+  if (CONFIG.units === 'e') {		//Imperial units.
     animateValue("cc-pressure1", 0, pressureArray[0], 1400, 1);
     animateValue("cc-pressure2", 0, pressureArray[1], 1400, 2);
-    getElement("cc-pressure-metric").style.fontSize = "0px";
+    getElement("cc-pressure-metric").style.fontSize = "0px";		//hide the "mbar" tag
     getElement("cc-pressure-metric").style.visibility = "hidden";
-  } else {
+  } else {      //Metric units.
       animateValue("cc-pressure1", 800, pressureArray[0], 1400, 3);
-      getElement("cc-pressure2").style.visibility = "hidden";
+      getElement("cc-pressure2").style.visibility = "hidden";		//Hide figures after the decimal, since we don't really use decimal points when using hectopascals in the context of meteorology
       getElement("cc-pressure2").style.fontSize = "0px";
-      getElement("cc-pressure-decimal").style.visibility = "hidden";
+      getElement("cc-pressure-decimal").style.visibility = "hidden";		//And same for the decimal, which would look silly without something after it.
       getElement("cc-pressure-decimal").style.fontSize = "0px";
   }
 }
 
+// Called at end of sequence. Animates everything out and shows ending text
 function endSequence(){
   clearInfoBar();
 }
@@ -301,6 +324,7 @@ function clearInfoBar(){
   setTimeout(clearElements, 200);
 }
 
+// Animates everything out (not including main background)
 function clearElements(){
   getElement("outlook-titlebar").classList.add('hidden');
   getElement("forecast-left-container").classList.add('hidden');
@@ -315,6 +339,14 @@ function showEnding(){
   if(alertsActive){
     stayUpdated();
   }
+  else{
+  }
+}
+
+function itsAmazingOutThere(){
+  getElement('amazing-text').classList.add('extend');
+  getElement("amazing-logo").classList.add('shown');
+  getElement("amazing-container").classList.add('hide');
 }
 
 function stayUpdated(){
@@ -323,25 +355,45 @@ function stayUpdated(){
   getElement("updated-container").classList.add('hide');
 }
 
+// Final background animate out
 function clearEnd(){
   getElement('background-image').classList.add("above-screen");
   getElement('content-container').classList.add("above-screen");
 
-  // REPLACED: Silent Restart instead of location.reload()
+  // Replaced location.reload() with a cleaner reset
   setTimeout(silentRestart, 400);
 }
 
 function silentRestart(){
-  console.log("Sequence ended. Restarting silently...");
-  // Reset index variables
+  console.log("Sequence ended. Cleaning UI and restarting...");
+
+  // 1. Reset visual tracking variables
   currentLogoIndex = 0;
   currentLogo = undefined;
-  
-  // Re-fetch data and restart
+
+  // 2. Wipe the "end-state" classes from major elements so they can re-animate
+  const elementsToReset = [
+    'content-container', 'infobar-twc-logo', 'infobar-local-logo', 
+    'infobar-location-container', 'infobar-time-container', 
+    'timeline-event-container', 'progressbar-container', 'logo-stack',
+    'crawler-container', 'background-image', 'hello-text', 
+    'hello-location-text', 'greeting-text'
+  ];
+
+  elementsToReset.forEach(id => {
+    let el = getElement(id);
+    if (el) {
+      el.classList.remove('shown', 'hidden', 'expand', 'above-screen', 'below-screen', 'hide');
+    }
+  });
+
+  // 3. Reset the progress bar visually
+  resetProgressBar();
+
+  // 4. Restart the logic (Fetching data then re-starting animation)
   if (typeof weather !== 'undefined' && weather.load) {
       weather.load();
   } else {
-      // Fallback: use the original scheduling logic
       scheduleTimeline();
   }
 }
@@ -357,17 +409,33 @@ function setClockTime(){
   var diem = "AM";
   var h = currentTime.getHours();
   var m = currentTime.getMinutes();
-  if(h == 0) h = 12;
-  else if(h > 12){ h = h - 12; diem = "PM"; }
-  if(m < 10) m = "0" + m;
+
+  if(h == 0){
+    h = 12;
+  }
+  else if(h > 12){
+    h = h - 12
+    diem = "PM";
+  }
+  if(m < 10){
+    m = "0" + m;
+  }
+
   var finalString = h + ":" + m;
   getElement("infobar-time-text").innerHTML = finalString;
+
+  // Refresh clock every 5 seconds
   setTimeout(setClockTime, 5000);
 }
 
+/* Used to linearly animate a numeric value. In contex, the temperature and
+   other current conditions at beginning are animated this way */
 function animateValue(id, start, end, duration, pad) {
   var obj = getElement(id);
-  if(start == end){ obj.innerHTML = end; return; }
+  if(start == end){
+    obj.innerHTML = end;
+    return;
+  }
   var range = end - start;
   var current = start;
   var increment = end > start? 1 : -1;
@@ -375,7 +443,9 @@ function animateValue(id, start, end, duration, pad) {
   var timer = setInterval(function() {
       current += increment;
       obj.innerHTML = current.pad(pad);
-      if (current == end) clearInterval(timer);
+      if (current == end) {
+          clearInterval(timer);
+      }
   }, stepTime);
 }
 
@@ -383,7 +453,10 @@ function animateDialFill(id, temperature, duration) {
   var start = -20;
   var end = temperature;
   var obj = getElement(id);
-  if(start == end){ obj.style.fill = getTemperatureColor(temperature); return; }
+  if(start == end){
+    obj.style.fill = getTemperatureColor(temperature);
+    return;
+  }
   var range = end - start;
   var current = start;
   var increment = end > start? 1 : -1;
@@ -391,30 +464,41 @@ function animateDialFill(id, temperature, duration) {
   var timer = setInterval(function() {
       current += increment;
       obj.style.fill = getTemperatureColor(current);
-      if (current == end) clearInterval(timer);
+      if (current == end) {
+          clearInterval(timer);
+      }
   }, stepTime);
 }
-
 Number.prototype.pad = function(size) {
     var s = String(this);
     while (s.length < (size || 2)) {s = "0" + s;}
     return s;
 }
 
+// Used for the beginning dial in order to map warmer
+// temperatures to warmer colors and vice versa.
 function getTemperatureColor(temperature){
-  if(temperature < -20) return 'rgb(0, 0, 255)';
-  if(temperature > 100) return 'rgb(201, 42, 42)';
+  if(temperature < -20){
+    return 'rgb(0, 0, 255)';
+  }
+  else if(temperature > 100){
+    return 'rgb(201, 42, 42)';
+  }
+
   var calculatedColor = [0, 0, 0]
   if(temperature < 40){
     var percent = (temperature + 20)/60
     calculatedColor = interpolateColor([24, 100, 171], [77, 171, 247], percent)
-  } else if(temperature < 60){
+  }
+  else if(temperature < 60){
     var percent = (temperature - 40)/20
     calculatedColor = interpolateColor([77, 171, 247], [255, 212, 59], percent)
-  } else if(temperature < 80){
+  }
+  else if(temperature < 80){
     var percent = (temperature - 60)/20
     calculatedColor = interpolateColor([255, 212, 59], [247, 103, 7], percent)
-  } else {
+  }
+  else{
     var percent = (temperature - 80)/20
     calculatedColor = interpolateColor([247, 103, 7], [201, 42, 42], percent)
   }
@@ -422,7 +506,7 @@ function getTemperatureColor(temperature){
 }
 
 var interpolateColor = function(color1, color2, factor) {
-  if (arguments.length < 3) factor = 0.5;
+  if (arguments.length < 3) { factor = 0.5; }
   var result = color1.slice();
   for (var i=0;i<3;i++) {
     result[i] = Math.round(result[i] + factor*(color2[i]-color1[i]));
@@ -430,27 +514,42 @@ var interpolateColor = function(color1, color2, factor) {
   return result;
 };
 
-const baseSize = { w: 1920, h: 1080 }
+const baseSize = {
+    w: 1920,
+    h: 1080
+}
+
 window.onresize = resizeWindow;
 function resizeWindow(){
   var ww = window.innerWidth;
   var wh = window.innerHeight;
   var newScale = 1;
-  if(ww/wh < baseSize.w/baseSize.h) newScale = ww / baseSize.w;
-  else newScale = wh / baseSize.h;
+
+  // compare ratios
+  if(ww/wh < baseSize.w/baseSize.h) { // tall ratio
+      newScale = ww / baseSize.w;
+  } else { // wide ratio
+      newScale = wh / baseSize.h;
+  }
+
   getElement('render-frame').style.transform = 'scale(' + newScale + ',' +  newScale + ')';
 }
 
-function getElement(id){ return document.getElementById(id); }
+function getElement(id){
+  return document.getElementById(id);
+}
 
 function showCrawl(){
+  // only show crawl bar if it contains text
   if (CONFIG.crawl.length > 0){
     getElement('crawler-container').classList.add("shown");
-    setTimeout(startCrawl, 400);
+    setTimeout(startCrawl, 400); // wait for the settings to fully animate out before starting
   }
 }
 
-function hideCrawl(){ getElement('crawler-container').classList.add("hidden"); }
+function hideCrawl(){
+  getElement('crawler-container').classList.add("hidden");
+}
 
 function startCrawl(){
   calculateCrawlSpeed();
@@ -459,11 +558,27 @@ function startCrawl(){
 
 function calculateCrawlSpeed() {
   var crawlTextElement = getElement('crawl-text');
+
+  // Get the length of the crawl
   var elementLength = crawlTextElement.innerHTML.length;
   var timeTaken;
-  if (elementLength < ( crawlScreenTime*crawlSpeedCasual) - crawlSpace ) timeTaken = (elementLength + crawlSpace) / crawlSpeedCasual;
-  else if (elementLength > (crawlScreenTime*crawlSpeedFast)) timeTaken = elementLength / crawlSpeedFast;
-  else timeTaken = crawlScreenTime;
+  // We basically have 3 speed cases to solve for: casual (10 chars/s), fast (20 chars/s), and then anything between.
+  // To handle low lengths correctly, we need to add in the ~70 chars worth of length of the crawl box, otherwise short strings fly by too quickly.
+
+  // Handle the low end case
+  if (elementLength < ( crawlScreenTime*crawlSpeedCasual) - crawlSpace ){
+    timeTaken = (elementLength + crawlSpace) / crawlSpeedCasual;
+  }
+
+  // Handle the high end case. This calc will result in animations longer than screen time, which will cut off the end of long messages, which I find preferable to long messages flying by too fast to read. 
+  else if (elementLength > (crawlScreenTime*crawlSpeedFast)){
+    timeTaken = elementLength / crawlSpeedFast;
+  }
+
+  // Handle the in-between case. Pin the animation time to screentime and let the chars/sec float between the casual and fast limits.
+  else {
+    timeTaken = crawlScreenTime;
+  }
   crawlTextElement.style.animationDuration = timeTaken + "s";
 }
 
@@ -472,7 +587,9 @@ function showLoopMessage(){
   alert("Looping " + loopStatus + ", click TWC logo to toggle");
 }
 
-function hideAlertMessage(){ getElement('alert-message').classList.remove('shown'); }
+function hideAlertMessage(){
+  getElement('alert-message').classList.remove('shown');
+}
 
 function alert(message){
   getElement('alert-message').innerHTML = message;
