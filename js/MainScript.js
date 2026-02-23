@@ -1,8 +1,8 @@
-// Preset timeline sequences
-const MORNING = [{name: "Now", subpages: [{name: "current-page", duration: 9000}, {name: "radar-page", duration: 8000}]},{name: "Today", subpages: [{name: "today-page", duration: 10000}]},{name: "Tonight", subpages: [{name: "tonight-page", duration: 10000}]},{name: "Beyond", subpages: [{name: "tomorrow-page", duration: 10000}, {name: "7day-page", duration: 13000}]},]
-const NIGHT = [{name: "Now", subpages: [{name: "current-page", duration: 9000}, {name: "radar-page", duration: 8000}]},{name: "Tonight", subpages: [{name: "tonight-page", duration: 10000}]},{name: "Beyond", subpages: [{name: "tomorrow-page", duration: 10000}, {name: "tomorrow-night-page", duration: 10000}, {name: "7day-page", duration: 13000}]},]
-const SINGLE = [{name: "Alert", subpages: [{name: "single-alert-page", duration: 7000}]},{name: "Now", subpages: [{name: "current-page", duration: 8000}, {name: "radar-page", duration: 8000}, {name: "zoomed-radar-page", duration: 8000}]},{name: "Tonight", subpages: [{name: "tonight-page", duration: 8000}]},{name: "Beyond", subpages: [{name: "tomorrow-page", duration: 8000}, {name: "7day-page", duration: 13000}]},]
-const MULTIPLE = [{name: "Alerts", subpages: [{name: "multiple-alerts-page", duration: 7000}]},{name: "Now", subpages: [{name: "current-page", duration: 8000}, {name: "radar-page", duration: 8000}, {name: "zoomed-radar-page", duration: 8000}]},{name: "Tonight", subpages: [{name: "tonight-page", duration: 8000}]},{name: "Beyond", subpages: [{name: "tomorrow-page", duration: 8000}, {name: "7day-page", duration: 13000}]},]
+// Preset timeline sequences - DURATIONS INCREASED
+const MORNING = [{name: "Now", subpages: [{name: "current-page", duration: 12000}, {name: "radar-page", duration: 10000}]},{name: "Today", subpages: [{name: "today-page", duration: 12000}]},{name: "Tonight", subpages: [{name: "tonight-page", duration: 12000}]},{name: "Beyond", subpages: [{name: "tomorrow-page", duration: 12000}, {name: "7day-page", duration: 15000}]},]
+const NIGHT = [{name: "Now", subpages: [{name: "current-page", duration: 12000}, {name: "radar-page", duration: 10000}]},{name: "Tonight", subpages: [{name: "tonight-page", duration: 12000}]},{name: "Beyond", subpages: [{name: "tomorrow-page", duration: 12000}, {name: "tomorrow-night-page", duration: 12000}, {name: "7day-page", duration: 15000}]},]
+const SINGLE = [{name: "Alert", subpages: [{name: "single-alert-page", duration: 9000}]},{name: "Now", subpages: [{name: "current-page", duration: 10000}, {name: "radar-page", duration: 10000}, {name: "zoomed-radar-page", duration: 10000}]},{name: "Tonight", subpages: [{name: "tonight-page", duration: 10000}]},{name: "Beyond", subpages: [{name: "tomorrow-page", duration: 10000}, {name: "7day-page", duration: 15000}]},]
+const MULTIPLE = [{name: "Alerts", subpages: [{name: "multiple-alerts-page", duration: 9000}]},{name: "Now", subpages: [{name: "current-page", duration: 10000}, {name: "radar-page", duration: 10000}, {name: "zoomed-radar-page", duration: 10000}]},{name: "Tonight", subpages: [{name: "tonight-page", duration: 10000}]},{name: "Beyond", subpages: [{name: "tomorrow-page", duration: 10000}, {name: "7day-page", duration: 15000}]},]
 const WEEKDAY = ["SUN",  "MON", "TUES", "WED", "THU", "FRI", "SAT"];
 
 const jingle = new Audio("assets/music/jingle.wav")
@@ -116,7 +116,6 @@ function hideSettings(){
 }
 
 function executeGreetingPage(){
-  // Shield: Hide all subpages
   const allSubPages = ['current-page', 'radar-page', 'zoomed-radar-page', 'today-page', 'tonight-page', 'tomorrow-page', 'tomorrow-night-page', '7day-page', 'single-alert-page', 'multiple-alerts-page'];
   allSubPages.forEach(page => {
     let el = getElement(page);
@@ -174,7 +173,6 @@ function executePage(pageIndex, subPageIndex){
 
   if(!currentSubPageElement) return;
 
-  // Restore visibility and opacity for entry
   currentSubPageElement.style.visibility = 'visible';
   currentSubPageElement.style.opacity = '1';
 
@@ -236,16 +234,15 @@ function clearPage(pageIndex, subPageIndex){
   }
 
   if(isLastPage){
-    // FADE OUT EFFECT: specifically for the end of the outlook
-    currentSubPageElement.style.transition = 'opacity 1s ease-in-out, left 0.6s ease-in-out';
+    // FADE AWAY UP EFFECT
+    currentSubPageElement.style.transition = 'opacity 1s ease-in-out, top 1s ease-in-out';
     currentSubPageElement.style.opacity = '0';
-    currentSubPageElement.style.left = '-101%';
+    currentSubPageElement.style.top = '-100%'; // Moves it up instead of left
     endSequence();
   }
   else{
     currentSubPageElement.style.transitionDelay = '0s';
     currentSubPageElement.style.left = '-101%';
-    // Hide visibility once off-screen
     setTimeout(() => { 
         if(currentSubPageElement.style.left === '-101%') {
             currentSubPageElement.style.visibility = 'hidden'; 
@@ -362,7 +359,7 @@ function clearEnd(){
 }
 
 function silentRestart(){
-  console.log("Deep Fade Reset...");
+  console.log("Deep Fade-Up Reset...");
 
   var id = window.setTimeout(function() {}, 0);
   while (id--) { window.clearTimeout(id); }
