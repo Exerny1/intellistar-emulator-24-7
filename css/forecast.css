@@ -19,10 +19,6 @@
 
 .page-content-container{
   height: 525px;
-  /* MOVES EVERYTHING TOGETHER */
-  position: relative !important;
-  left: 180px !important; 
-  top: 20px !important;
 }
 
 .shaded-page-content{
