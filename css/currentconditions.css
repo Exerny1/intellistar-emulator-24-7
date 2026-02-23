@@ -3,6 +3,14 @@
   top: 100%;
 }
 
+#ccicon{
+  /*width: 200px;
+  height: 200px;
+  position: relative;
+  left: 10px;
+  top: 10px;*/
+}
+
 #cc-container{
   float: right;
   width: 680px;
@@ -44,6 +52,14 @@
   width: 300px;
 }
 
-.cc-line2{ transition-delay: 200ms; }
-.cc-line3{ transition-delay: 400ms; }
-.cc-line4{ transition-delay: 600ms; }
+.cc-line2{
+  transition-delay: 200ms;
+}
+
+.cc-line3{
+  transition-delay: 400ms;
+}
+
+.cc-line4{
+  transition-delay: 600ms;
+}
