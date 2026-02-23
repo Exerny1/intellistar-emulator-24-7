@@ -1,68 +1,18 @@
-#current-page{
-  left: 100%;
-  top: 100%;
-}
-
-#ccicon{
-  /* Keep as is */
-}
-
-/* THE FIX: Centered, Large, and Non-Bold */
-#cc-container{
-  position: absolute;
-  /* Increased to 62% to push it further away from the icon dial */
-  left: 62% !important; 
-  transform: translateX(-50%) !important;
-  width: 900px !important; 
-  height: 400px;
-  top: 135px !important; 
-}
-
-#cc-dial{
-  width: 450px;
-  height: 450px;
-  left: 50px;
-  top: 15px;
+#cc-container {
+  float: right;        /* Snaps text to the right side of the centered box */
+  width: 680px;
+  height: 320px;
+  top: 80px;           /* Adjusted to sit nicely under the "Now" bar */
   position: relative;
 }
 
-.cc-line-container{
-  height: 100px;
-  overflow:hidden;
-}
-
-.cc-vertical-group{
-  height: 200px;
-  position: relative;
-  top: 100px;
-  transition: top .6s linear;
-}
-
-.cc-horizontal-group{
-  display: flex;
-}
-
-.cc-text{
-  line-height: 100px;
-  font-size: 78px;
-  /* REMOVED BOLD: Set back to normal weight */
-  font-weight: normal !important; 
+.cc-text {
+  font-size: 72px;     /* Nice and large, but not bold */
+  font-weight: normal !important;
+  line-height: 90px;
   white-space: nowrap;
 }
 
-.cc-left{
-  /* Widened to 400px to ensure "FEELS LIKE" doesn't touch the numbers */
-  width: 400px !important; 
-}
-
-.cc-line2{
-  transition-delay: 200ms;
-}
-
-.cc-line3{
-  transition-delay: 400ms;
-}
-
-.cc-line4{
-  transition-delay: 600ms;
+.cc-left {
+  width: 320px;        /* Enough room for "FEELS LIKE" */
 }
