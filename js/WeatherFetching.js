@@ -1,4 +1,4 @@
-// Timings
+// Timings and Data Structures - RESTORED
 const MORNING = [{name: "Now", subpages: [{name: "current-page", duration: 17000}, {name: "radar-page", duration: 17000}]},{name: "Today", subpages: [{name: "today-page", duration: 17000}]},{name: "Tonight", subpages: [{name: "tonight-page", duration: 17000}]},{name: "Beyond", subpages: [{name: "tomorrow-page", duration: 17000}, {name: "7day-page", duration: 17000}]},]
 const NIGHT = [{name: "Now", subpages: [{name: "current-page", duration: 17000}, {name: "radar-page", duration: 17000}]},{name: "Tonight", subpages: [{name: "tonight-page", duration: 17000}]},{name: "Beyond", subpages: [{name: "tomorrow-page", duration: 17000}, {name: "tomorrow-night-page", duration: 17000}, {name: "7day-page", duration: 17000}]},]
 const SINGLE = [{name: "Alert", subpages: [{name: "single-alert-page", duration: 17000}]},{name: "Now", subpages: [{name: "current-page", duration: 17000}, {name: "radar-page", duration: 17000}, {name: "zoomed-radar-page", duration: 17000}]},{name: "Tonight", subpages: [{name: "tonight-page", duration: 17000}]},{name: "Beyond", subpages: [{name: "tomorrow-page", duration: 17000}, {name: "7day-page", duration: 17000}]},]
@@ -46,6 +46,16 @@ function scheduleTimeline(){
   else if(isDay) pageOrder = MORNING;
   else pageOrder = NIGHT;
   setInformation();
+}
+
+function revealTimeline(){
+  getElement('timeline-event-container').classList.add('shown');
+  getElement('progressbar-container').classList.add('shown');
+  getElement('logo-stack').classList.add('shown');
+  var timelineElements = document.querySelectorAll(".timeline-item");
+  for (var i = 0; i < timelineElements.length; i++) {
+    timelineElements[i].style.top = '0px';
+  }
 }
 
 function setInformation(){
@@ -97,7 +107,6 @@ function executeGreetingPage(){
     }
   });
 
-  getElement('hello-location-text').innerHTML = CONFIG.locationName || "Local Forecast";
   getElement('content-container').classList.add('shown');
   getElement('infobar-twc-logo').classList.add('shown');
   getElement('hello-text').classList.add('shown');
@@ -147,8 +156,8 @@ function executePage(pageIndex, subPageIndex){
   currentSubPageElement.style.opacity = '1';
   void currentSubPageElement.offsetWidth; 
 
-  // SNAPPY 0.6s Roll
-  currentSubPageElement.style.transition = 'top 0.6s cubic-bezier(0.25, 1, 0.5, 1)';
+  // Fast Vertical Slide Up (0.6s)
+  currentSubPageElement.style.transition = 'top 0.6s cubic-bezier(0.33, 1, 0.68, 1)';
   currentSubPageElement.style.top = '0px';
 
   if(subPageIndex === 0){
@@ -171,6 +180,10 @@ function executePage(pageIndex, subPageIndex){
     setTimeout(scrollCC, currentSubPageDuration / 2);
     animateValue('cc-temperature-text', -20, currentTemperature, 2500, 1);
     animateDialFill('cc-dial-color', currentTemperature, 2500);
+  } else if(currentSubPageName == 'radar-page'){
+    startRadar();
+  } else if(currentSubPageName == 'zoomed-radar-page'){
+    startZoomedRadar();
   }
 }
 
@@ -184,8 +197,8 @@ function clearPage(pageIndex, subPageIndex){
 
   if((currentPage.subpages.length - 1) == subPageIndex && !isLastPage) resetProgressBar();
 
-  // SNAPPY 0.6s Roll Exit
-  currentSubPageElement.style.transition = 'top 0.6s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.6s ease-in';
+  // Fast Vertical Slide Out (0.6s)
+  currentSubPageElement.style.transition = 'top 0.6s cubic-bezier(0.33, 1, 0.68, 1), opacity 0.6s ease-in';
   currentSubPageElement.style.top = '-1080px';
   
   if(isLastPage) {
@@ -204,6 +217,9 @@ function resetProgressBar(){
   void getElement('progressbar').offsetWidth;
 }
 
+function startRadar(){ getElement('radar-container').appendChild(radarImage); }
+function startZoomedRadar(){ getElement('zoomed-radar-container').appendChild(zoomedRadarImage); }
+
 function loadCC(){
   var ccElements = document.querySelectorAll(".cc-vertical-group");
   for (var i = 0; i < ccElements.length; i++) { ccElements[i].style.top = '0px'; }
@@ -217,15 +233,23 @@ function scrollCC(){
   animateValue("cc-dewpoint", 0, dewPoint, 1200, 1);
 }
 
-function endSequence(){ 
-    getElement("infobar-twc-logo").classList.add("hidden");
-    getElement("infobar-local-logo").classList.add("hidden");
-    getElement("infobar-location-container").classList.add("hidden");
-    getElement("infobar-time-container").classList.add("hidden");
-    setTimeout(() => {
-        getElement("content-container").classList.add("expand");
-        setTimeout(clearEnd, 2000);
-    }, 200);
+function endSequence(){ clearInfoBar(); }
+
+function clearInfoBar(){
+  getElement("infobar-twc-logo").classList.add("hidden");
+  getElement("infobar-local-logo").classList.add("hidden");
+  getElement("infobar-location-container").classList.add("hidden");
+  getElement("infobar-time-container").classList.add("hidden");
+  setTimeout(clearElements, 200);
+}
+
+function clearElements(){
+  getElement("outlook-titlebar").classList.add('hidden');
+  getElement("forecast-left-container").classList.add('hidden');
+  getElement("forecast-right-container").classList.add('hidden');
+  getElement("content-container").classList.add("expand");
+  getElement("timeline-container").style.visibility = "hidden";
+  setTimeout(clearEnd, 2000);
 }
 
 function clearEnd(){
@@ -238,8 +262,9 @@ function silentRestart(){
   var id = window.setTimeout(function() {}, 0);
   while (id--) { window.clearTimeout(id); }
   currentLogoIndex = 0;
+  currentLogo = undefined;
   
-  const resetList = ['infobar-twc-logo', 'infobar-local-logo', 'infobar-location-container', 'infobar-time-container', 'content-container', 'background-image', 'hello-text', 'hello-location-text', 'greeting-text', 'crawler-container', 'progressbar'];
+  const resetList = ['infobar-twc-logo', 'infobar-local-logo', 'infobar-location-container', 'infobar-time-container', 'outlook-titlebar', 'forecast-left-container', 'forecast-right-container', 'content-container', 'background-image', 'hello-text', 'hello-location-text', 'greeting-text', 'crawler-container', 'progressbar'];
   resetList.forEach(id => {
     let el = getElement(id);
     if(el) {
