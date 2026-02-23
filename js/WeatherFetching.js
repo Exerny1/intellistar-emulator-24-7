@@ -1,9 +1,7 @@
-// Timings and Data Structures - RESTORED
+// Timings: Weather slides 17s (17000ms), Greeting 6s
 const MORNING = [{name: "Now", subpages: [{name: "current-page", duration: 17000}, {name: "radar-page", duration: 17000}]},{name: "Today", subpages: [{name: "today-page", duration: 17000}]},{name: "Tonight", subpages: [{name: "tonight-page", duration: 17000}]},{name: "Beyond", subpages: [{name: "tomorrow-page", duration: 17000}, {name: "7day-page", duration: 17000}]},]
 const NIGHT = [{name: "Now", subpages: [{name: "current-page", duration: 17000}, {name: "radar-page", duration: 17000}]},{name: "Tonight", subpages: [{name: "tonight-page", duration: 17000}]},{name: "Beyond", subpages: [{name: "tomorrow-page", duration: 17000}, {name: "tomorrow-night-page", duration: 17000}, {name: "7day-page", duration: 17000}]},]
 const SINGLE = [{name: "Alert", subpages: [{name: "single-alert-page", duration: 17000}]},{name: "Now", subpages: [{name: "current-page", duration: 17000}, {name: "radar-page", duration: 17000}, {name: "zoomed-radar-page", duration: 17000}]},{name: "Tonight", subpages: [{name: "tonight-page", duration: 17000}]},{name: "Beyond", subpages: [{name: "tomorrow-page", duration: 17000}, {name: "7day-page", duration: 17000}]},]
-const MULTIPLE = [{name: "Alerts", subpages: [{name: "multiple-alerts-page", duration: 17000}]},{name: "Now", subpages: [{name: "current-page", duration: 17000}, {name: "radar-page", duration: 17000}, {name: "zoomed-radar-page", duration: 17000}]},{name: "Tonight", subpages: [{name: "tonight-page", duration: 17000}]},{name: "Beyond", subpages: [{name: "tomorrow-page", duration: 17000}, {name: "7day-page", duration: 17000}]},]
-const WEEKDAY = ["SUN",  "MON", "TUES", "WED", "THU", "FRI", "SAT"];
 
 const jingle = new Audio("assets/music/jingle.wav")
 const crawlSpeedCasual = 10; 
@@ -41,48 +39,34 @@ function preLoadMusic(){
 }
 
 function scheduleTimeline(){
-  if(alerts.length == 1) pageOrder = SINGLE;
-  else if(alerts.length > 1) pageOrder = MULTIPLE;
+  if(typeof alerts !== 'undefined' && alerts.length == 1) pageOrder = SINGLE;
   else if(isDay) pageOrder = MORNING;
   else pageOrder = NIGHT;
   setInformation();
 }
 
-function revealTimeline(){
-  getElement('timeline-event-container').classList.add('shown');
-  getElement('progressbar-container').classList.add('shown');
-  getElement('logo-stack').classList.add('shown');
-  var timelineElements = document.querySelectorAll(".timeline-item");
-  for (var i = 0; i < timelineElements.length; i++) {
-    timelineElements[i].style.top = '0px';
-  }
-}
-
 function setInformation(){
-  setGreetingPage();
-  checkStormMusic();
-  setAlertPage();
-  setForecast();
-  setOutlook();
-  createLogoElements();
-  setCurrentConditions();
-  setTimelineEvents();
+  // SAFETY: Ensure these exist in your other files or defined here
+  if (typeof setGreetingPage === 'function') setGreetingPage();
+  if (typeof checkStormMusic === 'function') checkStormMusic();
+  if (typeof setAlertPage === 'function') setAlertPage();
+  if (typeof setForecast === 'function') setForecast();
+  if (typeof setOutlook === 'function') setOutlook();
+  if (typeof createLogoElements === 'function') createLogoElements();
+  if (typeof setCurrentConditions === 'function') setCurrentConditions();
+  if (typeof setTimelineEvents === 'function') setTimelineEvents();
+  
   hideSettings();
   setTimeout(startAnimation, 1000);
 }
 
 function setMainBackground(){
-  getElement('background-image').style.backgroundImage = 'url(https://picsum.photos/1920/1080/?random';
-}
-
-function checkStormMusic(){
-  if(currentCondition && currentCondition.toLowerCase().includes("storm")){
-    music= new Audio("assets/music/storm.wav");
-  }
+  var bg = getElement('background-image');
+  if(bg) bg.style.backgroundImage = 'url(https://picsum.photos/1920/1080/?random';
 }
 
 function startAnimation(){
-  setInitialPositionCurrentPage();
+  if(typeof setInitialPositionCurrentPage === 'function') setInitialPositionCurrentPage();
   jingle.play();
   setTimeout(startMusic, 5000)
   executeGreetingPage();
@@ -91,8 +75,10 @@ function startAnimation(){
 function startMusic(){ music.play(); }
 
 function hideSettings(){
-  getElement('settings-prompt').classList.add('hide');
-  getElement('settings-container').style.pointerEvents = 'none';
+  var prompt = getElement('settings-prompt');
+  var container = getElement('settings-container');
+  if(prompt) prompt.classList.add('hide');
+  if(container) container.style.pointerEvents = 'none';
 }
 
 function executeGreetingPage(){
@@ -100,13 +86,15 @@ function executeGreetingPage(){
   allSubPages.forEach(page => {
     let el = getElement(page);
     if (el) {
-        el.style.left = '0px'; 
         el.style.top = '1080px'; 
         el.style.opacity = '0';
         el.style.visibility = 'hidden'; 
     }
   });
 
+  var locText = getElement('hello-location-text');
+  if(locText) locText.innerHTML = CONFIG.locationName || "Local Forecast";
+  
   getElement('content-container').classList.add('shown');
   getElement('infobar-twc-logo').classList.add('shown');
   getElement('hello-text').classList.add('shown');
@@ -119,25 +107,24 @@ function executeGreetingPage(){
 
 function clearGreetingPage(){
   getElement('greeting-text').classList.remove('shown');
-  getElement('local-logo-container').classList.remove('shown');
   getElement('hello-text-container').classList.add('hidden');
   getElement("hello-location-container").classList.add("hidden");
   
   schedulePages();
   loadInfoBar();
-  revealTimeline();
+  if(typeof revealTimeline === 'function') revealTimeline();
   setTimeout(showCrawl, 3000);
 }
 
 function schedulePages(){
-  var cumlativeTime = 0;
+  var cumulativeTime = 0;
   for(var p = 0; p < pageOrder.length; p++){
     for (var s = 0; s < pageOrder[p].subpages.length; s++) {
-      var startTime = cumlativeTime;
-      var clearTime = cumlativeTime + pageOrder[p].subpages[s].duration;
+      var startTime = cumulativeTime;
+      var clearTime = cumulativeTime + pageOrder[p].subpages[s].duration;
       setTimeout(executePage, startTime, p, s);
       setTimeout(clearPage, clearTime, p, s);
-      cumlativeTime = clearTime;
+      cumulativeTime = clearTime;
     }
   }
 }
@@ -146,7 +133,6 @@ function executePage(pageIndex, subPageIndex){
   var currentPage = pageOrder[pageIndex];
   var currentSubPageName = currentPage.subpages[subPageIndex].name;
   var currentSubPageElement = getElement(currentSubPageName);
-  var currentSubPageDuration = currentPage.subpages[subPageIndex].duration;
 
   if(!currentSubPageElement) return;
 
@@ -156,127 +142,46 @@ function executePage(pageIndex, subPageIndex){
   currentSubPageElement.style.opacity = '1';
   void currentSubPageElement.offsetWidth; 
 
-  // Fast Vertical Slide Up (0.6s)
-  currentSubPageElement.style.transition = 'top 0.6s cubic-bezier(0.33, 1, 0.68, 1)';
+  // SNAPPY ROLL IN (0.5s)
+  currentSubPageElement.style.transition = 'top 0.5s cubic-bezier(0.17, 0.67, 0.83, 0.67)';
   currentSubPageElement.style.top = '0px';
 
   if(subPageIndex === 0){
       let pageTime = 0;
       currentPage.subpages.forEach(sp => pageTime += sp.duration);
-      getElement('progressbar').style.transitionDuration = pageTime + "ms";
-      getElement('progressbar').classList.add('progress');
-      getElement('timeline-event-container').style.left = (-280*pageIndex).toString() + "px";
-      getElement('progress-stack').style.left = (-280*pageIndex).toString() + "px";
+      var pb = getElement('progressbar');
+      if(pb) {
+          pb.style.transitionDuration = pageTime + "ms";
+          pb.classList.add('progress');
+      }
   }
 
-  if(currentLogo != getPageLogoFileName(currentSubPageName)){
-    getElement('logo-stack').style.left = ((-85*currentLogoIndex)-(20*currentLogoIndex)).toString() + "px";
-    currentLogo = getPageLogoFileName(currentSubPageName);
-    currentLogoIndex++;
-  }
-
-  if(currentSubPageName == "current-page"){
-    setTimeout(loadCC, 600);
-    setTimeout(scrollCC, currentSubPageDuration / 2);
-    animateValue('cc-temperature-text', -20, currentTemperature, 2500, 1);
-    animateDialFill('cc-dial-color', currentTemperature, 2500);
-  } else if(currentSubPageName == 'radar-page'){
-    startRadar();
-  } else if(currentSubPageName == 'zoomed-radar-page'){
-    startZoomedRadar();
+  if(currentSubPageName == "current-page" && typeof currentTemperature !== 'undefined'){
+    setTimeout(loadCC, 500);
+    animateValue('cc-temperature-text', -20, currentTemperature, 2000, 1);
   }
 }
 
 function clearPage(pageIndex, subPageIndex){
-  var currentPage = pageOrder[pageIndex];
-  var currentSubPageName = currentPage.subpages[subPageIndex].name;
-  var currentSubPageElement = getElement(currentSubPageName);
+  var currentSubPageElement = getElement(pageOrder[pageIndex].subpages[subPageIndex].name);
   var isLastPage = (pageIndex >= pageOrder.length - 1) && (subPageIndex >= pageOrder[pageIndex].subpages.length - 1);
 
   if(!currentSubPageElement) return;
 
-  if((currentPage.subpages.length - 1) == subPageIndex && !isLastPage) resetProgressBar();
-
-  // Fast Vertical Slide Out (0.6s)
-  currentSubPageElement.style.transition = 'top 0.6s cubic-bezier(0.33, 1, 0.68, 1), opacity 0.6s ease-in';
+  currentSubPageElement.style.transition = 'top 0.5s cubic-bezier(0.17, 0.67, 0.83, 0.67), opacity 0.5s ease';
   currentSubPageElement.style.top = '-1080px';
   
   if(isLastPage) {
-      currentSubPageElement.style.opacity = '0';
-      endSequence();
-  } else {
-    setTimeout(() => { 
-        if(currentSubPageElement.style.top === '-1080px') currentSubPageElement.style.visibility = 'hidden'; 
-    }, 700);
+      setTimeout(() => {
+          getElement("content-container").classList.add("expand");
+          setTimeout(() => location.reload(), 2000);
+      }, 600);
   }
 }
-
-function resetProgressBar(){
-  getElement('progressbar').style.transitionDuration = '0ms';
-  getElement('progressbar').classList.remove('progress');
-  void getElement('progressbar').offsetWidth;
-}
-
-function startRadar(){ getElement('radar-container').appendChild(radarImage); }
-function startZoomedRadar(){ getElement('zoomed-radar-container').appendChild(zoomedRadarImage); }
 
 function loadCC(){
   var ccElements = document.querySelectorAll(".cc-vertical-group");
   for (var i = 0; i < ccElements.length; i++) { ccElements[i].style.top = '0px'; }
-}
-
-function scrollCC(){
-  var ccElements = document.querySelectorAll(".cc-vertical-group");
-  for (var i = 0; i < ccElements.length; i++) { ccElements[i].style.top = '-80px'; }
-  animateValue("cc-visibility", 0, visibility, 800, 1);
-  animateValue("cc-humidity", 0, humidity, 1000, 1);
-  animateValue("cc-dewpoint", 0, dewPoint, 1200, 1);
-}
-
-function endSequence(){ clearInfoBar(); }
-
-function clearInfoBar(){
-  getElement("infobar-twc-logo").classList.add("hidden");
-  getElement("infobar-local-logo").classList.add("hidden");
-  getElement("infobar-location-container").classList.add("hidden");
-  getElement("infobar-time-container").classList.add("hidden");
-  setTimeout(clearElements, 200);
-}
-
-function clearElements(){
-  getElement("outlook-titlebar").classList.add('hidden');
-  getElement("forecast-left-container").classList.add('hidden');
-  getElement("forecast-right-container").classList.add('hidden');
-  getElement("content-container").classList.add("expand");
-  getElement("timeline-container").style.visibility = "hidden";
-  setTimeout(clearEnd, 2000);
-}
-
-function clearEnd(){
-  getElement('background-image').classList.add("above-screen");
-  getElement('content-container').classList.add("above-screen");
-  setTimeout(silentRestart, 1000);
-}
-
-function silentRestart(){
-  var id = window.setTimeout(function() {}, 0);
-  while (id--) { window.clearTimeout(id); }
-  currentLogoIndex = 0;
-  currentLogo = undefined;
-  
-  const resetList = ['infobar-twc-logo', 'infobar-local-logo', 'infobar-location-container', 'infobar-time-container', 'outlook-titlebar', 'forecast-left-container', 'forecast-right-container', 'content-container', 'background-image', 'hello-text', 'hello-location-text', 'greeting-text', 'crawler-container', 'progressbar'];
-  resetList.forEach(id => {
-    let el = getElement(id);
-    if(el) {
-        el.classList.remove('shown', 'hidden', 'expand', 'above-screen', 'progress');
-        el.style.top = '';
-        el.style.opacity = '';
-    }
-  });
-
-  getElement('background-image').classList.add("below-screen");
-  if (typeof weather !== 'undefined') weather.load(); 
-  else scheduleTimeline();
 }
 
 function loadInfoBar(){
@@ -291,7 +196,8 @@ function setClockTime(){
   var m = currentTime.getMinutes();
   if(h == 0) h = 12; else if(h > 12) h = h - 12;
   if(m < 10) m = "0" + m;
-  getElement("infobar-time-text").innerHTML = h + ":" + m;
+  var el = getElement("infobar-time-text");
+  if(el) el.innerHTML = h + ":" + m;
   setTimeout(setClockTime, 5000);
 }
 
@@ -301,7 +207,7 @@ function animateValue(id, start, end, duration, pad) {
   var range = end - start;
   var current = start;
   var increment = end > start? 1 : -1;
-  var stepTime = Math.abs(Math.floor(duration / (range || 1))) || 10;
+  var stepTime = Math.abs(Math.floor(duration / (range || 1))) || 20;
   var timer = setInterval(function() {
       current += increment;
       obj.innerHTML = current.pad(pad);
@@ -309,38 +215,7 @@ function animateValue(id, start, end, duration, pad) {
   }, stepTime);
 }
 
-function animateDialFill(id, temperature, duration) {
-  var start = -20;
-  var end = temperature;
-  var obj = getElement(id);
-  if(!obj) return;
-  var range = end - start;
-  var current = start;
-  var increment = end > start? 1 : -1;
-  var stepTime = Math.abs(Math.floor(duration / (range || 1))) || 10;
-  var timer = setInterval(function() {
-      current += increment;
-      obj.style.fill = getTemperatureColor(current);
-      if (current == end) clearInterval(timer);
-  }, stepTime);
-}
-
-function getTemperatureColor(temperature){
-  if(temperature < -20) return 'rgb(0, 0, 255)';
-  if(temperature > 100) return 'rgb(201, 42, 42)';
-  var calculatedColor = [0, 0, 0]
-  if(temperature < 40){ var percent = (temperature + 20)/60; calculatedColor = interpolateColor([24, 100, 171], [77, 171, 247], percent); }
-  else if(temperature < 60){ var percent = (temperature - 40)/20; calculatedColor = interpolateColor([77, 171, 247], [255, 212, 59], percent); }
-  else if(temperature < 80){ var percent = (temperature - 60)/20; calculatedColor = interpolateColor([255, 212, 59], [247, 103, 7], percent); }
-  else { var percent = (temperature - 80)/20; calculatedColor = interpolateColor([247, 103, 7], [201, 42, 42], percent); }
-  return 'rgb(' + calculatedColor[0] + ', ' + calculatedColor[1] + ', ' + calculatedColor[2] + ')'
-}
-
-var interpolateColor = function(color1, color2, factor) {
-  var result = color1.slice();
-  for (var i=0;i<3;i++) { result[i] = Math.round(result[i] + factor*(color2[i]-color1[i])); }
-  return result;
-};
+function getElement(id){ return document.getElementById(id); }
 
 Number.prototype.pad = function(size) {
     var s = String(this);
@@ -348,32 +223,37 @@ Number.prototype.pad = function(size) {
     return s;
 }
 
-function getElement(id){ return document.getElementById(id); }
-
-window.onresize = resizeWindow;
-function resizeWindow(){
-  var ww = window.innerWidth;
-  var wh = window.innerHeight;
-  var newScale = (ww/wh < 1920/1080) ? ww / 1920 : wh / 1080;
-  getElement('render-frame').style.transform = 'scale(' + newScale + ',' +  newScale + ')';
-}
-
 function showCrawl(){
-  if (CONFIG.crawlText && CONFIG.crawlText.length > 0){
-    getElement('crawl-text').innerHTML = CONFIG.crawlText;
-    getElement('crawler-container').classList.add("shown");
+  var el = getElement('crawler-container');
+  var tx = getElement('crawl-text');
+  if (el && tx && CONFIG.crawlText){
+    tx.innerHTML = CONFIG.crawlText;
+    el.classList.add("shown");
     setTimeout(startCrawl, 400);
   }
 }
 
 function startCrawl(){
-  calculateCrawlSpeed();
-  getElement('crawl-text').classList.add('animate');
+  var el = getElement('crawl-text');
+  if(el) {
+    calculateCrawlSpeed();
+    el.classList.add('animate');
+  }
 }
 
 function calculateCrawlSpeed() {
   var crawlTextElement = getElement('crawl-text');
+  if(!crawlTextElement) return;
   var elementLength = crawlTextElement.innerHTML.length || 100;
   var timeTaken = (elementLength < (crawlScreenTime*crawlSpeedCasual) - crawlSpace) ? (elementLength + crawlSpace) / crawlSpeedCasual : (elementLength > (crawlScreenTime*crawlSpeedFast)) ? elementLength / crawlSpeedFast : crawlScreenTime;
   crawlTextElement.style.animationDuration = timeTaken + "s";
 }
+
+function resizeWindow(){
+  var ww = window.innerWidth;
+  var wh = window.innerHeight;
+  var newScale = (ww/wh < 1920/1080) ? ww / 1920 : wh / 1080;
+  var el = getElement('render-frame');
+  if(el) el.style.transform = 'scale(' + newScale + ',' +  newScale + ')';
+}
+window.onresize = resizeWindow;
