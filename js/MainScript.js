@@ -178,9 +178,14 @@ function executePage(pageIndex, subPageIndex){
     currentLogoIndex++;
   }
 
-  // FORCE MOVE TO CENTER
+  // FIX: Force X axis start and Y axis stability
+  currentSubPageElement.style.transitionDuration = '0s';
+  currentSubPageElement.style.top = '0px'; 
+  currentSubPageElement.style.left = '101%';
+  void currentSubPageElement.offsetWidth; // Force Reflow
+
+  currentSubPageElement.style.transitionDuration = ''; 
   currentSubPageElement.style.transitionDelay = '0.5s';
-  currentSubPageElement.style.top = '0px';
   currentSubPageElement.style.left = '0px';
 
   var isLastPage = pageIndex >= pageOrder.length-1 && subPageIndex >= pageOrder[pageOrder.length-1].subpages.length-1;
@@ -332,32 +337,30 @@ function clearEnd(){
 function silentRestart(){
   console.log("Deep Cleaning UI...");
 
-  // 1. Reset Global Counters
   currentLogoIndex = 0;
   currentLogo = undefined;
   
-  // 2. Clear Timers 
   var id = window.setTimeout(function() {}, 0);
   while (id--) { window.clearTimeout(id); }
 
-  // 3. Reset EVERY subpage position 
   const allSubPages = ['current-page', 'radar-page', 'zoomed-radar-page', 'today-page', 'tonight-page', 'tomorrow-page', 'tomorrow-night-page', '7day-page', 'single-alert-page', 'multiple-alerts-page'];
   allSubPages.forEach(page => {
     let el = getElement(page);
     if (el) {
+      el.style.transitionDuration = '0s';
       el.style.left = '101%'; 
-      el.style.top = '101%';
-      el.style.transitionDelay = '0s';
+      el.style.top = '0px';
+      el.classList.remove('shown', 'hidden', 'extend'); 
     }
   });
 
-  // 4. Wipe animation classes from containers
   const elementsToReset = [
     'content-container', 'infobar-twc-logo', 'infobar-local-logo', 
     'infobar-location-container', 'infobar-time-container', 
     'timeline-event-container', 'progressbar-container', 'logo-stack',
     'crawler-container', 'background-image', 'hello-text', 
-    'hello-location-text', 'greeting-text', 'updated-text', 'updated-logo'
+    'hello-location-text', 'greeting-text', 'updated-text', 'updated-logo',
+    'outlook-titlebar', 'forecast-left-container', 'forecast-right-container'
   ];
 
   elementsToReset.forEach(id => {
@@ -369,11 +372,9 @@ function silentRestart(){
     }
   });
 
-  // 5. Reset Vertical Groups
   const ccGroups = document.querySelectorAll(".cc-vertical-group");
   ccGroups.forEach(el => el.style.top = '100%'); 
 
-  // 6. RE-LOAD DATA BEFORE STARTING
   setClockTime();
   if (typeof weather !== 'undefined' && weather.load) {
       weather.load(); 
