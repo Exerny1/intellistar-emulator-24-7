@@ -332,15 +332,15 @@ function clearEnd(){
 function silentRestart(){
   console.log("Deep Cleaning UI...");
 
-  // 1. Kill Timers
-  var id = window.setTimeout(function() {}, 0);
-  while (id--) { window.clearTimeout(id); }
-
-  // 2. Global variable reset
+  // 1. Reset Global Counters
   currentLogoIndex = 0;
   currentLogo = undefined;
   
-  // 3. Reset EVERY subpage position explicitly to prevent overlays
+  // 2. Clear Timers (Kills overlapping loops)
+  var id = window.setTimeout(function() {}, 0);
+  while (id--) { window.clearTimeout(id); }
+
+  // 3. Reset EVERY subpage position 
   const allSubPages = ['current-page', 'radar-page', 'zoomed-radar-page', 'today-page', 'tonight-page', 'tomorrow-page', 'tomorrow-night-page', '7day-page', 'single-alert-page', 'multiple-alerts-page'];
   allSubPages.forEach(page => {
     let el = getElement(page);
@@ -351,7 +351,7 @@ function silentRestart(){
     }
   });
 
-  // 4. Wipe animation classes
+  // 4. Wipe animation classes from containers
   const elementsToReset = [
     'content-container', 'infobar-twc-logo', 'infobar-local-logo', 
     'infobar-location-container', 'infobar-time-container', 
@@ -369,14 +369,14 @@ function silentRestart(){
     }
   });
 
-  // 5. Reset Vertical CC Groups
+  // 5. Reset Vertical Groups
   const ccGroups = document.querySelectorAll(".cc-vertical-group");
   ccGroups.forEach(el => el.style.top = '100%'); 
 
-  // 6. Restart
+  // 6. RE-LOAD DATA BEFORE STARTING
   setClockTime();
   if (typeof weather !== 'undefined' && weather.load) {
-      weather.load();
+      weather.load(); 
   } else {
       scheduleTimeline();
   }
@@ -390,24 +390,23 @@ function loadInfoBar(){
 
 function setClockTime(){
   var currentTime = new Date();
-  var diem = "AM";
   var h = currentTime.getHours();
   var m = currentTime.getMinutes();
   if(h == 0) h = 12;
-  else if(h > 12){ h = h - 12; diem = "PM"; }
+  else if(h > 12) h = h - 12;
   if(m < 10) m = "0" + m;
-  var finalString = h + ":" + m;
-  getElement("infobar-time-text").innerHTML = finalString;
+  getElement("infobar-time-text").innerHTML = h + ":" + m;
   setTimeout(setClockTime, 5000);
 }
 
 function animateValue(id, start, end, duration, pad) {
   var obj = getElement(id);
+  if(!obj) return;
   if(start == end){ obj.innerHTML = end; return; }
   var range = end - start;
   var current = start;
   var increment = end > start? 1 : -1;
-  var stepTime = Math.abs(Math.floor(duration / range));
+  var stepTime = Math.abs(Math.floor(duration / range)) || 10;
   var timer = setInterval(function() {
       current += increment;
       obj.innerHTML = current.pad(pad);
@@ -419,11 +418,12 @@ function animateDialFill(id, temperature, duration) {
   var start = -20;
   var end = temperature;
   var obj = getElement(id);
+  if(!obj) return;
   if(start == end){ obj.style.fill = getTemperatureColor(temperature); return; }
   var range = end - start;
   var current = start;
   var increment = end > start? 1 : -1;
-  var stepTime = Math.abs(Math.floor(duration / range));
+  var stepTime = Math.abs(Math.floor(duration / range)) || 10;
   var timer = setInterval(function() {
       current += increment;
       obj.style.fill = getTemperatureColor(current);
