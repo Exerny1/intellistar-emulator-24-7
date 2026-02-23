@@ -4,19 +4,19 @@
 }
 
 #ccicon{
-  /*width: 200px;
-  height: 200px;
-  position: relative;
-  left: 10px;
-  top: 10px;*/
+  /* Keep as is */
 }
 
+/* THE FIX: Centered and enlarged without overlapping the header */
 #cc-container{
-  float: right;
-  width: 680px;
-  height: 320px;
-  top: 100px;
-  position: relative;
+  position: absolute;
+  /* Pushed slightly right of absolute center to respect the dial/header */
+  left: 58% !important; 
+  transform: translateX(-50%) !important;
+  width: 800px;
+  height: 400px;
+  /* Lowered slightly to stay away from the Manassas/Time bar */
+  top: 130px !important; 
 }
 
 #cc-dial{
@@ -28,14 +28,14 @@
 }
 
 .cc-line-container{
-  height: 80px;
+  height: 100px;
   overflow:hidden;
 }
 
 .cc-vertical-group{
-  height: 160px;
+  height: 200px;
   position: relative;
-  top: 80px;
+  top: 100px;
   transition: top .6s linear;
 }
 
@@ -44,12 +44,14 @@
 }
 
 .cc-text{
-  line-height: 80px;
-  font-size: 60px;
+  line-height: 100px;
+  font-size: 78px;    /* Even bigger for that "Big Screen" look */
+  font-weight: bold;
+  white-space: nowrap; /* Prevents text from jumping to the next line */
 }
 
 .cc-left{
-  width: 300px;
+  width: 380px;       /* Widened to handle longer words like "FEELS LIKE" */
 }
 
 .cc-line2{
