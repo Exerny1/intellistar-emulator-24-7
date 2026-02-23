@@ -116,7 +116,11 @@ function hideSettings(){
 }
 
 function executeGreetingPage(){
+  // Ensure the stage is reset for greeting
+  getElement('background-image').classList.remove("above-screen");
   getElement('background-image').classList.remove("below-screen");
+  getElement('content-container').classList.remove("above-screen", "expand");
+  
   getElement('content-container').classList.add('shown');
   getElement('infobar-twc-logo').classList.add('shown');
   getElement('hello-text').classList.add('shown');
@@ -178,7 +182,7 @@ function executePage(pageIndex, subPageIndex){
     currentLogoIndex++;
   }
 
-  // FIX: Force X axis start and Y axis stability
+  // Force Horizontal Alignment
   currentSubPageElement.style.transitionDuration = '0s';
   currentSubPageElement.style.top = '0px'; 
   currentSubPageElement.style.left = '101%';
@@ -335,14 +339,16 @@ function clearEnd(){
 }
 
 function silentRestart(){
-  console.log("Deep Cleaning UI...");
+  console.log("Nuclear Deep Clean Initiated...");
 
   currentLogoIndex = 0;
   currentLogo = undefined;
   
+  // Kill all pending timers
   var id = window.setTimeout(function() {}, 0);
   while (id--) { window.clearTimeout(id); }
 
+  // 1. Reset Subpages
   const allSubPages = ['current-page', 'radar-page', 'zoomed-radar-page', 'today-page', 'tonight-page', 'tomorrow-page', 'tomorrow-night-page', '7day-page', 'single-alert-page', 'multiple-alerts-page'];
   allSubPages.forEach(page => {
     let el = getElement(page);
@@ -354,13 +360,15 @@ function silentRestart(){
     }
   });
 
+  // 2. Clear Exit Classes from Main UI
   const elementsToReset = [
     'content-container', 'infobar-twc-logo', 'infobar-local-logo', 
     'infobar-location-container', 'infobar-time-container', 
     'timeline-event-container', 'progressbar-container', 'logo-stack',
     'crawler-container', 'background-image', 'hello-text', 
     'hello-location-text', 'greeting-text', 'updated-text', 'updated-logo',
-    'outlook-titlebar', 'forecast-left-container', 'forecast-right-container'
+    'outlook-titlebar', 'forecast-left-container', 'forecast-right-container',
+    'hello-text-container', 'hello-location-container', 'local-logo-container'
   ];
 
   elementsToReset.forEach(id => {
@@ -371,6 +379,9 @@ function silentRestart(){
       el.style.top = '';
     }
   });
+
+  // 3. Force Background back to bottom position for the next slide-up
+  getElement('background-image').classList.add("below-screen");
 
   const ccGroups = document.querySelectorAll(".cc-vertical-group");
   ccGroups.forEach(el => el.style.top = '100%'); 
