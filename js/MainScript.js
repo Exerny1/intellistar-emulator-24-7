@@ -116,12 +116,13 @@ function hideSettings(){
 }
 
 function executeGreetingPage(){
-  // Shield: Off-screen and hide all subpages
+  // Shield: Hide all subpages
   const allSubPages = ['current-page', 'radar-page', 'zoomed-radar-page', 'today-page', 'tonight-page', 'tomorrow-page', 'tomorrow-night-page', '7day-page', 'single-alert-page', 'multiple-alerts-page'];
   allSubPages.forEach(page => {
     let el = getElement(page);
     if (el) {
         el.style.left = '101%'; 
+        el.style.opacity = '0';
         el.style.visibility = 'hidden'; 
     }
   });
@@ -173,8 +174,9 @@ function executePage(pageIndex, subPageIndex){
 
   if(!currentSubPageElement) return;
 
-  // Make visible only when executing
+  // Restore visibility and opacity for entry
   currentSubPageElement.style.visibility = 'visible';
+  currentSubPageElement.style.opacity = '1';
 
   if(subPageIndex === 0){
     var pageTime = 0;
@@ -234,15 +236,20 @@ function clearPage(pageIndex, subPageIndex){
   }
 
   if(isLastPage){
+    // FADE OUT EFFECT: specifically for the end of the outlook
+    currentSubPageElement.style.transition = 'opacity 1s ease-in-out, left 0.6s ease-in-out';
+    currentSubPageElement.style.opacity = '0';
+    currentSubPageElement.style.left = '-101%';
     endSequence();
   }
   else{
     currentSubPageElement.style.transitionDelay = '0s';
     currentSubPageElement.style.left = '-101%';
-    // FIX: Kill visibility AFTER the 600ms slide-out is done
+    // Hide visibility once off-screen
     setTimeout(() => { 
         if(currentSubPageElement.style.left === '-101%') {
             currentSubPageElement.style.visibility = 'hidden'; 
+            currentSubPageElement.style.opacity = '0';
         }
     }, 600);
   }
@@ -327,13 +334,6 @@ function clearInfoBar(){
 }
 
 function clearElements(){
-  // Force 7-day to hide immediately as it slides away to prevent ghosting
-  let sevenDay = getElement('7day-page');
-  if(sevenDay) {
-      sevenDay.style.left = '-101%';
-      setTimeout(() => { sevenDay.style.visibility = 'hidden'; }, 600);
-  }
-
   getElement("outlook-titlebar").classList.add('hidden');
   getElement("forecast-left-container").classList.add('hidden');
   getElement("forecast-right-container").classList.add('hidden');
@@ -362,7 +362,7 @@ function clearEnd(){
 }
 
 function silentRestart(){
-  console.log("Deep Synchronized Reset...");
+  console.log("Deep Fade Reset...");
 
   var id = window.setTimeout(function() {}, 0);
   while (id--) { window.clearTimeout(id); }
@@ -379,6 +379,7 @@ function silentRestart(){
       el.style.transitionDuration = '0s';
       el.style.left = '101%'; 
       el.style.top = '0px';
+      el.style.opacity = '0';
       el.style.visibility = 'hidden'; 
       el.classList.remove('shown', 'hidden', 'extend'); 
     }
