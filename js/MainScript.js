@@ -116,9 +116,14 @@ function hideSettings(){
 }
 
 function executeGreetingPage(){
-  // Ensure the stage is reset for greeting
-  getElement('background-image').classList.remove("above-screen");
-  getElement('background-image').classList.remove("below-screen");
+  // Shield: Off-screen all subpages so they can't bleed into the greeting
+  const allSubPages = ['current-page', 'radar-page', 'zoomed-radar-page', 'today-page', 'tonight-page', 'tomorrow-page', 'tomorrow-night-page', '7day-page', 'single-alert-page', 'multiple-alerts-page'];
+  allSubPages.forEach(page => {
+    let el = getElement(page);
+    if (el) el.style.left = '101%'; 
+  });
+
+  getElement('background-image').classList.remove("above-screen", "below-screen");
   getElement('content-container').classList.remove("above-screen", "expand");
   
   getElement('content-container').classList.add('shown');
@@ -182,11 +187,11 @@ function executePage(pageIndex, subPageIndex){
     currentLogoIndex++;
   }
 
-  // Force Horizontal Alignment
+  // Force Horizontal Start
   currentSubPageElement.style.transitionDuration = '0s';
   currentSubPageElement.style.top = '0px'; 
   currentSubPageElement.style.left = '101%';
-  void currentSubPageElement.offsetWidth; // Force Reflow
+  void currentSubPageElement.offsetWidth; 
 
   currentSubPageElement.style.transitionDuration = ''; 
   currentSubPageElement.style.transitionDelay = '0.5s';
@@ -335,18 +340,22 @@ function stayUpdated(){
 function clearEnd(){
   getElement('background-image').classList.add("above-screen");
   getElement('content-container').classList.add("above-screen");
-  setTimeout(silentRestart, 400);
+  // Delayed restart to allow exit animation to complete
+  setTimeout(silentRestart, 1000);
 }
 
 function silentRestart(){
-  console.log("Nuclear Deep Clean Initiated...");
+  console.log("Synchronized Reset...");
+
+  // Kill all pending timers from previous loop
+  var id = window.setTimeout(function() {}, 0);
+  while (id--) { window.clearTimeout(id); }
 
   currentLogoIndex = 0;
   currentLogo = undefined;
   
-  // Kill all pending timers
-  var id = window.setTimeout(function() {}, 0);
-  while (id--) { window.clearTimeout(id); }
+  // Hide container to prevent flicker while rearranging
+  getElement('content-container').style.visibility = 'hidden';
 
   // 1. Reset Subpages
   const allSubPages = ['current-page', 'radar-page', 'zoomed-radar-page', 'today-page', 'tonight-page', 'tomorrow-page', 'tomorrow-night-page', '7day-page', 'single-alert-page', 'multiple-alerts-page'];
@@ -360,15 +369,14 @@ function silentRestart(){
     }
   });
 
-  // 2. Clear Exit Classes from Main UI
+  // 2. Clear Exit Classes
   const elementsToReset = [
     'content-container', 'infobar-twc-logo', 'infobar-local-logo', 
     'infobar-location-container', 'infobar-time-container', 
     'timeline-event-container', 'progressbar-container', 'logo-stack',
     'crawler-container', 'background-image', 'hello-text', 
     'hello-location-text', 'greeting-text', 'updated-text', 'updated-logo',
-    'outlook-titlebar', 'forecast-left-container', 'forecast-right-container',
-    'hello-text-container', 'hello-location-container', 'local-logo-container'
+    'outlook-titlebar', 'forecast-left-container', 'forecast-right-container'
   ];
 
   elementsToReset.forEach(id => {
@@ -380,7 +388,8 @@ function silentRestart(){
     }
   });
 
-  // 3. Force Background back to bottom position for the next slide-up
+  // Reset stage visibility
+  getElement('content-container').style.visibility = 'visible';
   getElement('background-image').classList.add("below-screen");
 
   const ccGroups = document.querySelectorAll(".cc-vertical-group");
