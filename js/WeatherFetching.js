@@ -1,398 +1,275 @@
-// All weather slides set to 17000ms, Greeting is 6000ms
-const MORNING = [{name: "Now", subpages: [{name: "current-page", duration: 17000}, {name: "radar-page", duration: 17000}]},{name: "Today", subpages: [{name: "today-page", duration: 17000}]},{name: "Tonight", subpages: [{name: "tonight-page", duration: 17000}]},{name: "Beyond", subpages: [{name: "tomorrow-page", duration: 17000}, {name: "7day-page", duration: 17000}]},]
-const NIGHT = [{name: "Now", subpages: [{name: "current-page", duration: 17000}, {name: "radar-page", duration: 17000}]},{name: "Tonight", subpages: [{name: "tonight-page", duration: 17000}]},{name: "Beyond", subpages: [{name: "tomorrow-page", duration: 17000}, {name: "tomorrow-night-page", duration: 17000}, {name: "7day-page", duration: 17000}]},]
-const SINGLE = [{name: "Alert", subpages: [{name: "single-alert-page", duration: 17000}]},{name: "Now", subpages: [{name: "current-page", duration: 17000}, {name: "radar-page", duration: 17000}, {name: "zoomed-radar-page", duration: 17000}]},{name: "Tonight", subpages: [{name: "tonight-page", duration: 17000}]},{name: "Beyond", subpages: [{name: "tomorrow-page", duration: 17000}, {name: "7day-page", duration: 17000}]},]
-const MULTIPLE = [{name: "Alerts", subpages: [{name: "multiple-alerts-page", duration: 17000}]},{name: "Now", subpages: [{name: "current-page", duration: 17000}, {name: "radar-page", duration: 17000}, {name: "zoomed-radar-page", duration: 17000}]},{name: "Tonight", subpages: [{name: "tonight-page", duration: 17000}]},{name: "Beyond", subpages: [{name: "tomorrow-page", duration: 17000}, {name: "7day-page", duration: 17000}]},]
-const WEEKDAY = ["SUN",  "MON", "TUES", "WED", "THU", "FRI", "SAT"];
+function guessZipCode(){
+  // Skip geolookup until replaced with TWC (wunderground api dead)
+  return;
 
-const jingle = new Audio("assets/music/jingle.wav")
-const crawlSpeedCasual = 10; 
-const crawlSpeedFast = 20; 
-const crawlScreenTime = 45; 
-const crawlSpace = 70; 
-
-var isDay = true;
-var currentLogo;
-var currentLogoIndex = 0;
-var pageOrder;
-var music;
-
-window.onload = function () {
-  CONFIG.addLocationOption('airport-code', 'Airport', 'ATL or KATL')
-  CONFIG.addLocationOption('zip-code', 'Postal', '00000')
-  CONFIG.addOption('crawlText', 'Crawl Text', 'Text that scrolls along the bottom')
-  CONFIG.addOption('greetingText', 'Greeting Text', 'Message (or joke) that appears at the start')
-  CONFIG.load();
-  preLoadMusic();
-  setMainBackground();
-  resizeWindow();
-  setClockTime();
-  if (!CONFIG.loop) {
-    getElement("settings-container").style.display = 'block';
-    guessZipCode();
-  }
-}
-
-function preLoadMusic(){
-  var index = Math.floor(Math.random() * 12) + 1;
-  music = new Audio("assets/music/" + index + ".wav");
-}
-
-function scheduleTimeline(){
-  if(alerts.length == 1) pageOrder = SINGLE;
-  else if(alerts.length > 1) pageOrder = MULTIPLE;
-  else if(isDay) pageOrder = MORNING;
-  else pageOrder = NIGHT;
-  setInformation();
-}
-
-function revealTimeline(){
-  getElement('timeline-event-container').classList.add('shown');
-  getElement('progressbar-container').classList.add('shown');
-  getElement('logo-stack').classList.add('shown');
-  var timelineElements = document.querySelectorAll(".timeline-item");
-  for (var i = 0; i < timelineElements.length; i++) {
-    timelineElements[i].style.top = '0px';
-  }
-}
-
-function setInformation(){
-  setGreetingPage();
-  checkStormMusic();
-  setAlertPage();
-  setForecast();
-  setOutlook();
-  createLogoElements();
-  setCurrentConditions();
-  setTimelineEvents();
-  hideSettings();
-  setTimeout(startAnimation, 1000);
-}
-
-function setMainBackground(){
-  getElement('background-image').style.backgroundImage = 'url(https://picsum.photos/1920/1080/?random';
-}
-
-function checkStormMusic(){
-  if(currentCondition.toLowerCase().includes("storm")){
-    music= new Audio("assets/music/storm.wav");
-  }
-}
-
-function startAnimation(){
-  setInitialPositionCurrentPage();
-  jingle.play();
-  setTimeout(startMusic, 5000)
-  executeGreetingPage();
-}
-
-function startMusic(){ music.play(); }
-
-function hideSettings(){
-  getElement('settings-prompt').classList.add('hide');
-  getElement('settings-container').style.pointerEvents = 'none';
-}
-
-function executeGreetingPage(){
-  const allSubPages = ['current-page', 'radar-page', 'zoomed-radar-page', 'today-page', 'tonight-page', 'tomorrow-page', 'tomorrow-night-page', '7day-page', 'single-alert-page', 'multiple-alerts-page'];
-  allSubPages.forEach(page => {
-    let el = getElement(page);
-    if (el) {
-        el.style.left = '0px'; 
-        el.style.top = '1080px'; // Off-screen bottom
-        el.style.opacity = '0';
-        el.style.visibility = 'hidden'; 
-    }
-  });
-
-  getElement('content-container').classList.add('shown');
-  getElement('infobar-twc-logo').classList.add('shown');
-  getElement('hello-text').classList.add('shown');
-  getElement('hello-location-text').classList.add('shown');
-  getElement('greeting-text').classList.add('shown');
-  getElement('local-logo-container').classList.add("shown");
-  
-  setTimeout(clearGreetingPage, 6000); // 6 second greeting
-}
-
-function clearGreetingPage(){
-  getElement('greeting-text').classList.remove('shown');
-  getElement('local-logo-container').classList.remove('shown');
-  getElement('greeting-text').classList.add('hidden');
-  getElement('hello-text-container').classList.add('hidden');
-  getElement("hello-location-container").classList.add("hidden");
-  getElement("local-logo-container").classList.add("hidden");
-  schedulePages();
-  loadInfoBar();
-  revealTimeline();
-  setTimeout(showCrawl, 3000);
-}
-
-function schedulePages(){
-  var cumlativeTime = 0;
-  for(var p = 0; p < pageOrder.length; p++){
-    for (var s = 0; s < pageOrder[p].subpages.length; s++) {
-      var startTime = cumlativeTime;
-      var clearTime = cumlativeTime + pageOrder[p].subpages[s].duration;
-      setTimeout(executePage, startTime, p, s);
-      setTimeout(clearPage, clearTime, p, s);
-      cumlativeTime = clearTime;
-    }
-  }
-}
-
-function executePage(pageIndex, subPageIndex){
-  var currentPage = pageOrder[pageIndex];
-  var currentSubPageName = currentPage.subpages[subPageIndex].name;
-  var currentSubPageElement = getElement(currentSubPageName);
-  var currentSubPageDuration = currentPage.subpages[subPageIndex].duration;
-
-  if(!currentSubPageElement) return;
-
-  currentSubPageElement.style.visibility = 'visible';
-
-  if(subPageIndex === 0){
-    var pageTime = 0;
-    for (var i = 0; i < currentPage.subpages.length; i++) {
-      pageTime += currentPage.subpages[i].duration;
-    }
-      getElement('progressbar').style.transitionDuration = pageTime + "ms";
-      getElement('progressbar').classList.add('progress');
-      getElement('timeline-event-container').style.left = (-280*pageIndex).toString() + "px";
-      getElement('progress-stack').style.left = (-280*pageIndex).toString() + "px";
+  var zipCodeElement = getElement("zip-code-text");
+  // Before filling with auto zip, check and see if
+  // there is already an input
+  if(zipCodeElement.value != ""){
+    return;
   }
 
-  if(currentLogo != getPageLogoFileName(currentSubPageName)){
-    getElement('logo-stack').style.left = ((-85*currentLogoIndex)-(20*currentLogoIndex)).toString() + "px";
-    currentLogo = getPageLogoFileName(currentSubPageName);
-    currentLogoIndex++;
-  }
-
-  // ENTER FROM BELOW: Slide up into position
-  currentSubPageElement.style.transition = 'none';
-  currentSubPageElement.style.top = '1080px'; 
-  currentSubPageElement.style.opacity = '1';
-  void currentSubPageElement.offsetWidth; 
-
-  currentSubPageElement.style.transition = 'top 1.2s cubic-bezier(0.45, 0, 0.55, 1)';
-  currentSubPageElement.style.top = '0px';
-
-  if(currentSubPageName == "current-page"){
-    setTimeout(loadCC, 1000);
-    setTimeout(scrollCC, currentSubPageDuration / 2);
-    animateValue('cc-temperature-text', -20, currentTemperature, 2500, 1);
-    animateDialFill('cc-dial-color', currentTemperature, 2500);
-  }
-  else if(currentSubPageName == 'radar-page') startRadar();
-  else if(currentSubPageName == 'zoomed-radar-page') startZoomedRadar();
-}
-
-function clearPage(pageIndex, subPageIndex){
-  var currentPage = pageOrder[pageIndex];
-  var currentSubPageName = currentPage.subpages[subPageIndex].name;
-  var currentSubPageElement = getElement(currentSubPageName);
-  var isNewPage = (currentPage.subpages.length - 1) == subPageIndex;
-  var isLastPage = (pageIndex >= pageOrder.length - 1) && (subPageIndex >= pageOrder[pageIndex].subpages.length - 1);
-
-  if(!currentSubPageElement) return;
-
-  if(isNewPage && !isLastPage) resetProgressBar();
-
-  // EXIT TO TOP: Slide up while next slide enters from bottom
-  currentSubPageElement.style.transition = 'top 1.2s cubic-bezier(0.45, 0, 0.55, 1), opacity 1.2s ease-in';
-  currentSubPageElement.style.top = '-1080px';
-  if(isLastPage) currentSubPageElement.style.opacity = '0'; // Fade out at the very end
-
-  if(isLastPage) endSequence();
-  else {
-    setTimeout(() => { 
-        if(currentSubPageElement.style.top === '-1080px') {
-            currentSubPageElement.style.visibility = 'hidden'; 
+  // always use wunderground API for geolookup
+  // only valid equivalent is GET v3/location/search
+  // TODO: use TWC API GET v3/location/search instead of wunderground geolookup
+  fetch(`https://api.wunderground.com/api/${CONFIG.secrets.wundergroundAPIKey}/geolookup/q/autoip.json`)
+    .then(function(response) {
+      //check for error
+      if (response.status !== 200) {
+        console.log("zip code request error");
+        return;
+      }
+      response.json().then(function(data) {
+        // Only fill zip if the user didn't touch
+        // the box while the zip was fetching
+        if(zipCodeElement.value == ""){
+          zipCodeElement.value = data.location.zip;
         }
-    }, 1300);
-  }
+      });
+    })
 }
 
-function resetProgressBar(){
-  getElement('progressbar').style.transitionDuration = '0ms';
-  getElement('progressbar').classList.remove('progress');
-  void getElement('progressbar').offsetWidth;
+function fetchAlerts(){
+  var alertCrawl = "";
+  fetch(`https://api.weather.gov/alerts/active?point=${latitude},${longitude}`)
+    .then(function(response) {
+        if (response.status !== 200) {
+            console.warn("Alerts Error, no alerts will be shown");
+        }
+      response.json().then(function(data) {
+        if (data.features == undefined){
+          fetchForecast();
+          return;
+        }
+        if (data.features.length == 1) {
+          alerts[0] = data.features[0].properties.event + '<br>' + data.features[0].properties.description.replace("..."," ").replace(/\*/g, "")
+          for(var i = 0; i < data.features.length; i++){
+            /* Take the most important alert message and set it as crawl text
+            This will supply more information i.e. tornado warning coverage */
+            alertCrawl = alertCrawl + " " + data.features[i].properties.description.replace("...", " ");
+          }
+        }
+        else {
+          for(var i = 0; i < data.features.length; i++){
+            /* Take the most important alert message and set it as crawl text
+            This will supply more information i.e. tornado warning coverage */
+            alertCrawl = alertCrawl + " " + data.features[i].properties.description.replace("...", " ");
+
+            alerts[i] = data.features[i].properties.event
+          }
+        }
+        if(alertCrawl != ""){
+          CONFIG.crawl = alertCrawl;
+        }
+        alertsActive = alerts.length > 0;
+        fetchForecast();
+      });
+    })
 }
 
-function startRadar(){ getElement('radar-container').appendChild(radarImage); }
-function startZoomedRadar(){ getElement('zoomed-radar-container').appendChild(zoomedRadarImage); }
-
-function loadCC(){
-  var ccElements = document.querySelectorAll(".cc-vertical-group");
-  for (var i = 0; i < ccElements.length; i++) {
-    ccElements[i].style.top = '0px';
-  }
+function fetchForecast(){
+  fetch(`https://api.weather.com/v1/geocode/${latitude}/${longitude}/forecast/daily/10day.json?language=${CONFIG.language}&units=${CONFIG.units}&apiKey=${CONFIG.secrets.twcAPIKey}`)
+    .then(function(response) {
+      if (response.status !== 200) {
+        console.log('forecast request error');
+        return;
+      }
+      response.json().then(function(data) {
+        let forecasts = data.forecasts
+        // narratives
+        isDay = forecasts[0].day; // If the API spits out a day forecast, use the day timings
+        let ns = []
+        ns.push(forecasts[0].day || forecasts[0].night); // there must be a day forecast so if the API doesn't provide one, just make it the night one. It won't show anyway.
+        ns.push(forecasts[0].night);
+        ns.push(forecasts[1].day);
+        ns.push(forecasts[1].night);
+        for (let i = 0; i <= 3; i++) {
+          let n = ns[i]
+          forecastTemp[i] = n.temp
+          forecastIcon[i] = n.icon_code
+          forecastNarrative[i] = n.narrative
+          forecastPrecip[i] = `${n.pop}% Chance<br/> of ${n.precip_type.charAt(0).toUpperCase() + n.precip_type.substr(1).toLowerCase()}`
+        }
+        // 7 day outlook
+        for (var i = 0; i < 7; i++) {
+          let fc = forecasts[i+1]
+          outlookHigh[i] = fc.max_temp
+          outlookLow[i] = fc.min_temp
+          outlookCondition[i] = (fc.day ? fc.day : fc.night).phrase_32char.split(' ').join('<br/>')
+          // thunderstorm doesn't fit in the 7 day outlook boxes
+          // so I multilined it similar to that of the original
+          outlookCondition[i] = outlookCondition[i].replace("Thunderstorm", "Thunder</br>storm");
+          outlookIcon[i] = (fc.day ? fc.day : fc.night).icon_code
+        }
+        fetchRadarImages();
+      })
+    })
 }
 
-function scrollCC(){
-  var ccElements = document.querySelectorAll(".cc-vertical-group");
-  for (var i = 0; i < ccElements.length; i++) {
-    ccElements[i].style.top = '-80px';
-  }
-  var pressureArray = pressure.toString().split('.');
-  animateValue("cc-visibility", 0, visibility, 800, 1);
-  animateValue("cc-humidity", 0, humidity, 1000, 1);
-  animateValue("cc-dewpoint", 0, dewPoint, 1200, 1);
-}
+function fetchCurrentWeather(){
 
-function endSequence(){ clearInfoBar(); }
-
-function clearInfoBar(){
-  getElement("infobar-twc-logo").classList.add("hidden");
-  getElement("infobar-local-logo").classList.add("hidden");
-  getElement("infobar-location-container").classList.add("hidden");
-  getElement("infobar-time-container").classList.add("hidden");
-  setTimeout(clearElements, 200);
-}
-
-function clearElements(){
-  getElement("outlook-titlebar").classList.add('hidden');
-  getElement("forecast-left-container").classList.add('hidden');
-  getElement("forecast-right-container").classList.add('hidden');
-  getElement("content-container").classList.add("expand");
-  getElement("timeline-container").style.visibility = "hidden";
-  showEnding();
-  setTimeout(clearEnd, 2000);
-}
-
-function showEnding(){ if(alertsActive) stayUpdated(); }
-
-function stayUpdated(){
-  getElement('updated-text').classList.add('extend');
-  getElement("updated-logo").classList.add('shown');
-  getElement("updated-container").classList.add('hide');
-}
-
-function clearEnd(){
-  getElement('background-image').classList.add("above-screen");
-  getElement('content-container').classList.add("above-screen");
-  setTimeout(silentRestart, 1000);
-}
-
-function silentRestart(){
-  var id = window.setTimeout(function() {}, 0);
-  while (id--) { window.clearTimeout(id); }
-  currentLogoIndex = 0;
-  currentLogo = undefined;
-  getElement('content-container').style.visibility = 'hidden';
-
-  const allSubPages = ['current-page', 'radar-page', 'zoomed-radar-page', 'today-page', 'tonight-page', 'tomorrow-page', 'tomorrow-night-page', '7day-page', 'single-alert-page', 'multiple-alerts-page'];
-  allSubPages.forEach(page => {
-    let el = getElement(page);
-    if (el) {
-      el.style.transition = 'none';
-      el.style.top = '1080px';
-      el.style.opacity = '0';
-      el.style.visibility = 'hidden'; 
-      el.classList.remove('shown', 'hidden', 'extend'); 
+  //Let's check what we're dealing with
+  let location = "";
+  console.log(CONFIG.locationMode)
+  if(CONFIG.locationMode=="POSTAL") {location=`postalKey=${zipCode}:${CONFIG.countryCode}`}
+  else if (CONFIG.locationMode=="AIRPORT") {
+    //Determine whether this is an IATA or ICAO code
+    let airportCodeLength=airportCode.length;
+    if(airportCodeLength==3){location=`iataCode=${airportCode}`}
+    else if (airportCodeLength==4){location=`icaoCode=${airportCode}`}
+    else {
+      alert("Please enter a valid ICAO or IATA Code")
+      console.error(`Expected Airport Code Lenght to be 3 or 4 but was ${airportCodeLength}`)
+      return;
     }
-  });
-
-  getElement('content-container').style.visibility = 'visible';
-  getElement('background-image').classList.add("below-screen");
-  setClockTime();
-  if (typeof weather !== 'undefined' && weather.load) weather.load(); 
-  else scheduleTimeline();
-}
-
-function setClockTime(){
-  var currentTime = new Date();
-  var h = currentTime.getHours();
-  var m = currentTime.getMinutes();
-  if(h == 0) h = 12; else if(h > 12) h = h - 12;
-  if(m < 10) m = "0" + m;
-  getElement("infobar-time-text").innerHTML = h + ":" + m;
-  setTimeout(setClockTime, 5000);
-}
-
-function animateValue(id, start, end, duration, pad) {
-  var obj = getElement(id);
-  if(!obj) return;
-  var range = end - start;
-  var current = start;
-  var increment = end > start? 1 : -1;
-  var stepTime = Math.abs(Math.floor(duration / range)) || 10;
-  var timer = setInterval(function() {
-      current += increment;
-      obj.innerHTML = current.pad(pad);
-      if (current == end) clearInterval(timer);
-  }, stepTime);
-}
-
-function animateDialFill(id, temperature, duration) {
-  var start = -20;
-  var end = temperature;
-  var obj = getElement(id);
-  if(!obj) return;
-  var range = end - start;
-  var current = start;
-  var increment = end > start? 1 : -1;
-  var stepTime = Math.abs(Math.floor(duration / range)) || 10;
-  var timer = setInterval(function() {
-      current += increment;
-      obj.style.fill = getTemperatureColor(current);
-      if (current == end) clearInterval(timer);
-  }, stepTime);
-}
-
-Number.prototype.pad = function(size) {
-    var s = String(this);
-    while (s.length < (size || 2)) {s = "0" + s;}
-    return s;
-}
-
-function getTemperatureColor(temperature){
-  if(temperature < -20) return 'rgb(0, 0, 255)';
-  if(temperature > 100) return 'rgb(201, 42, 42)';
-  var calculatedColor = [0, 0, 0]
-  if(temperature < 40){ var percent = (temperature + 20)/60; calculatedColor = interpolateColor([24, 100, 171], [77, 171, 247], percent); }
-  else if(temperature < 60){ var percent = (temperature - 40)/20; calculatedColor = interpolateColor([77, 171, 247], [255, 212, 59], percent); }
-  else if(temperature < 80){ var percent = (temperature - 60)/20; calculatedColor = interpolateColor([255, 212, 59], [247, 103, 7], percent); }
-  else { var percent = (temperature - 80)/20; calculatedColor = interpolateColor([247, 103, 7], [201, 42, 42], percent); }
-  return 'rgb(' + calculatedColor[0] + ', ' + calculatedColor[1] + ', ' + calculatedColor[2] + ')'
-}
-
-var interpolateColor = function(color1, color2, factor) {
-  var result = color1.slice();
-  for (var i=0;i<3;i++) { result[i] = Math.round(result[i] + factor*(color2[i]-color1[i])); }
-  return result;
-};
-
-const baseSize = { w: 1920, h: 1080 }
-window.onresize = resizeWindow;
-function resizeWindow(){
-  var ww = window.innerWidth;
-  var wh = window.innerHeight;
-  var newScale = (ww/wh < baseSize.w/baseSize.h) ? ww / baseSize.w : wh / baseSize.h;
-  getElement('render-frame').style.transform = 'scale(' + newScale + ',' +  newScale + ')';
-}
-
-function getElement(id){ return document.getElementById(id); }
-
-function showCrawl(){
-  if (CONFIG.crawl.length > 0){
-    getElement('crawler-container').classList.add("shown");
-    setTimeout(startCrawl, 400);
   }
+  else {
+    alert("Please select a location type");
+    console.error("Unknown what to use for location")
+    return;
+  }
+  
+
+  fetch(`https://api.weather.com/v3/location/point?${location}&language=${CONFIG.language}&format=json&apiKey=${CONFIG.secrets.twcAPIKey}`)
+      .then(function (response) {
+          if (response.status == 404) {
+              alert("Location not found!")
+              console.log('conditions request error');
+              return;
+          }
+          if (response.status !== 200) {
+              alert("Something went wrong (check the console)")
+              console.log('conditions request error');
+              return;
+          }
+      response.json().then(function(data) {
+        try {
+          // which LOCALE?!
+          //Not sure about the acuracy of this. Remove this if necessary
+          if(CONFIG.locationMode=="AIRPORT"){
+            cityName = data.location.airportName
+            .toUpperCase() //Airport names are long
+            .replace("INTERNATIONAL","INTL.") //If a city name is too long, info bar breaks
+            .replace("AIRPORT","") //This is an attempt to fix it
+            .trim();
+            console.log(cityName);
+          } else {
+            //Shouldn't City Name be the field City Name, not Display Name?
+            cityName = data.location.city.toUpperCase();
+          }
+          latitude = data.location.latitude;
+          longitude = data.location.longitude;
+        } catch (err) {
+          alert('Enter valid ZIP code');
+          console.error(err)
+          getZipCodeFromUser();
+          return;
+        }
+        fetch(`https://api.weather.com/v1/geocode/${latitude}/${longitude}/observations/current.json?language=${CONFIG.language}&units=${CONFIG.units}&apiKey=${CONFIG.secrets.twcAPIKey}`)
+          .then(function(response) {
+            if (response.status !== 200) {
+              console.log("conditions request error");
+              return;
+            }
+            response.json().then(function(data) {
+              // cityName is set in the above fetch call and not this one
+              let unit = data.observation[CONFIG.unitField];
+              currentTemperature = Math.round(unit.temp);
+              currentCondition = data.observation.phrase_32char;
+              windSpeed = `${data.observation.wdir_cardinal} ${unit.wspd} ${CONFIG.units === 'm' ? 'km/h' : 'mph'}`;
+              gusts = unit.gust || 'NONE';
+              feelsLike = unit.feels_like
+              visibility = Math.round(unit.vis)
+              humidity = unit.rh
+              dewPoint = unit.dewpt
+              pressure = unit.altimeter.toPrecision(4);
+              let ptendCode = data.observation.ptend_code
+              pressureTrend = (ptendCode == 1 || ptendCode == 3) ? '▲' : ptendCode == 0 ? '' : '▼'; // if ptendCode == 1 or 3 (rising/rising rapidly) up arrow else its steady then nothing else (falling (rapidly)) down arrow
+              currentIcon = data.observation.icon_code
+              fetchAlerts();
+            });
+          });
+      })
+    });
+
+
 }
 
-function hideCrawl(){ getElement('crawler-container').classList.add("hidden"); }
-function startCrawl(){ calculateCrawlSpeed(); getElement('crawl-text').classList.add('animate'); }
+function fetchRadarImages(){
+  radarImage = document.createElement("iframe");
+  radarImage.onerror = function () {
+    getElement('radar-container').style.display = 'none';
+  }
 
-function calculateCrawlSpeed() {
-  var crawlTextElement = getElement('crawl-text');
-  var elementLength = crawlTextElement.innerHTML.length;
-  var timeTaken = (elementLength < (crawlScreenTime*crawlSpeedCasual) - crawlSpace) ? (elementLength + crawlSpace) / crawlSpeedCasual : (elementLength > (crawlScreenTime*crawlSpeedFast)) ? elementLength / crawlSpeedFast : crawlScreenTime;
-  crawlTextElement.style.animationDuration = timeTaken + "s";
-}
+  mapSettings = btoa(JSON.stringify({
+    "agenda": {
+      "id": "weather",
+      "center": [longitude, latitude],
+      "location": null,
+      "zoom": 8
+    },
+    "animating": true,
+    "base": "standard",
+    "artcc": false,
+    "county": false,
+    "cwa": false,
+    "rfc": false,
+    "state": false,
+    "menu": false,
+    "shortFusedOnly": false,
+    "opacity": {
+      "alerts": 0.0,
+      "local": 0.0,
+      "localStations": 0.0,
+      "national": 0.6
+    }
+  }));
+  radarImage.setAttribute("src", "https://radar.weather.gov/?settings=v1_" + mapSettings);
+  radarImage.style.width = "1230px"
+  radarImage.style.height = "740px"
+  radarImage.style.marginTop = "-220px"
+  radarImage.style.overflow = "hidden"
+  
+  if(alertsActive){
+    zoomedRadarImage = new Image();
+    zoomedRadarImage.onerror = function () {
+      getElement('zoomed-radar-container').style.display = 'none';
+    }
 
-function alert(message){
-  getElement('alert-message').innerHTML = message;
-  getElement('alert-message').classList.add('shown');
-  setTimeout(() => getElement('alert-message').classList.remove('shown'), 2000);
+    zoomedRadarImage = document.createElement("iframe");
+    zoomedRadarImage.onerror = function () {
+      getElement('zoomed-radar-container').style.display = 'none';
+    }
+  
+    mapSettings = btoa(JSON.stringify({
+      "agenda": {
+        "id": "weather",
+        "center": [longitude, latitude],
+        "location": null,
+        "zoom": 10
+      },
+      "animating": true,
+      "base": "standard",
+      "artcc": false,
+      "county": false,
+      "cwa": false,
+      "rfc": false,
+      "state": false,
+      "menu": false,
+      "shortFusedOnly": false,
+      "opacity": {
+        "alerts": 0.0,
+        "local": 0.0,
+        "localStations": 0.0,
+        "national": 0.6
+      }
+    }));
+    zoomedRadarImage.setAttribute("src", "https://radar.weather.gov/?settings=v1_" + mapSettings);
+    zoomedRadarImage.style.width = "1230px"
+    zoomedRadarImage.style.height = "740px"
+    zoomedRadarImage.style.marginTop = "-220px"
+    zoomedRadarImage.style.overflow = "hidden"
+  }
+
+  scheduleTimeline();
 }
