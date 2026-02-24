@@ -3,6 +3,7 @@ const MORNING = [{name: "Now", subpages: [{name: "current-page", duration: 18000
 const NIGHT = [{name: "Now", subpages: [{name: "current-page", duration: 18000}, {name: "radar-page", duration: 18000}]},{name: "Tonight", subpages: [{name: "tonight-page", duration: 18000}]},{name: "Beyond", subpages: [{name: "tomorrow-page", duration: 18000}, {name: "tomorrow-night-page", duration: 18000}, {name: "7day-page", duration: 18000}]},]
 const SINGLE = [{name: "Alert", subpages: [{name: "single-alert-page", duration: 18000}]},{name: "Now", subpages: [{name: "current-page", duration: 18000}, {name: "radar-page", duration: 18000}, {name: "zoomed-radar-page", duration: 18000}]},{name: "Tonight", subpages: [{name: "tonight-page", duration: 18000}]},{name: "Beyond", subpages: [{name: "tomorrow-page", duration: 18000}, {name: "7day-page", duration: 18000}]},]
 const MULTIPLE = [{name: "Alerts", subpages: [{name: "multiple-alerts-page", duration: 18000}]},{name: "Now", subpages: [{name: "current-page", duration: 18000}, {name: "radar-page", duration: 18000}, {name: "zoomed-radar-page", duration: 18000}]},{name: "Tonight", subpages: [{name: "tonight-page", duration: 18000}]},{name: "Beyond", subpages: [{name: "tomorrow-page", duration: 18000}, {name: "7day-page", duration: 18000}]},]
+const WEEKDAY = ["SUN",  "MON", "TUES", "WED", "THU", "FRI", "SAT"];
 
 const jingle = new Audio("assets/music/jingle.wav")
 const crawlSpeedCasual = 10; 
@@ -26,14 +27,11 @@ window.onload = function () {
   setMainBackground();
   resizeWindow();
   setClockTime();
-  
-  // LOOP LOGIC
   if (!CONFIG.loop) {
     getElement("settings-container").style.display = 'block';
-    if(typeof guessZipCode === 'function') guessZipCode();
+    guessZipCode();
   } else {
     if (typeof weather !== 'undefined') weather.load();
-    else scheduleTimeline(); 
   }
 }
 
@@ -43,29 +41,48 @@ function preLoadMusic(){
 }
 
 function scheduleTimeline(){
-  if(typeof alerts !== 'undefined' && alerts.length == 1) pageOrder = SINGLE;
-  else if(typeof alerts !== 'undefined' && alerts.length > 1) pageOrder = MULTIPLE;
+  if(alerts.length == 1) pageOrder = SINGLE;
+  else if(alerts.length > 1) pageOrder = MULTIPLE;
   else if(isDay) pageOrder = MORNING;
   else pageOrder = NIGHT;
   setInformation();
 }
 
+function revealTimeline(){
+  getElement('timeline-event-container').classList.add('shown');
+  getElement('progressbar-container').classList.add('shown');
+  getElement('logo-stack').classList.add('shown');
+  var timelineElements = document.querySelectorAll(".timeline-item");
+  for (var i = 0; i < timelineElements.length; i++) {
+    timelineElements[i].style.top = '0px';
+  }
+}
+
 function setInformation(){
-  if(typeof setGreetingPage === 'function') setGreetingPage();
-  if(typeof checkStormMusic === 'function') checkStormMusic();
-  if(typeof setAlertPage === 'function') setAlertPage();
-  if(typeof setForecast === 'function') setForecast();
-  if(typeof setOutlook === 'function') setOutlook();
-  if(typeof createLogoElements === 'function') createLogoElements();
-  if(typeof setCurrentConditions === 'function') setCurrentConditions();
-  if(typeof setTimelineEvents === 'function') setTimelineEvents();
-  
+  setGreetingPage();
+  checkStormMusic();
+  setAlertPage();
+  setForecast();
+  setOutlook();
+  createLogoElements();
+  setCurrentConditions();
+  setTimelineEvents();
   hideSettings();
   setTimeout(startAnimation, 1000);
 }
 
+function setMainBackground(){
+  getElement('background-image').style.backgroundImage = 'url(https://picsum.photos/1920/1080/?random';
+}
+
+function checkStormMusic(){
+  if(currentCondition.toLowerCase().includes("storm")){
+    music= new Audio("assets/music/storm.wav");
+  }
+}
+
 function startAnimation(){
-  if(typeof setInitialPositionCurrentPage === 'function') setInitialPositionCurrentPage();
+  setInitialPositionCurrentPage();
   jingle.play();
   setTimeout(startMusic, 5000)
   executeGreetingPage();
@@ -73,7 +90,13 @@ function startAnimation(){
 
 function startMusic(){ music.play(); }
 
+function hideSettings(){
+  getElement('settings-prompt').classList.add('hide');
+  getElement('settings-container').style.pointerEvents = 'none';
+}
+
 function executeGreetingPage(){
+  getElement('background-image').classList.remove("below-screen");
   getElement('content-container').classList.add('shown');
   getElement('infobar-twc-logo').classList.add('shown');
   getElement('hello-text').classList.add('shown');
@@ -85,12 +108,14 @@ function executeGreetingPage(){
 
 function clearGreetingPage(){
   getElement('greeting-text').classList.remove('shown');
+  getElement('local-logo-container').classList.remove('shown');
+  getElement('greeting-text').classList.add('hidden');
   getElement('hello-text-container').classList.add('hidden');
   getElement("hello-location-container").classList.add("hidden");
-  
+  getElement("local-logo-container").classList.add("hidden");
   schedulePages();
   loadInfoBar();
-  if(typeof revealTimeline === 'function') revealTimeline();
+  revealTimeline();
   setTimeout(showCrawl, 3000);
 }
 
@@ -111,57 +136,82 @@ function executePage(pageIndex, subPageIndex){
   var currentPage = pageOrder[pageIndex];
   var currentSubPageName = currentPage.subpages[subPageIndex].name;
   var currentSubPageElement = getElement(currentSubPageName);
-
-  if(!currentSubPageElement) return;
-
-  // SMOOTH ROLL IN (using transform for better performance)
-  currentSubPageElement.style.visibility = 'visible';
-  currentSubPageElement.style.transition = 'none';
-  currentSubPageElement.style.transform = 'translateY(1080px)';
-  currentSubPageElement.style.opacity = '1';
-  void currentSubPageElement.offsetWidth; 
-
-  currentSubPageElement.style.transition = 'transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
-  currentSubPageElement.style.transform = 'translateY(0px)';
+  var currentSubPageDuration = currentPage.subpages[subPageIndex].duration;
 
   if(subPageIndex === 0){
-      var pageTime = 0;
-      currentPage.subpages.forEach(sp => pageTime += sp.duration);
-      var pb = getElement('progressbar');
-      if(pb) {
-        pb.style.transitionDuration = pageTime + "ms";
-        pb.classList.add('progress');
-      }
+    var pageTime = 0;
+    for (var i = 0; i < currentPage.subpages.length; i++) {
+      pageTime += currentPage.subpages[i].duration;
+    }
+      getElement('progressbar').style.transitionDuration = pageTime + "ms";
+      getElement('progressbar').classList.add('progress');
+      getElement('timeline-event-container').style.left = (-280*pageIndex).toString() + "px";
+      getElement('progress-stack').style.left = (-280*pageIndex).toString() + "px";
   }
+
+  if(currentLogo != getPageLogoFileName(currentSubPageName)){
+    getElement('logo-stack').style.left = ((-85*currentLogoIndex)-(20*currentLogoIndex)).toString() + "px";
+    currentLogo = getPageLogoFileName(currentSubPageName);
+    currentLogoIndex++;
+  }
+
+  // VERTICAL ROLL IN
+  currentSubPageElement.style.transition = 'top 0.8s cubic-bezier(0.17, 0.67, 0.83, 0.67)';
+  currentSubPageElement.style.top = '0px';
+  currentSubPageElement.style.left = '0px';
 
   if(currentSubPageName == "current-page"){
     setTimeout(loadCC, 1000);
-    if(typeof currentTemperature !== 'undefined') animateValue('cc-temperature-text', -20, currentTemperature, 2500, 1);
+    setTimeout(scrollCC, currentSubPageDuration / 2);
+    animateValue('cc-temperature-text', -20, currentTemperature, 2500, 1);
+    animateDialFill('cc-dial-color', currentTemperature, 2500);
   }
-  else if(currentSubPageName == 'radar-page' && typeof startRadar === 'function') startRadar();
+  else if(currentSubPageName == 'radar-page') startRadar();
 }
 
 function clearPage(pageIndex, subPageIndex){
   var currentSubPageElement = getElement(pageOrder[pageIndex].subpages[subPageIndex].name);
-  var isLastPage = (pageIndex >= pageOrder.length - 1) && (subPageIndex >= pageOrder[pageIndex].subpages.length - 1);
+  var isLastPage = pageIndex >= pageOrder.length-1 && subPageIndex >= pageOrder[pageOrder.length-1].subpages.length-1;
 
-  if(!currentSubPageElement) return;
-
-  // SMOOTH ROLL OUT
-  currentSubPageElement.style.transition = 'transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
-  currentSubPageElement.style.transform = 'translateY(-1080px)';
-  
-  if(isLastPage) {
-      setTimeout(() => {
-          getElement("content-container").classList.add("expand");
-          setTimeout(() => location.reload(), 2000);
-      }, 800);
+  if(isLastPage) endSequence();
+  else {
+    // VERTICAL ROLL OUT
+    currentSubPageElement.style.transition = 'top 0.8s cubic-bezier(0.17, 0.67, 0.83, 0.67)';
+    currentSubPageElement.style.top = '-1080px';
   }
 }
+
+function resetProgressBar(){
+  getElement('progressbar').style.transitionDuration = '0ms';
+  getElement('progressbar').classList.remove('progress');
+  void getElement('progressbar').offsetWidth;
+}
+
+function startRadar(){ getElement('radar-container').appendChild(radarImage); }
 
 function loadCC(){
   var ccElements = document.querySelectorAll(".cc-vertical-group");
   for (var i = 0; i < ccElements.length; i++) { ccElements[i].style.top = '0px'; }
+}
+
+function scrollCC(){
+  var ccElements = document.querySelectorAll(".cc-vertical-group");
+  for (var i = 0; i < ccElements.length; i++) { ccElements[i].style.top = '-80px'; }
+  var pressureArray = pressure.toString().split('.');
+  animateValue("cc-visibility", 0, visibility, 800, 1);
+  animateValue("cc-humidity", 0, humidity, 1000, 1);
+  animateValue("cc-dewpoint", 0, dewPoint, 1200, 1);
+}
+
+function endSequence(){ 
+  getElement("infobar-twc-logo").classList.add("hidden");
+  getElement("infobar-local-logo").classList.add("hidden");
+  getElement("infobar-location-container").classList.add("hidden");
+  getElement("infobar-time-container").classList.add("hidden");
+  setTimeout(() => {
+    getElement("content-container").classList.add("expand");
+    setTimeout(() => location.reload(), 2000);
+  }, 200);
 }
 
 function loadInfoBar(){
@@ -176,8 +226,7 @@ function setClockTime(){
   var m = currentTime.getMinutes();
   if(h == 0) h = 12; else if(h > 12) h = h - 12;
   if(m < 10) m = "0" + m;
-  var el = getElement("infobar-time-text");
-  if(el) el.innerHTML = h + ":" + m;
+  getElement("infobar-time-text").innerHTML = h + ":" + m;
   setTimeout(setClockTime, 5000);
 }
 
@@ -187,7 +236,7 @@ function animateValue(id, start, end, duration, pad) {
   var range = end - start;
   var current = start;
   var increment = end > start? 1 : -1;
-  var stepTime = Math.abs(Math.floor(duration / (range || 1))) || 20;
+  var stepTime = Math.abs(Math.floor(duration / (range || 1)));
   var timer = setInterval(function() {
       current += increment;
       obj.innerHTML = current.pad(pad);
@@ -196,10 +245,6 @@ function animateValue(id, start, end, duration, pad) {
 }
 
 function getElement(id){ return document.getElementById(id); }
-function hideSettings(){ 
-  getElement('settings-prompt').classList.add('hide');
-  getElement('settings-container').style.pointerEvents = 'none';
-}
 
 Number.prototype.pad = function(size) {
     var s = String(this);
@@ -212,6 +257,5 @@ function resizeWindow(){
   var ww = window.innerWidth;
   var wh = window.innerHeight;
   var newScale = (ww/wh < 1920/1080) ? ww / 1920 : wh / 1080;
-  var el = getElement('render-frame');
-  if(el) el.style.transform = 'scale(' + newScale + ',' +  newScale + ')';
+  getElement('render-frame').style.transform = 'scale(' + newScale + ',' +  newScale + ')';
 }
