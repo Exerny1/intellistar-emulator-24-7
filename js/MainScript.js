@@ -157,8 +157,8 @@ function executePage(pageIndex, subPageIndex){
   currentSubPageElement.style.opacity = '1';
   void currentSubPageElement.offsetWidth; 
 
-  // FASTER TRANSITION (0.8s)
-  currentSubPageElement.style.transition = 'top 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+  // CHANGED TO 1.2s FOR SMOOTHER/SLOWER SLIDE
+  currentSubPageElement.style.transition = 'top 1.2s cubic-bezier(0.4, 0, 0.2, 1)';
   currentSubPageElement.style.top = '0px';
 
   if(subPageIndex === 0){
@@ -198,8 +198,8 @@ function clearPage(pageIndex, subPageIndex){
 
   if((currentPage.subpages.length - 1) == subPageIndex && !isLastPage) resetProgressBar();
 
-  // FASTER TRANSITION (0.8s)
-  currentSubPageElement.style.transition = 'top 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.8s ease-in';
+  // CHANGED TO 1.2s FOR SMOOTHER/SLOWER SLIDE
+  currentSubPageElement.style.transition = 'top 1.2s cubic-bezier(0.4, 0, 0.2, 1), opacity 1.2s ease-in';
   currentSubPageElement.style.top = '-1080px';
   
   if(isLastPage) {
@@ -208,7 +208,7 @@ function clearPage(pageIndex, subPageIndex){
   } else {
     setTimeout(() => { 
         if(currentSubPageElement.style.top === '-1080px') currentSubPageElement.style.visibility = 'hidden'; 
-    }, 900);
+    }, 1300); // Buffer for the 1.2s transition
   }
 }
 
