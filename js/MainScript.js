@@ -168,11 +168,10 @@ function executePage(pageIndex, subPageIndex){
     currentLogoIndex++;
   }
 
-  // --- START SNAPPY ROLL ---
-  currentSubPageElement.style.transition = 'top 0.5s cubic-bezier(0.17, 0.67, 0.83, 0.67)';
+  // --- SLOW & SMOOTH ROLL IN (1.5s) ---
+  currentSubPageElement.style.transition = 'top 1.5s cubic-bezier(0.4, 0, 0.2, 1)';
   currentSubPageElement.style.top = '0px';
   currentSubPageElement.style.left = '0px';
-  // --- END SNAPPY ROLL ---
 
   var isLastPage = pageIndex >= pageOrder.length-1 && subPageIndex >= pageOrder[pageOrder.length-1].subpages.length-1;
   if(isLastPage) setTimeout(hideCrawl, 2000);
@@ -197,8 +196,8 @@ function clearPage(pageIndex, subPageIndex){
 
   if(isLastPage) endSequence();
   else {
-    // SNAPPY EXIT TO TOP
-    currentSubPageElement.style.transition = 'top 0.5s cubic-bezier(0.17, 0.67, 0.83, 0.67)';
+    // --- SLOW & SMOOTH EXIT TO TOP (1.5s) ---
+    currentSubPageElement.style.transition = 'top 1.5s cubic-bezier(0.4, 0, 0.2, 1)';
     currentSubPageElement.style.top = '-1080px';
   }
 }
