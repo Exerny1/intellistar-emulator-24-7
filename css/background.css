@@ -15,7 +15,7 @@
   overflow: hidden; 
 }
 
-/* THE OVERLAY: Solid bars with a radial highlight in the bottom-left */
+/* THE OVERLAY: Sampling the exact dark navy/grey palette */
 #background-image::after {
   content: "";
   position: absolute;
@@ -27,28 +27,28 @@
   
   background: linear-gradient(
     to bottom,
-    /* TOP BAR: Solid dark bar */
-    #1a222c 0%, 
-    #1a222c 6.5%,    
+    /* TOP BAR: Exact muted dark navy */
+    #161c24 0%, 
+    #161c24 6.5%,    
     
-    /* MIDDLE SCREEN TINT */
-    rgba(10, 42, 90, 0.75) 6.5%, 
-    rgba(30, 74, 138, 0.55) 50%, 
-    rgba(10, 42, 90, 0.75) 83%,  
+    /* MIDDLE SCREEN TINT: Muted to let the photo through */
+    rgba(12, 22, 38, 0.7) 6.5%, 
+    rgba(12, 22, 38, 0.4) 50%, 
+    rgba(12, 22, 38, 0.7) 83%,  
     
-    /* BOTTOM BAR: Starts at 83% with the radial spotlight effect */
+    /* BOTTOM BAR: Using a diagonal transition for the highlight */
     transparent 83%,
     transparent 110%
   ),
-  /* SECONDARY LAYER: The "Spotlight" bar for the bottom area */
-  radial-gradient(
-    circle at 15% 92%, 
-    rgba(80, 100, 120, 0.95) 0%,   /* Brightest Spot (Steel Grey) */
-    #1a222c 40%,                   /* Fades back to original bar color */
-    #1a222c 100%
+  /* THE SPOTLIGHT: Exact color sampling from your provided image */
+  linear-gradient(
+    115deg, 
+    #212b36 0%,    /* The subtle grey-blue highlight in the circled area */
+    #0f141a 45%,   /* Deepening quickly */
+    #0a0e12 100%   /* The deep black-blue at the far right */
   );
   
-  /* Restrict the spotlight layer so it only appears where the bottom bar is */
+  /* Restrict this spotlight only to the bottom bar area (83% down) */
   -webkit-mask-image: linear-gradient(to bottom, transparent 83%, black 83%);
   mask-image: linear-gradient(to bottom, transparent 83%, black 83%);
   
