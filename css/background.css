@@ -15,7 +15,7 @@
   overflow: hidden; 
 }
 
-/* THE OVERLAY: Bars with Radial Highlights */
+/* THE OVERLAY: Solid bars with a radial highlight in the bottom-left */
 #background-image::after {
   content: "";
   position: absolute;
@@ -27,34 +27,31 @@
   
   background: linear-gradient(
     to bottom,
-    /* TOP BAR: Darker variant of the base color */
-    #121a24 0%, 
-    #121a24 6.5%,
+    /* TOP BAR: Solid dark bar */
+    #1a222c 0%, 
+    #1a222c 6.5%,    
     
-    /* MIDDLE SCREEN: Subtle blue tint to blend with background */
-    rgba(10, 42, 90, 0.6) 6.5%, 
-    rgba(10, 42, 90, 0.4) 50%, 
-    rgba(10, 42, 90, 0.6) 83%,
+    /* MIDDLE SCREEN TINT */
+    rgba(10, 42, 90, 0.75) 6.5%, 
+    rgba(30, 74, 138, 0.55) 50%, 
+    rgba(10, 42, 90, 0.75) 83%,  
     
-    /* BOTTOM BAR: Brightest in the circled area (bottom-left) */
-    /* This radial-gradient creates the "spotlight" effect on the bar */
-    radial-gradient(circle at 15% 90%, #2c3e50 0%, #0d141a 70%) 83%,
-    #0d141a 110%
+    /* BOTTOM BAR: Starts at 83% with the radial spotlight effect */
+    transparent 83%,
+    transparent 110%
+  ),
+  /* SECONDARY LAYER: The "Spotlight" bar for the bottom area */
+  radial-gradient(
+    circle at 15% 92%, 
+    rgba(80, 100, 120, 0.95) 0%,   /* Brightest Spot (Steel Grey) */
+    #1a222c 40%,                   /* Fades back to original bar color */
+    #1a222c 100%
   );
-  pointer-events: none;
-}
-
-/* Fallback for engines that don't like nested gradients: 
-   Applying the spotlight specifically to the bottom bar area */
-#background-image::before {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 17%; /* Matches the 83% - 100% gap */
-  z-index: 2;
-  background: radial-gradient(circle at 10% 40%, rgba(77, 105, 135, 0.8) 0%, rgba(13, 20, 26, 0.95) 60%);
+  
+  /* Restrict the spotlight layer so it only appears where the bottom bar is */
+  -webkit-mask-image: linear-gradient(to bottom, transparent 83%, black 83%);
+  mask-image: linear-gradient(to bottom, transparent 83%, black 83%);
+  
   pointer-events: none;
 }
 
