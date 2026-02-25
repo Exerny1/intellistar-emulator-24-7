@@ -15,7 +15,7 @@
   overflow: hidden; 
 }
 
-/* THE OVERLAY: Trimmed bottom bar for perfect spacing */
+/* THE OVERLAY: Gradient Bars for a Glassy Look */
 #background-image::after {
   content: "";
   position: absolute;
@@ -27,15 +27,21 @@
   
   background: linear-gradient(
     to bottom,
-    #1a222c 0%, 
-    #1a222c 6.5%,    /* TOP BAR: Sleek header */
+    /* TOP BAR GRADIENT */
+    #101820 0%, 
+    #2a3a4a 3.25%,   /* Glossy highlight in center of top bar */
+    #101820 6.5%, 
     
-    rgba(10, 42, 90, 0.75) 6.5%, 
-    rgba(30, 74, 138, 0.55) 50%, 
-    rgba(10, 42, 90, 0.75) 83%,  /* BLUE TINT END: Adjusted for the trim */
+    /* MIDDLE SCREEN TINT */
+    rgba(10, 42, 90, 0.70) 6.5%, 
+    rgba(30, 74, 138, 0.45) 50%, 
+    rgba(10, 42, 90, 0.70) 83%,
     
-    #1a222c 83%,     /* BOTTOM BAR TOP: Trimmed from 82% to 83% for a tiny sliver of room */
-    #1a222c 110%     /* BOTTOM BAR BOTTOM: Deep bleed remains for gap sealing */
+    /* BOTTOM BAR GRADIENT (The "Picture" Look) */
+    #0d141a 83%,     /* Dark edge */
+    #2c3e50 89%,     /* Light sheen across the crawl area */
+    #0d141a 95%,     /* Fades back to deep dark */
+    #080c10 110%     /* Deep bleed for gap sealing */
   );
   pointer-events: none;
 }
