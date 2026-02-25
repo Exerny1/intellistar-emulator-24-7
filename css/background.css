@@ -15,7 +15,7 @@
   overflow: hidden; 
 }
 
-/* THE OVERLAY: Preserves background while adding the exact image-style bars */
+/* THE OVERLAY: Solid bars with an enhanced left-side gradient */
 #background-image::after {
   content: "";
   position: absolute;
@@ -25,26 +25,26 @@
   height: 110%; 
   z-index: 1;
   
-  /* Combined Gradient: Top Bar, Middle Transparency, and Bottom Bar with Highlight */
   background: linear-gradient(
     to bottom,
-    /* TOP BAR: Exact muted dark navy from image */
+    /* TOP BAR: Exact muted dark navy */
     #161c24 0%, 
     #161c24 6.5%,    
     
-    /* MIDDLE: Fully transparent to show your background image */
+    /* MIDDLE: Transparent to preserve your background image */
     transparent 6.5%, 
     transparent 83%,  
     
-    /* BOTTOM BAR: The gradient starts here */
+    /* BOTTOM BAR BASE: The dark navy foundation */
     #0f141a 83%,
     #0f141a 110%
   ),
-  /* THE HIGHLIGHT: Layered specifically for the bottom-left area */
+  /* THE HIGHLIGHT: Tweak for higher brightness on the left side */
   radial-gradient(
-    circle at 10% 92%, 
-    rgba(33, 43, 54, 0.9) 0%,   /* The exact grey-blue highlight color */
-    transparent 40%             /* Fades out so it doesn't cover the whole bar */
+    circle at 5% 92%, 
+    rgba(55, 75, 95, 0.95) 0%,   /* Brightened and shifted further left */
+    rgba(33, 43, 54, 0.6) 35%,   /* Mid-tone transition */
+    transparent 65%              /* Smooth fade across the bar */
   );
   
   pointer-events: none;
