@@ -15,33 +15,23 @@
   overflow: hidden; 
 }
 
-/* THE OVERLAY: Gradient Bars for a Glassy Look */
+/* THE OVERLAY: Diagonal Right-to-Left Gradient */
 #background-image::after {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 110%; 
+  height: 100%; 
   z-index: 1;
   
+  /* 225deg puts the starting point (Grey) in the Top-Right corner */
   background: linear-gradient(
-    to bottom,
-    /* TOP BAR GRADIENT */
-    #101820 0%, 
-    #2a3a4a 3.25%,   /* Glossy highlight in center of top bar */
-    #101820 6.5%, 
-    
-    /* MIDDLE SCREEN TINT */
-    rgba(10, 42, 90, 0.70) 6.5%, 
-    rgba(30, 74, 138, 0.45) 50%, 
-    rgba(10, 42, 90, 0.70) 83%,
-    
-    /* BOTTOM BAR GRADIENT (The "Picture" Look) */
-    #0d141a 83%,     /* Dark edge */
-    #2c3e50 89%,     /* Light sheen across the crawl area */
-    #0d141a 95%,     /* Fades back to deep dark */
-    #080c10 110%     /* Deep bleed for gap sealing */
+    225deg, 
+    rgba(80, 100, 120, 0.9) 0%,   /* Top-Right: Lighter Steel Grey */
+    rgba(30, 50, 80, 0.7) 35%,    /* Mid-Top: Fading into Blue */
+    rgba(10, 20, 40, 0.85) 70%,   /* Mid-Bottom: Deep Navy */
+    rgba(5, 10, 20, 1) 100%       /* Bottom-Left: Pure Dark */
   );
   pointer-events: none;
 }
