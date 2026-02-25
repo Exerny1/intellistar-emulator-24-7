@@ -157,7 +157,6 @@ function executePage(pageIndex, subPageIndex){
   currentSubPageElement.style.opacity = '1';
   void currentSubPageElement.offsetWidth; 
 
-  // CHANGED TO 1.2s FOR SMOOTHER/SLOWER SLIDE
   currentSubPageElement.style.transition = 'top 1.2s cubic-bezier(0.4, 0, 0.2, 1)';
   currentSubPageElement.style.top = '0px';
 
@@ -198,7 +197,6 @@ function clearPage(pageIndex, subPageIndex){
 
   if((currentPage.subpages.length - 1) == subPageIndex && !isLastPage) resetProgressBar();
 
-  // CHANGED TO 1.2s FOR SMOOTHER/SLOWER SLIDE
   currentSubPageElement.style.transition = 'top 1.2s cubic-bezier(0.4, 0, 0.2, 1), opacity 1.2s ease-in';
   currentSubPageElement.style.top = '-1080px';
   
@@ -208,7 +206,7 @@ function clearPage(pageIndex, subPageIndex){
   } else {
     setTimeout(() => { 
         if(currentSubPageElement.style.top === '-1080px') currentSubPageElement.style.visibility = 'hidden'; 
-    }, 1300); // Buffer for the 1.2s transition
+    }, 1300);
   }
 }
 
@@ -267,6 +265,10 @@ function clearEnd(){
 function silentRestart(){
   var id = window.setTimeout(function() {}, 0);
   while (id--) { window.clearTimeout(id); }
+  
+  // RESTORE THE CLOCK HEARTBEAT
+  setClockTime();
+  
   currentLogoIndex = 0;
   currentLogo = undefined;
   
