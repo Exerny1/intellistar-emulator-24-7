@@ -15,7 +15,7 @@
   overflow: hidden; 
 }
 
-/* THE OVERLAY: Sampling the exact dark navy/grey palette */
+/* THE OVERLAY: Preserves background while adding the exact image-style bars */
 #background-image::after {
   content: "";
   position: absolute;
@@ -25,32 +25,27 @@
   height: 110%; 
   z-index: 1;
   
+  /* Combined Gradient: Top Bar, Middle Transparency, and Bottom Bar with Highlight */
   background: linear-gradient(
     to bottom,
-    /* TOP BAR: Exact muted dark navy */
+    /* TOP BAR: Exact muted dark navy from image */
     #161c24 0%, 
     #161c24 6.5%,    
     
-    /* MIDDLE SCREEN TINT: Muted to let the photo through */
-    rgba(12, 22, 38, 0.7) 6.5%, 
-    rgba(12, 22, 38, 0.4) 50%, 
-    rgba(12, 22, 38, 0.7) 83%,  
+    /* MIDDLE: Fully transparent to show your background image */
+    transparent 6.5%, 
+    transparent 83%,  
     
-    /* BOTTOM BAR: Using a diagonal transition for the highlight */
-    transparent 83%,
-    transparent 110%
+    /* BOTTOM BAR: The gradient starts here */
+    #0f141a 83%,
+    #0f141a 110%
   ),
-  /* THE SPOTLIGHT: Exact color sampling from your provided image */
-  linear-gradient(
-    115deg, 
-    #212b36 0%,    /* The subtle grey-blue highlight in the circled area */
-    #0f141a 45%,   /* Deepening quickly */
-    #0a0e12 100%   /* The deep black-blue at the far right */
+  /* THE HIGHLIGHT: Layered specifically for the bottom-left area */
+  radial-gradient(
+    circle at 10% 92%, 
+    rgba(33, 43, 54, 0.9) 0%,   /* The exact grey-blue highlight color */
+    transparent 40%             /* Fades out so it doesn't cover the whole bar */
   );
-  
-  /* Restrict this spotlight only to the bottom bar area (83% down) */
-  -webkit-mask-image: linear-gradient(to bottom, transparent 83%, black 83%);
-  mask-image: linear-gradient(to bottom, transparent 83%, black 83%);
   
   pointer-events: none;
 }
