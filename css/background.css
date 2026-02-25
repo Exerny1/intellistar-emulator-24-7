@@ -39,14 +39,7 @@
     #0f141a 83%,
     #0f141a 110%
   ),
-  /* THE HIGHLIGHT: Tweak for higher brightness on the left side */
-  radial-gradient(
-    circle at 5% 92%, 
-    rgba(55, 75, 95, 0.95) 0%,   /* Brightened and shifted further left */
-    rgba(33, 43, 54, 0.6) 35%,   /* Mid-tone transition */
-    transparent 65%              /* Smooth fade across the bar */
-  );
-  
+
   pointer-events: none;
 }
 
