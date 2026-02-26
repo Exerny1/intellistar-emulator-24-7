@@ -15,7 +15,7 @@
   overflow: hidden; 
 }
 
-/* THE OVERLAY: Solid dark bars, original sizing, 100% clear middle */
+/* THE OVERLAY: Solid bars, raised bottom for better coverage */
 #background-image::after {
   content: "";
   position: absolute;
@@ -25,16 +25,16 @@
   height: 110%; 
   z-index: 1;
   
-  /* Vertical stack: Top bar, Transparent middle, Bottom bar */
+  /* Vertical stack: Top bar, Transparent middle, Raised bottom bar */
   background: linear-gradient(
     to bottom,
     #161c24 0%, 
     #161c24 6.5%,    /* SOLID TOP BAR */
     
     transparent 6.5%, 
-    transparent 83%, /* PERFECTLY CLEAR MIDDLE */
+    transparent 81.5%, /* MIDDLE AREA (CLEAN) */
     
-    #161c24 83%,     /* SOLID BOTTOM BAR */
+    #161c24 81.5%,     /* RAISED SOLID BOTTOM BAR */
     #161c24 110%
   );
   
