@@ -15,7 +15,7 @@
   overflow: hidden; 
 }
 
-/* THE OVERLAY: Uses fixed heights to prevent any middle-screen bleed */
+/* THE OVERLAY: Precision bars with zero bleed */
 #background-image::after {
   content: "";
   position: absolute;
@@ -25,16 +25,16 @@
   height: 100%; 
   z-index: 1;
   
-  /* Top Bar Layer */
+  /* Layer 1: The Top Bar (Solid) */
+  /* Layer 2: The Bottom Bar (Gradient starting at Manassas) */
   background-image: 
     linear-gradient(to bottom, #161c24, #161c24), 
-    linear-gradient(to right, #212b36 0%, #0f141a 50%, #0a0e12 100%);
+    linear-gradient(to right, #212b36 5%, #0f141a 40%, #0a0e12 100%);
     
-  /* This tells CSS exactly where to put the bars: one at the top, one at the bottom */
   background-position: top, bottom;
   
-  /* This defines the exact height: 6.5% for top, 17% for bottom (matches your 83% mark) */
-  background-size: 100% 6.5%, 100% 17%;
+  /* Height Fix: Top is 6.5%, Bottom is back to its original slim size (approx 5-6%) */
+  background-size: 100% 6.5%, 100% 6%;
   
   background-repeat: no-repeat;
   pointer-events: none;
