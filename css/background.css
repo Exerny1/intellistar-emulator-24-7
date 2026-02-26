@@ -15,7 +15,7 @@
   overflow: hidden; 
 }
 
-/* THE OVERLAY: Solid bars with an enhanced left-side gradient */
+/* THE OVERLAY: Bars restored with the brightened left-side highlight */
 #background-image::after {
   content: "";
   position: absolute;
@@ -25,21 +25,27 @@
   height: 110%; 
   z-index: 1;
   
-  background: linear-gradient(
-    to bottom,
-    /* TOP BAR: Exact muted dark navy */
-    #161c24 0%, 
-    #161c24 6.5%,    
+  background: 
+    /* LAYER 1: The Highlight (Rendered on top of the bars) */
+    radial-gradient(
+      circle at 5% 92%, 
+      rgba(55, 75, 95, 0.95) 0%,   /* Brightest spot for visibility */
+      rgba(33, 43, 54, 0.6) 35%,   /* Mid-tone transition */
+      transparent 65%              /* Fades out before middle of screen */
+    ),
+    /* LAYER 2: The Main Bars and Transparent Middle */
+    linear-gradient(
+      to bottom,
+      #161c24 0%, 
+      #161c24 6.5%,                /* TOP BAR */
+      
+      transparent 6.5%, 
+      transparent 83%,             /* TRANSPARENT MIDDLE */
+      
+      #0f141a 83%,
+      #0f141a 110%                 /* BOTTOM BAR */
+    );
     
-    /* MIDDLE: Transparent to preserve your background image */
-    transparent 6.5%, 
-    transparent 83%,  
-    
-    /* BOTTOM BAR BASE: The dark navy foundation */
-    #0f141a 83%,
-    #0f141a 110%
-  ),
-
   pointer-events: none;
 }
 
