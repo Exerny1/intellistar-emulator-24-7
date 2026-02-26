@@ -15,29 +15,38 @@
   overflow: hidden; 
 }
 
-/* THE OVERLAY: Locked to top and bottom edges */
+/* THE OVERLAY: Original sizing with corrected horizontal gradient colors */
 #background-image::after {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%; 
+  height: 110%; 
   z-index: 1;
   
-  background-image: 
-    /* TOP BAR: Solid */
-    linear-gradient(to bottom, #161c24, #161c24), 
-    /* BOTTOM BAR: Left-to-Right Gradient */
-    linear-gradient(to right, #212b36 0%, #0f141a 45%, #0a0e12 100%);
-    
-  /* Forces one bar to the very top and one to the very bottom */
-  background-position: top, bottom;
+  /* Vertical stack: Top bar, Transparent middle, Bottom bar area */
+  background: linear-gradient(
+    to bottom,
+    #161c24 0%, 
+    #161c24 6.5%,    /* TOP BAR */
+    transparent 6.5%, 
+    transparent 83%, /* MIDDLE AREA (CLEAN) */
+    transparent 83%,
+    transparent 110%
+  ),
+  /* HORIZONTAL GRADIENT: Only visible in the bottom bar area via the mask */
+  linear-gradient(
+    to right, 
+    #212b36 0%,    /* Brightened left side at Manassas */
+    #0f141a 45%,   /* Deepening */
+    #0a0e12 100%   /* Dark right side */
+  );
+
+  /* This mask restricts the horizontal gradient to ONLY the bottom bar (83% down) */
+  -webkit-mask-image: linear-gradient(to bottom, black 6.5%, transparent 6.5%, transparent 83%, black 83%);
+  mask-image: linear-gradient(to bottom, black 6.5%, transparent 6.5%, transparent 83%, black 83%);
   
-  /* Sizes: Top is 6.5% high, Bottom is 15% high (normal UI size) */
-  background-size: 100% 6.5%, 100% 15%;
-  
-  background-repeat: no-repeat;
   pointer-events: none;
 }
 
