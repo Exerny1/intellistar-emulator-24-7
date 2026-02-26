@@ -15,7 +15,7 @@
   overflow: hidden; 
 }
 
-/* THE OVERLAY: Precision placement to match UI text */
+/* THE OVERLAY: Locked to top and bottom edges */
 #background-image::after {
   content: "";
   position: absolute;
@@ -31,11 +31,11 @@
     /* BOTTOM BAR: Left-to-Right Gradient */
     linear-gradient(to right, #212b36 0%, #0f141a 45%, #0a0e12 100%);
     
-  /* Positions: Top bar at 0, Bottom bar starts exactly at 83% */
-  background-position: 0 0, 0 83%;
+  /* Forces one bar to the very top and one to the very bottom */
+  background-position: top, bottom;
   
-  /* Sizes: Top bar 6.5% height, Bottom bar 17% height (original size) */
-  background-size: 100% 6.5%, 100% 17%;
+  /* Sizes: Top is 6.5% high, Bottom is 15% high (normal UI size) */
+  background-size: 100% 6.5%, 100% 15%;
   
   background-repeat: no-repeat;
   pointer-events: none;
