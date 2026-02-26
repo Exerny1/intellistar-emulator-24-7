@@ -15,7 +15,7 @@
   overflow: hidden; 
 }
 
-/* THE OVERLAY: Precision bars with zero bleed */
+/* THE OVERLAY: Precision placement to match UI text */
 #background-image::after {
   content: "";
   position: absolute;
@@ -25,16 +25,17 @@
   height: 100%; 
   z-index: 1;
   
-  /* Layer 1: The Top Bar (Solid) */
-  /* Layer 2: The Bottom Bar (Gradient starting at Manassas) */
   background-image: 
+    /* TOP BAR: Solid */
     linear-gradient(to bottom, #161c24, #161c24), 
-    linear-gradient(to right, #212b36 5%, #0f141a 40%, #0a0e12 100%);
+    /* BOTTOM BAR: Left-to-Right Gradient */
+    linear-gradient(to right, #212b36 0%, #0f141a 45%, #0a0e12 100%);
     
-  background-position: top, bottom;
+  /* Positions: Top bar at 0, Bottom bar starts exactly at 83% */
+  background-position: 0 0, 0 83%;
   
-  /* Height Fix: Top is 6.5%, Bottom is back to its original slim size (approx 5-6%) */
-  background-size: 100% 6.5%, 100% 6%;
+  /* Sizes: Top bar 6.5% height, Bottom bar 17% height (original size) */
+  background-size: 100% 6.5%, 100% 17%;
   
   background-repeat: no-repeat;
   pointer-events: none;
