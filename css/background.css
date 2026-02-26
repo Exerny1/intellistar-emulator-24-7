@@ -15,33 +15,28 @@
   overflow: hidden; 
 }
 
-/* THE OVERLAY: Solid top bar and a left-to-right gradient bottom bar */
+/* THE OVERLAY: Uses fixed heights to prevent any middle-screen bleed */
 #background-image::after {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 110%; 
+  height: 100%; 
   z-index: 1;
   
-  background: 
-    /* BOTTOM BAR: Linear gradient from left (brighter) to right (darker) */
-    linear-gradient(
-      to right, 
-      #212b36 0%,    /* Brighter navy-grey on the left */
-      #0f141a 50%,   /* Transitioning to deep navy */
-      #0a0e12 100%   /* Darkest on the far right */
-    ) bottom / 100% 17% no-repeat, /* Positions the gradient exactly at the bottom bar (83% to 100%) */
-
-    /* TOP BAR: Solid dark navy */
-    linear-gradient(
-      to bottom,
-      #161c24 0%, 
-      #161c24 6.5%,
-      transparent 6.5%
-    );
-
+  /* Top Bar Layer */
+  background-image: 
+    linear-gradient(to bottom, #161c24, #161c24), 
+    linear-gradient(to right, #212b36 0%, #0f141a 50%, #0a0e12 100%);
+    
+  /* This tells CSS exactly where to put the bars: one at the top, one at the bottom */
+  background-position: top, bottom;
+  
+  /* This defines the exact height: 6.5% for top, 17% for bottom (matches your 83% mark) */
+  background-size: 100% 6.5%, 100% 17%;
+  
+  background-repeat: no-repeat;
   pointer-events: none;
 }
 
