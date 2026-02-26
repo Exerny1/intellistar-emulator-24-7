@@ -15,7 +15,7 @@
   overflow: hidden; 
 }
 
-/* THE OVERLAY: Top and Bottom bars ONLY. No middle tint. */
+/* THE OVERLAY: Solid top bar and a left-to-right gradient bottom bar */
 #background-image::after {
   content: "";
   position: absolute;
@@ -26,26 +26,22 @@
   z-index: 1;
   
   background: 
-    /* THE HIGHLIGHT: Brightened left-side for the bottom bar */
-    radial-gradient(
-      circle at 5% 92%, 
-      rgba(55, 75, 95, 0.95) 0%,   /* Exact muted highlight */
-      rgba(33, 43, 54, 0.6) 35%,   
-      transparent 65%              
-    ),
-    /* THE BARS: Top (0-6.5%) and Bottom (83-110%). Middle is empty. */
+    /* BOTTOM BAR: Linear gradient from left (brighter) to right (darker) */
+    linear-gradient(
+      to right, 
+      #212b36 0%,    /* Brighter navy-grey on the left */
+      #0f141a 50%,   /* Transitioning to deep navy */
+      #0a0e12 100%   /* Darkest on the far right */
+    ) bottom / 100% 17% no-repeat, /* Positions the gradient exactly at the bottom bar (83% to 100%) */
+
+    /* TOP BAR: Solid dark navy */
     linear-gradient(
       to bottom,
       #161c24 0%, 
-      #161c24 6.5%,                /* SOLID TOP BAR */
-      
-      transparent 6.5%,            /* NO TINT IN THE MIDDLE */
-      transparent 83%,             
-      
-      #0f141a 83%,
-      #0f141a 110%                 /* SOLID BOTTOM BAR */
+      #161c24 6.5%,
+      transparent 6.5%
     );
-    
+
   pointer-events: none;
 }
 
