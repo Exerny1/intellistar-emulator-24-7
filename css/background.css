@@ -15,7 +15,7 @@
   overflow: hidden; 
 }
 
-/* THE OVERLAY: Deepened solid bars for maximum text contrast */
+/* THE OVERLAY: Brighter solid bars, original sizing, 100% clear middle */
 #background-image::after {
   content: "";
   position: absolute;
@@ -28,14 +28,14 @@
   /* Vertical stack: Top bar, Transparent middle, Bottom bar */
   background: linear-gradient(
     to bottom,
-    #0a0e12 0%, 
-    #0a0e12 6.5%,    /* DEEP MIDNIGHT TOP BAR */
+    #212b36 0%, 
+    #212b36 6.5%,    /* BRIGHTER TOP BAR */
     
     transparent 6.5%, 
-    transparent 83%,   /* CLEAR MIDDLE */
+    transparent 83%, /* PERFECTLY CLEAR MIDDLE */
     
-    #0a0e12 83%,       /* DEEP MIDNIGHT BOTTOM BAR */
-    #0a0e12 110%
+    #212b36 83%,     /* BRIGHTER BOTTOM BAR */
+    #212b36 110%
   );
   
   pointer-events: none;
