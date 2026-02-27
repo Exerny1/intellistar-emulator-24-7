@@ -15,7 +15,7 @@
   overflow: hidden; 
 }
 
-/* THE OVERLAY: Solid bars with increased height for the bottom bar */
+/* THE OVERLAY: Solid bars in a deeper, darker midnight shade */
 #background-image::after {
   content: "";
   position: absolute;
@@ -28,14 +28,14 @@
   /* Vertical stack: Top bar, Transparent middle, Taller bottom bar */
   background: linear-gradient(
     to bottom,
-    #11161d 0%, 
-    #11161d 6.5%,    /* SOLID TOP BAR */
+    #0d1117 0%, 
+    #0d1117 6.5%,    /* DARKER MIDNIGHT TOP */
     
     transparent 6.5%, 
     transparent 80%,   /* CLEAR MIDDLE */
     
-    #11161d 80%,       /* TALLER BOTTOM BAR (Starts at 80%) */
-    #11161d 110%
+    #0d1117 80%,       /* DARKER MIDNIGHT BOTTOM (Starts at 80%) */
+    #0d1117 110%
   );
   
   pointer-events: none;
