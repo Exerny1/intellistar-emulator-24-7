@@ -15,7 +15,7 @@
   overflow: hidden; 
 }
 
-/* THE OVERLAY: Solid bars, adjusted to 81.0% for precision */
+/* THE OVERLAY: Precision solid bars for text alignment */
 #background-image::after {
   content: "";
   position: absolute;
@@ -32,9 +32,9 @@
     #161c24 6.5%,    /* SOLID TOP BAR */
     
     transparent 6.5%, 
-    transparent 81%,   /* MIDDLE AREA (CLEAN) */
+    transparent 83%,   /* PERFECTLY CLEAR MIDDLE */
     
-    #161c24 81%,       /* SOLID BOTTOM BAR LOWERED TO 81% */
+    #161c24 83%,       /* SOLID BOTTOM BAR ADJUSTED FOR LENGTH */
     #161c24 110%
   );
   
