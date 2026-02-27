@@ -15,7 +15,7 @@
   overflow: hidden; 
 }
 
-/* THE OVERLAY: Solid bars, lowered to 83% for a slim profile */
+/* THE OVERLAY: Solid bars, slightly brighter midnight tone */
 #background-image::after {
   content: "";
   position: absolute;
@@ -25,17 +25,17 @@
   height: 110%; 
   z-index: 1;
   
-  /* Vertical stack: Top bar, Transparent middle, Lowered bottom bar */
+  /* Vertical stack: Top bar, Transparent middle, Bottom bar */
   background: linear-gradient(
     to bottom,
-    #0d1117 0%, 
-    #0d1117 6.5%,    /* DARKEST MIDNIGHT TOP */
+    #12181f 0%, 
+    #12181f 6.5%,    /* SLIGHTLY BRIGHTER MIDNIGHT TOP */
     
     transparent 6.5%, 
     transparent 83%,   /* CLEAR MIDDLE AREA */
     
-    #0d1117 83%,       /* LOWERED BOTTOM BAR (Starts at 83%) */
-    #0d1117 110%
+    #12181f 83%,       /* SLIGHTLY BRIGHTER MIDNIGHT BOTTOM */
+    #12181f 110%
   );
   
   pointer-events: none;
