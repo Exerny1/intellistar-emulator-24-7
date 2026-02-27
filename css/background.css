@@ -15,7 +15,7 @@
   overflow: hidden; 
 }
 
-/* THE OVERLAY: Solid bars with a lowered bottom bar start point */
+/* THE OVERLAY: Solid bars, lowered to 83% for a slim profile */
 #background-image::after {
   content: "";
   position: absolute;
@@ -32,9 +32,9 @@
     #0d1117 6.5%,    /* DARKEST MIDNIGHT TOP */
     
     transparent 6.5%, 
-    transparent 82%,   /* CLEAR MIDDLE AREA */
+    transparent 83%,   /* CLEAR MIDDLE AREA */
     
-    #0d1117 82%,       /* LOWERED BOTTOM BAR (Starts at 82%) */
+    #0d1117 83%,       /* LOWERED BOTTOM BAR (Starts at 83%) */
     #0d1117 110%
   );
   
