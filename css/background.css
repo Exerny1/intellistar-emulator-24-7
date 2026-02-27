@@ -13,9 +13,18 @@
   background-size: cover !important;
   z-index: 0 !important;
   overflow: hidden; 
+  
+  /* THE 1998 RETRO GRADIENT BACKGROUND */
+  background: linear-gradient(
+    110deg, 
+    #1e2a5a 0%,    /* Deep Purple-Blue Left */
+    #35438a 30%,   /* Royal Blue Center */
+    #d4832c 85%,   /* Iconic Orange-Gold */
+    #8e5419 100%   /* Deep Bronze Edge */
+  ) !important;
 }
 
-/* THE OVERLAY: Solid bars, slightly brighter midnight tone */
+/* THE OVERLAY: Retro Bars with 83% alignment */
 #background-image::after {
   content: "";
   position: absolute;
@@ -25,24 +34,20 @@
   height: 110%; 
   z-index: 1;
   
-  /* Vertical stack: Top bar, Transparent middle, Bottom bar */
-  background: linear-gradient(
-    to bottom,
-    #12181f 0%, 
-    #12181f 6.5%,    /* SLIGHTLY BRIGHTER MIDNIGHT TOP */
+  background: 
+    /* TOP BAR: Darkened Navy */
+    linear-gradient(to bottom, #0a1128 0%, #0a1128 6.5%, transparent 6.5%) top / 100% 100% no-repeat,
     
-    transparent 6.5%, 
-    transparent 83%,   /* CLEAR MIDDLE AREA */
-    
-    #12181f 83%,       /* SLIGHTLY BRIGHTER MIDNIGHT BOTTOM */
-    #12181f 110%
-  );
-  
+    /* BOTTOM BAR: Aligned at 83% for text */
+    linear-gradient(to bottom, transparent 83%, #0a1128 83%, #0a1128 110%) top / 100% 100% no-repeat;
+
   pointer-events: none;
 }
 
-/* KEEPS WEATHER DATA ON TOP */
+/* RETRO TEXT STYLING */
 #container, .weather-box, .ticker, .logo-area, .location-header {
   position: relative !important;
   z-index: 10 !important;
+  color: #ffffff !important;
+  text-shadow: 2px 2px 3px rgba(0,0,0,0.8); /* Mimics CRT display shadow */
 }
