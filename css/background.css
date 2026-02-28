@@ -1,43 +1,49 @@
-/* SHRINKS THE FOOTAGE INTO A SEPARATE WINDOW LIKE I2 */
-#background-image, 
+#background-image,
 .background-image {
   position: absolute !important;
-  /* Creates the gap between the video and your bars */
-  top: 8% !important; 
-  bottom: 18% !important; 
-  left: 2% !important;
-  right: 2% !important;
-  width: 96% !important;
-  height: 74% !important;
+  left: 0 !important;
+  top: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  z-index: 0 !important;
   
-  /* Separates the footage with a physical border and shadow */
-  border: 2px solid rgba(255, 255, 255, 0.15) !important;
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.8) !important;
-  
-  border-radius: 4px !important;
-  overflow: hidden !important;
-  z-index: 1 !important;
+  /* Adds a subtle 'sink' effect to the footage area */
+  box-shadow: 
+    inset 0 15px 20px rgba(0,0,0,0.5), /* Subtle top depth */
+    inset 0 -15px 20px rgba(0,0,0,0.5); /* Subtle bottom depth */
 }
 
-/* THE I2 OS LAYER: Keeps the bars outside the footage window */
+/* THE MODERN OVERLAY: Solid bars with a "drop shadow" onto the video */
 #background-image::after {
   content: "";
-  position: fixed; /* Fixed to the screen, not the video window */
+  position: absolute;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: -1; /* Sits behind the shrunken footage */
+  width: 100%;
+  height: 100%; 
+  z-index: 1;
   
   background: linear-gradient(
     to bottom,
     #12181f 0%, 
-    #12181f 6.5%,    /* Top Bar */
+    #12181f 6.5%, 
+    rgba(0,0,0,0.4) 6.5%,    /* SHADOW cast onto video from top bar */
+    transparent 8%, 
     
-    #05070a 6.5%,    /* Deep background behind the window */
-    #05070a 83%, 
-    
-    #12181f 83%,     /* Bottom Bar */
+    transparent 81.5%, 
+    rgba(0,0,0,0.4) 83%,    /* SHADOW cast onto video from bottom bar */
+    #12181f 83%,             /* SOLID BOTTOM BAR */
     #12181f 100%
   );
+  
+  pointer-events: none;
+}
+
+/* CLEAN UI LAYER */
+#container, .weather-box {
+  position: relative !important;
+  z-index: 10 !important;
+  /* Removes any old retro effects */
+  border: none !important;
+  box-shadow: none !important;
 }
