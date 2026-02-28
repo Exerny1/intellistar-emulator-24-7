@@ -9,7 +9,7 @@
   background-size: cover !important;
 }
 
-/* FLAT DESIGN OVERLAY: High-contrast edge separation */
+/* FLAT DESIGN OVERLAY: LDL Separator Line */
 #background-image::after {
   content: "";
   position: absolute;
@@ -19,26 +19,22 @@
   height: 100%; 
   z-index: 1;
   
-  /* Pure solid blocks with 1px 'separation' highlights */
+  /* Solid blocks with a distinct 1.5px separator line */
   background: linear-gradient(
     to bottom,
     /* TOP BAR */
     #12181f 0%, 
     #12181f 6.5%, 
     
-    /* 1px CRISP HIGHLIGHT (Modern separation) */
-    rgba(255, 255, 255, 0.1) 6.5%, 
-    rgba(255, 255, 255, 0.1) 6.6%, 
+    /* CLEAR MIDDLE */
+    transparent 6.5%, 
+    transparent 82.7%, 
     
-    /* COMPLETELY CLEAR MIDDLE (No shadows) */
-    transparent 6.6%, 
-    transparent 82.9%, 
+    /* THE LDL SEPARATOR LINE: Clean 'Cool Grey' 1.5px edge */
+    #3c444d 82.7%, 
+    #3c444d 83%, 
     
-    /* 1px CRISP HIGHLIGHT (Modern separation) */
-    rgba(255, 255, 255, 0.1) 82.9%, 
-    rgba(255, 255, 255, 0.1) 83%,
-    
-    /* BOTTOM BAR */
+    /* BOTTOM BAR (LDL AREA) */
     #12181f 83%, 
     #12181f 100%
   );
