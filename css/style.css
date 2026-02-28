@@ -27,37 +27,45 @@ body{
   background: linear-gradient(to bottom, #1b2b4b 0%,#8ba5c3 100%);
 }
 
+/* FIX: Forces greeting to hide when weather is active */
+#greeting-container.hidden {
+    display: none !important;
+}
+
 #content-container{
   height: 0px;
-  /* LARGER: Increased width from 1235px to 1700px */
   width: 1700px;
   position: absolute;
   top: 815px;
-  /* Adjusted left to accommodate the larger width */
   left: 60px;
   overflow: hidden;
+  /* THE FIX: Lower the z-index so it stays BEHIND the info */
+  z-index: 1;
   background-color: rgba(0, 0, 0, 0.45);
-  /* LIGHTER BLUR: As requested to keep background visible */
   backdrop-filter: blur(5px);
   transition: top 300ms, height 300ms;
   transition-timing-function: linear;
 }
 
 #content-container.shown{
-  /* BIGGER: Increased height from 590px to 750px */
   height: 750px;
-  /* LOWERED: Changed top from 225px to 300px to move it down */
+  /* LOWERED: Pushed down to clear the top bars */
   top: 300px;
 }
 
 #content-frame{
   overflow: hidden;
-  /* Kept original positioning logic, just matched the new sizes */
-  top: 0px; 
-  left: 0px;
+  /* THE FIX: Increased z-index so text stays ON TOP */
+  z-index: 10 !important;
   position: absolute;
   width: 1700px;
   height: 750px;
+  /* MATCHED POSITION: Info sits exactly where the box is */
+  top: 300px;
+  left: 60px;
+  /* Shifted data slightly inside for padding */
+  padding-left: 50px;
+  box-sizing: border-box;
 }
 
 #content-container.expand{
