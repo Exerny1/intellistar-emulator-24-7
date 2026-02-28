@@ -9,7 +9,7 @@
   background-size: cover !important;
 }
 
-/* REVERTED TO STABLE WHITE LINE AT 90.5% */
+/* REVERTED: Original 2019-2026 Midnight Bars */
 #background-image::after {
   content: "";
   position: absolute;
@@ -21,24 +21,16 @@
   
   background: linear-gradient(
     to bottom,
-    /* TOP BAR */
+    /* TOP BAR (Midnight) */
     #12181f 0%, 
     #12181f 6.5%, 
     
-    /* CLEAR FOOTAGE */
+    /* CLEAR FOOTAGE AREA */
     transparent 6.5%, 
     transparent 83%, 
     
-    /* BOTTOM BAR AREA (Above text) */
+    /* BOTTOM BAR (LDL) */
     #12181f 83%, 
-    #12181f 90.5%, 
-
-    /* THE WHITE LINE */
-    #ffffff 90.5%, 
-    #ffffff 90.8%, 
-    
-    /* REMAINDER OF BOTTOM BAR */
-    #12181f 90.8%, 
     #12181f 100%
   );
   
