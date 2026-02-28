@@ -20,13 +20,14 @@ body {
   background: linear-gradient(to bottom, #1b2b4b 0%,#8ba5c3 100%);
 }
 
-/* THE MAIN BOX: Centered and lowered */
+/* THE MAIN BOX: Wider and Thicker */
 #content-container {
-  width: 1400px; /* Standardized width for both boxes */
+  /* WIDENED: 1600px gives the items more horizontal room */
+  width: 1600px; 
   height: 0px;
   position: absolute;
   left: 50%;
-  margin-left: -700px; /* Perfectly centers the 1400px width */
+  margin-left: -800px; 
   top: 815px; 
   overflow: hidden;
   background-color: rgba(0, 0, 0, 0.5);
@@ -35,37 +36,38 @@ body {
 }
 
 #content-container.shown {
-  height: 500px; /* Bigger height to fit all items */
-  top: 400px;    /* LOWERED: Pushed down to clear the top bar */
+  /* THICKER: Increased to 600px so items aren't cramped */
+  height: 600px; 
+  /* RAISED: Moved from 420px to 240px to sit in the upper-middle */
+  top: 240px;    
 }
 
-/* THE WEATHER INFO: Aligned exactly to the container */
+/* THE INNER FRAME: THE ALIGNMENT FIX */
 #content-frame {
   position: absolute;
-  width: 1400px; /* Must match the container width */
-  height: 500px;
+  width: 1600px;
+  height: 600px;
   top: 0px;
   left: 0px;
 
-  /* THE CENTERING FIX: Forces all items (Forecast, Almanac, etc.) 
-     to the middle of the box instead of the left corner */
+  /* THE CENTERING MAGNET: 
+     This pulls all weather items to the middle of the 1600px box */
   display: flex !important;
   justify-content: center !important;
   align-items: center !important;
   
-  /* Resetting all previous shifts so it stays aligned with the box */
+  /* Resetting shifts to ensure box and data stay aligned */
   transform: none !important;
   padding: 0 !important;
 }
 
-/* HEADER FIX: Keeps the slide title (like 'Now') in the top-left of the box */
+/* HEADER FIX: Keeps titles like 'Now' in the top-left corner of the box */
 #content-frame [id*="header"], 
 #content-frame .slide-header,
 #content-frame .title {
     position: absolute !important;
     left: 40px !important;
-    top: 20px !important;
-    display: block !important;
+    top: 30px !important;
 }
 
 /* RADAR/MAP OVERRIDE */
