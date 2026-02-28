@@ -20,55 +20,54 @@ body {
   background: linear-gradient(to bottom, #1b2b4b 0%,#8ba5c3 100%);
 }
 
-/* THE MAIN BOX: Perfectly Centered & Thickened */
+/* THE MAIN BOX: Widened and Pushed Down */
 #content-container {
-  width: 1600px; 
+  width: 1650px; 
   height: 0px;
   position: absolute;
   left: 50%;
-  margin-left: -800px; 
+  margin-left: -825px; 
   top: 815px; 
   overflow: hidden;
-  background-color: rgba(0, 0, 0, 0.65); /* Darker for better contrast */
-  backdrop-filter: blur(15px);
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
   transition: top 300ms, height 300ms;
 }
 
 #content-container.shown {
-  /* THICKER: Increased to 750px so all info fits inside */
-  height: 750px; 
-  /* RAISED: Moved to 160px to put it in the vertical center of the screen */
-  top: 160px;    
+  /* THICKER: Increased height so weather text stays inside */
+  height: 600px; 
+  /* LOWERED: Pushed down significantly to clear your status bar */
+  top: 320px;    
 }
 
-/* THE WEATHER INFO: Locked to the Box */
+/* THE WEATHER INFO: THE CENTER LOCK */
 #content-frame {
   position: absolute;
-  width: 1600px;
-  height: 750px;
+  width: 1650px;
+  height: 600px;
   top: 0px;
   left: 0px;
 
-  /* THE ONLY CENTERING COMMAND NEEDED: 
-     This pulls every weather item to the dead center of the 1600px box */
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
+  /* THE FORCE: This physically shoves the 'stuck' data into the middle */
+  padding-left: 300px; 
+  box-sizing: border-box;
   
-  /* Kill all previous shifts and scales that caused the misalignment */
+  /* Kill any scaling that makes it overlap with the time */
   transform: none !important;
-  padding: 0 !important;
   zoom: 1.0 !important;
+  
+  display: block !important;
 }
 
-/* HEADER FIX: Keeps titles like 'Now' in the top-left corner of the box */
+/* HEADER FIX: Keeps 'Now' or 'Forecast' in the corner of the box */
 #content-frame [id*="header"], 
 #content-frame .slide-header,
 #content-frame .title {
     position: absolute !important;
-    left: 60px !important;
-    top: 50px !important;
-    display: block !important;
+    /* Counter-acts the 300px padding above to stay in the corner */
+    left: 40px !important; 
+    top: 30px !important;
 }
 
 /* RADAR/MAP OVERRIDE */
