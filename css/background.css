@@ -9,7 +9,7 @@
   background-size: cover !important;
 }
 
-/* 2026 FLAT DESIGN: Razor-thin 1px silver highlight at 87% */
+/* 2026 FLAT DESIGN: Lowered line position for TV visibility */
 #background-image::after {
   content: "";
   position: absolute;
@@ -21,24 +21,24 @@
   
   background: linear-gradient(
     to bottom,
-    /* TOP BAR (Midnight) */
+    /* TOP BAR */
     #12181f 0%, 
     #12181f 6.5%, 
     
-    /* CLEAR FOOTAGE AREA */
+    /* CLEAR FOOTAGE */
     transparent 6.5%, 
-    transparent 83%,   /* Bottom bar starts here */
+    transparent 83%, 
     
-    /* BOTTOM BAR START (LDL Area) */
+    /* BOTTOM BAR AREA ABOVE TEXT */
     #12181f 83%, 
-    #12181f 87%,       /* Space before the line */
+    #12181f 90%, 
 
-    /* THE RAZOR LINE: Ultra-thin 1px Silver Highlight */
-    #a0aec0 87%, 
-    #a0aec0 87.15%,    /* Significantly thinner than before */
+    /* THE SEPARATOR LINE: Lowered to 90% to sit right on the text */
+    #4a5568 90%, 
+    #4a5568 90.2%, 
     
     /* REMAINDER OF BOTTOM BAR */
-    #12181f 87.15%, 
+    #12181f 90.2%, 
     #12181f 100%
   );
   
