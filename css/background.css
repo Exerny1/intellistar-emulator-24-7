@@ -9,7 +9,7 @@
   background-size: cover !important;
 }
 
-/* 2026 FLAT DESIGN: White line nudged to the 91% 'Sweet Spot' */
+/* 2026 FLAT DESIGN: Ultra-thin white line at the 90.5% 'Perfect' mark */
 #background-image::after {
   content: "";
   position: absolute;
@@ -31,14 +31,14 @@
     
     /* BOTTOM BAR AREA */
     #12181f 83%, 
-    #12181f 91%, 
+    #12181f 90.5%, 
 
-    /* THE SEPARATOR LINE: Pure White, Nudged down to 91% */
-    #ffffff 91%, 
-    #ffffff 91.2%, 
+    /* THE SEPARATOR LINE: Pure White, Thinned to 0.1% for a razor edge */
+    #ffffff 90.5%, 
+    #ffffff 90.6%, 
     
     /* REMAINDER OF BOTTOM BAR */
-    #12181f 91.2%, 
+    #12181f 90.6%, 
     #12181f 100%
   );
   
