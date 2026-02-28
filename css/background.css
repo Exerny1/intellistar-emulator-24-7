@@ -9,7 +9,7 @@
   background-size: cover !important;
 }
 
-/* 2026 FLAT DESIGN: Lifted to 75% for TV Overscan Protection */
+/* 2026 FLAT DESIGN: Precision tuned for TV visibility at 87% */
 #background-image::after {
   content: "";
   position: absolute;
@@ -27,18 +27,18 @@
     
     /* CLEAR FOOTAGE AREA */
     transparent 6.5%, 
-    transparent 75%,   /* Lifted for high visibility */
+    transparent 83%,   /* Bottom bar starts at your original 83% */
     
     /* BOTTOM BAR START (LDL Area) */
-    #12181f 75%, 
-    #12181f 80%,       /* Position for the line */
+    #12181f 83%, 
+    #12181f 87%,       /* The line's new "Sweet Spot" position */
 
-    /* THE SEPARATOR LINE: Sitting at 80% to be safe on all TVs */
-    #4a5568 80%, 
-    #4a5568 80.5%, 
+    /* THE SEPARATOR LINE: Clean Slate-Grey at 87% */
+    #4a5568 87%, 
+    #4a5568 87.4%, 
     
     /* REMAINDER OF BOTTOM BAR */
-    #12181f 80.5%, 
+    #12181f 87.4%, 
     #12181f 100%
   );
   
