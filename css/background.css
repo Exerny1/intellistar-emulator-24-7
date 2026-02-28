@@ -9,7 +9,7 @@
   background-size: cover !important;
 }
 
-/* 2026 FLAT DESIGN: Separator Line positioned above the text */
+/* 2026 FLAT DESIGN: Separator positioned directly on top of text */
 #background-image::after {
   content: "";
   position: absolute;
@@ -19,7 +19,6 @@
   height: 100%; 
   z-index: 1;
   
-  /* Solid blocks with a 1.5px separator line sitting on top of the LDL */
   background: linear-gradient(
     to bottom,
     /* TOP BAR (Midnight) */
@@ -28,14 +27,18 @@
     
     /* CLEAR FOOTAGE AREA */
     transparent 6.5%, 
-    transparent 82.5%, 
+    transparent 83%, 
     
-    /* THE SEPARATOR LINE: Positioned just above the 83% bar */
-    #4a5568 82.5%, 
-    #4a5568 82.8%, 
+    /* BOTTOM BAR START (LDL Area) */
+    #12181f 83%, 
+    #12181f 92%, 
+
+    /* THE SEPARATOR LINE: Sitting right on top of the text elements */
+    #4a5568 92%, 
+    #4a5568 92.3%, 
     
-    /* BOTTOM BAR (LDL) */
-    #12181f 82.8%, 
+    /* REMAINDER OF BOTTOM BAR */
+    #12181f 92.3%, 
     #12181f 100%
   );
   
