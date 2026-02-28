@@ -15,14 +15,19 @@ body {
   background: linear-gradient(to bottom, #1b2b4b 0%,#8ba5c3 100%);
 }
 
-/* THE GREETING KILL-SWITCH: Forces it to hide when weather starts */
+/* THE GREETING FIX: Forces it to stay behind the weather and disappear */
+#greeting-container {
+    z-index: 1 !important;
+}
+
 #greeting-container.hidden {
     display: none !important;
     opacity: 0 !important;
+    visibility: hidden !important;
     pointer-events: none !important;
 }
 
-/* THE BOX: Keeping your 'Lowered and Bigger' settings */
+/* THE BOX: Keeping the large, lowered look you liked */
 #content-container {
   width: 1750px; 
   height: 0px;
@@ -32,21 +37,22 @@ body {
   overflow: hidden;
   background-color: rgba(0, 0, 0, 0.45);
   backdrop-filter: blur(4px);
+  z-index: 10 !important; /* Put the weather box ON TOP */
   transition: top 300ms, height 300ms;
 }
 
 #content-container.shown {
-  height: 850px; /* FILLING THE SPACE */
-  top: 250px;    /* LOWERED POSITION */
+  height: 800px; /* BIGGER: Fills the middle */
+  top: 260px;    /* LOWERED: Clears the top bars */
 }
 
-/* THE WEATHER ITEMS: Still shoved down into the glass */
+/* THE WEATHER DATA: Dropped into the glass box */
 #content-frame {
   position: absolute;
   width: 1750px;
-  height: 850px;
+  height: 800px;
   left: 0px;
-  top: 250px !important; /* PHYSICAL SHIFT DOWN */
+  top: 200px !important; /* Forces the weather items down */
   transform: none !important;
   padding-left: 60px !important; 
   zoom: 1.0 !important;
@@ -59,7 +65,7 @@ body {
 #content-frame .title {
     position: absolute !important;
     left: 40px !important; 
-    top: -210px !important; 
+    top: -160px !important; 
 }
 
 /* RADAR/MAP OVERRIDE */
