@@ -20,9 +20,8 @@ body {
   background: linear-gradient(to bottom, #1b2b4b 0%,#8ba5c3 100%);
 }
 
-/* THE MAIN BOX: Wider and Thicker */
+/* THE MAIN BOX: Raised and Thickened */
 #content-container {
-  /* WIDENED: 1600px gives the items more horizontal room */
   width: 1600px; 
   height: 0px;
   position: absolute;
@@ -30,35 +29,34 @@ body {
   margin-left: -800px; 
   top: 815px; 
   overflow: hidden;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.6); /* Slightly darker for better visibility */
   backdrop-filter: blur(10px);
   transition: top 300ms, height 300ms;
 }
 
 #content-container.shown {
-  /* THICKER: Increased to 600px so items aren't cramped */
-  height: 600px; 
-  /* RAISED: Moved from 420px to 240px to sit in the upper-middle */
-  top: 240px;    
+  /* THICKER: Now 700px tall so items don't spill out the bottom */
+  height: 700px; 
+  /* RAISED: Moved to 180px to get it away from the bottom of the screen */
+  top: 180px;    
 }
 
-/* THE INNER FRAME: THE ALIGNMENT FIX */
+/* THE INNER FRAME: Centering both boxes together */
 #content-frame {
   position: absolute;
   width: 1600px;
-  height: 600px;
+  height: 700px;
   top: 0px;
   left: 0px;
 
-  /* THE CENTERING MAGNET: 
-     This pulls all weather items to the middle of the 1600px box */
+  /* THE MAGNET: Pulls everything into the middle of the box */
   display: flex !important;
   justify-content: center !important;
   align-items: center !important;
   
-  /* Resetting shifts to ensure box and data stay aligned */
   transform: none !important;
   padding: 0 !important;
+  zoom: 1.0 !important;
 }
 
 /* HEADER FIX: Keeps titles like 'Now' in the top-left corner of the box */
@@ -67,7 +65,7 @@ body {
 #content-frame .title {
     position: absolute !important;
     left: 40px !important;
-    top: 30px !important;
+    top: 40px !important;
 }
 
 /* RADAR/MAP OVERRIDE */
