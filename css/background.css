@@ -9,7 +9,7 @@
   background-size: cover !important;
 }
 
-/* 2026 FLAT DESIGN: Lowered line position for TV visibility */
+/* 2026 FLAT DESIGN: White line nudged to the 91% 'Sweet Spot' */
 #background-image::after {
   content: "";
   position: absolute;
@@ -29,16 +29,16 @@
     transparent 6.5%, 
     transparent 83%, 
     
-    /* BOTTOM BAR AREA ABOVE TEXT */
+    /* BOTTOM BAR AREA */
     #12181f 83%, 
-    #12181f 90%, 
+    #12181f 91%, 
 
-    /* THE SEPARATOR LINE: Lowered to 90% to sit right on the text */
-    #4a5568 90%, 
-    #4a5568 90.2%, 
+    /* THE SEPARATOR LINE: Pure White, Nudged down to 91% */
+    #ffffff 91%, 
+    #ffffff 91.2%, 
     
     /* REMAINDER OF BOTTOM BAR */
-    #12181f 90.2%, 
+    #12181f 91.2%, 
     #12181f 100%
   );
   
