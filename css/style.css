@@ -1,9 +1,19 @@
-body {
+body{
   background-color: black;
 }
 
-/* THE STAGE */
-#render-frame {
+::selection {
+    color: white;
+    background: #b7b7c8;
+}
+
+#render-frame{
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   overflow: hidden;
   position: absolute;
   left: 50%;
@@ -12,61 +22,54 @@ body {
   margin-top: -540px;
   width: 1920px;
   height: 1080px;
+  transform-origin: 50% 50%;
+  background: #1b2b4b;
   background: linear-gradient(to bottom, #1b2b4b 0%,#8ba5c3 100%);
 }
 
-/* THE BOX: Larger, Lowered, and anchored to the left */
-#content-container {
-  width: 1800px; 
+#content-container{
   height: 0px;
+  /* LARGER: Increased width from 1235px to 1700px */
+  width: 1700px;
   position: absolute;
-  left: 60px; 
-  top: 815px; 
+  top: 815px;
+  /* Adjusted left to accommodate the larger width */
+  left: 60px;
   overflow: hidden;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.45);
+  /* LIGHTER BLUR: As requested to keep background visible */
   backdrop-filter: blur(5px);
   transition: top 300ms, height 300ms;
+  transition-timing-function: linear;
 }
 
-#content-container.shown {
-  /* BIGGER: 850px height to fill the middle area */
-  height: 850px; 
-  /* THE MOVE DOWN: Shoved to the bottom half of the screen */
-  top: 480px;    
+#content-container.shown{
+  /* BIGGER: Increased height from 590px to 750px */
+  height: 750px;
+  /* LOWERED: Changed top from 225px to 300px to move it down */
+  top: 300px;
 }
 
-/* THE WEATHER DATA: This is the part that was 'stuck' */
-#content-frame {
-  position: absolute;
-  width: 1800px;
-  height: 850px;
+#content-frame{
+  overflow: hidden;
+  /* Kept original positioning logic, just matched the new sizes */
+  top: 0px; 
   left: 0px;
-  
-  /* THE FIX: We are physically dropping the weather layer by 120px 
-     so it finally lines up inside the black box */
-  top: 120px !important; 
-
-  transform: none !important;
-  padding-left: 60px !important; 
-  zoom: 1.0 !important;
-  display: block !important;
+  position: absolute;
+  width: 1700px;
+  height: 750px;
 }
 
-/* HEADER FIX: Ensures 'Now' stays in the top-left of the box */
-#content-frame [id*="header"], 
-#content-frame .slide-header, 
-#content-frame .title {
-    position: absolute !important;
-    left: 40px !important; 
-    /* Counter-acts the 120px drop to keep the title at the top */
-    top: -80px !important; 
-}
-
-/* RADAR/MAP OVERRIDE */
-#content-container.expand {
+#content-container.expand{
+  transition: left 0.5s, top 0.5s, width 0.5s, height 0.5s;
   left: 0px;
   top: 0px;
   width: 100%;
   height: 100%;
-  margin-left: 0;
+}
+
+#content-container.above-screen{
+  transition: top 400ms;
+  transition-timing-function: linear;
+  top: -100%;
 }
