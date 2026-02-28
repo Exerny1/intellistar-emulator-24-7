@@ -20,7 +20,7 @@ body {
   background: linear-gradient(to bottom, #1b2b4b 0%,#8ba5c3 100%);
 }
 
-/* THE MAIN BOX: Lowered and widened for better centering */
+/* THE MAIN BOX: Widened and prepared for a larger fit */
 #content-container {
   width: 1600px; 
   height: 0px;
@@ -35,35 +35,33 @@ body {
 }
 
 #content-container.shown {
-  height: 450px; /* Shorter height to keep it 'shrunk' */
-  top: 420px;    /* LOWERED: Pushed way down to clear the top area */
+  /* BIGGER BOX: Height increased to 580px to fit items better */
+  height: 580px; 
+  /* LOWERED MORE: Moved to 450px to ensure it stays away from the top */
+  top: 450px;    
 }
 
 /* THE INNER FRAME: THE FORCE-SLIDER */
 #content-frame {
   position: absolute;
   width: 1600px;
-  height: 450px;
+  height: 580px;
   top: 0px;
   left: 0px;
 
-  /* THE FINAL FIX: 
-     translateX(240px) physically shoves the 'stuck' data into the middle.
-     !important is used to make sure the CSS wins over the JS. */
+  /* This remains the same since it worked to un-stick the left corner */
   transform: translateX(240px) !important; 
-  
-  /* Ensuring the scale stays native (1:1) so it doesn't get too big */
   zoom: 1.0 !important;
 }
 
 /* PROTECT THE TITLES (Ensures 'Now' stays in the corner) */
-/* We counter-shift the title so it doesn't move with the rest of the data */
 #content-frame [id*="header"], 
 #content-frame .slide-header,
 #content-frame .title {
     position: absolute !important;
-    left: -200px !important; /* Moves title back to the left corner */
-    top: 20px !important;
+    /* Adjusted slightly more to keep title in the far top-left corner */
+    left: -220px !important; 
+    top: 25px !important;
 }
 
 /* RADAR/MAP OVERRIDE */
@@ -73,5 +71,5 @@ body {
   width: 100%;
   height: 100%;
   margin-left: 0;
-  transform: none !important; /* Removes the shift for full-screen maps */
+  transform: none !important;
 }
