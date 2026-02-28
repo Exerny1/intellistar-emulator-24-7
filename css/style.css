@@ -20,7 +20,7 @@ body {
   background: linear-gradient(to bottom, #1b2b4b 0%,#8ba5c3 100%);
 }
 
-/* THE MAIN BOX: Lowered significantly to clear the top area */
+/* THE MAIN BOX: Perfectly centered and lowered */
 #content-container {
   width: 1550px; 
   height: 0px;
@@ -35,11 +35,11 @@ body {
 }
 
 #content-container.shown {
-  height: 480px; /* SHRUNK: Back to a height that fits the data natively */
-  top: 360px;    /* LOWERED: This pulls everything down toward the middle of the screen */
+  height: 480px; 
+  top: 400px;    /* LOWERED: This is deep in the "Safe Zone" to stay away from the top */
 }
 
-/* THE INNER FRAME: Shifts every slide away from the left edge */
+/* THE INNER FRAME: THIS PUTS IT BACK IN THE MIDDLE */
 #content-frame {
   position: absolute;
   width: 1550px;
@@ -47,17 +47,17 @@ body {
   top: 0px;
   left: 0px;
 
-  /* THE FIX: Moves the data right into the center of the black box */
-  /* and ensures it stays at its original (shrunk) size */
-  padding-left: 180px; 
-  padding-top: 40px;
+  /* THE FIX: This physically shoves the data right so it's not stuck on the left */
+  padding-left: 250px; 
+  padding-top: 50px;
   box-sizing: border-box;
-  
+
+  /* No scale, no zoom. Just clean, original-size data. */
   transform: none !important; 
   zoom: 1.0 !important;
 }
 
-/* PROTECT THE HEADERS: Keeps 'NOW' or 'FORECAST' from moving too far */
+/* PROTECT THE HEADERS: Keeps 'NOW' from shifting with the data */
 #content-frame [id*="header"], 
 #content-frame .slide-header,
 #content-frame .title {
