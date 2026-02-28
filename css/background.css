@@ -9,7 +9,7 @@
   background-size: cover !important;
 }
 
-/* ALL SEPARATION EFFECTS HAPPEN HERE */
+/* FLAT DESIGN OVERLAY: High-contrast edge separation */
 #background-image::after {
   content: "";
   position: absolute;
@@ -19,23 +19,26 @@
   height: 100%; 
   z-index: 1;
   
+  /* Pure solid blocks with 1px 'separation' highlights */
   background: linear-gradient(
     to bottom,
     /* TOP BAR */
     #12181f 0%, 
     #12181f 6.5%, 
     
-    /* SHADOW cast from top bar onto the footage */
-    rgba(0,0,0,0.6) 6.5%, 
-    transparent 10%, 
+    /* 1px CRISP HIGHLIGHT (Modern separation) */
+    rgba(255, 255, 255, 0.1) 6.5%, 
+    rgba(255, 255, 255, 0.1) 6.6%, 
     
-    /* CLEAR FOOTAGE AREA */
-    transparent 79%, 
+    /* COMPLETELY CLEAR MIDDLE (No shadows) */
+    transparent 6.6%, 
+    transparent 82.9%, 
     
-    /* SHADOW cast from bottom bar onto the footage */
-    rgba(0,0,0,0.6) 83%, 
+    /* 1px CRISP HIGHLIGHT (Modern separation) */
+    rgba(255, 255, 255, 0.1) 82.9%, 
+    rgba(255, 255, 255, 0.1) 83%,
     
-    /* BOTTOM BAR at the 83% mark */
+    /* BOTTOM BAR */
     #12181f 83%, 
     #12181f 100%
   );
