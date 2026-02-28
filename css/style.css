@@ -2,7 +2,12 @@ body {
   background-color: black;
 }
 
-/* THE STAGE */
+::selection {
+    color: white;
+    background: #b7b7c8;
+}
+
+/* THE BACKGROUND STAGE */
 #render-frame {
   overflow: hidden;
   position: absolute;
@@ -15,55 +20,63 @@ body {
   background: linear-gradient(to bottom, #1b2b4b 0%,#8ba5c3 100%);
 }
 
-/* THE BOX: Widened and Pushed Down */
+/* THE MAIN BOX: Stretched to the Left and Lowered */
 #content-container {
-  width: 1600px; 
+  /* BIGGER: 1800px width fills the screen from the left */
+  width: 1800px; 
   height: 0px;
   position: absolute;
-  left: 50%;
-  margin-left: -800px; /* Centers the 1600px box */
+  /* ALIGN TO LEFT: No more centering math */
+  left: 60px; 
+  margin-left: 0px; 
+  
   top: 815px; 
   overflow: hidden;
-  background-color: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(8px);
+  
+  /* Less blurry so the background stays visible */
+  background-color: rgba(0, 0, 0, 0.45); 
+  backdrop-filter: blur(5px); 
+  
   transition: top 300ms, height 300ms;
 }
 
 #content-container.shown {
-  height: 600px; /* Thicker box to hold all items */
-  top: 400px;    /* LOWERED: This keeps it away from your clock */
+  /* THICKER: Now 650px to hold all the weather text */
+  height: 650px; 
+  /* LOWERED: Set to 300px to sit right in the middle-bottom */
+  top: 300px;    
 }
 
-/* THE DATA: The Physical Shove */
+/* THE WEATHER INFO: Back to the Left */
 #content-frame {
   position: absolute;
-  width: 1600px;
-  height: 600px;
+  width: 1800px;
+  height: 650px;
   top: 0px;
   left: 0px;
 
-  /* This is the 'Hard Fix': physically sliding the weather layer 380px right */
-  /* This aligns the 'stuck' weather circle with the middle of the box */
-  transform: translateX(380px) !important; 
+  /* RESET: No more shifts, let it sit naturally on the left */
+  transform: none !important;
+  padding-left: 40px !important; 
   
   zoom: 1.0 !important;
+  display: block !important;
 }
 
-/* THE TITLES: Keeps 'Now' from sliding too far right */
+/* HEADER FIX: Aligned with the weather items */
 #content-frame [id*="header"], 
 #content-frame .slide-header,
 #content-frame .title {
     position: absolute !important;
-    left: -320px !important; /* Counter-adjusts the title back to the corner */
+    left: 40px !important; 
     top: 30px !important;
 }
 
-/* RADAR/MAPS: Keeps them full-screen */
+/* RADAR/MAP OVERRIDE */
 #content-container.expand {
   left: 0px;
   top: 0px;
   width: 100%;
   height: 100%;
   margin-left: 0;
-  transform: none !important;
 }
