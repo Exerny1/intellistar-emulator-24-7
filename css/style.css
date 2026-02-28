@@ -20,54 +20,49 @@ body {
   background: linear-gradient(to bottom, #1b2b4b 0%,#8ba5c3 100%);
 }
 
-/* THE MAIN BOX: Widened and Pushed Down */
+/* THE MAIN BOX: Lowered and Thicker */
 #content-container {
-  width: 1650px; 
+  width: 1600px; 
   height: 0px;
   position: absolute;
   left: 50%;
-  margin-left: -825px; 
+  margin-left: -800px; 
   top: 815px; 
   overflow: hidden;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.7); /* Darker so it's easier to see */
   backdrop-filter: blur(10px);
   transition: top 300ms, height 300ms;
 }
 
 #content-container.shown {
-  /* THICKER: Increased height so weather text stays inside */
-  height: 600px; 
-  /* LOWERED: Pushed down significantly to clear your status bar */
-  top: 320px;    
+  height: 650px; /* THICKER: Fits all weather text perfectly */
+  top: 380px;    /* LOWERED: This clears the clock/header at the top */
 }
 
-/* THE WEATHER INFO: THE CENTER LOCK */
+/* THE INNER FRAME: THE PHYSICAL SHIFT */
 #content-frame {
   position: absolute;
-  width: 1650px;
-  height: 600px;
+  width: 1600px;
+  height: 650px;
   top: 0px;
   left: 0px;
 
-  /* THE FORCE: This physically shoves the 'stuck' data into the middle */
-  padding-left: 300px; 
-  box-sizing: border-box;
+  /* THE FORCE: This physically slides the 'stuck' data into the middle */
+  /* We are moving the entire 1600px layer 350 pixels to the right. */
+  transform: translateX(350px) !important; 
   
-  /* Kill any scaling that makes it overlap with the time */
-  transform: none !important;
   zoom: 1.0 !important;
-  
   display: block !important;
 }
 
-/* HEADER FIX: Keeps 'Now' or 'Forecast' in the corner of the box */
+/* HEADER FIX: Keeps 'Now' or 'Forecast' in the top-left corner of the box */
 #content-frame [id*="header"], 
 #content-frame .slide-header,
 #content-frame .title {
     position: absolute !important;
-    /* Counter-acts the 300px padding above to stay in the corner */
-    left: 40px !important; 
-    top: 30px !important;
+    /* We move the title back LEFT to cancel out the shift */
+    left: -310px !important; 
+    top: 35px !important;
 }
 
 /* RADAR/MAP OVERRIDE */
@@ -77,4 +72,6 @@ body {
   width: 100%;
   height: 100%;
   margin-left: 0;
+  transform: none !important;
 }
+
