@@ -2,12 +2,7 @@ body {
   background-color: black;
 }
 
-::selection {
-    color: white;
-    background: #b7b7c8;
-}
-
-/* THE BACKGROUND STAGE */
+/* THE STAGE */
 #render-frame {
   overflow: hidden;
   position: absolute;
@@ -20,57 +15,51 @@ body {
   background: linear-gradient(to bottom, #1b2b4b 0%,#8ba5c3 100%);
 }
 
-/* THE MAIN BOX: Restored to Left, Lowered significantly */
+/* THE BOX: Larger, Lowered, and anchored to the left */
 #content-container {
-  /* BIGGER: Increased width and height to fill the middle area */
-  width: 1700px; 
+  width: 1800px; 
   height: 0px;
   position: absolute;
-  /* LOCKED TO LEFT */
   left: 60px; 
-  margin-left: 0px; 
-  
-  /* Starting position for animation */
-  top: 900px; 
+  top: 815px; 
   overflow: hidden;
-  
-  /* Lighter blur so the background stays visible */
-  background-color: rgba(0, 0, 0, 0.5); 
-  backdrop-filter: blur(5px); 
-  
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
   transition: top 300ms, height 300ms;
 }
 
 #content-container.shown {
-  /* BIGGER: 800px height makes it feel 'large' without clumping the text */
-  height: 800px; 
-  /* THE MOVE DOWN: Set to 450px to clear the top bars completely */
-  top: 450px;    
+  /* BIGGER: 850px height to fill the middle area */
+  height: 850px; 
+  /* THE MOVE DOWN: Shoved to the bottom half of the screen */
+  top: 480px;    
 }
 
-/* THE WEATHER INFO: Back to the Left Grouping */
+/* THE WEATHER DATA: This is the part that was 'stuck' */
 #content-frame {
   position: absolute;
-  width: 1700px;
-  height: 800px;
-  top: 0px;
+  width: 1800px;
+  height: 850px;
   left: 0px;
-
-  /* RESET: No more centering or weird shifts */
-  transform: none !important;
-  padding-left: 40px !important; 
   
+  /* THE FIX: We are physically dropping the weather layer by 120px 
+     so it finally lines up inside the black box */
+  top: 120px !important; 
+
+  transform: none !important;
+  padding-left: 60px !important; 
   zoom: 1.0 !important;
   display: block !important;
 }
 
-/* HEADER FIX: Aligned with the left-side items */
+/* HEADER FIX: Ensures 'Now' stays in the top-left of the box */
 #content-frame [id*="header"], 
 #content-frame .slide-header, 
 #content-frame .title {
     position: absolute !important;
     left: 40px !important; 
-    top: 40px !important;
+    /* Counter-acts the 120px drop to keep the title at the top */
+    top: -80px !important; 
 }
 
 /* RADAR/MAP OVERRIDE */
