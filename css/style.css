@@ -20,56 +20,58 @@ body {
   background: linear-gradient(to bottom, #1b2b4b 0%,#8ba5c3 100%);
 }
 
-/* THE MAIN BOX: Larger, Wider, and Lowered */
+/* THE MAIN BOX: Grouped, Centered, and Lowered */
 #content-container {
-  /* WIDER: Spans 1850px to fill the entire horizontal space */
-  width: 1850px; 
+  /* COMPACT WIDTH: Keeps the 64° circle and text close together */
+  width: 1000px; 
   height: 0px;
   position: absolute;
-  left: 35px; /* Tiny margin on the far left */
-  margin-left: 0px; 
+  /* PERFECT CENTERING: */
+  left: 50%;
+  margin-left: -500px; 
   
   top: 815px; 
   overflow: hidden;
   
-  /* Clearer background with subtle blur */
-  background-color: rgba(0, 0, 0, 0.45); 
-  backdrop-filter: blur(4px); 
+  /* Glass effect with visible background */
+  background-color: rgba(0, 0, 0, 0.55); 
+  backdrop-filter: blur(6px); 
   
   transition: top 300ms, height 300ms;
 }
 
 #content-container.shown {
-  /* TALLER (THICKER): Now 750px to truly "fill" the middle */
-  height: 750px; 
-  /* LOWERED: Pushed down to 280px to stay clear of the top bars */
-  top: 280px;    
+  /* LARGER/THICKER: Fills the middle space vertically */
+  height: 700px; 
+  /* LOWERED: Sits below the clock and address bar */
+  top: 320px;    
 }
 
-/* THE WEATHER INFO: Locked to the Left */
+/* THE WEATHER INFO: Locked to the middle of the compact box */
 #content-frame {
   position: absolute;
-  width: 1850px;
-  height: 750px;
+  width: 1000px;
+  height: 700px;
   top: 0px;
   left: 0px;
 
-  /* No more centering; let it sit naturally on the left */
+  /* No more strange shifts; let it sit naturally inside the 1000px box */
   transform: none !important;
-  padding-left: 50px !important; 
+  padding: 0 !important;
   
   zoom: 1.0 !important;
   display: flex !important;
-  align-items: center; /* Vertically centers the weather inside the thick box */
+  justify-content: center; /* Centers the group horizontally */
+  align-items: center;     /* Centers the group vertically */
 }
 
-/* HEADER FIX: Aligned with the weather items */
+/* HEADER FIX: Keeps 'Now' or 'Forecast' inside the centered box */
 #content-frame [id*="header"], 
 #content-frame .slide-header,
 #content-frame .title {
     position: absolute !important;
-    left: 50px !important; 
-    top: 40px !important;
+    left: 40px !important; 
+    top: 30px !important;
 }
 
 /* RADAR/MAP OVERRIDE */
