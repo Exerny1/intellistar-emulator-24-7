@@ -9,7 +9,7 @@
   background-size: cover !important;
 }
 
-/* 2026 FLAT DESIGN: Precision tuned for TV visibility at 87% */
+/* 2026 FLAT DESIGN: Razor-thin 1px silver highlight at 87% */
 #background-image::after {
   content: "";
   position: absolute;
@@ -27,18 +27,18 @@
     
     /* CLEAR FOOTAGE AREA */
     transparent 6.5%, 
-    transparent 83%,   /* Bottom bar starts at your original 83% */
+    transparent 83%,   /* Bottom bar starts here */
     
     /* BOTTOM BAR START (LDL Area) */
     #12181f 83%, 
-    #12181f 87%,       /* The line's new "Sweet Spot" position */
+    #12181f 87%,       /* Space before the line */
 
-    /* THE SEPARATOR LINE: Clean Slate-Grey at 87% */
-    #4a5568 87%, 
-    #4a5568 87.4%, 
+    /* THE RAZOR LINE: Ultra-thin 1px Silver Highlight */
+    #a0aec0 87%, 
+    #a0aec0 87.15%,    /* Significantly thinner than before */
     
     /* REMAINDER OF BOTTOM BAR */
-    #12181f 87.4%, 
+    #12181f 87.15%, 
     #12181f 100%
   );
   
