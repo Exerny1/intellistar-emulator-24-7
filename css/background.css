@@ -9,7 +9,7 @@
   background-size: cover !important;
 }
 
-/* 2026 FLAT DESIGN: Solid white line at the perfect 90.5% position */
+/* 2026 FLAT DESIGN: Pure white line at the confirmed 90.5% position */
 #background-image::after {
   content: "";
   position: absolute;
@@ -29,11 +29,11 @@
     transparent 6.5%, 
     transparent 83%, 
     
-    /* BOTTOM BAR AREA */
+    /* BOTTOM BAR AREA (Above text) */
     #12181f 83%, 
     #12181f 90.5%, 
 
-    /* THE SEPARATOR LINE: Solid White, thickened to 0.3% for TV visibility */
+    /* THE SEPARATOR LINE: Pure White at the perfect height */
     #ffffff 90.5%, 
     #ffffff 90.8%, 
     
