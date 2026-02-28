@@ -15,7 +15,14 @@ body {
   background: linear-gradient(to bottom, #1b2b4b 0%,#8ba5c3 100%);
 }
 
-/* THE BOX: Much Lower and Much Taller */
+/* THE GREETING KILL-SWITCH: Forces it to hide when weather starts */
+#greeting-container.hidden {
+    display: none !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+/* THE BOX: Keeping your 'Lowered and Bigger' settings */
 #content-container {
   width: 1750px; 
   height: 0px;
@@ -23,41 +30,35 @@ body {
   left: 60px; 
   top: 815px; 
   overflow: hidden;
-  background-color: rgba(0, 0, 0, 0.45); /* Lighter for background visibility */
+  background-color: rgba(0, 0, 0, 0.45);
   backdrop-filter: blur(4px);
   transition: top 300ms, height 300ms;
 }
 
 #content-container.shown {
-  /* BIGGER: 850px height fills the entire middle zone */
-  height: 850px; 
-  /* LOWER: Dropped to 220px to stay clear of the top clock and URL bar */
-  top: 220px;    
+  height: 850px; /* FILLING THE SPACE */
+  top: 250px;    /* LOWERED POSITION */
 }
 
-/* THE WEATHER ITEMS: Shoved down into the box */
+/* THE WEATHER ITEMS: Still shoved down into the glass */
 #content-frame {
   position: absolute;
   width: 1750px;
   height: 850px;
   left: 0px;
-  
-  /* THE FIX: Physically dropping the weather layer down into the glass */
-  top: 250px !important; 
-
+  top: 250px !important; /* PHYSICAL SHIFT DOWN */
   transform: none !important;
   padding-left: 60px !important; 
   zoom: 1.0 !important;
   display: block !important;
 }
 
-/* HEADER FIX: Keeps 'Now' or 'Forecast' at the very top of the box */
+/* HEADER FIX: Keeps 'Now' at the top of the box */
 #content-frame [id*="header"], 
 #content-frame .slide-header, 
 #content-frame .title {
     position: absolute !important;
     left: 40px !important; 
-    /* Counter-acts the 250px drop to keep labels at the top-left */
     top: -210px !important; 
 }
 
