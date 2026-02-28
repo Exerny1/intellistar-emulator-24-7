@@ -9,7 +9,7 @@
   background-size: cover !important;
 }
 
-/* TV-SAFE 2026 FLAT DESIGN: Lifted to avoid overscan cut-off */
+/* 2026 FLAT DESIGN: Lifted to 75% for TV Overscan Protection */
 #background-image::after {
   content: "";
   position: absolute;
@@ -27,18 +27,18 @@
     
     /* CLEAR FOOTAGE AREA */
     transparent 6.5%, 
-    transparent 80%,   /* Lifted from 83% to 80% */
+    transparent 75%,   /* Lifted for high visibility */
     
     /* BOTTOM BAR START (LDL Area) */
-    #12181f 80%, 
-    #12181f 89%,       /* Lifted from 92% to 89% */
+    #12181f 75%, 
+    #12181f 80%,       /* Position for the line */
 
-    /* THE SEPARATOR LINE: Now at 89% to be visible on TV */
-    #4a5568 89%, 
-    #4a5568 89.4%, 
+    /* THE SEPARATOR LINE: Sitting at 80% to be safe on all TVs */
+    #4a5568 80%, 
+    #4a5568 80.5%, 
     
     /* REMAINDER OF BOTTOM BAR */
-    #12181f 89.4%, 
+    #12181f 80.5%, 
     #12181f 100%
   );
   
