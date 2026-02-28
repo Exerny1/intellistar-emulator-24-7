@@ -9,7 +9,7 @@
   background-size: cover !important;
 }
 
-/* 2026 FLAT DESIGN: Ultra-thin white line at the 90.5% 'Perfect' mark */
+/* 2026 FLAT DESIGN: Solid white line at the perfect 90.5% position */
 #background-image::after {
   content: "";
   position: absolute;
@@ -33,12 +33,12 @@
     #12181f 83%, 
     #12181f 90.5%, 
 
-    /* THE SEPARATOR LINE: Pure White, Thinned to 0.1% for a razor edge */
+    /* THE SEPARATOR LINE: Solid White, thickened to 0.3% for TV visibility */
     #ffffff 90.5%, 
-    #ffffff 90.6%, 
+    #ffffff 90.8%, 
     
     /* REMAINDER OF BOTTOM BAR */
-    #12181f 90.6%, 
+    #12181f 90.8%, 
     #12181f 100%
   );
   
