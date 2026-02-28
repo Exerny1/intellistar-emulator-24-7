@@ -9,7 +9,7 @@
   background-size: cover !important;
 }
 
-/* REVERTED: Original 2019-2026 Midnight Bars */
+/* REVERTED & LOWERED: No lines, just the classic midnight bars */
 #background-image::after {
   content: "";
   position: absolute;
@@ -25,12 +25,12 @@
     #12181f 0%, 
     #12181f 6.5%, 
     
-    /* CLEAR FOOTAGE AREA */
+    /* CLEAR FOOTAGE AREA - Expanded */
     transparent 6.5%, 
-    transparent 83%, 
+    transparent 88%,   /* Pushed down from 83% */
     
-    /* BOTTOM BAR (LDL) */
-    #12181f 83%, 
+    /* BOTTOM BAR (LDL) - Made shorter */
+    #12181f 88%, 
     #12181f 100%
   );
   
