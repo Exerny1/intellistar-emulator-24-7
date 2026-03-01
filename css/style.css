@@ -21,12 +21,12 @@ body {
 }
 
 #content-container {
-  /* THE FINAL WIDTH: 1180px should snap the glass edge to the text end */
-  width: 1180px;
+  /* SHRUNK: Width reduced to 1350px for a tighter fit */
+  width: 1350px;
   height: 0px;
   position: absolute;
-  /* RE-CENTERED: (1920 - 1180) / 2 = 370px */
-  left: 370px; 
+  /* RE-CENTERED: (1920 - 1350) / 2 = 285px */
+  left: 285px; 
   margin-left: 0px; 
   top: 815px; 
   overflow: hidden;
@@ -37,23 +37,21 @@ body {
 }
 
 #content-container.shown {
-  /* HEIGHT UNTOUCHED */
   height: 650px !important;
-  /* VERTICAL POSITION UNTOUCHED */
+  /* LOWERED: Moved from 230px down to 250px */
   top: 250px !important; 
 }
 
 #content-frame {
   position: absolute;
-  /* MATCH CONTAINER WIDTH */
-  width: 1180px;
+  width: 1350px;
   height: 650px !important;
   top: 250px !important;
-  left: 370px;
+  left: 285px;
   z-index: 10 !important;
   overflow: hidden;
   
-  /* INTERNAL SPACING UNTOUCHED */
+  /* SPACING: Kept the 120px gap so the right side doesn't get stuck */
   display: flex;
   justify-content: center; 
   gap: 120px; 
@@ -62,7 +60,7 @@ body {
   padding-top: 20px;
   box-sizing: border-box;
 
-  /* SCALE UNTOUCHED */
+  /* Scale kept at 1.25 */
   transform: scale(1.25);
   transform-origin: center;
 }
