@@ -21,13 +21,12 @@ body {
 }
 
 #content-container {
-  /* FIXED WIDTH: 1500px to cover the full width of the info */
-  width: 1500px;
-  /* FIXED HEIGHT: 700px to cover "Now" down to "FEELS" */
+  /* FIXED WIDTH: Increased to 1550px to fit the right-side text */
+  width: 1550px;
   height: 0px;
   position: absolute;
-  /* CENTERED: (1920 - 1500) / 2 = 210px */
-  left: 210px; 
+  /* CENTERED: (1920 - 1550) / 2 = 185px */
+  left: 185px; 
   margin-left: 0px; 
   top: 815px; 
   overflow: hidden;
@@ -38,21 +37,22 @@ body {
 }
 
 #content-container.shown {
-  height: 700px !important;
-  /* POSITION: Adjusted to 200px to sit properly around the info */
-  top: 200px !important; 
+  /* FIXED HEIGHT: 720px to go from the top of 'Now' to the bottom of 'FEELS' */
+  height: 720px !important;
+  /* POSITION: Lowered slightly to 250px as you requested earlier */
+  top: 250px !important; 
 }
 
 #content-frame {
   overflow: hidden;
   z-index: 10 !important;
   position: absolute;
-  width: 1500px;
-  height: 700px !important;
-  top: 200px !important;
-  left: 210px;
+  width: 1550px;
+  height: 720px !important;
+  top: 250px !important;
+  left: 185px;
   
-  /* UNTOUCHED: Keeping your flex logic exactly as it was */
+  /* RESTORED: Exactly your layout logic */
   display: flex;
   justify-content: space-around; 
   align-items: center; 
@@ -60,7 +60,7 @@ body {
   padding-top: 20px;
   box-sizing: border-box;
 
-  /* UNTOUCHED: Keeping your 1.25 scale */
+  /* RESTORED: Exactly your 1.25 scale */
   transform: scale(1.25);
   transform-origin: center;
 }
