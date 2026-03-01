@@ -21,11 +21,11 @@ body {
 }
 
 #content-container {
-  /* ONLY CHANGE: Width increased to 1600px to make the glass longer */
+  /* LONGER: Increased to 1600px to reach the end of the text */
   width: 1600px;
   height: 0px;
   position: absolute;
-  /* UNTOUCHED: Kept at your 285px */
+  /* UNTOUCHED: Kept at your exact 285px */
   left: 285px; 
   margin-left: 0px; 
   top: 815px; 
@@ -37,23 +37,23 @@ body {
 }
 
 #content-container.shown {
-  /* ONLY CHANGE: Height increased to 750px to make the glass taller */
-  height: 750px !important;
-  /* UNTOUCHED: Kept at your 250px */
+  /* TALLER: Increased to 800px to cover everything top to bottom */
+  height: 800px !important;
+  /* LOWERED: Kept at your exact 250px */
   top: 250px !important; 
 }
 
 #content-frame {
   position: absolute;
-  /* MATCH NEW BOX DIMENSIONS */
+  /* MATCH BOX DIMENSIONS */
   width: 1600px;
-  height: 750px !important;
+  height: 800px !important;
   top: 250px !important;
   left: 285px;
   z-index: 10 !important;
   overflow: hidden;
   
-  /* UNTOUCHED: EXACTLY AS YOU PROVIDED */
+  /* UNTOUCHED: EXACTLY AS YOUR SCRIPT */
   display: flex;
   justify-content: center; 
   gap: 120px; 
@@ -62,7 +62,7 @@ body {
   padding-top: 20px;
   box-sizing: border-box;
 
-  /* UNTOUCHED: EXACTLY AS YOU PROVIDED */
+  /* UNTOUCHED: EXACTLY AS YOUR SCRIPT */
   transform: scale(1.25);
   transform-origin: center;
 }
