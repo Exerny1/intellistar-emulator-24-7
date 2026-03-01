@@ -21,12 +21,12 @@ body {
 }
 
 #content-container {
-  /* BIGGER & CONNECTED: Width increased to 1500px to fit all info comfortably */
-  width: 1500px;
+  /* BRINGING SIDES IN: Width reduced to 1100px to "connect" info in the middle */
+  width: 1100px;
   height: 0px;
   position: absolute;
-  /* SCOOTED LEFT: 140px puts it closer to the logo/header side */
-  left: 140px; 
+  /* CENTERED: (1920 - 1100) / 2 = 410px */
+  left: 410px; 
   margin-left: 0px; 
   top: 815px;
   overflow: hidden;
@@ -36,10 +36,10 @@ body {
   transition: top 300ms, height 300ms;
 }
 
-/* TALLER BOX: 620px to ensure the 'FEELS' and extra data fit */
 #content-container.shown {
-  height: 620px !important;
-  top: 230px !important; 
+  /* TALLER BOX: To handle the enlargement and extra content */
+  height: 650px !important;
+  top: 210px !important; 
 }
 
 #content-frame {
@@ -47,15 +47,19 @@ body {
   z-index: 10 !important;
   position: absolute;
   /* MATCH CONTAINER */
-  width: 1500px;
-  height: 620px !important;
-  top: 230px !important;
-  left: 140px;
+  width: 1100px;
+  height: 650px !important;
+  top: 210px !important;
+  left: 410px;
   
-  /* INTERNAL SPACING: Brings the dial and text together toward the center */
-  padding-left: 280px; 
+  /* PADDING: Small left padding so the dial is close to the text */
+  padding-left: 80px; 
   padding-top: 60px;
   box-sizing: border-box;
+
+  /* ENLARGE EVERYTHING: Scales up the dial and text together */
+  transform: scale(1.2);
+  transform-origin: center;
 }
 
 #content-container.expand {
