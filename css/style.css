@@ -21,11 +21,10 @@ body {
 }
 
 #content-container {
-  /* WIDER BOX: 1650px ensures the glass extends well past the info on both sides */
+  /* THE WIDE GLASS BACKDROP */
   width: 1650px;
   height: 0px;
   position: absolute;
-  /* CENTERED: (1920 - 1650) / 2 = 135px */
   left: 135px; 
   margin-left: 0px; 
   top: 815px; 
@@ -38,7 +37,7 @@ body {
 
 #content-container.shown {
   height: 650px !important;
-  /* RAISED: Moved up to 230px for better vertical balance */
+  /* RAISED POSITION */
   top: 230px !important; 
 }
 
@@ -51,16 +50,17 @@ body {
   top: 230px !important;
   left: 135px;
   
-  /* Flex keeps the dial and text separated but within the wider glass */
+  /* THE FIX: Keep box wide, but keep info close together */
   display: flex;
-  justify-content: space-around; 
+  justify-content: center; /* Pulls everything to the dead center */
+  gap: 100px;             /* This controls the exact "closeness" of dial and text */
   align-items: center; 
   
   padding-top: 20px;
   box-sizing: border-box;
 
-  /* Scale kept at 1.25 to keep the information enlarged */
-  transform: scale(1.25);
+  /* ENLARGED INFO */
+  transform: scale(1.3);
   transform-origin: center;
 }
 
