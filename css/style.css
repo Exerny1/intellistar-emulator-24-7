@@ -21,12 +21,12 @@ body {
 }
 
 #content-container {
-  /* BIGGER BOX: Widened to 1350px so text doesn't hit the edges */
-  width: 1350px;
+  /* WIDER GLASS: Increased to 1550px so the info has a large border on the sides */
+  width: 1550px;
   height: 0px;
   position: absolute;
-  /* CENTERED: (1920 - 1350) / 2 = 285px */
-  left: 285px; 
+  /* RE-CENTERED: (1920 - 1550) / 2 = 185px */
+  left: 185px; 
   margin-left: 0px; 
   top: 815px; 
   overflow: hidden;
@@ -38,20 +38,20 @@ body {
 
 #content-container.shown {
   height: 650px !important;
-  /* RAISED UP: Moved from 290px to 250px to clear the bottom bar */
-  top: 250px !important; 
+  /* RAISED: Moved up to 230px to keep it away from the progress bar */
+  top: 230px !important; 
 }
 
 #content-frame {
   overflow: hidden;
   z-index: 10 !important;
   position: absolute;
-  width: 1350px;
+  width: 1550px;
   height: 650px !important;
-  top: 250px !important;
-  left: 285px;
+  top: 230px !important;
+  left: 185px;
   
-  /* Keeps the dial and text spread out but connected */
+  /* Flex layout handles the internal "enlarged" spacing */
   display: flex;
   justify-content: space-around; 
   align-items: center; 
@@ -59,7 +59,7 @@ body {
   padding-top: 20px;
   box-sizing: border-box;
 
-  /* Scale kept at 1.25 for that enlarged look */
+  /* Scale 1.25 makes the dial and text pop */
   transform: scale(1.25);
   transform-origin: center;
 }
