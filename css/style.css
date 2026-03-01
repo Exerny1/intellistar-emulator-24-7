@@ -21,12 +21,12 @@ body {
 }
 
 #content-container {
-  /* RESIZED: Narrower width pulls the dial and text together */
-  width: 1250px; 
+  /* BIGGER & CONNECTED: Width increased to 1500px to fit all info comfortably */
+  width: 1500px;
   height: 0px;
   position: absolute;
-  /* SCOOTED: Centered mathematically (1920 - 1250) / 2 */
-  left: 335px; 
+  /* SCOOTED LEFT: 140px puts it closer to the logo/header side */
+  left: 140px; 
   margin-left: 0px; 
   top: 815px;
   overflow: hidden;
@@ -36,29 +36,26 @@ body {
   transition: top 300ms, height 300ms;
 }
 
+/* TALLER BOX: 620px to ensure the 'FEELS' and extra data fit */
 #content-container.shown {
-  /* Taller to fit all info, but scale will handle the visual size */
-  height: 580px !important;
-  top: 260px !important; 
+  height: 620px !important;
+  top: 230px !important; 
 }
 
 #content-frame {
   overflow: hidden;
   z-index: 10 !important;
   position: absolute;
-  width: 1250px;
-  height: 580px !important;
-  top: 260px !important;
-  left: 335px;
+  /* MATCH CONTAINER */
+  width: 1500px;
+  height: 620px !important;
+  top: 230px !important;
+  left: 140px;
   
-  /* Internal spacing to keep things from touching the glass edges */
-  padding-left: 120px; 
-  padding-top: 50px;
+  /* INTERNAL SPACING: Brings the dial and text together toward the center */
+  padding-left: 280px; 
+  padding-top: 60px;
   box-sizing: border-box;
-
-  /* ENLARGE: This grows the box AND content without extending width */
-  transform: scale(1.15);
-  transform-origin: center;
 }
 
 #content-container.expand {
@@ -66,11 +63,4 @@ body {
   top: 0px !important;
   width: 100% !important;
   height: 100% !important;
-}
-
-#radar-container {
-  /* Ensures radar fits the new narrower box dimensions */
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
 }
