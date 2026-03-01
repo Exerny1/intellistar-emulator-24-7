@@ -21,7 +21,7 @@ body {
 }
 
 #content-container {
-  /* THE WIDE GLASS BACKDROP */
+  /* WIDE GLASS: The background box you wanted */
   width: 1650px;
   height: 0px;
   position: absolute;
@@ -37,7 +37,7 @@ body {
 
 #content-container.shown {
   height: 650px !important;
-  /* RAISED POSITION */
+  /* RAISED POSITION: Centered vertically */
   top: 230px !important; 
 }
 
@@ -50,16 +50,16 @@ body {
   top: 230px !important;
   left: 135px;
   
-  /* THE FIX: Keep box wide, but keep info close together */
+  /* CENTERED INFO: Keeps the dial and text packed together in the middle */
   display: flex;
-  justify-content: center; /* Pulls everything to the dead center */
-  gap: 100px;             /* This controls the exact "closeness" of dial and text */
+  justify-content: center; 
+  gap: 40px; /* Small gap so they sit close like the original */
   align-items: center; 
   
   padding-top: 20px;
   box-sizing: border-box;
 
-  /* ENLARGED INFO */
+  /* ENLARGED: 1.3 scale makes the center info big and clear */
   transform: scale(1.3);
   transform-origin: center;
 }
