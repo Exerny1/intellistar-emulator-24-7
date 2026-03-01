@@ -1,5 +1,5 @@
 body {
-  background-color: black !important;
+  background-color: black;
   margin: 0;
   padding: 0;
 }
@@ -18,7 +18,7 @@ body {
 
 #content-container {
   width: 1600px;
-  height: 0px; 
+  height: 0px;
   position: absolute;
   left: 130px; 
   top: 815px;
@@ -29,10 +29,10 @@ body {
   transition: top 300ms, height 300ms;
 }
 
-/* This forces the box to be shorter (450px) while staying at the bottom */
+/* This makes the box the exact height of the weather info (approx 550px) */
 #content-container.shown {
-  height: 450px !important;
-  top: 495px !important; 
+  height: 550px !important;
+  top: 300px !important; 
 }
 
 #content-frame {
@@ -40,11 +40,11 @@ body {
   z-index: 10 !important;
   position: absolute;
   width: 1600px;
-  height: 450px !important;
-  top: 495px !important;
+  height: 550px !important;
+  top: 300px !important;
   left: 130px;
   padding-left: 350px; 
-  padding-top: 40px;
+  padding-top: 60px;
   box-sizing: border-box;
 }
 
