@@ -34,10 +34,10 @@ body {
   transition: top 300ms, height 300ms;
 }
 
-/* SHORTER AND LOWERED BOX */
+/* ADJUSTED BOX: Raised up and sized to fit all text */
 #content-container.shown {
-  height: 440px !important;
-  top: 380px !important; 
+  height: 460px !important;
+  top: 310px !important; 
 }
 
 #content-frame {
@@ -45,20 +45,23 @@ body {
   z-index: 10 !important;
   position: absolute;
   width: 1600px;
-  height: 440px !important;
-  top: 380px !important;
+  height: 460px !important;
+  top: 310px !important;
   left: 130px;
   
-  /* Vertical centering for the dial */
+  /* Centers the dial and text within the new height */
   padding-left: 350px; 
-  padding-top: 30px;
+  padding-top: 40px;
   box-sizing: border-box;
 }
 
-/* RADAR/MAP OVERRIDE */
 #content-container.expand {
   left: 0px !important;
   top: 0px !important;
   width: 100% !important;
   height: 100% !important;
+}
+
+#amazing-container, #updated-container {
+  /* Placeholder for other containers in your script */
 }
