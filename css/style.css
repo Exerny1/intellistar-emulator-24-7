@@ -21,12 +21,13 @@ body {
 }
 
 #content-container {
-  /* THE FIX: Width shrunk to 1100px to hug the info sides */
-  width: 1100px;
+  /* BIGGER BOX: Widened to 1400px to give info more room */
+  width: 1400px;
+  /* HEIGHT: Increased to 620px to fully enclose 'Now' and 'FEELS' */
   height: 0px;
   position: absolute;
-  /* THE FIX: Re-centered for the new width (1920 - 1100) / 2 */
-  left: 410px; 
+  /* RE-CENTERED: (1920 - 1400) / 2 = 260px */
+  left: 260px; 
   margin-left: 0px; 
   top: 815px; 
   overflow: hidden;
@@ -37,30 +38,29 @@ body {
 }
 
 #content-container.shown {
-  /* THE FIX: Height increased to 580px to fit from 'Now' to 'FEELS' */
-  height: 580px !important;
-  /* THE FIX: Raised to 260px to align the top edge with the info */
-  top: 260px !important; 
+  height: 620px !important;
+  /* POSITION: Raised to 240px to sit properly on the background */
+  top: 240px !important; 
 }
 
 #content-frame {
   position: absolute;
-  /* MATCH CONTAINER */
-  width: 1100px;
-  height: 580px !important;
-  top: 260px !important;
-  left: 410px;
+  width: 1400px;
+  height: 620px !important;
+  top: 240px !important;
+  left: 260px;
   z-index: 10 !important;
   overflow: hidden;
   
-  /* UNTOUCHED INTERNAL LOGIC */
+  /* SPREAD INFO: space-evenly pushes the dial and text apart slightly */
   display: flex;
-  justify-content: space-around; 
+  justify-content: space-evenly; 
   align-items: center; 
+  
   padding-top: 20px;
   box-sizing: border-box;
 
-  /* UNTOUCHED SCALE */
+  /* Scale kept at 1.25 */
   transform: scale(1.25);
   transform-origin: center;
 }
