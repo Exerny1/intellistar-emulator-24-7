@@ -34,10 +34,10 @@ body {
   transition: top 300ms, height 300ms;
 }
 
-/* THE FIX: BIGGER BOX AND ADJUSTED POSITION */
+/* BIGGER BOX: Increased height to 620px for extra slide content */
 #content-container.shown {
-  height: 520px !important; /* Increased from 460 to 520 for more space */
-  top: 280px !important;    /* Adjusted to keep it centered and clear the header */
+  height: 620px !important;
+  top: 230px !important; 
 }
 
 #content-frame {
@@ -45,13 +45,13 @@ body {
   z-index: 10 !important;
   position: absolute;
   width: 1600px;
-  height: 520px !important;
-  top: 280px !important;
+  height: 620px !important;
+  top: 230px !important;
   left: 130px;
   
-  /* Vertical centering for the weather dial and list */
+  /* Adjusted padding to center the dial within the larger height */
   padding-left: 350px; 
-  padding-top: 50px;
+  padding-top: 60px;
   box-sizing: border-box;
 }
 
@@ -63,5 +63,5 @@ body {
 }
 
 #amazing-container, #updated-container {
-  /* Placeholder for other components in your setup */
+  /* Global containers for transitions */
 }
