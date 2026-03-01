@@ -29,10 +29,10 @@ body {
   transition: top 300ms, height 300ms;
 }
 
-/* This is where we make the box SHORTER (480px) */
+/* Thicker box (520px) and adjusted top position */
 #content-container.shown {
-  height: 480px !important;
-  top: 250px !important; 
+  height: 520px !important;
+  top: 220px !important; 
 }
 
 #content-frame {
@@ -40,16 +40,15 @@ body {
   z-index: 10 !important;
   position: absolute;
   width: 1600px;
-  height: 480px !important;
-  top: 250px !important;
+  height: 520px !important;
+  top: 220px !important;
   left: 130px;
   padding-left: 350px; 
-  padding-top: 40px;
+  padding-top: 50px;
   box-sizing: border-box;
 }
 
-/* Ensure the radar container clips the oversized iframe */
-#radar-container, #zoomed-radar-container {
+#radar-container {
   width: 1230px; 
   height: 550px;
   overflow: hidden;
