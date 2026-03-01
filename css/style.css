@@ -21,12 +21,12 @@ body {
 }
 
 #content-container {
-  /* BOX SIZE: 1200px width gives a clean margin on the sides */
-  width: 1200px;
+  /* WIDER BOX: 1400px gives enough room for both sides to move independently */
+  width: 1400px;
   height: 0px;
   position: absolute;
-  /* CENTERED: (1920 - 1200) / 2 = 360px */
-  left: 360px; 
+  /* CENTERED: (1920 - 1400) / 2 = 260px */
+  left: 260px; 
   margin-left: 0px; 
   top: 815px; 
   overflow: hidden;
@@ -37,31 +37,31 @@ body {
 }
 
 #content-container.shown {
-  /* TALLER: 620px covers 'Now' down to the bottom line */
-  height: 620px !important;
-  /* POSITION: Raised to 250px for a clean vertical look */
-  top: 250px !important; 
+  /* TALLER: 650px to ensure 'Now' and 'FEELS' are fully inside the glass */
+  height: 650px !important;
+  /* RAISED: 230px to clear the bottom bar and align with the header */
+  top: 230px !important; 
 }
 
 #content-frame {
   position: absolute;
-  width: 1200px;
-  height: 620px !important;
-  top: 250px !important;
-  left: 360px;
+  width: 1400px;
+  height: 650px !important;
+  top: 230px !important;
+  left: 260px;
   z-index: 10 !important;
   overflow: hidden;
   
-  /* THE LAYOUT FIX: Balanced spacing */
+  /* THE FIX: Increased gap to 120px to prevent the elements from overlapping */
   display: flex;
   justify-content: center; 
-  gap: 80px; /* The "Goldilocks" gap: Not too far, not too close */
+  gap: 120px; 
   align-items: center; 
   
   padding-top: 20px;
   box-sizing: border-box;
 
-  /* SCALE: 1.25 for that enlarged look */
+  /* Scale kept at 1.25 */
   transform: scale(1.25);
   transform-origin: center;
 }
