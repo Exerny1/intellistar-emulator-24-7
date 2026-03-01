@@ -19,13 +19,13 @@ body{
 }
 
 #content-container{
-  /* LARGE: Reduced width slightly to 1550px to fit better with the left-align */
-  width: 1550px;
+  /* LARGE: Keeps the massive cinematic look */
+  width: 1600px;
   height: 0px;
   position: absolute;
   
-  /* LOGO ALIGNMENT: Set to 80px to line up exactly with the Weather Channel logo */
-  left: 80px; 
+  /* THE NUDGE: Moved back to 130px to align with the logo's start */
+  left: 130px; 
   margin-left: 0px; 
   
   top: 815px;
@@ -37,9 +37,9 @@ body{
 }
 
 #content-container.shown{
-  /* UP AND IN THE MIDDLE: Kept at 720px height to fill space without hitting bars */
+  /* UP AND IN THE MIDDLE: Stays clear of the bottom navigation */
   height: 720px;
-  /* CENTERED VERTICALLY: 180px gives a clean gap from the top clock */
+  /* VERTICAL SWEET SPOT: Clears the top clock */
   top: 180px;
 }
 
@@ -47,13 +47,13 @@ body{
   overflow: hidden;
   z-index: 10 !important;
   position: absolute;
-  width: 1550px;
+  width: 1600px;
   height: 720px;
-  /* MATCHING THE CONTAINER */
+  /* MATCHES THE CONTAINER EXACTLY */
   top: 180px;
-  left: 80px;
+  left: 130px;
   
-  /* Keeps the weather info right at the start of the glass box */
+  /* Padding keeps the circle from touching the very edge of the glass */
   padding-left: 40px;
   box-sizing: border-box;
 }
