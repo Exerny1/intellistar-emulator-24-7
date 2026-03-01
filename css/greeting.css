@@ -1,78 +1,104 @@
-body {
-  background-color: black;
-}
-
-/* THE STAGE */
-#render-frame {
+#greeting-text-container{
+  position: absolute;
+  top: 245px;
+  left: 420px;
+  width: 700px;
+  height: auto;;
   overflow: hidden;
+}
+
+#greeting-text{
+  transition: opacity .3s, left .3s;
+  transition-timing-function: linear;
+  opacity: 0;
+  top: -10px;
+  left: 0px;
+  position: relative;
+}
+
+#hello-text-container{
+  transition: width .4s;
   position: absolute;
-  left: 50%;
-  top: 50%;
-  margin-left: -960px;
-  margin-top: -540px;
-  width: 1920px;
-  height: 1080px;
-  background: linear-gradient(to bottom, #1b2b4b 0%,#8ba5c3 100%);
-}
-
-/* THE GREETING FIX: Forces it to stay behind the weather and disappear */
-#greeting-container {
-    z-index: 1 !important;
-}
-
-#greeting-container.hidden {
-    display: none !important;
-    opacity: 0 !important;
-    visibility: hidden !important;
-    pointer-events: none !important;
-}
-
-/* THE BOX: Keeping the large, lowered look you liked */
-#content-container {
-  width: 1750px; 
-  height: 0px;
-  position: absolute;
-  left: 60px; 
-  top: 815px; 
+  top: 120px;
+  left: 420px;
+  width: 165px;
+  height: 55px;
   overflow: hidden;
-  background-color: rgba(0, 0, 0, 0.45);
-  backdrop-filter: blur(4px);
-  z-index: 10 !important; /* Put the weather box ON TOP */
-  transition: top 300ms, height 300ms;
 }
 
-#content-container.shown {
-  height: 800px; /* BIGGER: Fills the middle */
-  top: 260px;    /* LOWERED: Clears the top bars */
-}
-
-/* THE WEATHER DATA: Dropped into the glass box */
-#content-frame {
-  position: absolute;
-  width: 1750px;
-  height: 800px;
-  left: 0px;
-  top: 200px !important; /* Forces the weather items down */
-  transform: none !important;
-  padding-left: 60px !important; 
-  zoom: 1.0 !important;
-  display: block !important;
-}
-
-/* HEADER FIX: Keeps 'Now' at the top of the box */
-#content-frame [id*="header"], 
-#content-frame .slide-header, 
-#content-frame .title {
-    position: absolute !important;
-    left: 40px !important; 
-    top: -160px !important; 
-}
-
-/* RADAR/MAP OVERRIDE */
-#content-container.expand {
-  left: 0px;
-  top: 0px;
+#hello-text{
+  top: 55px;
   width: 100%;
   height: 100%;
-  margin-left: 0;
+  position: absolute;
+  transition: top .4s;
+}
+
+#hello-location-container{
+  position: absolute;
+  top: 120px;
+  left: 592px;
+  width: auto;
+  height: 55px;
+  overflow: hidden;
+  transition: top 0.3s, left 0.3s;
+}
+
+#hello-location-text{
+  position: relative;
+  top: -10px;
+  left: -100%;
+  transition: left .4s;
+}
+
+#local-logo-container{
+  position: absolute;
+  top: 50%;
+  left: 0px;
+  width: 390px;
+  height: 0px;
+  overflow: hidden;
+  transition: top 0.5s, height 0.5s, left 0.5s, width 50ms;
+}
+
+#hello-location-container.hidden{
+  top: -65px;
+  left: 35%;
+}
+
+#local-logo-container.shown{
+  transition-delay: 400ms;
+  top: 0px;
+  height: 100%;
+}
+
+#local-logo-container.hidden{
+  transition-duration: 1s;
+  top: -100%;
+  left: 200px;
+  width: 0px;
+  height: 0px;
+}
+
+#hello-text.shown{
+  transition-delay: 400ms;
+  top: -10px;
+}
+
+#hello-location-text.shown{
+  transition-delay: 600ms;
+  left: 0px;
+}
+
+#greeting-text.shown{
+  transition-delay: 600ms;
+  opacity: 1;
+}
+
+#greeting-text.hidden{
+  left: -100%;
+}
+
+#hello-text-container.hidden{
+  width: 0px;
 }
