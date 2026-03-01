@@ -21,11 +21,12 @@ body {
 }
 
 #content-container {
-  /* THE WIDE BOX: This is the background layer you liked */
-  width: 1700px;
+  /* WIDENED BOX: Now 1550px to fit the info inside comfortably */
+  width: 1550px;
   height: 0px;
   position: absolute;
-  left: 110px; 
+  /* RE-CENTERED: (1920 - 1550) / 2 = 185px */
+  left: 185px; 
   margin-left: 0px; 
   top: 815px; 
   overflow: hidden;
@@ -36,30 +37,31 @@ body {
 }
 
 #content-container.shown {
-  /* TALLER: 680px height to fit "FEELS" comfortably */
-  height: 680px !important;
-  /* HIGHER: 200px top to clear the bottom bar */
-  top: 200px !important; 
+  height: 650px !important;
+  /* RAISED UP: Moved to 220px as requested */
+  top: 220px !important; 
 }
 
 #content-frame {
   overflow: hidden;
   z-index: 10 !important;
   position: absolute;
-  width: 1700px;
-  height: 680px !important;
-  top: 200px !important;
-  left: 110px;
+  width: 1550px;
+  height: 650px !important;
+  top: 220px !important;
+  left: 185px;
   
-  /* THE FIX: Manual alignment to keep the dial and text tight */
-  padding-left: 380px; 
-  padding-top: 80px;
+  /* COPIED FROM YOUR SCRIPT: Keeps the info exactly how you had it */
+  display: flex;
+  justify-content: space-around; 
+  align-items: center; 
+  
+  padding-top: 20px;
   box-sizing: border-box;
-  display: block; /* Removed flex to stop it from spreading the info */
 
-  /* ENLARGED: 1.4 scale to make the data big and clear */
-  transform: scale(1.4);
-  transform-origin: center left;
+  /* COPIED FROM YOUR SCRIPT: 1.25 scale */
+  transform: scale(1.25);
+  transform-origin: center;
 }
 
 #content-container.expand {
