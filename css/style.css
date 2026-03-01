@@ -1,8 +1,8 @@
-body{
+body {
   background-color: black;
 }
 
-#render-frame{
+#render-frame {
   overflow: hidden;
   position: absolute;
   left: 50%;
@@ -15,10 +15,10 @@ body{
 }
 
 #greeting-container.hidden {
-    display: none !important;
+  display: none !important;
 }
 
-#content-container{
+#content-container {
   width: 1600px;
   height: 0px;
   position: absolute;
@@ -32,29 +32,28 @@ body{
   transition: top 300ms, height 300ms;
 }
 
-#content-container.shown{
-  height: 740px;
-  top: 205px; /* Keeps the bottom edge connected to the progress bar */
+/* THE FIX: Shorter height, adjusted Top to keep the bottom edge aligned */
+#content-container.shown {
+  height: 520px; /* Reduced from 740px to hug the text */
+  top: 425px;    /* Adjusted from 205px so the bottom doesn't move */
 }
 
-#content-frame{
+#content-frame {
   overflow: hidden;
   z-index: 10 !important;
   position: absolute;
   width: 1600px;
-  height: 740px;
-  top: 205px;
+  height: 520px; /* Matches the new container height */
+  top: 425px;    /* Matches the new container top */
   left: 130px;
   
-  /* THE PERFECT NUDGE: Increased from 40px to 350px 
-     to push the 60° circle and text into the center of the glass */
   padding-left: 350px; 
   padding-top: 30px;
   box-sizing: border-box;
 }
 
 /* RADAR/MAP OVERRIDE */
-#content-container.expand{
+#content-container.expand {
   left: 0px !important;
   top: 0px !important;
   width: 100% !important;
