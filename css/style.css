@@ -21,7 +21,7 @@ body {
   height: 0px;
   position: absolute;
   left: 130px; 
-  top: 815px;
+  top: 815px; /* Starting position for animation */
   overflow: hidden;
   background-color: rgba(0, 0, 0, 0.45);
   backdrop-filter: blur(8px);
@@ -29,10 +29,10 @@ body {
   transition: top 300ms, height 300ms;
 }
 
-/* Thicker box (520px) and adjusted top position */
+/* BIGGER BOX: Increased height to 680px */
 #content-container.shown {
-  height: 520px !important;
-  top: 220px !important; 
+  height: 680px !important;
+  top: 150px !important; 
 }
 
 #content-frame {
@@ -40,17 +40,19 @@ body {
   z-index: 10 !important;
   position: absolute;
   width: 1600px;
-  height: 520px !important;
-  top: 220px !important;
+  height: 680px !important;
+  top: 150px !important;
   left: 130px;
+  
+  /* Centering the content inside the larger box */
   padding-left: 350px; 
-  padding-top: 50px;
+  padding-top: 80px; 
   box-sizing: border-box;
 }
 
 #radar-container {
   width: 1230px; 
-  height: 550px;
+  height: 600px;
   overflow: hidden;
   position: relative;
 }
