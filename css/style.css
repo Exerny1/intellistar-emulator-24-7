@@ -29,10 +29,10 @@ body {
   transition: top 300ms, height 300ms;
 }
 
-/* This makes the box the exact height of the weather info (approx 550px) */
+/* This is where we make the box SHORTER (480px) */
 #content-container.shown {
-  height: 550px !important;
-  top: 300px !important; 
+  height: 480px !important;
+  top: 250px !important; 
 }
 
 #content-frame {
@@ -40,17 +40,18 @@ body {
   z-index: 10 !important;
   position: absolute;
   width: 1600px;
-  height: 550px !important;
-  top: 300px !important;
+  height: 480px !important;
+  top: 250px !important;
   left: 130px;
   padding-left: 350px; 
-  padding-top: 60px;
+  padding-top: 40px;
   box-sizing: border-box;
 }
 
-#content-container.expand {
-  left: 0px !important;
-  top: 0px !important;
-  width: 100% !important;
-  height: 100% !important;
+/* Ensure the radar container clips the oversized iframe */
+#radar-container, #zoomed-radar-container {
+  width: 1230px; 
+  height: 550px;
+  overflow: hidden;
+  position: relative;
 }
