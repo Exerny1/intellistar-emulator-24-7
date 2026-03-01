@@ -34,10 +34,10 @@ body {
   transition: top 300ms, height 300ms;
 }
 
-/* ADJUSTED BOX: Raised up and sized to fit all text */
+/* THE FIX: BIGGER BOX AND ADJUSTED POSITION */
 #content-container.shown {
-  height: 460px !important;
-  top: 310px !important; 
+  height: 520px !important; /* Increased from 460 to 520 for more space */
+  top: 280px !important;    /* Adjusted to keep it centered and clear the header */
 }
 
 #content-frame {
@@ -45,13 +45,13 @@ body {
   z-index: 10 !important;
   position: absolute;
   width: 1600px;
-  height: 460px !important;
-  top: 310px !important;
+  height: 520px !important;
+  top: 280px !important;
   left: 130px;
   
-  /* Centers the dial and text within the new height */
+  /* Vertical centering for the weather dial and list */
   padding-left: 350px; 
-  padding-top: 40px;
+  padding-top: 50px;
   box-sizing: border-box;
 }
 
@@ -63,5 +63,5 @@ body {
 }
 
 #amazing-container, #updated-container {
-  /* Placeholder for other containers in your script */
+  /* Placeholder for other components in your setup */
 }
