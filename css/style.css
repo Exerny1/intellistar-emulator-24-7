@@ -21,7 +21,7 @@ body {
 }
 
 #content-container {
-  /* LONGER: Increased to 1600px to reach the end of the text */
+  /* THE FIX: Width increased to 1600px to fit the text on the right */
   width: 1600px;
   height: 0px;
   position: absolute;
@@ -37,9 +37,9 @@ body {
 }
 
 #content-container.shown {
-  /* TALLER: Increased to 800px to cover everything top to bottom */
-  height: 800px !important;
-  /* LOWERED: Kept at your exact 250px */
+  /* THE FIX: Height increased to 750px to cover 'Now' and 'FEELS' */
+  height: 750px !important;
+  /* UNTOUCHED: Kept at your exact 250px */
   top: 250px !important; 
 }
 
@@ -47,7 +47,7 @@ body {
   position: absolute;
   /* MATCH BOX DIMENSIONS */
   width: 1600px;
-  height: 800px !important;
+  height: 750px !important;
   top: 250px !important;
   left: 285px;
   z-index: 10 !important;
