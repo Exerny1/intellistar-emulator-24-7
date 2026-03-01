@@ -21,11 +21,12 @@ body {
 }
 
 #content-container {
-  /* WIDER BOX: Covering the full span of the enlarged data */
-  width: 1550px;
+  /* MASSIVE BOX: Widened significantly to 1700px to cover all sides */
+  width: 1700px;
   height: 0px;
   position: absolute;
-  left: 185px; 
+  /* CENTERED: (1920 - 1700) / 2 = 110px */
+  left: 110px; 
   margin-left: 0px; 
   top: 815px; 
   overflow: hidden;
@@ -36,33 +37,31 @@ body {
 }
 
 #content-container.shown {
-  /* TALLER BOX: Increased to 720px to fit everything from 'Now' to 'FEELS' */
-  height: 720px !important;
-  /* RAISED HIGHER: Moved to 180px so it sits properly under the logo */
-  top: 180px !important; 
+  /* MUCH TALLER: 750px to ensure 'Now' and 'FEELS' are fully inside the glass */
+  height: 750px !important;
+  /* POSITIONED: 220px to sit under the logo area */
+  top: 220px !important; 
 }
 
 #content-frame {
   overflow: hidden;
   z-index: 10 !important;
   position: absolute;
-  width: 1550px;
-  height: 720px !important;
-  top: 180px !important;
-  left: 185px;
+  width: 1700px;
+  height: 750px !important;
+  top: 220px !important;
+  left: 110px;
   
-  /* CENTERED & TIGHT: Pulls the dial and text close together */
-  display: flex;
-  justify-content: center; 
-  gap: 20px; 
-  align-items: center; 
-  
-  padding-top: 20px;
+  /* THE FIX: Manual positioning to keep info TIGHT and CENTERED */
+  /* This prevents the "widening" effect you hated */
+  padding-left: 480px; 
+  padding-top: 100px;
   box-sizing: border-box;
+  display: block; 
 
-  /* Scale kept at 1.25 */
-  transform: scale(1.25);
-  transform-origin: center;
+  /* ENLARGED: 1.3 scale for a big look without spreading the info */
+  transform: scale(1.3);
+  transform-origin: center left;
 }
 
 #content-container.expand {
