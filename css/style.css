@@ -21,10 +21,12 @@ body {
 }
 
 #content-container {
-  width: 1250px;
+  /* BIGGER BOX: Widened to 1350px so text doesn't hit the edges */
+  width: 1350px;
   height: 0px;
   position: absolute;
-  left: 335px; 
+  /* CENTERED: (1920 - 1350) / 2 = 285px */
+  left: 285px; 
   margin-left: 0px; 
   top: 815px; 
   overflow: hidden;
@@ -36,21 +38,20 @@ body {
 
 #content-container.shown {
   height: 650px !important;
-  /* THE FIX: Raised back up to 290px */
-  top: 290px !important; 
+  /* RAISED UP: Moved from 290px to 250px to clear the bottom bar */
+  top: 250px !important; 
 }
 
 #content-frame {
   overflow: hidden;
   z-index: 10 !important;
   position: absolute;
-  width: 1250px;
+  width: 1350px;
   height: 650px !important;
-  /* MATCH CONTAINER */
-  top: 290px !important;
-  left: 335px;
+  top: 250px !important;
+  left: 285px;
   
-  /* Layout to keep dial and text spread out */
+  /* Keeps the dial and text spread out but connected */
   display: flex;
   justify-content: space-around; 
   align-items: center; 
