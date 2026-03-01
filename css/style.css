@@ -26,7 +26,6 @@ body {
   position: absolute;
   left: 335px; 
   margin-left: 0px; 
-  /* Initial hidden position */
   top: 815px; 
   overflow: hidden;
   background-color: rgba(0, 0, 0, 0.45);
@@ -37,8 +36,8 @@ body {
 
 #content-container.shown {
   height: 650px !important;
-  /* THE FIX: Lowered from 210px to 340px */
-  top: 340px !important; 
+  /* THE FIX: Raised back up to 290px */
+  top: 290px !important; 
 }
 
 #content-frame {
@@ -48,7 +47,7 @@ body {
   width: 1250px;
   height: 650px !important;
   /* MATCH CONTAINER */
-  top: 340px !important;
+  top: 290px !important;
   left: 335px;
   
   /* Layout to keep dial and text spread out */
