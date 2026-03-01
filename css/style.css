@@ -21,12 +21,11 @@ body {
 }
 
 #content-container {
-  /* WIDENED: Increased to 1450px to fit all info with breathing room */
-  width: 1450px;
+  /* WIDER BOX: Covering the full span of the enlarged data */
+  width: 1550px;
   height: 0px;
   position: absolute;
-  /* RE-CENTERED: (1920 - 1450) / 2 = 235px */
-  left: 235px; 
+  left: 185px; 
   margin-left: 0px; 
   top: 815px; 
   overflow: hidden;
@@ -37,30 +36,31 @@ body {
 }
 
 #content-container.shown {
-  height: 650px !important;
-  /* RAISED UP: Moved from 290px to 240px to clear the bottom bar */
-  top: 240px !important; 
+  /* TALLER BOX: Increased to 720px to fit everything from 'Now' to 'FEELS' */
+  height: 720px !important;
+  /* RAISED HIGHER: Moved to 180px so it sits properly under the logo */
+  top: 180px !important; 
 }
 
 #content-frame {
   overflow: hidden;
   z-index: 10 !important;
   position: absolute;
-  width: 1450px;
-  height: 650px !important;
-  /* MATCH CONTAINER */
-  top: 240px !important;
-  left: 235px;
+  width: 1550px;
+  height: 720px !important;
+  top: 180px !important;
+  left: 185px;
   
-  /* Layout kept exactly from your script */
+  /* CENTERED & TIGHT: Pulls the dial and text close together */
   display: flex;
-  justify-content: space-around; 
+  justify-content: center; 
+  gap: 20px; 
   align-items: center; 
   
   padding-top: 20px;
   box-sizing: border-box;
 
-  /* Scale kept at 1.25 as requested */
+  /* Scale kept at 1.25 */
   transform: scale(1.25);
   transform-origin: center;
 }
