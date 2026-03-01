@@ -19,13 +19,14 @@ body{
 }
 
 #content-container{
-  /* LARGE: 1600px width keeps it massive but away from the very edges */
-  width: 1600px;
+  /* LARGE: Reduced width slightly to 1550px to fit better with the left-align */
+  width: 1550px;
   height: 0px;
   position: absolute;
-  /* CENTERED: Uses 50% left with a negative margin to stay perfectly centered */
-  left: 50%;
-  margin-left: -800px; 
+  
+  /* LOGO ALIGNMENT: Set to 80px to line up exactly with the Weather Channel logo */
+  left: 80px; 
+  margin-left: 0px; 
   
   top: 815px;
   overflow: hidden;
@@ -36,32 +37,30 @@ body{
 }
 
 #content-container.shown{
-  /* BIGGER: 700px height creates a large middle focal point */
-  height: 700px;
-  /* HIGHER: Moved to 190px to stay clear of the bottom bars */
-  top: 190px;
+  /* UP AND IN THE MIDDLE: Kept at 720px height to fill space without hitting bars */
+  height: 720px;
+  /* CENTERED VERTICALLY: 180px gives a clean gap from the top clock */
+  top: 180px;
 }
 
 #content-frame{
   overflow: hidden;
   z-index: 10 !important;
   position: absolute;
-  width: 1600px;
-  height: 700px;
-  /* MATCHED POSITION: Snaps exactly to the glass box */
-  top: 190px;
-  left: 50%;
-  margin-left: -800px;
+  width: 1550px;
+  height: 720px;
+  /* MATCHING THE CONTAINER */
+  top: 180px;
+  left: 80px;
   
-  /* SHIFTED CONTENT: Moves the circle and text slightly toward the middle */
-  padding-left: 100px;
+  /* Keeps the weather info right at the start of the glass box */
+  padding-left: 40px;
   box-sizing: border-box;
 }
 
-/* RADAR/MAP OVERRIDE: Stretches to fill when expanded */
+/* RADAR/MAP OVERRIDE */
 #content-container.expand{
   left: 0px !important;
-  margin-left: 0px !important;
   top: 0px !important;
   width: 100% !important;
   height: 100% !important;
