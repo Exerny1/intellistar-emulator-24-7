@@ -21,10 +21,11 @@ body {
 }
 
 #content-container {
-  /* THE ALIGNMENT FIX: Width increased and Left decreased to hit the logo edge */
-  width: 1760px; 
+  /* REVERTED WIDTH: Back to original 1600px */
+  width: 1600px;
   height: 0px;
   position: absolute;
+  /* ALIGNED LEFT: Shifted to 80px to match the logo edge */
   left: 80px; 
   margin-left: 0px; 
   top: 815px;
@@ -44,13 +45,13 @@ body {
   overflow: hidden;
   z-index: 10 !important;
   position: absolute;
-  /* MUST match the new container width and left */
-  width: 1760px;
+  /* MUST match the container exactly */
+  width: 1600px;
   height: 620px !important;
   top: 230px !important;
   left: 80px;
   
-  /* Adjusted padding to keep the weather dial in its original spot relative to the box */
+  /* Internal spacing for the weather dial */
   padding-left: 350px; 
   padding-top: 60px;
   box-sizing: border-box;
@@ -61,8 +62,4 @@ body {
   top: 0px !important;
   width: 100% !important;
   height: 100% !important;
-}
-
-#amazing-container, #updated-container {
-  /* Global references */
 }
