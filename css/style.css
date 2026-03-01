@@ -21,11 +21,11 @@ body {
 }
 
 #content-container {
-  width: 1600px;
+  /* THE ALIGNMENT FIX: Width increased and Left decreased to hit the logo edge */
+  width: 1760px; 
   height: 0px;
   position: absolute;
-  /* THE CENTER FIX: Changed left from 130px to 160px */
-  left: 160px; 
+  left: 80px; 
   margin-left: 0px; 
   top: 815px;
   overflow: hidden;
@@ -44,13 +44,13 @@ body {
   overflow: hidden;
   z-index: 10 !important;
   position: absolute;
-  width: 1600px;
+  /* MUST match the new container width and left */
+  width: 1760px;
   height: 620px !important;
   top: 230px !important;
-  /* MUST match the container left for alignment */
-  left: 160px;
+  left: 80px;
   
-  /* Adjusted padding for content inside the box */
+  /* Adjusted padding to keep the weather dial in its original spot relative to the box */
   padding-left: 350px; 
   padding-top: 60px;
   box-sizing: border-box;
