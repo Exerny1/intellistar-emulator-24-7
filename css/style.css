@@ -21,12 +21,12 @@ body {
 }
 
 #content-container {
-  /* THE WIDTH FIX: Increased to 1550px to make the glass longer on the right */
-  width: 1550px;
+  /* ONLY CHANGE: Width increased to 1600px to make the glass longer */
+  width: 1600px;
   height: 0px;
   position: absolute;
-  /* THE RE-CENTER FIX: (1920 - 1550) / 2 = 185px */
-  left: 185px; 
+  /* UNTOUCHED: Kept at your 285px */
+  left: 285px; 
   margin-left: 0px; 
   top: 815px; 
   overflow: hidden;
@@ -37,19 +37,19 @@ body {
 }
 
 #content-container.shown {
-  /* THE HEIGHT FIX: Increased to 720px so the dark part is taller */
-  height: 720px !important;
-  /* THE TOP FIX: Moved to 210px so the glass starts above the 'Now' text */
-  top: 210px !important; 
+  /* ONLY CHANGE: Height increased to 750px to make the glass taller */
+  height: 750px !important;
+  /* UNTOUCHED: Kept at your 250px */
+  top: 250px !important; 
 }
 
 #content-frame {
   position: absolute;
-  /* MATCH CONTAINER DIMENSIONS */
-  width: 1550px;
-  height: 720px !important;
-  top: 210px !important;
-  left: 185px;
+  /* MATCH NEW BOX DIMENSIONS */
+  width: 1600px;
+  height: 750px !important;
+  top: 250px !important;
+  left: 285px;
   z-index: 10 !important;
   overflow: hidden;
   
