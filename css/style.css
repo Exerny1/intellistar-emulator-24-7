@@ -24,7 +24,8 @@ body {
   width: 1600px;
   height: 0px;
   position: absolute;
-  left: 130px; 
+  /* THE CENTER FIX: Changed left from 130px to 160px */
+  left: 160px; 
   margin-left: 0px; 
   top: 815px;
   overflow: hidden;
@@ -34,7 +35,6 @@ body {
   transition: top 300ms, height 300ms;
 }
 
-/* BIGGER BOX: Increased height to 620px for extra slide content */
 #content-container.shown {
   height: 620px !important;
   top: 230px !important; 
@@ -47,9 +47,10 @@ body {
   width: 1600px;
   height: 620px !important;
   top: 230px !important;
-  left: 130px;
+  /* MUST match the container left for alignment */
+  left: 160px;
   
-  /* Adjusted padding to center the dial within the larger height */
+  /* Adjusted padding for content inside the box */
   padding-left: 350px; 
   padding-top: 60px;
   box-sizing: border-box;
@@ -63,5 +64,5 @@ body {
 }
 
 #amazing-container, #updated-container {
-  /* Global containers for transitions */
+  /* Global references */
 }
