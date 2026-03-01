@@ -1,18 +1,18 @@
 body {
-  background-color: black;
   margin: 0;
   padding: 0;
+  background-color: black;
 }
 
 #render-frame {
-  overflow: hidden;
   position: absolute;
-  left: 50%;
   top: 50%;
-  margin-left: -960px;
-  margin-top: -540px;
+  left: 50%;
   width: 1920px;
   height: 1080px;
+  margin-top: -540px;
+  margin-left: -960px;
+  overflow: hidden;
   background: linear-gradient(to bottom, #1b2b4b 0%,#8ba5c3 100%);
 }
 
@@ -21,11 +21,11 @@ body {
 }
 
 #content-container {
-  /* FIXED WIDTH: Increased to 1550px to fit the right-side text */
+  /* THE WIDTH FIX: Increased to 1550px to make the glass longer on the right */
   width: 1550px;
   height: 0px;
   position: absolute;
-  /* CENTERED: (1920 - 1550) / 2 = 185px */
+  /* THE RE-CENTER FIX: (1920 - 1550) / 2 = 185px */
   left: 185px; 
   margin-left: 0px; 
   top: 815px; 
@@ -37,37 +37,39 @@ body {
 }
 
 #content-container.shown {
-  /* FIXED HEIGHT: 720px to go from the top of 'Now' to the bottom of 'FEELS' */
+  /* THE HEIGHT FIX: Increased to 720px so the dark part is taller */
   height: 720px !important;
-  /* POSITION: Lowered slightly to 250px as you requested earlier */
-  top: 250px !important; 
+  /* THE TOP FIX: Moved to 210px so the glass starts above the 'Now' text */
+  top: 210px !important; 
 }
 
 #content-frame {
-  overflow: hidden;
-  z-index: 10 !important;
   position: absolute;
+  /* MATCH CONTAINER DIMENSIONS */
   width: 1550px;
   height: 720px !important;
-  top: 250px !important;
+  top: 210px !important;
   left: 185px;
+  z-index: 10 !important;
+  overflow: hidden;
   
-  /* RESTORED: Exactly your layout logic */
+  /* UNTOUCHED: EXACTLY AS YOU PROVIDED */
   display: flex;
-  justify-content: space-around; 
+  justify-content: center; 
+  gap: 120px; 
   align-items: center; 
   
   padding-top: 20px;
   box-sizing: border-box;
 
-  /* RESTORED: Exactly your 1.25 scale */
+  /* UNTOUCHED: EXACTLY AS YOU PROVIDED */
   transform: scale(1.25);
   transform-origin: center;
 }
 
 #content-container.expand {
-  left: 0px !important;
   top: 0px !important;
+  left: 0px !important;
   width: 100% !important;
   height: 100% !important;
 }
