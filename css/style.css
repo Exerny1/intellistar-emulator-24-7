@@ -21,12 +21,12 @@ body {
 }
 
 #content-container {
-  /* WIDER BOX: 1400px gives enough room for both sides to move independently */
-  width: 1400px;
+  /* SHRUNK: Width reduced to 1350px for a tighter fit */
+  width: 1350px;
   height: 0px;
   position: absolute;
-  /* CENTERED: (1920 - 1400) / 2 = 260px */
-  left: 260px; 
+  /* RE-CENTERED: (1920 - 1350) / 2 = 285px */
+  left: 285px; 
   margin-left: 0px; 
   top: 815px; 
   overflow: hidden;
@@ -37,22 +37,21 @@ body {
 }
 
 #content-container.shown {
-  /* TALLER: 650px to ensure 'Now' and 'FEELS' are fully inside the glass */
   height: 650px !important;
-  /* RAISED: 230px to clear the bottom bar and align with the header */
-  top: 230px !important; 
+  /* LOWERED: Moved from 230px down to 250px */
+  top: 250px !important; 
 }
 
 #content-frame {
   position: absolute;
-  width: 1400px;
+  width: 1350px;
   height: 650px !important;
-  top: 230px !important;
-  left: 260px;
+  top: 250px !important;
+  left: 285px;
   z-index: 10 !important;
   overflow: hidden;
   
-  /* THE FIX: Increased gap to 120px to prevent the elements from overlapping */
+  /* SPACING: Kept the 120px gap so the right side doesn't get stuck */
   display: flex;
   justify-content: center; 
   gap: 120px; 
