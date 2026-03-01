@@ -21,12 +21,12 @@ body {
 }
 
 #content-container {
-  /* REVERTED WIDTH: Back to original 1600px */
-  width: 1600px;
+  /* SHORTER WIDTH: Brining the left and right sides in */
+  width: 1300px; 
   height: 0px;
   position: absolute;
-  /* ALIGNED LEFT: Shifted to 80px to match the logo edge */
-  left: 80px; 
+  /* CENTERED: (1920 - 1300) / 2 = 310px */
+  left: 310px; 
   margin-left: 0px; 
   top: 815px;
   overflow: hidden;
@@ -45,16 +45,20 @@ body {
   overflow: hidden;
   z-index: 10 !important;
   position: absolute;
-  /* MUST match the container exactly */
-  width: 1600px;
+  /* MATCH CONTAINER */
+  width: 1300px;
   height: 620px !important;
   top: 230px !important;
-  left: 80px;
+  left: 310px;
   
-  /* Internal spacing for the weather dial */
-  padding-left: 350px; 
+  /* ENLARGING EFFECT: Reduced left padding to bring dial closer to the center */
+  padding-left: 150px; 
   padding-top: 60px;
   box-sizing: border-box;
+  
+  /* This slightly enlarges the visual scale of the weather elements */
+  transform: scale(1.05);
+  transform-origin: center;
 }
 
 #content-container.expand {
