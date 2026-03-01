@@ -21,12 +21,12 @@ body {
 }
 
 #content-container {
-  /* BRINGING SIDES IN: Width reduced to 1100px to "connect" info in the middle */
-  width: 1100px;
+  /* SPREAD OUT: Width increased to 1250px to prevent overlap */
+  width: 1250px;
   height: 0px;
   position: absolute;
-  /* CENTERED: (1920 - 1100) / 2 = 410px */
-  left: 410px; 
+  /* CENTERED: (1920 - 1250) / 2 = 335px */
+  left: 335px; 
   margin-left: 0px; 
   top: 815px;
   overflow: hidden;
@@ -37,7 +37,6 @@ body {
 }
 
 #content-container.shown {
-  /* TALLER BOX: To handle the enlargement and extra content */
   height: 650px !important;
   top: 210px !important; 
 }
@@ -46,19 +45,21 @@ body {
   overflow: hidden;
   z-index: 10 !important;
   position: absolute;
-  /* MATCH CONTAINER */
-  width: 1100px;
+  width: 1250px;
   height: 650px !important;
   top: 210px !important;
-  left: 410px;
+  left: 335px;
   
-  /* PADDING: Small left padding so the dial is close to the text */
-  padding-left: 80px; 
-  padding-top: 60px;
+  /* FLEX LAYOUT: This automatically spaces the dial and the text apart */
+  display: flex;
+  justify-content: space-around; /* Adds equal space between and around elements */
+  align-items: center; /* Centers items vertically */
+  
+  padding-top: 20px;
   box-sizing: border-box;
 
-  /* ENLARGE EVERYTHING: Scales up the dial and text together */
-  transform: scale(1.2);
+  /* ENLARGE: Scaled up to 1.25 for a bigger "broadcast" look */
+  transform: scale(1.25);
   transform-origin: center;
 }
 
