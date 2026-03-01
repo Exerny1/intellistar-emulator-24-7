@@ -33,10 +33,8 @@ body{
 }
 
 #content-container.shown{
-  /* LARGER: Height increased to 740px to fill more middle space */
   height: 740px;
-  /* MOVED DOWN: Dropped to 205px to align the bottom with the bar */
-  top: 205px;
+  top: 205px; /* Keeps the bottom edge connected to the progress bar */
 }
 
 #content-frame{
@@ -45,13 +43,13 @@ body{
   position: absolute;
   width: 1600px;
   height: 740px;
-  /* MATCHES THE CONTAINER EXACTLY */
   top: 205px;
   left: 130px;
   
-  /* DROPPED INFO: Shifts the actual weather data down inside the box */
+  /* THE PERFECT NUDGE: Increased from 40px to 350px 
+     to push the 60° circle and text into the center of the glass */
+  padding-left: 350px; 
   padding-top: 30px;
-  padding-left: 40px;
   box-sizing: border-box;
 }
 
