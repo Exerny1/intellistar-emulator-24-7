@@ -19,15 +19,11 @@ body{
 }
 
 #content-container{
-  /* LARGE: Keeps the massive cinematic look */
   width: 1600px;
   height: 0px;
   position: absolute;
-  
-  /* THE NUDGE: Moved back to 130px to align with the logo's start */
   left: 130px; 
   margin-left: 0px; 
-  
   top: 815px;
   overflow: hidden;
   background-color: rgba(0, 0, 0, 0.45);
@@ -37,10 +33,10 @@ body{
 }
 
 #content-container.shown{
-  /* UP AND IN THE MIDDLE: Stays clear of the bottom navigation */
-  height: 720px;
-  /* VERTICAL SWEET SPOT: Clears the top clock */
-  top: 180px;
+  /* LARGER: Height increased to 740px to fill more middle space */
+  height: 740px;
+  /* MOVED DOWN: Dropped to 205px to align the bottom with the bar */
+  top: 205px;
 }
 
 #content-frame{
@@ -48,12 +44,13 @@ body{
   z-index: 10 !important;
   position: absolute;
   width: 1600px;
-  height: 720px;
+  height: 740px;
   /* MATCHES THE CONTAINER EXACTLY */
-  top: 180px;
+  top: 205px;
   left: 130px;
   
-  /* Padding keeps the circle from touching the very edge of the glass */
+  /* DROPPED INFO: Shifts the actual weather data down inside the box */
+  padding-top: 30px;
   padding-left: 40px;
   box-sizing: border-box;
 }
