@@ -21,12 +21,12 @@ body {
 }
 
 #content-container {
-  /* SHORTER WIDTH: Brining the left and right sides in */
-  width: 1300px; 
+  /* RESIZED: Narrower width pulls the dial and text together */
+  width: 1250px; 
   height: 0px;
   position: absolute;
-  /* CENTERED: (1920 - 1300) / 2 = 310px */
-  left: 310px; 
+  /* SCOOTED: Centered mathematically (1920 - 1250) / 2 */
+  left: 335px; 
   margin-left: 0px; 
   top: 815px;
   overflow: hidden;
@@ -37,27 +37,27 @@ body {
 }
 
 #content-container.shown {
-  height: 620px !important;
-  top: 230px !important; 
+  /* Taller to fit all info, but scale will handle the visual size */
+  height: 580px !important;
+  top: 260px !important; 
 }
 
 #content-frame {
   overflow: hidden;
   z-index: 10 !important;
   position: absolute;
-  /* MATCH CONTAINER */
-  width: 1300px;
-  height: 620px !important;
-  top: 230px !important;
-  left: 310px;
+  width: 1250px;
+  height: 580px !important;
+  top: 260px !important;
+  left: 335px;
   
-  /* ENLARGING EFFECT: Reduced left padding to bring dial closer to the center */
-  padding-left: 150px; 
-  padding-top: 60px;
+  /* Internal spacing to keep things from touching the glass edges */
+  padding-left: 120px; 
+  padding-top: 50px;
   box-sizing: border-box;
-  
-  /* This slightly enlarges the visual scale of the weather elements */
-  transform: scale(1.05);
+
+  /* ENLARGE: This grows the box AND content without extending width */
+  transform: scale(1.15);
   transform-origin: center;
 }
 
@@ -66,4 +66,11 @@ body {
   top: 0px !important;
   width: 100% !important;
   height: 100% !important;
+}
+
+#radar-container {
+  /* Ensures radar fits the new narrower box dimensions */
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
