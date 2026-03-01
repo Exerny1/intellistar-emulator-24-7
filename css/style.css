@@ -1,18 +1,18 @@
 body {
+  background-color: black;
   margin: 0;
   padding: 0;
-  background-color: black;
 }
 
 #render-frame {
+  overflow: hidden;
   position: absolute;
-  top: 50%;
   left: 50%;
+  top: 50%;
+  margin-left: -960px;
+  margin-top: -540px;
   width: 1920px;
   height: 1080px;
-  margin-top: -540px;
-  margin-left: -960px;
-  overflow: hidden;
   background: linear-gradient(to bottom, #1b2b4b 0%,#8ba5c3 100%);
 }
 
@@ -21,11 +21,11 @@ body {
 }
 
 #content-container {
-  /* SHRUNK: Width reduced to 1350px for a tighter fit */
+  /* THE WIDTH FIX: Set to 1350px to match the info span */
   width: 1350px;
   height: 0px;
   position: absolute;
-  /* RE-CENTERED: (1920 - 1350) / 2 = 285px */
+  /* THE ALIGNMENT FIX: Centered at 285px */
   left: 285px; 
   margin-left: 0px; 
   top: 815px; 
@@ -38,36 +38,35 @@ body {
 
 #content-container.shown {
   height: 650px !important;
-  /* LOWERED: Moved from 230px down to 250px */
+  /* POSITION: Kept at your preferred 250px */
   top: 250px !important; 
 }
 
 #content-frame {
+  overflow: hidden;
+  z-index: 10 !important;
   position: absolute;
   width: 1350px;
   height: 650px !important;
   top: 250px !important;
   left: 285px;
-  z-index: 10 !important;
-  overflow: hidden;
   
-  /* SPACING: Kept the 120px gap so the right side doesn't get stuck */
+  /* UNTOUCHED: Your original spacing logic */
   display: flex;
-  justify-content: center; 
-  gap: 120px; 
+  justify-content: space-around; 
   align-items: center; 
   
   padding-top: 20px;
   box-sizing: border-box;
 
-  /* Scale kept at 1.25 */
+  /* UNTOUCHED: Your original scale */
   transform: scale(1.25);
   transform-origin: center;
 }
 
 #content-container.expand {
-  top: 0px !important;
   left: 0px !important;
+  top: 0px !important;
   width: 100% !important;
   height: 100% !important;
 }
