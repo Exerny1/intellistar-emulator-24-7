@@ -21,12 +21,12 @@ body {
 }
 
 #content-container {
-  /* Fits the info sides */
-  width: 1100px;
+  /* BOX SIZE: 1200px width gives a clean margin on the sides */
+  width: 1200px;
   height: 0px;
   position: absolute;
-  /* Centered: (1920 - 1100) / 2 */
-  left: 410px; 
+  /* CENTERED: (1920 - 1200) / 2 = 360px */
+  left: 360px; 
   margin-left: 0px; 
   top: 815px; 
   overflow: hidden;
@@ -37,31 +37,31 @@ body {
 }
 
 #content-container.shown {
-  /* Height increased to fit from 'Now' to 'FEELS' */
-  height: 580px !important;
-  /* Raised to sit under the logo/header */
-  top: 260px !important; 
+  /* TALLER: 620px covers 'Now' down to the bottom line */
+  height: 620px !important;
+  /* POSITION: Raised to 250px for a clean vertical look */
+  top: 250px !important; 
 }
 
 #content-frame {
   position: absolute;
-  width: 1100px;
-  height: 580px !important;
-  top: 260px !important;
-  left: 410px;
+  width: 1200px;
+  height: 620px !important;
+  top: 250px !important;
+  left: 360px;
   z-index: 10 !important;
   overflow: hidden;
   
-  /* THE FIX: Pulls everything into the center with a small gap */
+  /* THE LAYOUT FIX: Balanced spacing */
   display: flex;
   justify-content: center; 
-  gap: 20px; 
+  gap: 80px; /* The "Goldilocks" gap: Not too far, not too close */
   align-items: center; 
   
   padding-top: 20px;
   box-sizing: border-box;
 
-  /* Scale kept at 1.25 */
+  /* SCALE: 1.25 for that enlarged look */
   transform: scale(1.25);
   transform-origin: center;
 }
