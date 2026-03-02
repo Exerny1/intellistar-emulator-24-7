@@ -31,20 +31,20 @@ body {
   top: 815px; 
   overflow: visible; 
   
-  /* GLASS RESTORED */
+  /* GLASS STYLE */
   background-color: rgba(0, 0, 0, 0.45);
   backdrop-filter: blur(8px);
   z-index: 1;
   transition: top 300ms, height 300ms;
 
-  /* THE COMFORT FIX */
-  /* Top/Bottom padding increased to 60px to cover the 'Now' text better */
-  /* Left/Right padding increased to 150px to stretch the glass wide */
-  padding: 60px 150px; 
+  /* THE COMFORT ADJUSTMENTS */
+  /* Top is now 80px for extra room, Bottom is 20px to keep it shorter */
+  /* Sides are 180px for that teeny bit of extra length */
+  padding: 80px 180px 20px 180px; 
   
-  /* OFFSET: These must match the padding above to keep info at 285px/250px */
-  margin-left: -150px; 
-  margin-top: -60px;   
+  /* OFFSET: Matches the padding to keep your info locked at 285px/250px */
+  margin-left: -180px; 
+  margin-top: -80px;   
 }
 
 #content-container.shown {
@@ -63,7 +63,7 @@ body {
   z-index: 10 !important;
   overflow: hidden;
   
-  /* SPACING: Exactly as you like it */
+  /* SPACING: Untouched */
   display: flex;
   justify-content: center; 
   gap: 120px; 
@@ -72,7 +72,7 @@ body {
   padding-top: 20px;
   box-sizing: border-box;
 
-  /* SCALE: Exactly as you like it */
+  /* SCALE: Untouched */
   transform: scale(1.25);
   transform-origin: center;
 }
