@@ -21,39 +21,45 @@ body {
 }
 
 #content-container {
-  /* BOX DIMENSIONS: Increased to be much bigger than the info */
-  width: 1600px;
+  /* THE WIDTH: Exactly your 1350px */
+  width: 1350px;
   height: 0px;
   position: absolute;
-  
-  /* THE FIX: Keep your 285px/250px anchor, but shift the box back 
-     so the info stays in the same place on the screen */
-  left: 160px; 
+  /* THE POSITION: Exactly your 285px */
+  left: 285px; 
+  margin-left: 0px; 
   top: 815px; 
+  overflow: visible; /* Changed to visible so padding can expand the glass */
   
-  overflow: hidden;
+  /* THE GLASS: Restored */
   background-color: rgba(0, 0, 0, 0.45);
   backdrop-filter: blur(8px);
   z-index: 1;
   transition: top 300ms, height 300ms;
+
+  /* THE FIX: Adding padding grows the glass background without moving the info */
+  padding: 40px 100px; 
+  margin-left: -100px; /* Offset the padding so the info stays at 285px */
+  margin-top: -40px;   /* Offset the padding so the info stays at 250px */
 }
 
 #content-container.shown {
-  height: 800px !important;
-  top: 150px !important; 
+  /* THE HEIGHT: Exactly your 650px */
+  height: 650px !important;
+  /* THE POSITION: Exactly your 250px */
+  top: 250px !important; 
 }
 
 #content-frame {
   position: absolute;
-  /* Frame matches the larger box */
-  width: 1600px;
-  height: 800px !important;
-  top: 150px !important;
-  left: 160px;
+  width: 1350px;
+  height: 650px !important;
+  /* THE POSITION: Exactly your 250px/285px */
+  top: 250px !important;
+  left: 285px;
   z-index: 10 !important;
   overflow: hidden;
   
-  /* UNTOUCHED: EXACTLY YOUR SPACING AND SIZE */
   display: flex;
   justify-content: center; 
   gap: 120px; 
@@ -62,7 +68,6 @@ body {
   padding-top: 20px;
   box-sizing: border-box;
 
-  /* UNTOUCHED: YOUR SCALE */
   transform: scale(1.25);
   transform-origin: center;
 }
@@ -72,4 +77,6 @@ body {
   left: 0px !important;
   width: 100% !important;
   height: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
