@@ -21,11 +21,9 @@ body {
 }
 
 #content-container {
-  /* DIMENSIONS: Kept at your base 1350px */
   width: 1350px;
   height: 0px;
   position: absolute;
-  /* ANCHOR: Kept at your base 285px */
   left: 285px; 
   margin-left: 0px; 
   top: 815px; 
@@ -37,33 +35,30 @@ body {
   z-index: 1;
   transition: top 300ms, height 300ms;
 
-  /* THE COMFORT ADJUSTMENTS */
-  /* Top is now 80px for extra room, Bottom is 20px to keep it shorter */
-  /* Sides are 180px for that teeny bit of extra length */
+  /* PADDING: 80px Top, 180px Sides, 20px Bottom */
   padding: 80px 180px 20px 180px; 
   
-  /* OFFSET: Matches the padding to keep your info locked at 285px/250px */
+  /* OFFSET: Adjusted margin-top to match the new padding and top position */
   margin-left: -180px; 
   margin-top: -80px;   
 }
 
 #content-container.shown {
-  /* HEIGHT: Kept at your base 650px */
   height: 650px !important;
-  /* TOP: Kept at your base 250px */
-  top: 250px !important; 
+  /* LOWERED: Moved from 250px to 280px */
+  top: 280px !important; 
 }
 
 #content-frame {
   position: absolute;
   width: 1350px;
   height: 650px !important;
-  top: 250px !important;
+  /* LOWERED: Must match the container's top position */
+  top: 280px !important;
   left: 285px;
   z-index: 10 !important;
   overflow: hidden;
   
-  /* SPACING: Untouched */
   display: flex;
   justify-content: center; 
   gap: 120px; 
@@ -72,7 +67,6 @@ body {
   padding-top: 20px;
   box-sizing: border-box;
 
-  /* SCALE: Untouched */
   transform: scale(1.25);
   transform-origin: center;
 }
