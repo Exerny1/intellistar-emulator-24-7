@@ -21,32 +21,36 @@ body {
 }
 
 #content-container {
-  /* THE WIDTH: Exactly your 1350px */
+  /* DIMENSIONS: Kept at your base 1350px */
   width: 1350px;
   height: 0px;
   position: absolute;
-  /* THE POSITION: Exactly your 285px */
+  /* ANCHOR: Kept at your base 285px */
   left: 285px; 
   margin-left: 0px; 
   top: 815px; 
-  overflow: visible; /* Changed to visible so padding can expand the glass */
+  overflow: visible; 
   
-  /* THE GLASS: Restored */
+  /* GLASS RESTORED */
   background-color: rgba(0, 0, 0, 0.45);
   backdrop-filter: blur(8px);
   z-index: 1;
   transition: top 300ms, height 300ms;
 
-  /* THE FIX: Adding padding grows the glass background without moving the info */
-  padding: 40px 100px; 
-  margin-left: -100px; /* Offset the padding so the info stays at 285px */
-  margin-top: -40px;   /* Offset the padding so the info stays at 250px */
+  /* THE COMFORT FIX */
+  /* Top/Bottom padding increased to 60px to cover the 'Now' text better */
+  /* Left/Right padding increased to 150px to stretch the glass wide */
+  padding: 60px 150px; 
+  
+  /* OFFSET: These must match the padding above to keep info at 285px/250px */
+  margin-left: -150px; 
+  margin-top: -60px;   
 }
 
 #content-container.shown {
-  /* THE HEIGHT: Exactly your 650px */
+  /* HEIGHT: Kept at your base 650px */
   height: 650px !important;
-  /* THE POSITION: Exactly your 250px */
+  /* TOP: Kept at your base 250px */
   top: 250px !important; 
 }
 
@@ -54,12 +58,12 @@ body {
   position: absolute;
   width: 1350px;
   height: 650px !important;
-  /* THE POSITION: Exactly your 250px/285px */
   top: 250px !important;
   left: 285px;
   z-index: 10 !important;
   overflow: hidden;
   
+  /* SPACING: Exactly as you like it */
   display: flex;
   justify-content: center; 
   gap: 120px; 
@@ -68,6 +72,7 @@ body {
   padding-top: 20px;
   box-sizing: border-box;
 
+  /* SCALE: Exactly as you like it */
   transform: scale(1.25);
   transform-origin: center;
 }
