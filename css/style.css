@@ -21,39 +21,35 @@ body {
 }
 
 #content-container {
-  /* LONGER: Increased to 1550px to cover the info on the right */
-  width: 1550px;
+  width: 1350px;
   height: 0px;
   position: absolute;
-  /* SHIFTED LEFT: Moved to 185px to keep the 1550px box centered */
-  left: 185px; 
+  left: 285px; 
   margin-left: 0px; 
   top: 815px; 
   overflow: hidden;
-  background-color: rgba(0, 0, 0, 0.45);
-  backdrop-filter: blur(8px);
+  /* BACKGROUND REMOVED */
+  background-color: transparent;
+  backdrop-filter: none;
   z-index: 1;
   transition: top 300ms, height 300ms;
 }
 
 #content-container.shown {
-  /* TALLER: Increased to 750px to cover 'Now' and 'FEELS' */
-  height: 750px !important;
-  /* SHIFTED UP: Moved to 200px to cover the top of the dial */
-  top: 200px !important; 
+  height: 650px !important;
+  top: 250px !important; 
 }
 
 #content-frame {
   position: absolute;
-  /* MATCH BOX DIMENSIONS */
-  width: 1550px;
-  height: 750px !important;
-  top: 200px !important;
-  left: 185px;
+  width: 1350px;
+  height: 650px !important;
+  top: 250px !important;
+  left: 285px;
   z-index: 10 !important;
   overflow: hidden;
   
-  /* UNTOUCHED: EXACTLY YOUR SPACING */
+  /* UNTOUCHED: Keeping your preferred spacing */
   display: flex;
   justify-content: center; 
   gap: 120px; 
@@ -62,7 +58,7 @@ body {
   padding-top: 20px;
   box-sizing: border-box;
 
-  /* UNTOUCHED: EXACTLY YOUR SCALE */
+  /* UNTOUCHED: Keeping your 1.25 scale */
   transform: scale(1.25);
   transform-origin: center;
 }
