@@ -21,35 +21,39 @@ body {
 }
 
 #content-container {
-  width: 1350px;
+  /* BIGGER BOX: 1550px width ensures the info isn't cramped on the sides */
+  width: 1550px;
   height: 0px;
   position: absolute;
-  left: 285px; 
+  /* ALIGNMENT: (1920 - 1550) / 2 = 185px to keep it centered */
+  left: 185px; 
   margin-left: 0px; 
   top: 815px; 
   overflow: hidden;
-  /* BACKGROUND REMOVED */
-  background-color: transparent;
-  backdrop-filter: none;
+  /* GLASS RESTORED */
+  background-color: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(8px);
   z-index: 1;
   transition: top 300ms, height 300ms;
 }
 
 #content-container.shown {
-  height: 650px !important;
-  top: 250px !important; 
+  /* TALLER BOX: 750px to fit 'Now' at the top and 'FEELS' at the bottom */
+  height: 750px !important;
+  /* VERTICAL POSITION: Adjusted to 180px to frame the info perfectly */
+  top: 180px !important; 
 }
 
 #content-frame {
   position: absolute;
-  width: 1350px;
-  height: 650px !important;
-  top: 250px !important;
-  left: 285px;
+  width: 1550px;
+  height: 750px !important;
+  top: 180px !important;
+  left: 185px;
   z-index: 10 !important;
   overflow: hidden;
   
-  /* UNTOUCHED: Keeping your preferred spacing */
+  /* UNTOUCHED: Your preferred spacing logic */
   display: flex;
   justify-content: center; 
   gap: 120px; 
@@ -58,7 +62,7 @@ body {
   padding-top: 20px;
   box-sizing: border-box;
 
-  /* UNTOUCHED: Keeping your 1.25 scale */
+  /* UNTOUCHED: Your preferred 1.25 scale */
   transform: scale(1.25);
   transform-origin: center;
 }
