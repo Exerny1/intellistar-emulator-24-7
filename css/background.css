@@ -20,19 +20,19 @@
   
   background: linear-gradient(
     to bottom,
-    /* --- TOP BAR (Desaturated Slate Blue) --- */
-    #3c6281 0%,      /* Lighter Slate Top */
-    #2a4a63 3%,      /* Main Slate Blue Middle */
-    #1d3446 6.5%,    /* Deep Shadow Bottom */
+    /* --- TOP BAR (Matte Slate Blue) --- */
+    #4a6b8a 0%,      /* Dusty Blue Top */
+    #36516a 4%,      /* Main Slate Blue */
+    #213242 6.5%,    /* Dark Edge before transparency */
     
-    /* CLEAR FOOTAGE AREA (radar/map view) */
+    /* CLEAR FOOTAGE AREA */
     transparent 6.5%, 
     transparent 88%, 
     
-    /* --- BOTTOM BAR (LDL Slate Blue) --- */
-    #1d3446 88%,     /* Deep Shadow Top */
-    #2a4a63 92%,     /* Main Slate Blue Middle */
-    #3c6281 100%     /* Lighter Slate Bottom Edge */
+    /* --- BOTTOM BAR (Matte Charcoal/Slate) --- */
+    #213242 88%,     /* Dark Slate Top Edge */
+    #36516a 93%,     /* Main Slate Blue */
+    #4a6b8a 100%     /* Dusty Blue Bottom Edge */
   );
   
   pointer-events: none;
