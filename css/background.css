@@ -20,19 +20,17 @@
   
   background: linear-gradient(
     to bottom,
-    /* --- TOP BAR (Exact Midnight Matte) --- */
-    #0d141d 0%,      /* Deepest base from logo background */
-    #141b25 4%,      /* Subtle mid-tone lift */
-    #0d141d 6.5%,    /* Sharp transition edge */
+    /* --- TOP BAR (Astoria Slate) --- */
+    #1a2634 0%,      /* Base Slate Blue-Grey */
+    #161f2b 6.5%,    /* Subtle Darkening at edge */
     
-    /* CLEAR FOOTAGE AREA (Your 6.5% - 88% Lock) */
+    /* CLEAR FOOTAGE AREA */
     transparent 6.5%, 
     transparent 88%, 
     
-    /* --- BOTTOM BAR (Exact Midnight Matte) --- */
-    #0d141d 88%,     /* Sharp transition edge */
-    #141b25 96%,     /* Subtle mid-tone lift */
-    #0d141d 100%     /* Deepest base */
+    /* --- BOTTOM BAR (Astoria Slate) --- */
+    #161f2b 88%,     /* Subtle Darkening at edge */
+    #1a2634 100%     /* Base Slate Blue-Grey */
   );
   
   pointer-events: none;
