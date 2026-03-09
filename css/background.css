@@ -20,17 +20,19 @@
   
   background: linear-gradient(
     to bottom,
-    /* --- TOP BAR (2026 Soft Matte Slate) --- */
-    #3b546d 0%,      /* Flat Base Color */
-    #344a60 6.5%,    /* Minimal darkening for a clean edge */
+    /* --- TOP BAR (Modern Flat Cerulean) --- */
+    #4083b3 0%,      /* Base color from image */
+    #4083b3 5.5%,    /* Solid until near the edge */
+    #2a5a7d 6.5%,    /* Subtle 1% "Modern Edge" shadow */
     
-    /* CLEAR FOOTAGE AREA (Your 6.5% to 88% Lock) */
+    /* CLEAR FOOTAGE AREA (Your 6.5% - 88% Lock) */
     transparent 6.5%, 
     transparent 88%, 
     
-    /* --- BOTTOM BAR (2026 Soft Matte Slate) --- */
-    #344a60 88%,     /* Minimal darkening for a clean edge */
-    #3b546d 100%     /* Flat Base Color */
+    /* --- BOTTOM BAR (Modern Flat Cerulean) --- */
+    #2a5a7d 88%,     /* Subtle 1% "Modern Edge" shadow */
+    #4083b3 89%,     /* Back to solid base */
+    #4083b3 100%
   );
   
   pointer-events: none;
