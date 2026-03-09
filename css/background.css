@@ -6,7 +6,7 @@
   width: 100% !important;
   height: 100% !important;
   z-index: 0 !important;
-  background-size: cover !important; /* Restored */
+  background-size: cover !important;
 }
 
 #background-image::after {
@@ -20,19 +20,19 @@
   
   background: linear-gradient(
     to bottom,
-    /* TOP BAR - TWC Blue Gradient (Exact 6.5% cutoff) */
-    #1e3c72 0%, 
-    #102a57 3%,
-    #102a57 6.5%, 
+    /* --- TOP BAR (Darker Top to Brighter Bottom) --- */
+    #050a14 0%,      /* Near Black Top */
+    #0a1931 4%,      /* Deep Navy Middle */
+    #1e3c72 6.5%,    /* Brighter TWC Blue Edge */
     
-    /* CLEAR FOOTAGE AREA - Your original 6.5% to 88% */
+    /* --- CLEAR FOOTAGE AREA --- */
     transparent 6.5%, 
     transparent 88%,   
     
-    /* BOTTOM BAR - TWC Blue Gradient (Exact 88% start) */
-    #102a57 88%, 
-    #102a57 97%,
-    #1e3c72 100%
+    /* --- BOTTOM BAR (Darker Top to Brighter Bottom) --- */
+    #050a14 88%,     /* Near Black Top Edge */
+    #0a1931 94%,     /* Deep Navy Middle */
+    #1e3c72 100%     /* Brighter TWC Blue Bottom Edge */
   );
   
   pointer-events: none;
