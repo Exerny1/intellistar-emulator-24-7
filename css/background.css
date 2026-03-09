@@ -20,19 +20,19 @@
   
   background: linear-gradient(
     to bottom,
-    /* --- TOP BAR (Modern Flat Cerulean) --- */
-    #4083b3 0%,      /* Base color from image */
-    #4083b3 5.5%,    /* Solid until near the edge */
-    #2a5a7d 6.5%,    /* Subtle 1% "Modern Edge" shadow */
+    /* --- TOP BAR (Deep Midnight Blue) --- */
+    #0f172a 0%,      /* Darkest Midnight */
+    #131c36 4%,      /* Subtle Deep Blue tint */
+    #0f172a 6.5%,    /* Sharp edge at the cutoff */
     
-    /* CLEAR FOOTAGE AREA (Your 6.5% - 88% Lock) */
+    /* CLEAR FOOTAGE AREA */
     transparent 6.5%, 
     transparent 88%, 
     
-    /* --- BOTTOM BAR (Modern Flat Cerulean) --- */
-    #2a5a7d 88%,     /* Subtle 1% "Modern Edge" shadow */
-    #4083b3 89%,     /* Back to solid base */
-    #4083b3 100%
+    /* --- BOTTOM BAR (Deep Midnight Blue) --- */
+    #0f172a 88%,     /* Sharp edge */
+    #131c36 96%,     /* Subtle Deep Blue tint */
+    #0f172a 100%     /* Darkest Midnight */
   );
   
   pointer-events: none;
