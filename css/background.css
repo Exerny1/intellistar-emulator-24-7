@@ -20,19 +20,19 @@
   
   background: linear-gradient(
     to bottom,
-    /* --- TOP BAR (Deep Midnight Blue) --- */
-    #0f172a 0%,      /* Darkest Midnight */
-    #131c36 4%,      /* Subtle Deep Blue tint */
-    #0f172a 6.5%,    /* Sharp edge at the cutoff */
+    /* --- TOP BAR (Exact Midnight Matte) --- */
+    #0d141d 0%,      /* Deepest base from logo background */
+    #141b25 4%,      /* Subtle mid-tone lift */
+    #0d141d 6.5%,    /* Sharp transition edge */
     
-    /* CLEAR FOOTAGE AREA */
+    /* CLEAR FOOTAGE AREA (Your 6.5% - 88% Lock) */
     transparent 6.5%, 
     transparent 88%, 
     
-    /* --- BOTTOM BAR (Deep Midnight Blue) --- */
-    #0f172a 88%,     /* Sharp edge */
-    #131c36 96%,     /* Subtle Deep Blue tint */
-    #0f172a 100%     /* Darkest Midnight */
+    /* --- BOTTOM BAR (Exact Midnight Matte) --- */
+    #0d141d 88%,     /* Sharp transition edge */
+    #141b25 96%,     /* Subtle mid-tone lift */
+    #0d141d 100%     /* Deepest base */
   );
   
   pointer-events: none;
