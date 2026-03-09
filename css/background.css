@@ -20,19 +20,17 @@
   
   background: linear-gradient(
     to bottom,
-    /* --- TOP BAR (Matte Slate Blue) --- */
-    #4a6b8a 0%,      /* Dusty Blue Top */
-    #36516a 4%,      /* Main Slate Blue */
-    #213242 6.5%,    /* Dark Edge before transparency */
+    /* --- TOP BAR (2026 Soft Matte Slate) --- */
+    #3b546d 0%,      /* Flat Base Color */
+    #344a60 6.5%,    /* Minimal darkening for a clean edge */
     
-    /* CLEAR FOOTAGE AREA */
+    /* CLEAR FOOTAGE AREA (Your 6.5% to 88% Lock) */
     transparent 6.5%, 
     transparent 88%, 
     
-    /* --- BOTTOM BAR (Matte Charcoal/Slate) --- */
-    #213242 88%,     /* Dark Slate Top Edge */
-    #36516a 93%,     /* Main Slate Blue */
-    #4a6b8a 100%     /* Dusty Blue Bottom Edge */
+    /* --- BOTTOM BAR (2026 Soft Matte Slate) --- */
+    #344a60 88%,     /* Minimal darkening for a clean edge */
+    #3b546d 100%     /* Flat Base Color */
   );
   
   pointer-events: none;
