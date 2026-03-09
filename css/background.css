@@ -20,17 +20,17 @@
   
   background: linear-gradient(
     to bottom,
-    /* --- TOP BAR (Astoria Slate) --- */
-    #1a2634 0%,      /* Base Slate Blue-Grey */
-    #161f2b 6.5%,    /* Subtle Darkening at edge */
+    /* --- TOP BAR (Stayed at 6.5%) --- */
+    #1a2634 0%,      
+    #161f2b 6.5%,    
     
-    /* CLEAR FOOTAGE AREA */
+    /* CLEAR FOOTAGE AREA - Expanded Downwards */
     transparent 6.5%, 
-    transparent 88%, 
+    transparent 93%,   /* Changed from 88% to 93% */
     
-    /* --- BOTTOM BAR (Astoria Slate) --- */
-    #161f2b 88%,     /* Subtle Darkening at edge */
-    #1a2634 100%     /* Base Slate Blue-Grey */
+    /* --- BOTTOM BAR (Slimmed Down) --- */
+    #161f2b 93%,     
+    #1a2634 100%     
   );
   
   pointer-events: none;
