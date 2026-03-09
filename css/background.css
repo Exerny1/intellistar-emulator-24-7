@@ -20,19 +20,17 @@
   
   background: linear-gradient(
     to bottom,
-    /* --- TOP BAR (Darker Top to Brighter Bottom) --- */
-    #050a14 0%,      /* Near Black Top */
-    #0a1931 4%,      /* Deep Navy Middle */
-    #1e3c72 6.5%,    /* Brighter TWC Blue Edge */
+    /* --- TOP BAR (Deep Oceanic Teal Gradient) --- */
+    #143d5c 0%,      /* The specific color from image_2.png */
+    #0e2c43 6.5%,    /* Darker shadow to match the edge of the blue box */
     
-    /* --- CLEAR FOOTAGE AREA --- */
+    /* CLEAR FOOTAGE AREA (radar/map view) */
     transparent 6.5%, 
-    transparent 88%,   
+    transparent 88%, 
     
-    /* --- BOTTOM BAR (Darker Top to Brighter Bottom) --- */
-    #050a14 88%,     /* Near Black Top Edge */
-    #0a1931 94%,     /* Deep Navy Middle */
-    #1e3c72 100%     /* Brighter TWC Blue Bottom Edge */
+    /* --- BOTTOM BAR (LDL Oceanic Teal Gradient) --- */
+    #0e2c43 88%,     /* Darker shadow from image_2.png edge */
+    #143d5c 100%     /* Deep oceanic teal from image_2.png main area */
   );
   
   pointer-events: none;
