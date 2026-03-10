@@ -18,23 +18,24 @@
   height: 100%; 
   z-index: 1;
   
-  /* THE NEMO FROSTED EFFECT */
-  backdrop-filter: blur(8px); /* Modern blur for glass feel */
-  -webkit-backdrop-filter: blur(8px);
+  /* Modern Frosted Blur */
+  backdrop-filter: blur(4px); 
+  -webkit-backdrop-filter: blur(4px);
   
   background: linear-gradient(
     to bottom,
-    /* --- TOP BAR (Saturated Nemo Cyan/Blue) --- */
-    rgba(22, 115, 179, 0.85) 0%,   /* Saturated Teal-Blue w/ Alpha */
-    rgba(14, 82, 128, 0.92) 6.5%,  /* Deeper edge shadow */
+    /* --- TOP BAR (Frosted Cyan-Blue) --- */
+    rgba(22, 115, 179, 0.9) 0%,   
+    rgba(14, 82, 128, 0.95) 6.5%, 
     
-    /* CLEAR FOOTAGE AREA (The Glass Gap) */
-    transparent 6.5%, 
-    transparent 88%, 
+    /* --- MIDDLE TINT (The "NEMO" Atmospheric Blue) --- */
+    /* This adds a 15% blue wash over your stock images */
+    rgba(15, 45, 80, 0.15) 6.5%, 
+    rgba(15, 45, 80, 0.15) 88%,   
     
-    /* --- BOTTOM BAR (Saturated Nemo Cyan/Blue) --- */
-    rgba(14, 82, 128, 0.92) 88%,   
-    rgba(22, 115, 179, 0.85) 100%
+    /* --- BOTTOM BAR (Frosted Cyan-Blue) --- */
+    rgba(14, 82, 128, 0.95) 88%,   
+    rgba(22, 115, 179, 0.9) 100%
   );
   
   pointer-events: none;
