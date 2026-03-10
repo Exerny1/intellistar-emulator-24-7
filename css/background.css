@@ -18,24 +18,19 @@
   height: 100%; 
   z-index: 1;
   
-  /* Modern Frosted Blur */
-  backdrop-filter: blur(4px); 
-  -webkit-backdrop-filter: blur(4px);
-  
   background: linear-gradient(
     to bottom,
-    /* --- TOP BAR (Frosted Cyan-Blue) --- */
-    rgba(22, 115, 179, 0.9) 0%,   
-    rgba(14, 82, 128, 0.95) 6.5%, 
+    /* --- TOP BAR (Back to the Flat Astoria Slate) --- */
+    #1a2634 0%,      
+    #161f2b 6.5%,    
     
-    /* --- MIDDLE TINT (The "NEMO" Atmospheric Blue) --- */
-    /* This adds a 15% blue wash over your stock images */
-    rgba(15, 45, 80, 0.15) 6.5%, 
-    rgba(15, 45, 80, 0.15) 88%,   
+    /* --- MIDDLE TINT (12% Cyan-Blue Wash over images) --- */
+    rgba(26, 75, 143, 0.12) 6.5%, 
+    rgba(26, 75, 143, 0.12) 88%,   
     
-    /* --- BOTTOM BAR (Frosted Cyan-Blue) --- */
-    rgba(14, 82, 128, 0.95) 88%,   
-    rgba(22, 115, 179, 0.9) 100%
+    /* --- BOTTOM BAR (Back to the Flat Astoria Slate) --- */
+    #161f2b 88%,     
+    #1a2634 100%     
   );
   
   pointer-events: none;
