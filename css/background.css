@@ -6,9 +6,36 @@
   width: 100% !important;
   height: 100% !important;
   z-index: 0 !important;
+  background: #0d1117 !important; /* Deep "Nemo" Midnight Base */
   background-size: cover !important;
+  overflow: hidden;
 }
 
+/* THE DASHBOARD GEOMETRY: Cyan "Shards" */
+#background-image::before {
+  content: "";
+  position: absolute;
+  width: 150%;
+  height: 150%;
+  top: -25%;
+  left: -25%;
+  z-index: 1;
+  
+  /* Modern 2026 Cyan Accents */
+  background-image: 
+    linear-gradient(135deg, rgba(0, 255, 255, 0.07) 25%, transparent 25%),
+    linear-gradient(225deg, rgba(0, 200, 255, 0.05) 25%, transparent 25%);
+  background-size: 80px 80px;
+  
+  /* Creates the "Connected Shapes" look */
+  mask-image: linear-gradient(to bottom, black, transparent, black);
+  -webkit-mask-image: linear-gradient(to bottom, black, transparent, black);
+  
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+/* YOUR REVERTED & COLOR-PUNCHED BARS */
 #background-image::after {
   content: "";
   position: absolute;
@@ -16,21 +43,23 @@
   left: 0;
   width: 100%;
   height: 100%; 
-  z-index: 1;
+  z-index: 2;
   
   background: linear-gradient(
     to bottom,
-    /* --- TOP BAR (Saturated Teal-Blue) --- */
-    #1c6fa6 0%,      /* The cyan-pushed base color */
-    #124c73 6.5%,    /* Deeper Teal shadow edge */
+    /* TOP BAR - Deep Navy/Black with Cyan Glow Edge */
+    #0a0e14 0%, 
+    #0a0e14 6%,
+    #1c6fa6 6.5%, /* The Cyan "Stripe" accent */
     
-    /* CLEAR FOOTAGE AREA (Your 6.5% to 88% Lock) */
+    /* CLEAR FOOTAGE AREA */
     transparent 6.5%, 
-    transparent 88%,   /* Reverted to original 88% height */
+    transparent 88%,   
     
-    /* --- BOTTOM BAR (Saturated Teal-Blue) --- */
-    #124c73 88%,     /* Deeper Teal shadow edge */
-    #1c6fa6 100%     /* The cyan-pushed base color */
+    /* BOTTOM BAR - Balanced with Cyan Glow Edge */
+    #1c6fa6 88%,  /* The Cyan "Stripe" accent */
+    #0a0e14 88.5%,
+    #0a0e14 100%
   );
   
   pointer-events: none;
