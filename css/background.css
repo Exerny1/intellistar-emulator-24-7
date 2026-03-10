@@ -18,19 +18,21 @@
   height: 100%; 
   z-index: 1;
   
+  z-index: 1;
+  
   background: linear-gradient(
     to bottom,
     /* --- TOP BAR (Saturated Teal-Blue) --- */
-    #1c6fa6 0%,      /* Cyan-pushed base color from previous script */
+    #1c6fa6 0%,      /* The cyan-pushed base color */
     #124c73 6.5%,    /* Deeper Teal shadow edge */
     
     /* CLEAR FOOTAGE AREA (Your 6.5% to 88% Lock) */
     transparent 6.5%, 
-    transparent 88%,   
+    transparent 88%,   /* Reverted to original 88% height */
     
     /* --- BOTTOM BAR (Saturated Teal-Blue) --- */
     #124c73 88%,     /* Deeper Teal shadow edge */
-    #1c6fa6 100%     /* Cyan-pushed base color */
+    #1c6fa6 100%     /* The cyan-pushed base color */
   );
   
   pointer-events: none;
