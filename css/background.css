@@ -20,31 +20,17 @@
   
   background: linear-gradient(
     to bottom,
-    /* --- TOP SECTION (The Floating Bezel) --- */
-    #0a0c0e 0%,      
-    #0a0c0e 1.5%,    
+    /* --- TOP BAR (Steel Blue / Astoria Slate) --- */
+    #1a2634 0%,      /* Starts at the absolute top (0%) to prevent gaps */
+    #161f2b 6.5%,    /* Ends exactly where your original script did */
     
-    /* STEEL BLUE BODY - Extended to 16% */
-    #1a2634 1.5%,    
-    #161f2b 16%,      
-    
-    /* TEAL ACCENT LINE - Moved down to 18% to cover the header area */
-    #1c6fa6 16%,      
-    #124c73 18%,    
-    
-    /* --- CLEAR MIDDLE (For your stock images) --- */
-    transparent 18%, 
+    /* CLEAR FOOTAGE AREA (Total Transparency) */
+    transparent 6.5%, 
     transparent 88%,   
     
-    /* --- BOTTOM SECTION --- */
-    #124c73 88%,     
-    #1c6fa6 89.5%,   
-    
-    #161f2b 89.5%,   
-    #1a2634 98.5%,   
-    
-    #0a0c0e 98.5%,   
-    #0a0c0e 100%     
+    /* --- BOTTOM BAR (Steel Blue / Astoria Slate) --- */
+    #161f2b 88%,     
+    #1a2634 100%     /* Ends at the absolute bottom */
   );
   
   pointer-events: none;
