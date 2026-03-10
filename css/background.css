@@ -20,18 +20,21 @@
   
   background: linear-gradient(
     to bottom,
-    /* --- TOP BAR (Saturated Teal-Blue) --- */
-    #1c6fa6 0%,      
-    #124c73 6.5%,    
+    /* --- TOP SECTION --- */
+    #000000 0%,      /* Black Header Start */
+    #000000 5%,      /* Black Header Main Body */
+    #1c6fa6 5%,      /* Teal line starts at the bottom of the black */
+    #124c73 6.5%,    /* Teal line ends at the footage edge */
     
-    /* --- MIDDLE TINT (The Blue Wash for Stock Images) --- */
-    /* Adjust the 0.1 to 0.2 if you want the tint stronger/weaker */
-    rgba(28, 111, 166, 0.12) 6.5%, 
-    rgba(28, 111, 166, 0.12) 88%,   
+    /* --- MIDDLE TINT (Blue Wash for Stock Images) --- */
+    rgba(28, 111, 166, 0.15) 6.5%, 
+    rgba(28, 111, 166, 0.15) 88%,   
     
-    /* --- BOTTOM BAR (Saturated Teal-Blue) --- */
-    #124c73 88%,     
-    #1c6fa6 100%     
+    /* --- BOTTOM SECTION --- */
+    #124c73 88%,     /* Teal line starts at top of bottom bar */
+    #1c6fa6 89.5%,   /* Teal line ends */
+    #000000 89.5%,   /* Black Footer starts */
+    #000000 100%     /* Black Footer ends */
   );
   
   pointer-events: none;
