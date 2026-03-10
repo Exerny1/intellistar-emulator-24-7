@@ -20,16 +20,16 @@
   
   background: linear-gradient(
     to bottom,
-    /* --- TOP BAR (Stayed at 6.5%) --- */
+    /* --- TOP BAR (Astoria Slate) --- */
     #1a2634 0%,      
     #161f2b 6.5%,    
     
-    /* CLEAR FOOTAGE AREA - Expanded Downwards */
+    /* CLEAR FOOTAGE AREA */
     transparent 6.5%, 
-    transparent 93%,   /* Changed from 88% to 93% */
+    transparent 91%,   /* Adjusted for a medium-slim look */
     
-    /* --- BOTTOM BAR (Slimmed Down) --- */
-    #161f2b 93%,     
+    /* --- BOTTOM BAR (Balanced Height) --- */
+    #161f2b 91%,     
     #1a2634 100%     
   );
   
