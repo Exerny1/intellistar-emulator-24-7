@@ -20,27 +20,34 @@
   
   background: linear-gradient(
     to bottom,
-    /* --- TOP BAR (Steel Blue / Astoria Slate) --- */
-    rgba(255, 255, 255, 0.1) 0%,   /* 1px "Sheen" highlight on the top edge */
-    #1a2634 0.5%,                  /* Steel Blue Main Body */
-    #161f2b 5%,                    /* Deepening the steel */
+    /* --- TOP SECTION (The Floating Bezel) --- */
+    #121212 0%,      /* Matte Charcoal-Black Bezel Buffer */
+    #121212 1.5%,    /* Edge of the buffer */
     
-    /* THE ACCENT LINE (The Saturated Teal from your script) */
+    /* STEEL BLUE BODY */
+    #1a2634 1.5%,    /* Steel Blue Starts */
+    #161f2b 5%,      /* Deepens slightly */
+    
+    /* TEAL ACCENT LINE */
     #1c6fa6 5%,      
     #124c73 6.5%,    
     
-    /* --- MIDDLE TINT (NEMO Atmospheric Blue Wash) --- */
+    /* --- MIDDLE TINTED GAP (Blue Atmospheric Wash) --- */
     rgba(28, 111, 166, 0.12) 6.5%, 
     rgba(28, 111, 166, 0.12) 88%,   
     
-    /* --- BOTTOM BAR --- */
-    /* THE ACCENT LINE (Teal Line at top of bottom bar) */
+    /* --- BOTTOM SECTION --- */
+    /* TEAL ACCENT LINE */
     #124c73 88%,     
     #1c6fa6 89.5%,   
     
-    /* Steel Blue Footer Body */
+    /* STEEL BLUE BODY */
     #161f2b 89.5%,   
-    #1a2634 100%     
+    #1a2634 98.5%,   
+    
+    /* THE FLOATING BEZEL */
+    #121212 98.5%,   /* Matte Charcoal-Black Bezel Buffer */
+    #121212 100%     
   );
   
   pointer-events: none;
