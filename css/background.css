@@ -3,8 +3,8 @@
   position: absolute !important;
   left: 0 !important;
   top: 0 !important;
-  width: 100% !important;
-  height: 100% !important;
+  width: 100% !important;      /* Ensures full width coverage */
+  height: 100% !important;     /* Ensures full height coverage */
   z-index: 0 !important;
   background-size: cover !important;
 }
@@ -20,19 +20,19 @@
   
   background: linear-gradient(
     to bottom,
-    /* --- TOP SECTION (The Floating Bezel) --- */
-    #121212 0%,      /* Matte Charcoal-Black Bezel Buffer */
-    #121212 1.5%,    /* Edge of the buffer */
+    /* --- THE TOP BEZEL (Separates from TV Frame) --- */
+    #0a0c0e 0%,      /* Matte Onyx Frame */
+    #0a0c0e 1%,      /* Thin separator line */
     
-    /* STEEL BLUE BODY */
-    #1a2634 1.5%,    /* Steel Blue Starts */
-    #161f2b 5%,      /* Deepens slightly */
+    /* --- THE FULL TOP BAR (Steel Blue) --- */
+    #1a2634 1%,      /* Steel Blue starts immediately after bezel */
+    #161f2b 5%,      /* Main body of the bar */
     
-    /* TEAL ACCENT LINE */
+    /* TEAL ACCENT LINE (Edge of the bar) */
     #1c6fa6 5%,      
     #124c73 6.5%,    
     
-    /* --- MIDDLE TINTED GAP (Blue Atmospheric Wash) --- */
+    /* --- MIDDLE TINTED GAP (NEMO Atmospheric Blue) --- */
     rgba(28, 111, 166, 0.12) 6.5%, 
     rgba(28, 111, 166, 0.12) 88%,   
     
@@ -41,13 +41,13 @@
     #124c73 88%,     
     #1c6fa6 89.5%,   
     
-    /* STEEL BLUE BODY */
+    /* STEEL BLUE FOOTER BODY */
     #161f2b 89.5%,   
-    #1a2634 98.5%,   
+    #1a2634 99%,     
     
-    /* THE FLOATING BEZEL */
-    #121212 98.5%,   /* Matte Charcoal-Black Bezel Buffer */
-    #121212 100%     
+    /* THE BOTTOM BEZEL */
+    #0a0c0e 99%,     
+    #0a0c0e 100%     
   );
   
   pointer-events: none;
