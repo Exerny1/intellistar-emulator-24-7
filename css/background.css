@@ -20,17 +20,17 @@
   
   background: linear-gradient(
     to bottom,
-    /* --- TOP BAR (Steel Blue / Astoria Slate) --- */
-    #1a2634 0%,      /* Starts at the absolute top (0%) to prevent gaps */
-    #161f2b 6.5%,    /* Ends exactly where your original script did */
+    /* --- TOP BAR (Saturated Teal-Blue) --- */
+    #1c6fa6 0%,      /* Cyan-pushed base color from previous script */
+    #124c73 6.5%,    /* Deeper Teal shadow edge */
     
-    /* CLEAR FOOTAGE AREA (Total Transparency) */
+    /* CLEAR FOOTAGE AREA (Your 6.5% to 88% Lock) */
     transparent 6.5%, 
     transparent 88%,   
     
-    /* --- BOTTOM BAR (Steel Blue / Astoria Slate) --- */
-    #161f2b 88%,     
-    #1a2634 100%     /* Ends at the absolute bottom */
+    /* --- BOTTOM BAR (Saturated Teal-Blue) --- */
+    #124c73 88%,     /* Deeper Teal shadow edge */
+    #1c6fa6 100%     /* Cyan-pushed base color */
   );
   
   pointer-events: none;
