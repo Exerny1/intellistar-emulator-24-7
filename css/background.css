@@ -24,12 +24,12 @@
     #1a2634 0%,      
     #161f2b 6.5%,    
     
-    /* CLEAR FOOTAGE AREA */
+    /* CLEAR FOOTAGE AREA - Restored to your original gap */
     transparent 6.5%, 
-    transparent 91%,   /* Adjusted for a medium-slim look */
+    transparent 88%,   /* REVERTED: Back to your original 88% */
     
-    /* --- BOTTOM BAR (Balanced Height) --- */
-    #161f2b 91%,     
+    /* --- BOTTOM BAR (Original Height) --- */
+    #161f2b 88%,     /* REVERTED: Back to your original 88% */
     #1a2634 100%     
   );
   
