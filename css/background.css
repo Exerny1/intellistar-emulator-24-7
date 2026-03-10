@@ -18,21 +18,28 @@
   height: 100%; 
   z-index: 1;
   
-  z-index: 1;
-  
   background: linear-gradient(
     to bottom,
-    /* --- TOP BAR (Saturated Teal-Blue) --- */
-    #1c6fa6 0%,      /* The cyan-pushed base color */
-    #124c73 6.5%,    /* Deeper Teal shadow edge */
+    /* --- TOP BAR (Charcoal Slate from Image) --- */
+    #1b2229 0%,      /* Deep charcoal base starts at the top */
+    #141a1f 5%,      /* Main body of the bar */
     
-    /* CLEAR FOOTAGE AREA (Your 6.5% to 88% Lock) */
+    /* TEAL ACCENT LINE (The end of the bar) */
+    #1c6fa6 5%,      
+    #124c73 6.5%,    
+    
+    /* --- CLEAR MIDDLE AREA --- */
     transparent 6.5%, 
-    transparent 88%,   /* Reverted to original 88% height */
+    transparent 88%,   
     
-    /* --- BOTTOM BAR (Saturated Teal-Blue) --- */
-    #124c73 88%,     /* Deeper Teal shadow edge */
-    #1c6fa6 100%     /* The cyan-pushed base color */
+    /* --- BOTTOM BAR --- */
+    /* TEAL ACCENT LINE (The start of the bar) */
+    #124c73 88%,     
+    #1c6fa6 89.5%,   
+    
+    /* Charcoal Slate Body */
+    #141a1f 89.5%,   
+    #1b2229 100%     
   );
   
   pointer-events: none;
