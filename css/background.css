@@ -20,26 +20,27 @@
   
   background: linear-gradient(
     to bottom,
-    /* --- TOP BAR (Charcoal Slate) --- */
-    #1b2229 0%,      /* Fills the top gap completely */
-    #141a1f 5%,      /* Main body */
+    /* --- THE DARK "EYEBROW" (Top Section) --- */
+    #0d1117 0%,      /* Extra dark charcoal for the very top */
+    #0d1117 3.5%,    /* This houses the time and location */
     
-    /* TEAL ACCENT LINE */
-    #1c6fa6 5%,      
-    #124c73 6.5%,    
+    /* THE SPLIT LINE (NEMO Accent) */
+    #1c6fa6 3.5%,    /* Teal-Blue separator line */
+    #124c73 4%,      
+    
+    /* THE LOWER HEADER (Secondary Section) */
+    #1b2229 4%,      /* Your Charcoal Slate Body */
+    #141a1f 6.5%,    /* Ends at your original 6.5% lock */
     
     /* CLEAR MIDDLE AREA */
     transparent 6.5%, 
     transparent 88%,   
     
-    /* --- BOTTOM BAR --- */
-    /* TEAL ACCENT LINE */
-    #124c73 88%,     
-    #1c6fa6 89.5%,   
-    
-    /* Charcoal Slate Body */
-    #141a1f 89.5%,   
-    #1b2229 100%     
+    /* --- BOTTOM BAR (Matches the NEMO Ticker Look) --- */
+    #124c73 88%,     /* Teal-Blue Accent line at the top of the footer */
+    #1c6fa6 88.5%,   
+    #0d1117 88.5%,   /* Dark charcoal base to match the top "eyebrow" */
+    #0d1117 100%     
   );
   
   pointer-events: none;
