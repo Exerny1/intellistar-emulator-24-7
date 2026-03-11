@@ -20,13 +20,13 @@
   
   background: linear-gradient(
     to bottom,
-    /* --- TOP BAR (Charcoal Slate) --- */
-    #1b2229 0%,      /* Fills the absolute top */
-    #141a1f 5%,      /* Main body of the bar */
+    /* --- TOP BAR (Midnight Slate - Darkened) --- */
+    #0a0e12 0%,      /* Deepest dark at the top */
+    #0d1117 5%,      /* Very subtle lift before the line */
     
     /* THE LINE AT THE END OF THE BAR */
-    #1c6fa6 5%,      /* Blue starts at the end of the charcoal */
-    #124c73 6.5%,    /* Blue ends exactly at the 6.5% mark */
+    #1c6fa6 5%,      /* Teal-Blue line starts */
+    #124c73 6.5%,    /* Teal-Blue line ends */
     
     /* CLEAR MIDDLE AREA */
     transparent 6.5%, 
@@ -34,12 +34,12 @@
     
     /* --- BOTTOM BAR --- */
     /* THE LINE AT THE END OF THE BAR */
-    #124c73 88%,     /* Blue starts at the 88% mark */
-    #1c6fa6 89.5%,   /* Blue ends */
+    #124c73 88%,     
+    #1c6fa6 89.5%,   
     
-    /* Charcoal Slate Body */
-    #141a1f 89.5%,   /* Charcoal starts after the blue line */
-    #1b2229 100%     /* Fills to the absolute bottom */
+    /* Midnight Slate Body (Darkened) */
+    #0d1117 89.5%,   
+    #0a0e12 100%     
   );
   
   pointer-events: none;
