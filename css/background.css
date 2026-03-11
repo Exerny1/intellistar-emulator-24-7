@@ -1,3 +1,14 @@
+To capture that specific NEMO-era polish—which is all about high-definition depth, subtle glass textures, and "active" UI elements—we can add features that make the bars feel like physical pieces of a broadcast suite rather than just flat colors.
+Here are three design features you can add to your background-image::after to push the aesthetic further:
+1. The "Glass Pips" (Active Slide Indicators)
+WeatherScan always had indicators to show which part of the cycle you were on. For the NEMO era, we can add a row of small, semi-transparent "pips" in the bottom bar. It makes the UI look like it's actually "navigating" through data.
+2. The "Broadcast Sheen" (Angular Light Reflection)
+Notice in modern TWC graphics how the bars aren't perfectly flat? They have a very faint diagonal light reflection. This makes the Charcoal/Grey bars look like polished acrylic or glass.
+3. The "Inner Bezel" (Precision Framing)
+To make the center footage pop, we can add a 1px light-leak on the inner edges of the blue/red lines. This simulates the look of a backlit LED panel.
+The "NEMO-Polish" Scripts
+Here are the updated full scripts for both modes with these new design features integrated.
+Normal Mode (Charcoal/Teal + Glass Polish)
 #background-image,
 .background-image {
   position: absolute !important;
@@ -12,35 +23,60 @@
 #background-image::after {
   content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%; 
-  z-index: 1;
+  top: 0; left: 0; width: 100%; height: 100%; z-index: 1;
   
-  background: linear-gradient(
-    to bottom,
-    /* --- TOP BAR (Midnight Slate - Darkened) --- */
-    #0a0e12 0%,      /* Deepest dark at the top */
-    #0d1117 5%,      /* Very subtle lift before the line */
-    
-    /* THE LINE AT THE END OF THE BAR */
-    #1c6fa6 5%,      /* Teal-Blue line starts */
-    #124c73 6.5%,    /* Teal-Blue line ends */
-    
-    /* CLEAR MIDDLE AREA */
-    transparent 6.5%, 
-    transparent 88%,   
-    
-    /* --- BOTTOM BAR --- */
-    /* THE LINE AT THE END OF THE BAR */
-    #124c73 88%,     
-    #1c6fa6 89.5%,   
-    
-    /* Midnight Slate Body (Darkened) */
-    #0d1117 89.5%,   
-    #0a0e12 100%     
-  );
-  
+  background: 
+    /* NEW FEATURE: DIAGONAL GLASS SHEEN */
+    linear-gradient(115deg, transparent 45%, rgba(255,255,255,0.03) 50%, transparent 55%),
+    /* THE MAIN UI STRUCTURE */
+    linear-gradient(to bottom,
+      #1b2229 0%, #141a1f 5%,           
+      rgba(255,255,255,0.15) 5%,        /* NEW FEATURE: INNER BEZEL LIGHT */
+      #1c6fa6 5.1%, #124c73 6.5%,       
+      transparent 6.5%, transparent 88%, 
+      #124c73 88%, #1c6fa6 89.4%,       
+      rgba(255,255,255,0.15) 89.4%,     /* NEW FEATURE: INNER BEZEL LIGHT */
+      #141a1f 89.5%, #1b2229 100%       
+    );
   pointer-events: none;
 }
+
+Red Mode (Gunmetal/Crimson + Severe Polish)
+#background-image,
+.background-image {
+  position: absolute !important;
+  left: 0 !important;
+  top: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  z-index: 0 !important;
+  background-size: cover !important;
+}
+
+#background-image::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%; z-index: 1;
+  
+  background: 
+    /* SEVERE MODE: RED-TINTED SHEEN */
+    linear-gradient(115deg, transparent 45%, rgba(211,47,47,0.05) 50%, transparent 55%),
+    /* THE MAIN UI STRUCTURE */
+    linear-gradient(to bottom,
+      #1e1e1e 0%, #121212 5%,           
+      rgba(255,255,255,0.1) 5%,         
+      #d32f2f 5.1%, #8b0000 6.5%,       
+      transparent 6.5%, transparent 88%, 
+      #8b0000 88%, #d32f2f 89.4%,       
+      rgba(255,255,255,0.1) 89.4%,      
+      #121212 89.5%, #1e1e1e 100%       
+    );
+  pointer-events: none;
+}
+
+What these add to the aesthetic:
+ * Depth: The 115deg gradient creates a subtle reflection that moves as the background images change, making it feel 3D.
+ * Sharpness: The rgba(255,255,255,0.15) lines act as a "highlight" for the Teal/Red bars, making the edges look surgically sharp on a TV screen.
+ * Cleanliness: It stays within the bars so it doesn't clutter your "Now" data or the background footage.
+How does the diagonal sheen look on the Shield? Does it give the bars that "glassy" broadcast feel you wanted?
+Next Step: Would you like me to help you add a scanline texture (very faint horizontal lines) to just the bars to give them that high-end monitor look?
