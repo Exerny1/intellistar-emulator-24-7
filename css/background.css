@@ -19,7 +19,6 @@
 
 @keyframes colorLoop {
   /* Welcome (10s) + Current (17s) = 27s total BLUE */
-  /* (27 / 112 = ~24%) */
   0%, 24% { 
     background: linear-gradient(to bottom, 
       #1b2229 0%, #141a1f 5%, #1c6fa6 5%, #124c73 6.5%, 
@@ -27,7 +26,6 @@
       #124c73 88%, #1c6fa6 89.5%, #141a1f 89.5%, #1b2229 100%);
   }
   /* Radar (17s) = RADAR GREEN */
-  /* (44 / 112 = ~39%) */
   25%, 39% { 
     background: linear-gradient(to bottom, 
       #1b2229 0%, #141a1f 5%, #2ecc71 5%, #27ae60 6.5%, 
@@ -35,18 +33,17 @@
       #27ae60 88%, #2ecc71 89.5%, #141a1f 89.5%, #1b2229 100%);
   }
   /* Forecasts (3 slides x 17s = 51s) = FORECAST ORANGE */
-  /* (95 / 112 = ~84%) */
   40%, 84% { 
     background: linear-gradient(to bottom, 
       #1b2229 0%, #141a1f 5%, #e67e22 5%, #d35400 6.5%, 
       transparent 6.5%, transparent 88%, 
       #d35400 88%, #e67e22 89.5%, #141a1f 89.5%, #1b2229 100%);
   }
-  /* 7-Day Outlook (17s) = OUTLOOK YELLOW */
+  /* 7-Day Outlook (17s) = FRIENDLY PASTEL YELLOW */
   85%, 100% { 
     background: linear-gradient(to bottom, 
-      #1b2229 0%, #141a1f 5%, #f1c40f 5%, #f39c12 6.5%, 
+      #1b2229 0%, #141a1f 5%, #fff176 5%, #fbc02d 6.5%, /* Soft Pastel Lemon */
       transparent 6.5%, transparent 88%, 
-      #f39c12 88%, #f1c40f 89.5%, #141a1f 89.5%, #1b2229 100%);
+      #fbc02d 88%, #fff176 89.5%, #141a1f 89.5%, #1b2229 100%);
   }
 }
