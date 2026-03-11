@@ -18,39 +18,21 @@
   height: 100%; 
   z-index: 1;
   
+  /* The Madison Frame: A large rounded mask that reveals the footage in the center */
   background: 
-    /* --- THE LEFT PILLAR (Madison Style) --- */
-    linear-gradient(to right, 
-      rgba(27, 34, 41, 0.95) 0%,   /* Charcoal Slate start */
-      rgba(27, 34, 41, 0.8) 12%,   /* Slight transparency */
-      #1c6fa6 12%,                 /* The Blue Pillar Edge */
-      #124c73 13.5%,               /* Edge shadow */
-      transparent 13.5%
-    ),
-    /* --- THE RIGHT PILLAR --- */
-    linear-gradient(to left, 
-      rgba(27, 34, 41, 0.95) 0%, 
-      rgba(27, 34, 41, 0.8) 12%, 
-      #1c6fa6 12%, 
-      #124c73 13.5%, 
-      transparent 13.5%
-    ),
-    /* --- YOUR TOP & BOTTOM BARS (The Frame) --- */
-    linear-gradient(to bottom,
-      #0d1117 0%,        /* Dark Eyebrow */
-      #0d1117 3.5%,
-      #1c6fa6 3.5%,      /* Teal separator */
-      #124c73 4.5%,
-      #1b2229 4.5%,      /* Main Top Bar */
-      #1b2229 6.5%,
-      
-      transparent 6.5%, 
-      transparent 88%,   
-      
-      #124c73 88%,       /* Bottom Ticker Edge */
-      #1c6fa6 89.5%,
-      #0d1117 89.5%,     /* Bottom Ticker Body */
+    radial-gradient(ellipse at center, 
+      transparent 0%, 
+      transparent 55%, 
+      #1c6fa6 56%,      /* The Blue "Pipe" Curve */
+      #124c73 57%, 
+      #0d1117 57.5%,    /* The Dark Charcoal Pillar area */
       #0d1117 100%
+    ),
+    linear-gradient(to bottom, 
+      #0d1117 0%, #0d1117 6.5%, 
+      transparent 6.5%, 
+      transparent 88%, 
+      #0d1117 88%, #0d1117 100%
     );
   
   pointer-events: none;
