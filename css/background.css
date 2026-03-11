@@ -13,33 +13,36 @@
   content: "";
   position: absolute;
   top: 0; left: 0; width: 100%; height: 100%; z-index: 1;
-  animation: colorLoop 118s infinite; /* Matches your total loop time */
+  animation: colorLoop 112s infinite; 
   pointer-events: none;
 }
 
 @keyframes colorLoop {
-  /* Welcome (10s) + Current (18s) = 28s total BLUE */
-  0%, 23% { 
+  /* Welcome (10s) + Current (17s) = 27s total BLUE */
+  /* (27 / 112 = ~24%) */
+  0%, 24% { 
     background: linear-gradient(to bottom, 
       #1b2229 0%, #141a1f 5%, #1c6fa6 5%, #124c73 6.5%, 
       transparent 6.5%, transparent 88%, 
       #124c73 88%, #1c6fa6 89.5%, #141a1f 89.5%, #1b2229 100%);
   }
-  /* Radar (18s) = GREEN */
-  24%, 39% { 
+  /* Radar (17s) = RADAR GREEN */
+  /* (44 / 112 = ~39%) */
+  25%, 39% { 
     background: linear-gradient(to bottom, 
       #1b2229 0%, #141a1f 5%, #2ecc71 5%, #27ae60 6.5%, 
       transparent 6.5%, transparent 88%, 
       #27ae60 88%, #2ecc71 89.5%, #141a1f 89.5%, #1b2229 100%);
   }
-  /* Forecasts (3 slides x 18s = 54s) = SKY BLUE */
+  /* Forecasts (3 slides x 17s = 51s) = FORECAST ORANGE */
+  /* (95 / 112 = ~84%) */
   40%, 84% { 
     background: linear-gradient(to bottom, 
-      #1b2229 0%, #141a1f 5%, #00d2ff 5%, #3a7bd5 6.5%, 
+      #1b2229 0%, #141a1f 5%, #e67e22 5%, #d35400 6.5%, 
       transparent 6.5%, transparent 88%, 
-      #3a7bd5 88%, #00d2ff 89.5%, #141a1f 89.5%, #1b2229 100%);
+      #d35400 88%, #e67e22 89.5%, #141a1f 89.5%, #1b2229 100%);
   }
-  /* 7-Day Outlook (18s) = FRIENDLY YELLOW */
+  /* 7-Day Outlook (17s) = OUTLOOK YELLOW */
   85%, 100% { 
     background: linear-gradient(to bottom, 
       #1b2229 0%, #141a1f 5%, #f1c40f 5%, #f39c12 6.5%, 
