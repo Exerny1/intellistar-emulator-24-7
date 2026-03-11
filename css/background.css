@@ -20,50 +20,27 @@
   
   background: linear-gradient(
     to bottom,
-    /* --- TOP BAR: THE "EYEBROW" & DATA NOTCH --- */
-    #0d1117 0%,        
-    #0d1117 3.5%,      /* Darker zone for "MANASSAS" */
+    /* --- TOP BAR (Charcoal Slate) --- */
+    #1b2229 0%,      /* Fills the absolute top */
+    #141a1f 5%,      /* Main body of the bar */
     
-    /* THE SPLIT LINE (NEMO Accent) */
-    #1c6fa6 3.5%,      
-    #124c73 4%,        
+    /* THE LINE AT THE END OF THE BAR */
+    #1c6fa6 5%,      /* Blue starts at the end of the charcoal */
+    #124c73 6.5%,    /* Blue ends exactly at the 6.5% mark */
     
-    /* LOWER HEADER WITH DATA NOTCH */
-    #1b2229 4%,        
-    #1b2229 6.4%,      
-    rgba(255, 255, 255, 0.1) 6.4%, /* Glass edge detail */
-    rgba(255, 255, 255, 0.1) 6.5%,
-    
-    /* --- CLEAR FOOTAGE AREA --- */
+    /* CLEAR MIDDLE AREA */
     transparent 6.5%, 
     transparent 88%,   
     
-    /* --- BOTTOM BAR: TICKER & NAVIGATION PIPS --- */
-    #124c73 88%,       
-    #1c6fa6 88.5%,     
-    #0d1117 88.5%,     /* Dark Footer Body */
+    /* --- BOTTOM BAR --- */
+    /* THE LINE AT THE END OF THE BAR */
+    #124c73 88%,     /* Blue starts at the 88% mark */
+    #1c6fa6 89.5%,   /* Blue ends */
     
-    /* GLASS PIPS (Decorative Nav Icons at 95% width) */
-    #0d1117 94%,
-    rgba(255, 255, 255, 0.4) 94%, rgba(255, 255, 255, 0.4) 94.3%,
-    #0d1117 94.3%, #0d1117 94.8%,
-    rgba(255, 255, 255, 0.4) 94.8%, rgba(255, 255, 255, 0.4) 95.1%,
-    #0d1117 95.1%, #0d1117 95.6%,
-    rgba(255, 255, 255, 0.2) 95.6%, rgba(255, 255, 255, 0.2) 95.9%,
-    
-    #0d1117 95.9%,
-    #0d1117 100%
+    /* Charcoal Slate Body */
+    #141a1f 89.5%,   /* Charcoal starts after the blue line */
+    #1b2229 100%     /* Fills to the absolute bottom */
   );
   
-  /* Adds a subtle horizontal "Control Room" texture over the whole UI */
-  background-image: 
-    repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 1px,
-      rgba(0, 0, 0, 0.02) 2px
-    ),
-    linear-gradient(to bottom, #0d1117 0%, #0d1117 3.5%, #1c6fa6 3.5%, #124c73 4%, #1b2229 4%, #1b2229 6.5%, transparent 6.5%, transparent 88%, #124c73 88%, #1c6fa6 88.5%, #0d1117 88.5%, #0d1117 100%);
-
   pointer-events: none;
 }
