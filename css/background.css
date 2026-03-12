@@ -15,6 +15,7 @@
   top: 0; left: 0; width: 100%; height: 100%; z-index: 1;
   
   background-image: 
+    /* 12s High-Gloss Shine */
     linear-gradient(115deg, 
       transparent 0%, 
       transparent 35%, 
@@ -23,16 +24,16 @@
       transparent 100%
     ),
     linear-gradient(to bottom,
-      /* --- REFINED TOP BAR (16%) --- */
-      #1b2229 0%, #141a1f 16%,           
-      #0099cc 16%, #0077aa 18.5%,        
+      /* --- TOP BAR STRUCTURE --- */
+      #1b2229 0%, #141a1f 14.5%,        /* Charcoal background for the boxes */
+      #0099cc 14.5%, #0077aa 16%,       /* The Blue Line sits AT the 16% mark */
       
       /* MIDDLE VIEWPORT */
-      transparent 18.5%, transparent 88%, 
+      transparent 16%, transparent 88.5%, 
       
-      /* --- SLIM BOTTOM BAR (88%) --- */
-      #0077aa 88%, #0099cc 89.5%,        
-      #141a1f 89.5%, #1b2229 100%        
+      /* --- BOTTOM BAR STRUCTURE --- */
+      #0077aa 88.5%, #0099cc 90%,       /* Matching Blue Line */
+      #141a1f 90.5%, #1b2229 100%       
     );
 
   background-size: 200% 100%, 100% 100%;
