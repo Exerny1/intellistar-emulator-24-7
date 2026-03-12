@@ -23,12 +23,12 @@
       transparent 100%
     ),
     linear-gradient(to bottom,
-      /* --- REFINED XL TOP BAR (18%) --- */
-      #1b2229 0%, #141a1f 18%,           
-      #0099cc 18%, #0077aa 20.5%,        
+      /* --- REFINED TOP BAR (22%) --- */
+      #1b2229 0%, #141a1f 22%,           
+      #0099cc 22%, #0077aa 24.5%,        /* Blue line follows the new height */
       
       /* MIDDLE VIEWPORT */
-      transparent 20.5%, transparent 88%, 
+      transparent 24.5%, transparent 88%, 
       
       /* --- SLIM BOTTOM BAR (88%) --- */
       #0077aa 88%, #0099cc 89.5%,        
