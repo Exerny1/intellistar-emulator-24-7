@@ -24,15 +24,15 @@
     ),
     linear-gradient(to bottom,
       /* --- XL TOP BAR (15%) --- */
-      #1b2229 0%, #141a1f 15%,           /* Charcoal fills to 15% */
-      #0099cc 15%, #0077aa 17.5%,        /* Blue Line from 15% to 17.5% */
+      #1b2229 0%, #141a1f 15%,           
+      #0099cc 15%, #0077aa 17.5%,        
       
       /* MIDDLE VIEWPORT */
-      transparent 17.5%, transparent 80%, 
+      transparent 17.5%, transparent 88%, 
       
-      /* --- XL BOTTOM BAR --- */
-      #0077aa 80%, #0099cc 82.5%,        /* Blue Line starts at 80% */
-      #141a1f 82.5%, #1b2229 100%        /* Charcoal Bottom */
+      /* --- SLIM BOTTOM BAR (Original) --- */
+      #0077aa 88%, #0099cc 89.5%,        
+      #141a1f 89.5%, #1b2229 100%        
     );
 
   background-size: 200% 100%, 100% 100%;
