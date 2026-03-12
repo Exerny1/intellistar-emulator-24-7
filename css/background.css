@@ -1,33 +1,33 @@
-/* 1. LEAVE THIS ALONE - This lets the stock images load naturally */
+/* LEAVE THIS EMPTY - This is where your stock images live */
 #background-image,
 .background-image {
   position: absolute !important;
   z-index: 0 !important;
 }
 
-/* 2. THE BARS - Moved to a layer so the middle stays clear */
+/* THE BARS (17.5% Drop) */
 #background-image::after {
   content: "";
   position: absolute;
   top: 0; left: 0; width: 100%; height: 100%;
-  z-index: 1; /* Sits on top of the image */
+  z-index: 1;
   pointer-events: none;
   
-  background-image: linear-gradient(to bottom,
+  background: linear-gradient(to bottom,
       #1b2229 0%, #141a1f 17.5%,         /* Top Charcoal */
-      #0099cc 17.5%, #0077aa 18.5%,      /* THE BLUE LINE */
-      transparent 18.5%, transparent 88%, /* THE WINDOW (Images show here) */
+      #0099cc 17.5%, #0077aa 18.5%,      /* THE BLUE LINE (Dropped) */
+      transparent 18.5%, transparent 88%, /* STAYS CLEAR FOR STOCK IMAGES */
       #0077aa 88%, #0099cc 89%,          /* Bottom Blue Line */
       #141a1f 89%, #1b2229 100%          /* Bottom Charcoal */
   );
 }
 
-/* 3. THE SHINE - Moved to its own layer above the bars */
+/* THE SHINE (12s Speed) */
 #background-image::before {
   content: "";
   position: absolute;
   top: 0; left: 0; width: 100%; height: 100%;
-  z-index: 2; /* Sits on top of the bars */
+  z-index: 2;
   pointer-events: none;
   
   background-image: linear-gradient(115deg, 
