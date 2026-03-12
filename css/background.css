@@ -23,16 +23,16 @@
       transparent 100%
     ),
     linear-gradient(to bottom,
-      /* --- ENLARGED TOP BAR --- */
-      #1b2229 0%, #141a1f 10%,           /* Charcoal fills to 10% */
-      #0099cc 10%, #0077aa 12%,          /* Blue Line from 10% to 12% */
+      /* --- XL TOP BAR (15%) --- */
+      #1b2229 0%, #141a1f 15%,           /* Charcoal fills to 15% */
+      #0099cc 15%, #0077aa 17.5%,        /* Blue Line from 15% to 17.5% */
       
       /* MIDDLE VIEWPORT */
-      transparent 12%, transparent 85%, 
+      transparent 17.5%, transparent 80%, 
       
-      /* --- BOTTOM BAR --- */
-      #0077aa 85%, #0099cc 87%,          /* Blue Line starts at 85% */
-      #141a1f 87%, #1b2229 100%          /* Charcoal Bottom */
+      /* --- XL BOTTOM BAR --- */
+      #0077aa 80%, #0099cc 82.5%,        /* Blue Line starts at 80% */
+      #141a1f 82.5%, #1b2229 100%        /* Charcoal Bottom */
     );
 
   background-size: 200% 100%, 100% 100%;
