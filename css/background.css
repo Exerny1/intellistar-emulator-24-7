@@ -23,14 +23,14 @@
       transparent 100%
     ),
     linear-gradient(to bottom,
-      /* --- XL TOP BAR (15%) --- */
-      #1b2229 0%, #141a1f 15%,           
-      #0099cc 15%, #0077aa 17.5%,        
+      /* --- ULTRA XL TOP BAR (20%) --- */
+      #1b2229 0%, #141a1f 20%,           
+      #0099cc 20%, #0077aa 22.5%,        
       
-      /* MIDDLE VIEWPORT */
-      transparent 17.5%, transparent 88%, 
+      /* MIDDLE VIEWPORT (Large opening) */
+      transparent 22.5%, transparent 88%, 
       
-      /* --- SLIM BOTTOM BAR (Original) --- */
+      /* --- SLIM BOTTOM BAR (88%) --- */
       #0077aa 88%, #0099cc 89.5%,        
       #141a1f 89.5%, #1b2229 100%        
     );
