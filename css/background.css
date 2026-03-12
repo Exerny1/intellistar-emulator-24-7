@@ -8,17 +8,16 @@
   z-index: 0 !important;
   background-size: cover !important;
   
-  /* We move the Blue Line here so it is the literal "background" */
+  /* Pushing the Blue Line further down */
   background-image: linear-gradient(to bottom,
-      #1b2229 0%, #141a1f 15%,           /* Top Charcoal */
-      #0099cc 15%, #0077aa 16%,          /* THE BLUE LINE (UNDERNEATH) */
-      transparent 16%, transparent 88%, 
-      #0077aa 88%, #0099cc 89%,          /* Bottom Blue Line */
-      #141a1f 89%, #1b2229 100%          /* Bottom Charcoal */
+      #1b2229 0%, #141a1f 17.5%,         /* Top Charcoal extended to 17.5% */
+      #0099cc 17.5%, #0077aa 18.5%,      /* THE BLUE LINE (Now lower) */
+      transparent 18.5%, transparent 88%, 
+      #0077aa 88%, #0099cc 89%,          
+      #141a1f 89%, #1b2229 100%          
   ) !important;
 }
 
-/* The shine now floats above the bars but below the text */
 #background-image::after {
   content: "";
   position: absolute;
