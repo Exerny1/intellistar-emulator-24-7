@@ -8,14 +8,16 @@
   z-index: 0 !important;
   background-size: cover !important;
   
-  /* Pushing the Blue Line further down */
-  background-image: linear-gradient(to bottom,
-      #1b2229 0%, #141a1f 17.5%,         /* Top Charcoal extended to 17.5% */
-      #0099cc 17.5%, #0077aa 18.5%,      /* THE BLUE LINE (Now lower) */
+  /* We stack the bars ON TOP of the URL/image layer */
+  background-image: 
+    linear-gradient(to bottom,
+      #1b2229 0%, #141a1f 17.5%,         /* Top Charcoal */
+      #0099cc 17.5%, #0077aa 18.5%,      /* THE BLUE LINE */
       transparent 18.5%, transparent 88%, 
-      #0077aa 88%, #0099cc 89%,          
-      #141a1f 89%, #1b2229 100%          
-  ) !important;
+      #0077aa 88%, #0099cc 89%,          /* Bottom Blue Line */
+      #141a1f 89%, #1b2229 100%          /* Bottom Charcoal */
+    ),
+    url("your-image-path.jpg") !important; /* This keeps the footage visible */
 }
 
 #background-image::after {
