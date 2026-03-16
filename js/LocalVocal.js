@@ -5,36 +5,30 @@ const vox = {
     outlook: new Audio('assets/audio/7dayoutlook.mp3.mp3')
 };
 
-function playWeatherVocals() {
-    // 10 Seconds: Greeting ends, "Our current conditions" plays
-    setTimeout(() => { 
-        vox.current.play(); 
+// This function handles the 17-second gap and plays the next file
+function sequenceVox(currentClip, nextClip) {
+    currentClip.onended = () => {
+        setTimeout(() => {
+            nextClip.play();
+        }, 17000); // Waits 17s after the clip ends to start the next
+    };
+}
+
+function startVocalLoop() {
+    // 1. Initial 10-second delay for the greeting message
+    setTimeout(() => {
+        vox.current.play();
     }, 10000);
 
-    // 27 Seconds: (10s Greeting + 17s Slide) "Local doppler radar" plays
-    setTimeout(() => { 
-        vox.radar.play(); 
-    }, 27000);
-
-    // 44 Seconds: (Next 17s Slide) "Your local forecast" plays
-    setTimeout(() => { 
-        vox.forecast.play(); 
-    }, 44000);
-
-    // 61 Seconds: (Next 17s Slide) "7 day outlook" plays
-    setTimeout(() => { 
-        vox.outlook.play(); 
-    }, 61000);
-}
-
-// Logic to loop the audio when the emulator restarts the timeline
-function startVocalLoop() {
-    playWeatherVocals();
+    // 2. Chain them together
+    sequenceVox(vox.current, vox.radar);    // When Current ends, wait 17s -> Radar
+    sequenceVox(vox.radar, vox.forecast);   // When Radar ends, wait 17s -> Forecast
+    sequenceVox(vox.forecast, vox.outlook); // When Forecast ends, wait 17s -> Outlook
     
-    // Adjust this number (currently 78000ms / 78s) to match your TOTAL timeline length
-    // Total = 10s (Greeting) + (4 slides * 17s) = 78 seconds
-    setInterval(() => {
-        playWeatherVocals();
-    }, 78000); 
+    // 3. The Loop: When the last clip (Outlook) ends, wait 17s and restart the whole thing
+    vox.outlook.onended = () => {
+        setTimeout(() => {
+            startVocalLoop(); 
+        }, 17000);
+    };
 }
-
