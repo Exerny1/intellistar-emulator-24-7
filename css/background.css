@@ -15,7 +15,7 @@
   top: 0; left: 0; width: 100%; height: 100%; z-index: 1;
   
   background-image: 
-    /* LAYER 1: THE SHINE */
+    /* THE SHINE */
     linear-gradient(115deg, 
       transparent 0%, 
       transparent 35%, 
@@ -23,7 +23,7 @@
       transparent 65%, 
       transparent 100%
     ),
-    /* LAYER 2: THE BARS & METALLIC MIDDLE */
+    /* THE BARS (17.5% Drop) - RECOLORED RED + METALLIC MIDDLE */
     linear-gradient(to bottom,
       #1e1e1e 0%, #121212 17.5%,         
       #d32f2f 17.5%, #8b0000 18.5%,      
@@ -35,13 +35,15 @@
   background-size: 200% 100%, 100% 100%;
   background-repeat: no-repeat;
   
-  /* Reset to original fast loop */
-  animation: shineSweep 12s infinite linear;
+  /* THE 14s LOOP: 4s active + 10s pause */
+  animation: shineSweep 14s infinite linear;
   pointer-events: none;
 }
 
 @keyframes shineSweep {
-  /* This ensures ONLY the shine moves, preventing the 'slow' drag effect */
+  /* Shine moves from 0% to 28% of the total 14s (4 seconds) */
   0% { background-position: 150% 0, 0 0; }
+  28% { background-position: -50% 0, 0 0; }
+  /* Shine stays off-screen for the remaining 72% (10 seconds) */
   100% { background-position: -50% 0, 0 0; }
 }
