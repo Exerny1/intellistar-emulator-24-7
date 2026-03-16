@@ -16,6 +16,17 @@ function fetchAlerts(){
           fetchForecast();
           return;
         }
+
+        // --- WARNING CHIME TRIGGER ---
+        const alertAudio = document.getElementById('alert-sound');
+        if (alertAudio && data.features.length > 0) {
+          const hasWarning = data.features.some(f => f.properties.event.toUpperCase().includes("WARNING"));
+          if (hasWarning) {
+            alertAudio.play().catch(e => console.log("Audio interaction required"));
+          }
+        }
+        // -----------------------------
+
         if (data.features.length == 1) {
           alerts[0] = data.features[0].properties.event + '<br>' + data.features[0].properties.description.replace("..."," ").replace(/\*/g, "")
           for(var i = 0; i < data.features.length; i++){
