@@ -1,34 +1,43 @@
-const vox = {
-    current: new Audio('assets/audio/Our current conditions.mp3.mp3'),
-    radar: new Audio('assets/audio/Localdopplerradar.mp3.mp3'),
-    forecast: new Audio('assets/audio/Yourlocalforecast.mp3.mp3'),
-    outlook: new Audio('assets/audio/7dayoutlook.mp3.mp3')
-};
+// Define the files with your specific double extension
+const voxCurrent = new Audio('assets/audio/Our current conditions.mp3.mp3');
+const voxRadar = new Audio('assets/audio/Localdopplerradar.mp3.mp3');
+const voxForecast = new Audio('assets/audio/Yourlocalforecast.mp3.mp3');
+const voxOutlook = new Audio('assets/audio/7dayoutlook.mp3.mp3');
 
-// This function handles the 17-second gap and plays the next file
-function sequenceVox(currentClip, nextClip) {
-    currentClip.onended = () => {
-        setTimeout(() => {
-            nextClip.play();
-        }, 17000); // Waits 17s after the clip ends to start the next
-    };
-}
+function runVocalSequence() {
+    console.log("Starting Vocal Sequence...");
 
-function startVocalLoop() {
-    // 1. Initial 10-second delay for the greeting message
-    setTimeout(() => {
-        vox.current.play();
+    // 10 Seconds: Greeting ends, "Our current conditions" plays
+    setTimeout(() => { 
+        voxCurrent.play(); 
     }, 10000);
 
-    // 2. Chain them together
-    sequenceVox(vox.current, vox.radar);    // When Current ends, wait 17s -> Radar
-    sequenceVox(vox.radar, vox.forecast);   // When Radar ends, wait 17s -> Forecast
-    sequenceVox(vox.forecast, vox.outlook); // When Forecast ends, wait 17s -> Outlook
-    
-    // 3. The Loop: When the last clip (Outlook) ends, wait 17s and restart the whole thing
-    vox.outlook.onended = () => {
-        setTimeout(() => {
-            startVocalLoop(); 
-        }, 17000);
-    };
+    // 27 Seconds: (10s Greeting + 17s Slide) "Local doppler radar" plays
+    setTimeout(() => { 
+        voxRadar.play(); 
+    }, 27000);
+
+    // 44 Seconds: (Next 17s Slide) "Your local forecast" plays
+    setTimeout(() => { 
+        voxForecast.play(); 
+    }, 44000);
+
+    // 61 Seconds: (Next 17s Slide) "7 day outlook" plays
+    setTimeout(() => { 
+        voxOutlook.play(); 
+    }, 61000);
 }
+
+// This part makes it work automatically
+window.addEventListener('load', function() {
+    // Total loop time: 10s greeting + (4 slides * 17s) = 78 seconds
+    const totalLoopTime = 78000; 
+
+    // Start the first time
+    runVocalSequence();
+
+    // Repeat forever every 78 seconds
+    setInterval(() => {
+        runVocalSequence();
+    }, totalLoopTime);
+});
