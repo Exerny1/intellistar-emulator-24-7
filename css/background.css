@@ -23,24 +23,27 @@
       transparent 65%, 
       transparent 100%
     ),
-    /* THE BARS (17.5% Drop) - RECOLORED RED + METALLIC MIDDLE */
+    /* THE BARS (17.5% Drop) */
     linear-gradient(to bottom,
-      #1e1e1e 0%, #121212 17.5%,         
-      #d32f2f 17.5%, #8b0000 18.5%,      
-      rgba(10, 10, 10, 0.8) 18.5%, rgba(20, 20, 20, 0.8) 88%, 
-      #8b0000 88%, #d32f2f 89%,          
-      #121212 89%, #1e1e1e 100%          
+      #1b2229 0%, #141a1f 17.5%,         
+      #0099cc 17.5%, #0077aa 18.5%,      
+      transparent 18.5%, transparent 88%, 
+      #0077aa 88%, #0099cc 89%,          
+      #141a1f 89%, #1b2229 100%          
     );
 
   background-size: 200% 100%, 100% 100%;
   background-repeat: no-repeat;
   
-  /* THE 14s LOOP: 4s active + 10s pause */
+  /* Total 14s loop: 4s active + 10s pause */
   animation: shineSweep 14s infinite linear;
   pointer-events: none;
 }
 
 @keyframes shineSweep {
-  /* Shine moves from 0% to 28% of the total 14s (4 seconds) */
+  /* Shine moves from 0% to 28% of the total 14s (which is 4 seconds) */
   0% { background-position: 150% 0, 0 0; }
-  28% { background-position: 
+  28% { background-position: -50% 0, 0 0; }
+  /* Shine stays off-screen for the remaining 72% (10 seconds) */
+  100% { background-position: -50% 0, 0 0; }
+}
