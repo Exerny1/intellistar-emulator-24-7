@@ -141,3 +141,10 @@ window.CONFIG = {
 }
 
 CONFIG.unitField = CONFIG.units === 'm' ? 'metric' : (CONFIG.units === 'h' ? 'uk_hybrid' : 'imperial')
+
+// Real-time update: Fetch new data every 60 seconds
+setInterval(function() {
+  if (typeof fetchCurrentWeather === "function") {
+    fetchCurrentWeather();
+  }
+}, 60000);
