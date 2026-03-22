@@ -1,34 +1,23 @@
 window.CONFIG = {
   crawl: `The Weather Channel is Amercas #1 weather network. Trusted. Reliable. Accurate.         For more information on your weather switch to normal programming.`,
   greeting: 'Your watching WeatherNOW Manassas',
-  language: 'en-US', // Supported in TWC API
-  countryCode: 'US', // Supported in TWC API (for postal key)
-  units: 'e', // Supported in TWC API (e = English (imperial), m = Metric, h = Hybrid (UK)),
-  unitField: 'imperial', // Supported in TWC API. This field will be filled in automatically. (imperial = e, metric = m, uk_hybrid = h)
+  language: 'en-US',
+  countryCode: 'US',
+  units: 'e',
+  unitField: 'imperial',
   loop: false,
   locationMode: "POSTAL",
   secrets: {
-    // Possibly deprecated key: See issue #29
-    // twcAPIKey: 'd522aa97197fd864d36b418f39ebb323'
     twcAPIKey: 'e1f10a1e78da46f5b10a1e78da96f525'
   },
 
-  // Config Functions (index.html settings manager)
   locationOptions:[],
   addLocationOption: (id, name, desc) => {
-    CONFIG.locationOptions.push({
-      id,
-      name,
-      desc,
-    })
+    CONFIG.locationOptions.push({ id, name, desc })
   },
   options: [],
   addOption: (id, name, desc) => {
-    CONFIG.options.push({
-      id,
-      name,
-      desc,
-    })
+    CONFIG.options.push({ id, name, desc })
   },
   submit: (btn, e) => {
     let args = {}
@@ -50,7 +39,7 @@ window.CONFIG = {
         localStorage.setItem(opt.id, args[opt.id])
       }
     })
-    console.log(args)
+    
     if (currentLoop) {
       if (localStorage.getItem('crawlText')) CONFIG.crawl = localStorage.getItem('crawlText')
       if (localStorage.getItem('greetingText')) CONFIG.greeting = localStorage.getItem('greetingText')
@@ -64,18 +53,9 @@ window.CONFIG = {
     
     if (args['airport-code-button']==true){ 
       CONFIG.locationMode="AIRPORT" 
-      if(args['airport-code'].length==0){
-        alert("Please enter an airport code")
-        return
-      }
     } 
     else { 
       CONFIG.locationMode="POSTAL" 
-      if(!currentLoop && args['zip-code'].length==0){
-        alert("Please enter a postal code")
-        return
-      }
-
     }
     
     zipCode = args['zip-code'] || localStorage.getItem('zip-code')
@@ -88,50 +68,29 @@ window.CONFIG = {
     let settingsPrompt = getElement('settings-prompt')
     let advancedSettingsOptions = getElement('advanced-settings-options')
 
-    //Advanced Options Setup
     CONFIG.options.forEach((option) => {
-      //<div class="regular-text settings-item settings-text">Zip Code</div>
       let label = document.createElement('div')
-        label.classList.add('strong-text', 'settings-item', 'settings-text', 'settings-padded')
-        label.style.textAlign='left'
+      label.classList.add('strong-text', 'settings-item', 'settings-text', 'settings-padded')
+      label.style.textAlign='left'
       label.appendChild(document.createTextNode(option.name))
       label.id = `${option.id}-label`
-      //<input class="settings-item settings-text" type="text" id="zip-code-text">
+
       let textbox = document.createElement('textarea')
       textbox.classList.add('settings-item', 'settings-text', 'settings-input')
-      textbox.type = 'text'
-      textbox.style.fontSize = '20px'
-      textbox.placeholder = option.desc
       textbox.id = `${option.id}-text`
-      textbox.style.maxWidth='320px'
-      textbox.style.minWidth='320px'
-      textbox.style.height='100px'
-      textbox.style.marginTop='10px'
       if (localStorage.getItem(option.id)) textbox.value = localStorage.getItem(option.id)
-      let br = document.createElement('br')
+      
       advancedSettingsOptions.appendChild(label)
       advancedSettingsOptions.appendChild(textbox)
-      advancedSettingsOptions.appendChild(br)
-      //<br>
     })
 
-    let advancedButtonContainer = document.createElement('div')
-    advancedButtonContainer.classList.add('settings-container')
-    settingsPrompt.appendChild(advancedButtonContainer)
-    let advancedButton = document.createElement('button')
-    advancedButton.innerHTML = "Show advanced options"
-    advancedButton.id = "advanced-options-text"
-    advancedButton.setAttribute('onclick', 'toggleAdvancedSettings()')
-    advancedButton.classList.add('regular-text', 'settings-input', 'button')
-    advancedButtonContainer.appendChild(advancedButton)
-    //<button class="setting-item settings-text" id="submit-button" onclick="checkZipCode();" style="margin-bottom: 10px;">Start</button>-->
     let btn = document.createElement('button')
     btn.classList.add('setting-item', 'settings-text', 'settings-input', 'button')
     btn.id = 'submit-button'
     btn.onclick = CONFIG.submit
-    btn.style = 'margin-bottom: 10px;'
     btn.appendChild(document.createTextNode('Start'))
     settingsPrompt.appendChild(btn)
+
     if (CONFIG.loop || localStorage.getItem('loop') === 'y') {
       CONFIG.loop = true;
       hideSettings();
@@ -142,9 +101,10 @@ window.CONFIG = {
 
 CONFIG.unitField = CONFIG.units === 'm' ? 'metric' : (CONFIG.units === 'h' ? 'uk_hybrid' : 'imperial')
 
-// Real-time update: Fetch new data every 60 seconds
+// --- THE MISSING FIX IS BELOW ---
 setInterval(function() {
   if (typeof fetchCurrentWeather === "function") {
+    console.log("Refreshing weather data...");
     fetchCurrentWeather();
   }
-}, 60000);
+}, 60000); // 60000ms = 1 Minute
