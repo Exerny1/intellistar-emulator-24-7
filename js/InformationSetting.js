@@ -153,33 +153,41 @@ function setInitialPositionCurrentPage(){
 function getPageLogoFileName(subPageName){
   switch (subPageName) {
     case "single-alert-page":
-      return "8logo.svg";
+      return "
+
+  function getPageLogoFileName(subPageName){
+  switch (subPageName) {
+    case "single-alert-page":
+      return ""; 
 
     case "multiple-alerts-page":
-      return "8logo.svg";
+      return ""; 
 
     case "current-page":
-      return "thermometer.svg";
+      return ""; 
 
     case "radar-page":
-      return "radar1.svg";
+      return ""; 
 
     case "zoomed-radar-page":
-      return "radar2.svg";
+      return ""; 
 
     case "today-page":
-      return "calendar.svg";
+      return ""; 
 
     case "tonight-page":
-      return "calendar.svg";
+      return ""; 
 
     case "tomorrow-page":
-      return "calendar.svg";
+      return ""; 
 
     case "tomorrow-night-page":
-      return "calendar.svg";
+      return ""; 
 
     case "7day-page":
-      return "week.svg";
+      return ""; 
+      
+    default:
+      return "";
   }
 }
