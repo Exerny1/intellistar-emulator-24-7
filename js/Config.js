@@ -116,4 +116,4 @@ setInterval(function() {
     console.log("Auto-refreshing weather for: " + (zipCode || airportCode));
     fetchCurrentWeather();
   }
-}, 60000); 
+}, 60000);
