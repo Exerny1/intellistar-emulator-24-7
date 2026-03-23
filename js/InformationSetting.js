@@ -2,7 +2,6 @@ function setGreetingPage(){
   getElement("hello-location-text").innerHTML = cityName + ",";
   getElement("infobar-location-text").innerHTML = cityName;
   getElement("greeting-text").innerHTML = CONFIG.greeting;
-  getElement("crawl-text").innerHTML = CONFIG.crawl;
 }
 
 function setTimelineEvents(){
