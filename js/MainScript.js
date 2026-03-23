@@ -293,13 +293,8 @@ function silentRestart(){
     getElement('background-image').classList.add("below-screen");
   }
   
-  // FIXED: Instead of just fetching, we call scheduleTimeline() 
-  // to actually trigger the animation sequence again.
   if (typeof fetchCurrentWeather === 'function') {
     fetchCurrentWeather(); 
-    // The data script should call scheduleTimeline() after the fetch is done.
-    // If it doesn't, we add it here as a fallback:
-    setTimeout(scheduleTimeline, 500);
   } else {
     scheduleTimeline();
   }
@@ -399,19 +394,8 @@ function resizeWindow(){
 
 function getElement(id){ return document.getElementById(id); }
 
-function showCrawl(){
-  if (CONFIG.crawl.length > 0){
-    getElement('crawler-container').classList.add("shown");
-    setTimeout(startCrawl, 400);
-  }
-}
-
-function hideCrawl(){ getElement('crawler-container').classList.add("hidden"); }
-function startCrawl(){ calculateCrawlSpeed(); getElement('crawl-text').classList.add('animate'); }
-
-function calculateCrawlSpeed() {
-  var crawlTextElement = getElement('crawl-text');
-  var elementLength = crawlTextElement.innerHTML.length;
-  var timeTaken = (elementLength < (crawlScreenTime*crawlSpeedCasual) - crawlSpace) ? (elementLength + crawlSpace) / crawlSpeedCasual : (elementLength > (crawlScreenTime*crawlSpeedFast) ? elementLength / crawlSpeedFast : crawlScreenTime);
-  crawlTextElement.style.animationDuration = timeTaken + "s";
-}
+// THE CRAWL FUNCTIONS (EMPTIED TO PREVENT CRAWL STARTING)
+function showCrawl(){ /* No action to prevent crawl showing */ }
+function hideCrawl(){ /* No action needed */ }
+function startCrawl(){ /* No action to prevent animation */ }
+function calculateCrawlSpeed() { /* No action needed */ }
