@@ -259,6 +259,14 @@ function silentRestart(){
   currentLogoIndex = 0;
   currentLogo = undefined;
   
+  const subPageElements = document.querySelectorAll('.subpage');
+  subPageElements.forEach(el => {
+    el.style.visibility = 'hidden';
+    el.style.top = '';
+    el.style.opacity = '';
+    el.classList.remove('shown', 'hidden');
+  });
+
   const resetList = [
     'infobar-twc-logo', 'infobar-local-logo', 'infobar-location-container', 
     'infobar-time-container', 'outlook-titlebar', 'content-container', 
@@ -276,11 +284,22 @@ function silentRestart(){
     }
   });
 
-  if (getElement('crawl-text')) getElement('crawl-text').classList.remove('animate');
-  if (getElement('background-image')) getElement('background-image').classList.add("below-screen");
+  if (getElement('crawl-text')) {
+    getElement('crawl-text').classList.remove('animate');
+    void getElement('crawl-text').offsetWidth;
+  }
   
+  if (getElement('background-image')) {
+    getElement('background-image').classList.add("below-screen");
+  }
+  
+  // FIXED: Instead of just fetching, we call scheduleTimeline() 
+  // to actually trigger the animation sequence again.
   if (typeof fetchCurrentWeather === 'function') {
     fetchCurrentWeather(); 
+    // The data script should call scheduleTimeline() after the fetch is done.
+    // If it doesn't, we add it here as a fallback:
+    setTimeout(scheduleTimeline, 500);
   } else {
     scheduleTimeline();
   }
