@@ -154,40 +154,37 @@ function getPageLogoFileName(subPageName){
   switch (subPageName) {
     case "single-alert-page":
       return "
-
-  function getPageLogoFileName(subPageName){
+      
+function getPageLogoFileName(subPageName){
   switch (subPageName) {
     case "single-alert-page":
-      return ""; 
+      return "8logo.svg"; 
 
     case "multiple-alerts-page":
-      return ""; 
+      return "8logo.svg"; 
 
     case "current-page":
-      return ""; 
+      return "thermometer.svg";
 
     case "radar-page":
-      return ""; 
+      return "radar1.svg"; 
 
     case "zoomed-radar-page":
-      return ""; 
+      return "radar2.svg"; 
 
     case "today-page":
-      return ""; 
+      return "calendar.svg"; 
 
     case "tonight-page":
-      return ""; 
+      return "calendar.svg"; 
 
     case "tomorrow-page":
-      return ""; 
+      return "calendar.svg"; 
 
     case "tomorrow-night-page":
-      return ""; 
+      return "calendar.svg";
 
     case "7day-page":
-      return ""; 
-      
-    default:
-      return "";
+      return "week.svg"
   }
 }
