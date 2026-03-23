@@ -263,127 +263,17 @@ function clearEnd(){
 }
 
 function silentRestart(){
+  // MODIFIED: We only clear timeouts created AFTER the initial page load
+  // to prevent killing the background weather update interval.
   var id = window.setTimeout(function() {}, 0);
-  while (id--) { window.clearTimeout(id); }
+  while (id--) { 
+      // We assume the weather update interval is one of the first few IDs created
+      // Clearing only the higher IDs (usually animation/UI timers)
+      if (id > 20) window.clearTimeout(id); 
+  }
   
-  // RESTORE THE CLOCK HEARTBEAT
   setClockTime();
-  
   currentLogoIndex = 0;
   currentLogo = undefined;
   
-  const resetList = ['infobar-twc-logo', 'infobar-local-logo', 'infobar-location-container', 'infobar-time-container', 'outlook-titlebar', 'content-container', 'background-image', 'hello-text', 'hello-location-text', 'greeting-text', 'crawler-container', 'progressbar'];
-  resetList.forEach(id => {
-    let el = getElement(id);
-    if(el) {
-        el.classList.remove('shown', 'hidden', 'expand', 'above-screen', 'progress');
-        el.style.top = '';
-        el.style.opacity = '';
-    }
-  });
-
-  getElement('crawl-text').classList.remove('animate');
-  getElement('background-image').classList.add("below-screen");
-  
-  if (typeof weather !== 'undefined') weather.load(); 
-  else scheduleTimeline();
-}
-
-function loadInfoBar(){
-  getElement("infobar-local-logo").classList.add("shown");
-  getElement("infobar-location-container").classList.add("shown");
-  getElement("infobar-time-container").classList.add("shown");
-}
-
-function setClockTime(){
-  var currentTime = new Date();
-  var h = currentTime.getHours();
-  var m = currentTime.getMinutes();
-  if(h == 0) h = 12; else if(h > 12) h = h - 12;
-  if(m < 10) m = "0" + m;
-  getElement("infobar-time-text").innerHTML = h + ":" + m;
-  setTimeout(setClockTime, 5000);
-}
-
-function animateValue(id, start, end, duration, pad) {
-  var obj = getElement(id);
-  if(!obj) return;
-  var range = end - start;
-  var current = start;
-  var increment = end > start? 1 : -1;
-  var stepTime = Math.abs(Math.floor(duration / (range || 1))) || 10;
-  var timer = setInterval(function() {
-      current += increment;
-      obj.innerHTML = current.pad(pad);
-      if (current == end) clearInterval(timer);
-  }, stepTime);
-}
-
-function animateDialFill(id, temperature, duration) {
-  var start = -20;
-  var end = temperature;
-  var obj = getElement(id);
-  if(!obj) return;
-  var range = end - start;
-  var current = start;
-  var increment = end > start? 1 : -1;
-  var stepTime = Math.abs(Math.floor(duration / (range || 1))) || 10;
-  var timer = setInterval(function() {
-      current += increment;
-      obj.style.fill = getTemperatureColor(current);
-      if (current == end) clearInterval(timer);
-  }, stepTime);
-}
-
-function getTemperatureColor(temperature){
-  if(temperature < -20) return 'rgb(0, 0, 255)';
-  if(temperature > 100) return 'rgb(201, 42, 42)';
-  var calculatedColor = [0, 0, 0]
-  if(temperature < 40){ var percent = (temperature + 20)/60; calculatedColor = interpolateColor([24, 100, 171], [77, 171, 247], percent); }
-  else if(temperature < 60){ var percent = (temperature - 40)/20; calculatedColor = interpolateColor([77, 171, 247], [255, 212, 59], percent); }
-  else if(temperature < 80){ var percent = (temperature - 60)/20; calculatedColor = interpolateColor([255, 212, 59], [247, 103, 7], percent); }
-  else { var percent = (temperature - 80)/20; calculatedColor = interpolateColor([247, 103, 7], [201, 42, 42], percent); }
-  return 'rgb(' + calculatedColor[0] + ', ' + calculatedColor[1] + ', ' + calculatedColor[2] + ')'
-}
-
-var interpolateColor = function(color1, color2, factor) {
-  var result = color1.slice();
-  for (var i=0;i<3;i++) { result[i] = Math.round(result[i] + factor*(color2[i]-color1[i])); }
-  return result;
-};
-
-Number.prototype.pad = function(size) {
-    var s = String(this);
-    while (s.length < (size || 2)) {s = "0" + s;}
-    return s;
-}
-
-function getElement(id){ return document.getElementById(id); }
-
-window.onresize = resizeWindow;
-function resizeWindow(){
-  var ww = window.innerWidth;
-  var wh = window.innerHeight;
-  var newScale = (ww/wh < 1920/1080) ? ww / 1920 : wh / 1080;
-  getElement('render-frame').style.transform = 'scale(' + newScale + ',' +  newScale + ')';
-}
-
-function showCrawl(){
-  if (CONFIG.crawlText && CONFIG.crawlText.length > 0){
-    getElement('crawl-text').innerHTML = CONFIG.crawlText;
-    getElement('crawler-container').classList.add("shown");
-    setTimeout(startCrawl, 400);
-  }
-}
-
-function startCrawl(){
-  calculateCrawlSpeed();
-  getElement('crawl-text').classList.add('animate');
-}
-
-function calculateCrawlSpeed() {
-  var crawlTextElement = getElement('crawl-text');
-  var elementLength = crawlTextElement.innerHTML.length;
-  var timeTaken = (elementLength < (crawlScreenTime*crawlSpeedCasual) - crawlSpace) ? (elementLength + crawlSpace) / crawlSpeedCasual : (elementLength > (crawlScreenTime*crawlSpeedFast)) ? elementLength / crawlSpeedFast : crawlScreenTime;
-  crawlTextElement.style.animationDuration = timeTaken + "s";
-}
+  const resetList = ['infobar-twc-logo', 'infobar-local-logo', 'infobar-location-container', 'infobar-time-container', 'outlook-titlebar',
