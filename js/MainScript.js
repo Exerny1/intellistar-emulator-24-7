@@ -18,26 +18,35 @@ var pageOrder;
 var music;
 
 window.onload = function () {
-  CONFIG.addLocationOption('airport-code', 'Airport', 'ATL or KATL')
-  CONFIG.addLocationOption('zip-code', 'Postal', '00000')
-  CONFIG.addOption('crawlText', 'Crawl Text', 'Text that scrolls along the bottom')
-  CONFIG.addOption('greetingText', 'Greeting Text', 'Message (or joke) that appears at the start')
-  CONFIG.load();
-  preLoadMusic();
-  setMainBackground();
-  resizeWindow();
-  setClockTime();
-  if (!CONFIG.loop) {
-    if(getElement("settings-container")) getElement("settings-container").style.display = 'block';
-    if(typeof guessZipCode === 'function') guessZipCode();
-  } else {
-    if (typeof fetchCurrentWeather === 'function') fetchCurrentWeather();
+  try {
+    if (typeof CONFIG !== 'undefined') {
+      CONFIG.addLocationOption('airport-code', 'Airport', 'ATL or KATL')
+      CONFIG.addLocationOption('zip-code', 'Postal', '00000')
+      CONFIG.addOption('crawlText', 'Crawl Text', 'Text that scrolls along the bottom')
+      CONFIG.addOption('greetingText', 'Greeting Text', 'Message (or joke) that appears at the start')
+      CONFIG.load();
+    }
+    preLoadMusic();
+    setMainBackground();
+    resizeWindow();
+    setClockTime();
+    
+    if (typeof CONFIG !== 'undefined' && !CONFIG.loop) {
+      if(getElement("settings-container")) getElement("settings-container").style.display = 'block';
+      if(typeof guessZipCode === 'function') guessZipCode();
+    } else {
+      if (typeof fetchCurrentWeather === 'function') fetchCurrentWeather();
+    }
+  } catch (err) {
+    console.error("Startup error bypassed: ", err);
   }
 }
 
 function preLoadMusic(){
-  var index = Math.floor(Math.random() * 12) + 1;
-  music = new Audio("assets/music/" + index + ".wav");
+  try {
+    var index = Math.floor(Math.random() * 12) + 1;
+    music = new Audio("assets/music/" + index + ".wav");
+  } catch(e) {}
 }
 
 function scheduleTimeline(){
@@ -83,12 +92,12 @@ function checkStormMusic(){
 
 function startAnimation(){
   if (typeof setInitialPositionCurrentPage === 'function') setInitialPositionCurrentPage();
-  jingle.play();
+  if (jingle) jingle.play().catch(e => console.log("Audio play deferred"));
   setTimeout(startMusic, 5000)
   executeGreetingPage();
 }
 
-function startMusic(){ if(music) music.play(); }
+function startMusic(){ if(music) music.play().catch(e => {}); }
 
 function hideSettings(){
   if(getElement('settings-prompt')) getElement('settings-prompt').classList.add('hide');
@@ -98,10 +107,11 @@ function hideSettings(){
 function executeGreetingPage(){
   if(getElement('background-image')) getElement('background-image').classList.remove("below-screen");
   if(getElement('content-container')) getElement('content-container').classList.add('shown');
-  if(getElement('hello-text')) getElement('hello-text').classList.add('shown');
-  if(getElement('hello-location-text')) getElement('hello-location-text').classList.add('shown');
-  if(getElement('greeting-text')) getElement('greeting-text').classList.add('shown');
-  if(getElement('local-logo-container')) getElement('local-logo-container').classList.add("shown");
+  
+  // These are the "Start" transition elements
+  const ids = ['hello-text', 'hello-location-text', 'greeting-text', 'local-logo-container'];
+  ids.forEach(id => { if(getElement(id)) getElement(id).classList.add('shown'); });
+  
   setTimeout(clearGreetingPage, 6000); 
 }
 
@@ -118,6 +128,7 @@ function clearGreetingPage(){
 
 function schedulePages(){
   var cumlativeTime = 0;
+  if(!pageOrder) return;
   for(var p = 0; p < pageOrder.length; p++){
     for (var s = 0; s < pageOrder[p].subpages.length; s++) {
       var startTime = cumlativeTime;
@@ -160,15 +171,15 @@ function executePage(pageIndex, subPageIndex){
 
   if(currentLogo != (typeof getPageLogoFileName === 'function' ? getPageLogoFileName(currentSubPageName) : '')){
     if(getElement('logo-stack')) getElement('logo-stack').style.left = ((-85*currentLogoIndex)-(20*currentLogoIndex)).toString() + "px";
-    currentLogo = getPageLogoFileName(currentSubPageName);
+    currentLogo = (typeof getPageLogoFileName === 'function' ? getPageLogoFileName(currentSubPageName) : '');
     currentLogoIndex++;
   }
 
   if(currentSubPageName == "current-page"){
     setTimeout(loadCC, 800);
     setTimeout(scrollCC, currentSubPageDuration / 2);
-    if(typeof animateValue === 'function') animateValue('cc-temperature-text', -20, currentTemperature, 2500, 1);
-    if(typeof animateDialFill === 'function') animateDialFill('cc-dial-color', currentTemperature, 2500);
+    if(typeof animateValue === 'function') animateValue('cc-temperature-text', -20, (typeof currentTemperature !== 'undefined' ? currentTemperature : 0), 2500, 1);
+    if(typeof animateDialFill === 'function') animateDialFill('cc-dial-color', (typeof currentTemperature !== 'undefined' ? currentTemperature : 0), 2500);
   } else if(currentSubPageName == 'radar-page'){
     startRadar();
   } else if(currentSubPageName == 'zoomed-radar-page'){
@@ -222,7 +233,7 @@ function scrollCC(){
   animateValue("cc-visibility", 0, (typeof visibility !== 'undefined' ? visibility : 0), 800, 1);
   animateValue("cc-humidity", 0, (typeof humidity !== 'undefined' ? humidity : 0), 1000, 1);
   animateValue("cc-dewpoint", 0, (typeof dewPoint !== 'undefined' ? dewPoint : 0), 1200, 1);
-  if (CONFIG.units === 'e') {
+  if (typeof CONFIG !== 'undefined' && CONFIG.units === 'e') {
     animateValue("cc-pressure1", 0, pressureArray[0], 1400, 1);
     animateValue("cc-pressure2", 0, (pressureArray[1] || "00"), 1400, 2);
   } else {
@@ -231,7 +242,6 @@ function scrollCC(){
 }
 
 function endSequence(){ 
-    // Simplified loop trigger
     if(getElement("content-container")) getElement("content-container").classList.add("expand");
     if(getElement("timeline-container")) getElement("timeline-container").style.visibility = "hidden";
     setTimeout(clearEnd, 2000); 
@@ -245,7 +255,7 @@ function clearEnd(){
 
 function silentRestart(){
   var id = window.setTimeout(function() {}, 0);
-  while (id--) { if (id > 20) window.clearTimeout(id); }
+  while (id--) { window.clearTimeout(id); }
   
   setClockTime();
   currentLogoIndex = 0;
@@ -259,13 +269,16 @@ function silentRestart(){
         el.style.top = '';
         el.style.opacity = '';
         el.style.left = '';
+        el.style.visibility = '';
     }
   });
 
   if(getElement('crawl-text')) getElement('crawl-text').classList.remove('animate');
-  if(getElement('background-image')) getElement('background-image').classList.add("below-screen");
+  if(getElement('background-image')) {
+      getElement('background-image').classList.remove('above-screen');
+      getElement('background-image').classList.add("below-screen");
+  }
   
-  // RE-FETCH WEATHER DATA FOR THE NEXT LOOP
   if (typeof fetchCurrentWeather === 'function') {
     fetchCurrentWeather(); 
   } else {
@@ -288,15 +301,14 @@ function setClockTime(){
 function animateValue(id, start, end, duration, pad) {
   var obj = getElement(id);
   if(!obj) return;
-  if(start == end){ obj.innerHTML = end; return; }
   var range = end - start;
   var current = start;
   var increment = end > start? 1 : -1;
   var stepTime = Math.abs(Math.floor(duration / (range || 1))) || 10;
   var timer = setInterval(function() {
+      if (current == end) { clearInterval(timer); return; }
       current += increment;
       obj.innerHTML = current.pad(pad);
-      if (current == end) clearInterval(timer);
   }, stepTime);
 }
 
@@ -310,9 +322,9 @@ function animateDialFill(id, temperature, duration) {
   var increment = end > start? 1 : -1;
   var stepTime = Math.abs(Math.floor(duration / (range || 1))) || 10;
   var timer = setInterval(function() {
+      if (current == end) { clearInterval(timer); return; }
       current += increment;
       obj.style.fill = getTemperatureColor(current);
-      if (current == end) clearInterval(timer);
   }, stepTime);
 }
 
@@ -363,7 +375,7 @@ function resizeWindow(){
 function getElement(id){ return document.getElementById(id); }
 
 function showCrawl(){
-  if (CONFIG.crawl.length > 0){
+  if (typeof CONFIG !== 'undefined' && CONFIG.crawl.length > 0){
     if(getElement('crawler-container')) getElement('crawler-container').classList.add("shown");
     setTimeout(startCrawl, 400);
   }
