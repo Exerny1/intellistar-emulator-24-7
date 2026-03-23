@@ -28,8 +28,8 @@ window.onload = function () {
   resizeWindow();
   setClockTime();
   if (!CONFIG.loop) {
-    getElement("settings-container").style.display = 'block';
-    guessZipCode();
+    if(getElement("settings-container")) getElement("settings-container").style.display = 'block';
+    if(typeof guessZipCode === 'function') guessZipCode();
   } else {
     if (typeof fetchCurrentWeather === 'function') fetchCurrentWeather();
   }
@@ -49,9 +49,9 @@ function scheduleTimeline(){
 }
 
 function revealTimeline(){
-  getElement('timeline-event-container').classList.add('shown');
-  getElement('progressbar-container').classList.add('shown');
-  getElement('logo-stack').classList.add('shown');
+  if(getElement('timeline-event-container')) getElement('timeline-event-container').classList.add('shown');
+  if(getElement('progressbar-container')) getElement('progressbar-container').classList.add('shown');
+  if(getElement('logo-stack')) getElement('logo-stack').classList.add('shown');
   var timelineElements = document.querySelectorAll(".timeline-item");
   for (var i = 0; i < timelineElements.length; i++) {
     timelineElements[i].style.top = '0px';
@@ -72,7 +72,7 @@ function setInformation(){
 }
 
 function setMainBackground(){
-  getElement('background-image').style.backgroundImage = 'url(https://picsum.photos/1920/1080/?random';
+  if(getElement('background-image')) getElement('background-image').style.backgroundImage = 'url(https://picsum.photos/1920/1080/?random';
 }
 
 function checkStormMusic(){
@@ -91,29 +91,27 @@ function startAnimation(){
 function startMusic(){ if(music) music.play(); }
 
 function hideSettings(){
-  getElement('settings-prompt').classList.add('hide');
-  getElement('settings-container').style.pointerEvents = 'none';
+  if(getElement('settings-prompt')) getElement('settings-prompt').classList.add('hide');
+  if(getElement('settings-container')) getElement('settings-container').style.pointerEvents = 'none';
 }
 
 function executeGreetingPage(){
-  getElement('background-image').classList.remove("below-screen");
-  getElement('content-container').classList.add('shown');
-  getElement('infobar-twc-logo').classList.add('shown');
-  getElement('hello-text').classList.add('shown');
-  getElement('hello-location-text').classList.add('shown');
-  getElement('greeting-text').classList.add('shown');
-  getElement('local-logo-container').classList.add("shown");
+  if(getElement('background-image')) getElement('background-image').classList.remove("below-screen");
+  if(getElement('content-container')) getElement('content-container').classList.add('shown');
+  if(getElement('hello-text')) getElement('hello-text').classList.add('shown');
+  if(getElement('hello-location-text')) getElement('hello-location-text').classList.add('shown');
+  if(getElement('greeting-text')) getElement('greeting-text').classList.add('shown');
+  if(getElement('local-logo-container')) getElement('local-logo-container').classList.add("shown");
   setTimeout(clearGreetingPage, 6000); 
 }
 
 function clearGreetingPage(){
-  getElement('greeting-text').classList.remove('shown');
-  getElement('local-logo-container').classList.remove('shown');
-  getElement('hello-text-container').classList.add('hidden');
-  getElement("hello-location-container").classList.add("hidden");
+  if(getElement('greeting-text')) getElement('greeting-text').classList.remove('shown');
+  if(getElement('local-logo-container')) getElement('local-logo-container').classList.remove('shown');
+  if(getElement('hello-text-container')) getElement('hello-text-container').classList.add('hidden');
+  if(getElement("hello-location-container")) getElement("hello-location-container").classList.add("hidden");
   
   schedulePages();
-  loadInfoBar();
   revealTimeline();
   setTimeout(showCrawl, 3000);
 }
@@ -152,14 +150,16 @@ function executePage(pageIndex, subPageIndex){
   if(subPageIndex === 0){
       let pageTime = 0;
       currentPage.subpages.forEach(sp => pageTime += sp.duration);
-      getElement('progressbar').style.transitionDuration = pageTime + "ms";
-      getElement('progressbar').classList.add('progress');
-      getElement('timeline-event-container').style.left = (-280*pageIndex).toString() + "px";
-      getElement('progress-stack').style.left = (-280*pageIndex).toString() + "px";
+      if(getElement('progressbar')){
+        getElement('progressbar').style.transitionDuration = pageTime + "ms";
+        getElement('progressbar').classList.add('progress');
+      }
+      if(getElement('timeline-event-container')) getElement('timeline-event-container').style.left = (-280*pageIndex).toString() + "px";
+      if(getElement('progress-stack')) getElement('progress-stack').style.left = (-280*pageIndex).toString() + "px";
   }
 
   if(currentLogo != (typeof getPageLogoFileName === 'function' ? getPageLogoFileName(currentSubPageName) : '')){
-    getElement('logo-stack').style.left = ((-85*currentLogoIndex)-(20*currentLogoIndex)).toString() + "px";
+    if(getElement('logo-stack')) getElement('logo-stack').style.left = ((-85*currentLogoIndex)-(20*currentLogoIndex)).toString() + "px";
     currentLogo = getPageLogoFileName(currentSubPageName);
     currentLogoIndex++;
   }
@@ -200,9 +200,11 @@ function clearPage(pageIndex, subPageIndex){
 }
 
 function resetProgressBar(){
-  getElement('progressbar').style.transitionDuration = '0ms';
-  getElement('progressbar').classList.remove('progress');
-  void getElement('progressbar').offsetWidth;
+  if(getElement('progressbar')){
+    getElement('progressbar').style.transitionDuration = '0ms';
+    getElement('progressbar').classList.remove('progress');
+    void getElement('progressbar').offsetWidth;
+  }
 }
 
 function startRadar(){ if(typeof radarImage !== 'undefined') getElement('radar-container').appendChild(radarImage); }
@@ -228,26 +230,16 @@ function scrollCC(){
   }
 }
 
-function endSequence(){ clearInfoBar(); }
-
-function clearInfoBar(){
-  getElement("infobar-twc-logo").classList.add("hidden");
-  getElement("infobar-local-logo").classList.add("hidden");
-  getElement("infobar-location-container").classList.add("hidden");
-  getElement("infobar-time-container").classList.add("hidden");
-  setTimeout(clearElements, 200);
-}
-
-function clearElements(){
-  getElement("outlook-titlebar").classList.add('hidden');
-  getElement("content-container").classList.add("expand");
-  getElement("timeline-container").style.visibility = "hidden";
-  setTimeout(clearEnd, 2000);
+function endSequence(){ 
+    // Simplified loop trigger
+    if(getElement("content-container")) getElement("content-container").classList.add("expand");
+    if(getElement("timeline-container")) getElement("timeline-container").style.visibility = "hidden";
+    setTimeout(clearEnd, 2000); 
 }
 
 function clearEnd(){
-  getElement('background-image').classList.add("above-screen");
-  getElement('content-container').classList.add("above-screen");
+  if(getElement('background-image')) getElement('background-image').classList.add("above-screen");
+  if(getElement('content-container')) getElement('content-container').classList.add("above-screen");
   setTimeout(silentRestart, 1000);
 }
 
@@ -259,7 +251,7 @@ function silentRestart(){
   currentLogoIndex = 0;
   currentLogo = undefined;
   
-  const resetList = ['infobar-twc-logo', 'infobar-local-logo', 'infobar-location-container', 'infobar-time-container', 'outlook-titlebar', 'content-container', 'background-image', 'hello-text', 'hello-location-text', 'greeting-text', 'crawler-container', 'progressbar', 'hello-text-container', 'hello-location-container'];
+  const resetList = ['outlook-titlebar', 'content-container', 'background-image', 'hello-text', 'hello-location-text', 'greeting-text', 'crawler-container', 'progressbar'];
   resetList.forEach(id => {
     let el = getElement(id);
     if(el) {
@@ -267,24 +259,18 @@ function silentRestart(){
         el.style.top = '';
         el.style.opacity = '';
         el.style.left = '';
-        el.style.visibility = '';
     }
   });
 
   if(getElement('crawl-text')) getElement('crawl-text').classList.remove('animate');
   if(getElement('background-image')) getElement('background-image').classList.add("below-screen");
   
+  // RE-FETCH WEATHER DATA FOR THE NEXT LOOP
   if (typeof fetchCurrentWeather === 'function') {
     fetchCurrentWeather(); 
   } else {
     scheduleTimeline();
   }
-}
-
-function loadInfoBar(){
-  getElement("infobar-local-logo").classList.add("shown");
-  getElement("infobar-location-container").classList.add("shown");
-  getElement("infobar-time-container").classList.add("shown");
 }
 
 function setClockTime(){
@@ -294,7 +280,8 @@ function setClockTime(){
   if(h == 0) h = 12;
   else if(h > 12) h = h - 12;
   if(m < 10) m = "0" + m;
-  getElement("infobar-time-text").innerHTML = h + ":" + m;
+  let clockText = getElement("infobar-time-text");
+  if(clockText) clockText.innerHTML = h + ":" + m;
   setTimeout(setClockTime, 5000);
 }
 
@@ -377,16 +364,17 @@ function getElement(id){ return document.getElementById(id); }
 
 function showCrawl(){
   if (CONFIG.crawl.length > 0){
-    getElement('crawler-container').classList.add("shown");
+    if(getElement('crawler-container')) getElement('crawler-container').classList.add("shown");
     setTimeout(startCrawl, 400);
   }
 }
 
-function hideCrawl(){ getElement('crawler-container').classList.add("hidden"); }
-function startCrawl(){ calculateCrawlSpeed(); getElement('crawl-text').classList.add('animate'); }
+function hideCrawl(){ if(getElement('crawler-container')) getElement('crawler-container').classList.add("hidden"); }
+function startCrawl(){ calculateCrawlSpeed(); if(getElement('crawl-text')) getElement('crawl-text').classList.add('animate'); }
 
 function calculateCrawlSpeed() {
   var crawlTextElement = getElement('crawl-text');
+  if(!crawlTextElement) return;
   var elementLength = crawlTextElement.innerHTML.length;
   var timeTaken = (elementLength < (crawlScreenTime*crawlSpeedCasual) - crawlSpace) ? (elementLength + crawlSpace) / crawlSpeedCasual : (elementLength > (crawlScreenTime*crawlSpeedFast) ? elementLength / crawlSpeedFast : crawlScreenTime);
   crawlTextElement.style.animationDuration = timeTaken + "s";
