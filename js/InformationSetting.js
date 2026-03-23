@@ -149,3 +149,37 @@ function setInitialPositionCurrentPage(){
     getElement('current-page').style.top = '0px';
   }
 }
+
+function getPageLogoFileName(subPageName){
+  switch (subPageName) {
+    case "single-alert-page":
+      return "8logo.svg";
+
+    case "multiple-alerts-page":
+      return "8logo.svg";
+
+    case "current-page":
+      return "thermometer.svg";
+
+    case "radar-page":
+      return "radar1.svg";
+
+    case "zoomed-radar-page":
+      return "radar2.svg";
+
+    case "today-page":
+      return "calendar.svg";
+
+    case "tonight-page":
+      return "calendar.svg";
+
+    case "tomorrow-page":
+      return "calendar.svg";
+
+    case "tomorrow-night-page":
+      return "calendar.svg";
+
+    case "7day-page":
+      return "week.svg";
+  }
+}
