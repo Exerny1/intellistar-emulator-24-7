@@ -259,7 +259,13 @@ function silentRestart(){
   currentLogoIndex = 0;
   currentLogo = undefined;
   
-  const resetList = ['infobar-twc-logo', 'infobar-local-logo', 'infobar-location-container', 'infobar-time-container', 'outlook-titlebar', 'content-container', 'background-image', 'hello-text', 'hello-location-text', 'greeting-text', 'crawler-container', 'progressbar'];
+  const resetList = [
+    'infobar-twc-logo', 'infobar-local-logo', 'infobar-location-container', 
+    'infobar-time-container', 'outlook-titlebar', 'content-container', 
+    'background-image', 'hello-text', 'hello-location-text', 'greeting-text', 
+    'crawler-container', 'progressbar', 'hello-text-container', 'hello-location-container'
+  ];
+
   resetList.forEach(id => {
     let el = getElement(id);
     if(el) {
@@ -270,8 +276,8 @@ function silentRestart(){
     }
   });
 
-  getElement('crawl-text').classList.remove('animate');
-  getElement('background-image').classList.add("below-screen");
+  if (getElement('crawl-text')) getElement('crawl-text').classList.remove('animate');
+  if (getElement('background-image')) getElement('background-image').classList.add("below-screen");
   
   if (typeof fetchCurrentWeather === 'function') {
     fetchCurrentWeather(); 
