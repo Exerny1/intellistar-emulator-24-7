@@ -6,7 +6,6 @@ const MULTIPLE = [{name: "Alerts", subpages: [{name: "multiple-alerts-page", dur
 const WEEKDAY = ["SUN",  "MON", "TUES", "WED", "THU", "FRI", "SAT"];
 
 const jingle = new Audio("assets/music/jingle.wav")
-
 const crawlSpeedCasual = 10; 
 const crawlSpeedFast = 20; 
 const crawlScreenTime = 45; 
@@ -19,10 +18,8 @@ var pageOrder;
 var music;
 
 window.onload = function () {
-  
   CONFIG.addLocationOption('airport-code', 'Airport', 'ATL or KATL')
   CONFIG.addLocationOption('zip-code', 'Postal', '00000')
-  
   CONFIG.addOption('crawlText', 'Crawl Text', 'Text that scrolls along the bottom')
   CONFIG.addOption('greetingText', 'Greeting Text', 'Message (or joke) that appears at the start')
   CONFIG.load();
@@ -34,7 +31,7 @@ window.onload = function () {
     getElement("settings-container").style.display = 'block';
     guessZipCode();
   } else {
-    if (typeof weather !== 'undefined') weather.load();
+    if (typeof fetchCurrentWeather === 'function') fetchCurrentWeather();
   }
 }
 
@@ -44,8 +41,8 @@ function preLoadMusic(){
 }
 
 function scheduleTimeline(){
-  if(alerts.length == 1) pageOrder = SINGLE;
-  else if(alerts.length > 1) pageOrder = MULTIPLE;
+  if(typeof alerts !== 'undefined' && alerts.length == 1) pageOrder = SINGLE;
+  else if(typeof alerts !== 'undefined' && alerts.length > 1) pageOrder = MULTIPLE;
   else if(isDay) pageOrder = MORNING;
   else pageOrder = NIGHT;
   setInformation();
@@ -62,14 +59,14 @@ function revealTimeline(){
 }
 
 function setInformation(){
-  setGreetingPage();
+  if (typeof setGreetingPage === 'function') setGreetingPage();
   checkStormMusic();
-  setAlertPage();
-  setForecast();
-  setOutlook();
-  createLogoElements();
-  setCurrentConditions();
-  setTimelineEvents();
+  if (typeof setAlertPage === 'function') setAlertPage();
+  if (typeof setForecast === 'function') setForecast();
+  if (typeof setOutlook === 'function') setOutlook();
+  if (typeof createLogoElements === 'function') createLogoElements();
+  if (typeof setCurrentConditions === 'function') setCurrentConditions();
+  if (typeof setTimelineEvents === 'function') setTimelineEvents();
   hideSettings();
   setTimeout(startAnimation, 1000);
 }
@@ -79,19 +76,19 @@ function setMainBackground(){
 }
 
 function checkStormMusic(){
-  if(currentCondition.toLowerCase().includes("storm")){
+  if(typeof currentCondition !== 'undefined' && currentCondition.toLowerCase().includes("storm")){
     music= new Audio("assets/music/storm.wav");
   }
 }
 
 function startAnimation(){
-  setInitialPositionCurrentPage();
+  if (typeof setInitialPositionCurrentPage === 'function') setInitialPositionCurrentPage();
   jingle.play();
   setTimeout(startMusic, 5000)
   executeGreetingPage();
 }
 
-function startMusic(){ music.play(); }
+function startMusic(){ if(music) music.play(); }
 
 function hideSettings(){
   getElement('settings-prompt').classList.add('hide');
@@ -99,25 +96,13 @@ function hideSettings(){
 }
 
 function executeGreetingPage(){
-  const allSubPages = ['current-page', 'radar-page', 'zoomed-radar-page', 'today-page', 'tonight-page', 'tomorrow-page', 'tomorrow-night-page', '7day-page', 'single-alert-page', 'multiple-alerts-page'];
-  allSubPages.forEach(page => {
-    let el = getElement(page);
-    if (el) {
-        el.style.left = '0px'; 
-        el.style.top = '1080px'; 
-        el.style.opacity = '0';
-        el.style.visibility = 'hidden'; 
-    }
-  });
-
-  getElement('hello-location-text').innerHTML = CONFIG.locationName || "Local Forecast";
+  getElement('background-image').classList.remove("below-screen");
   getElement('content-container').classList.add('shown');
   getElement('infobar-twc-logo').classList.add('shown');
   getElement('hello-text').classList.add('shown');
   getElement('hello-location-text').classList.add('shown');
   getElement('greeting-text').classList.add('shown');
   getElement('local-logo-container').classList.add("shown");
-  
   setTimeout(clearGreetingPage, 6000); 
 }
 
@@ -172,7 +157,7 @@ function executePage(pageIndex, subPageIndex){
       getElement('progress-stack').style.left = (-280*pageIndex).toString() + "px";
   }
 
-  if(currentLogo != getPageLogoFileName(currentSubPageName)){
+  if(currentLogo != (typeof getPageLogoFileName === 'function' ? getPageLogoFileName(currentSubPageName) : '')){
     getElement('logo-stack').style.left = ((-85*currentLogoIndex)-(20*currentLogoIndex)).toString() + "px";
     currentLogo = getPageLogoFileName(currentSubPageName);
     currentLogoIndex++;
@@ -181,8 +166,8 @@ function executePage(pageIndex, subPageIndex){
   if(currentSubPageName == "current-page"){
     setTimeout(loadCC, 800);
     setTimeout(scrollCC, currentSubPageDuration / 2);
-    animateValue('cc-temperature-text', -20, currentTemperature, 2500, 1);
-    animateDialFill('cc-dial-color', currentTemperature, 2500);
+    if(typeof animateValue === 'function') animateValue('cc-temperature-text', -20, currentTemperature, 2500, 1);
+    if(typeof animateDialFill === 'function') animateDialFill('cc-dial-color', currentTemperature, 2500);
   } else if(currentSubPageName == 'radar-page'){
     startRadar();
   } else if(currentSubPageName == 'zoomed-radar-page'){
@@ -219,8 +204,8 @@ function resetProgressBar(){
   void getElement('progressbar').offsetWidth;
 }
 
-function startRadar(){ getElement('radar-container').appendChild(radarImage); }
-function startZoomedRadar(){ getElement('zoomed-radar-container').appendChild(zoomedRadarImage); }
+function startRadar(){ if(typeof radarImage !== 'undefined') getElement('radar-container').appendChild(radarImage); }
+function startZoomedRadar(){ if(typeof zoomedRadarImage !== 'undefined') getElement('zoomed-radar-container').appendChild(zoomedRadarImage); }
 
 function loadCC(){
   var ccElements = document.querySelectorAll(".cc-vertical-group");
@@ -230,10 +215,10 @@ function loadCC(){
 function scrollCC(){
   var ccElements = document.querySelectorAll(".cc-vertical-group");
   for (var i = 0; i < ccElements.length; i++) { ccElements[i].style.top = '-80px'; }
-  var pressureArray = pressure.toString().split('.');
-  animateValue("cc-visibility", 0, visibility, 800, 1);
-  animateValue("cc-humidity", 0, humidity, 1000, 1);
-  animateValue("cc-dewpoint", 0, dewPoint, 1200, 1);
+  var pressureArray = (typeof pressure !== 'undefined' ? pressure.toString().split('.') : ["0","0"]);
+  animateValue("cc-visibility", 0, (typeof visibility !== 'undefined' ? visibility : 0), 800, 1);
+  animateValue("cc-humidity", 0, (typeof humidity !== 'undefined' ? humidity : 0), 1000, 1);
+  animateValue("cc-dewpoint", 0, (typeof dewPoint !== 'undefined' ? dewPoint : 0), 1200, 1);
   if (CONFIG.units === 'e') {
     animateValue("cc-pressure1", 0, pressureArray[0], 1400, 1);
     animateValue("cc-pressure2", 0, (pressureArray[1] || "00"), 1400, 2);
@@ -266,17 +251,141 @@ function clearEnd(){
 }
 
 function silentRestart(){
-  // MODIFIED: We only clear timeouts created AFTER the initial page load
-  // to prevent killing the background weather update interval.
   var id = window.setTimeout(function() {}, 0);
-  while (id--) { 
-      // We assume the weather update interval is one of the first few IDs created
-      // Clearing only the higher IDs (usually animation/UI timers)
-      if (id > 20) window.clearTimeout(id); 
-  }
+  while (id--) { if (id > 20) window.clearTimeout(id); }
   
   setClockTime();
   currentLogoIndex = 0;
   currentLogo = undefined;
   
-  const resetList = ['infobar-twc-logo', 'infobar-local-logo', 'infobar-location-container', 'infobar-time-container', 'outlook-titlebar',
+  const resetList = ['infobar-twc-logo', 'infobar-local-logo', 'infobar-location-container', 'infobar-time-container', 'outlook-titlebar', 'content-container', 'background-image', 'hello-text', 'hello-location-text', 'greeting-text', 'crawler-container', 'progressbar'];
+  resetList.forEach(id => {
+    let el = getElement(id);
+    if(el) {
+        el.classList.remove('shown', 'hidden', 'expand', 'above-screen', 'progress');
+        el.style.top = '';
+        el.style.opacity = '';
+        el.style.left = '';
+    }
+  });
+
+  getElement('crawl-text').classList.remove('animate');
+  getElement('background-image').classList.add("below-screen");
+  
+  if (typeof fetchCurrentWeather === 'function') {
+    fetchCurrentWeather(); 
+  } else {
+    scheduleTimeline();
+  }
+}
+
+function loadInfoBar(){
+  getElement("infobar-local-logo").classList.add("shown");
+  getElement("infobar-location-container").classList.add("shown");
+  getElement("infobar-time-container").classList.add("shown");
+}
+
+function setClockTime(){
+  var currentTime = new Date();
+  var h = currentTime.getHours();
+  var m = currentTime.getMinutes();
+  if(h == 0) h = 12;
+  else if(h > 12) h = h - 12;
+  if(m < 10) m = "0" + m;
+  getElement("infobar-time-text").innerHTML = h + ":" + m;
+  setTimeout(setClockTime, 5000);
+}
+
+function animateValue(id, start, end, duration, pad) {
+  var obj = getElement(id);
+  if(!obj) return;
+  if(start == end){ obj.innerHTML = end; return; }
+  var range = end - start;
+  var current = start;
+  var increment = end > start? 1 : -1;
+  var stepTime = Math.abs(Math.floor(duration / (range || 1))) || 10;
+  var timer = setInterval(function() {
+      current += increment;
+      obj.innerHTML = current.pad(pad);
+      if (current == end) clearInterval(timer);
+  }, stepTime);
+}
+
+function animateDialFill(id, temperature, duration) {
+  var start = -20;
+  var end = temperature;
+  var obj = getElement(id);
+  if(!obj) return;
+  var range = end - start;
+  var current = start;
+  var increment = end > start? 1 : -1;
+  var stepTime = Math.abs(Math.floor(duration / (range || 1))) || 10;
+  var timer = setInterval(function() {
+      current += increment;
+      obj.style.fill = getTemperatureColor(current);
+      if (current == end) clearInterval(timer);
+  }, stepTime);
+}
+
+Number.prototype.pad = function(size) {
+    var s = String(this);
+    while (s.length < (size || 2)) {s = "0" + s;}
+    return s;
+}
+
+function getTemperatureColor(temperature){
+  if(temperature < -20) return 'rgb(0, 0, 255)';
+  if(temperature > 100) return 'rgb(201, 42, 42)';
+  var calculatedColor = [0, 0, 0];
+  if(temperature < 40){
+    var percent = (temperature + 20)/60;
+    calculatedColor = interpolateColor([24, 100, 171], [77, 171, 247], percent);
+  } else if(temperature < 60){
+    var percent = (temperature - 40)/20;
+    calculatedColor = interpolateColor([77, 171, 247], [255, 212, 59], percent);
+  } else if(temperature < 80){
+    var percent = (temperature - 60)/20;
+    calculatedColor = interpolateColor([255, 212, 59], [247, 103, 7], percent);
+  } else {
+    var percent = (temperature - 80)/20;
+    calculatedColor = interpolateColor([247, 103, 7], [201, 42, 42], percent);
+  }
+  return 'rgb(' + calculatedColor[0] + ', ' + calculatedColor[1] + ', ' + calculatedColor[2] + ')';
+}
+
+var interpolateColor = function(color1, color2, factor) {
+  var result = color1.slice();
+  for (var i=0;i<3;i++) {
+    result[i] = Math.round(result[i] + factor*(color2[i]-color1[i]));
+  }
+  return result;
+};
+
+const baseSize = { w: 1920, h: 1080 }
+window.onresize = resizeWindow;
+function resizeWindow(){
+  var ww = window.innerWidth;
+  var wh = window.innerHeight;
+  var newScale = (ww/wh < baseSize.w/baseSize.h) ? ww / baseSize.w : wh / baseSize.h;
+  var frame = getElement('render-frame');
+  if(frame) frame.style.transform = 'scale(' + newScale + ',' +  newScale + ')';
+}
+
+function getElement(id){ return document.getElementById(id); }
+
+function showCrawl(){
+  if (CONFIG.crawl.length > 0){
+    getElement('crawler-container').classList.add("shown");
+    setTimeout(startCrawl, 400);
+  }
+}
+
+function hideCrawl(){ getElement('crawler-container').classList.add("hidden"); }
+function startCrawl(){ calculateCrawlSpeed(); getElement('crawl-text').classList.add('animate'); }
+
+function calculateCrawlSpeed() {
+  var crawlTextElement = getElement('crawl-text');
+  var elementLength = crawlTextElement.innerHTML.length;
+  var timeTaken = (elementLength < (crawlScreenTime*crawlSpeedCasual) - crawlSpace) ? (elementLength + crawlSpace) / crawlSpeedCasual : (elementLength > (crawlScreenTime*crawlSpeedFast) ? elementLength / crawlSpeedFast : crawlScreenTime);
+  crawlTextElement.style.animationDuration = timeTaken + "s";
+}
