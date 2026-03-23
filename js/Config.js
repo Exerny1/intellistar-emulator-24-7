@@ -1,6 +1,6 @@
 window.CONFIG = {
   crawl: `.`,
-  greeting: 'Your watching WeatherNOW MANASSAS',
+  greeting: 'Your watching WeatherNOW',
   language: 'en-US', // Supported in TWC API
   countryCode: 'US', // Supported in TWC API (for postal key)
   units: 'e', // Supported in TWC API (e = English (imperial), m = Metric, h = Hybrid (UK)),
