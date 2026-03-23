@@ -29,7 +29,7 @@ window.onload = function () {
   setClockTime();
   if (!CONFIG.loop) {
     getElement("settings-container").style.display = 'block';
-    guessZipCode(); // RESTORED
+    guessZipCode();
   } else {
     if (typeof weather !== 'undefined') weather.load();
   }
@@ -262,8 +262,13 @@ function clearEnd(){
   setTimeout(silentRestart, 1000);
 }
 
-// SAFE RESTART: Removed the "id--" loop that killed the Start button logic.
 function silentRestart(){
+  var id = window.setTimeout(function() {}, 0);
+  while (id--) { window.clearTimeout(id); }
+  
+  // RESTORE THE CLOCK HEARTBEAT
+  setClockTime();
+  
   currentLogoIndex = 0;
   currentLogo = undefined;
   
@@ -279,8 +284,6 @@ function silentRestart(){
 
   getElement('crawl-text').classList.remove('animate');
   getElement('background-image').classList.add("below-screen");
-  
-  setClockTime();
   
   if (typeof weather !== 'undefined') weather.load(); 
   else scheduleTimeline();
