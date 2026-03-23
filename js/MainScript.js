@@ -6,6 +6,7 @@ const MULTIPLE = [{name: "Alerts", subpages: [{name: "multiple-alerts-page", dur
 const WEEKDAY = ["SUN",  "MON", "TUES", "WED", "THU", "FRI", "SAT"];
 
 const jingle = new Audio("assets/music/jingle.wav")
+
 const crawlSpeedCasual = 10; 
 const crawlSpeedFast = 20; 
 const crawlScreenTime = 45; 
