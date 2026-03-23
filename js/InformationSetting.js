@@ -29,7 +29,7 @@ window.onload = function () {
   setClockTime();
   if (!CONFIG.loop) {
     getElement("settings-container").style.display = 'block';
-    guessZipCode();
+    guessZipCode(); // RESTORED
   } else {
     if (typeof weather !== 'undefined') weather.load();
   }
@@ -262,7 +262,7 @@ function clearEnd(){
   setTimeout(silentRestart, 1000);
 }
 
-// THIS IS THE ONLY PART CHANGED:
+// SAFE RESTART: Removed the "id--" loop that killed the Start button logic.
 function silentRestart(){
   currentLogoIndex = 0;
   currentLogo = undefined;
