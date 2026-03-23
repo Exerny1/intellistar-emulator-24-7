@@ -149,12 +149,6 @@ function setInitialPositionCurrentPage(){
     getElement('current-page').style.top = '0px';
   }
 }
-
-function getPageLogoFileName(subPageName){
-  switch (subPageName) {
-    case "single-alert-page":
-      return "
-      
 function getPageLogoFileName(subPageName){
   switch (subPageName) {
     case "single-alert-page":
