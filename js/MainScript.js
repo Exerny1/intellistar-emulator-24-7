@@ -141,6 +141,7 @@ function executePage(pageIndex, subPageIndex){
 
   currentSubPageElement.style.visibility = 'visible';
   currentSubPageElement.style.transition = 'none';
+  currentSubPageElement.style.left = '0px'; 
   currentSubPageElement.style.top = '1080px'; 
   currentSubPageElement.style.opacity = '1';
   void currentSubPageElement.offsetWidth; 
