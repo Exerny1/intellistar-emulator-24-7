@@ -1,8 +1,3 @@
-// --- GLOBAL VARIABLES (Ensures the timer can see them) ---
-var zipCode, airportCode, latitude, longitude, cityName;
-var alerts = [];
-var alertsActive = false;
-
 window.CONFIG = {
   crawl: `The Weather Channel is Amercas #1 weather network. Trusted. Reliable. Accurate.         For more information on your weather switch to normal programming.`,
   greeting: 'Your watching WeatherNOW Manassas',
