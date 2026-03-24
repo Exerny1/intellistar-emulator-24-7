@@ -115,7 +115,8 @@ function clearGreetingPage(){
   schedulePages();
   loadInfoBar();
   revealTimeline();
-  setTimeout(showCrawl, 3000);
+  // Call removed to avoid 3s wait for a hidden element
+  showCrawl(); 
 }
 
 function schedulePages(){
