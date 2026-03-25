@@ -41,6 +41,9 @@ function preLoadMusic(){
 }
 
 function scheduleTimeline(){
+  var hour = new Date().getHours();
+  isDay = (hour >= 6 && hour < 18);
+
   if(typeof alerts !== 'undefined' && alerts.length == 1) pageOrder = SINGLE;
   else if(typeof alerts !== 'undefined' && alerts.length > 1) pageOrder = MULTIPLE;
   else if(isDay) pageOrder = MORNING;
@@ -293,11 +296,14 @@ function silentRestart(){
     getElement('background-image').classList.add("below-screen");
   }
   
-  if (typeof fetchCurrentWeather === 'function') {
-    fetchCurrentWeather(); 
-  } else {
-    scheduleTimeline();
-  }
+  // Wait 2 minutes before the next loop to respect API limits
+  setTimeout(() => {
+    if (typeof fetchCurrentWeather === 'function') {
+      fetchCurrentWeather(); 
+    } else {
+      scheduleTimeline();
+    }
+  }, 120000);
 }
 
 function loadInfoBar(){
