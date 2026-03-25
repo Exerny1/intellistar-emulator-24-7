@@ -115,8 +115,7 @@ function clearGreetingPage(){
   schedulePages();
   loadInfoBar();
   revealTimeline();
-  // Call removed to avoid 3s wait for a hidden element
-  showCrawl(); 
+  setTimeout(showCrawl, 3000);
 }
 
 function schedulePages(){
@@ -395,8 +394,32 @@ function resizeWindow(){
 
 function getElement(id){ return document.getElementById(id); }
 
-// THE CRAWL FUNCTIONS (EMPTIED TO PREVENT CRAWL STARTING)
-function showCrawl(){ /* No action to prevent crawl showing */ }
-function hideCrawl(){ /* No action needed */ }
-function startCrawl(){ /* No action to prevent animation */ }
-function calculateCrawlSpeed() { /* No action needed */ }
+// THE CRAWL FUNCTIONS (MODIFIED TO BE INVISIBLE)
+function showCrawl(){ 
+  let crawlContainer = getElement('crawler-container');
+  if (crawlContainer) {
+    crawlContainer.style.visibility = 'hidden'; // Keep it hidden
+    crawlContainer.style.height = '0px';       // Shrink it to 0
+    crawlContainer.classList.add("shown");     // Tell the script it "showed"
+  }
+  setTimeout(startCrawl, 400);
+}
+
+function hideCrawl(){ 
+  let crawlContainer = getElement('crawler-container');
+  if (crawlContainer) crawlContainer.classList.add("hidden"); 
+}
+
+function startCrawl(){ 
+  calculateCrawlSpeed(); 
+  let crawlText = getElement('crawl-text');
+  if (crawlText) crawlText.classList.add('animate'); 
+}
+
+function calculateCrawlSpeed() {
+  var crawlTextElement = getElement('crawl-text');
+  if (!crawlTextElement) return;
+  var elementLength = crawlTextElement.innerHTML.length;
+  var timeTaken = (elementLength < (crawlScreenTime*crawlSpeedCasual) - crawlSpace) ? (elementLength + crawlSpace) / crawlSpeedCasual : (elementLength > (crawlScreenTime*crawlSpeedFast) ? elementLength / crawlSpeedFast : crawlScreenTime);
+  crawlTextElement.style.animationDuration = timeTaken + "s";
+}
