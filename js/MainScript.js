@@ -394,31 +394,22 @@ function resizeWindow(){
 
 function getElement(id){ return document.getElementById(id); }
 
-// THE CRAWL FUNCTIONS (MODIFIED TO BE INVISIBLE)
-function showCrawl(){ 
+function showCrawl(){
+  // The crawl still "runs" so the loop stays active, but we've hidden the UI.
   let crawlContainer = getElement('crawler-container');
   if (crawlContainer) {
-    crawlContainer.style.visibility = 'hidden'; // Keep it hidden
-    crawlContainer.style.height = '0px';       // Shrink it to 0
-    crawlContainer.classList.add("shown");     // Tell the script it "showed"
+    crawlContainer.style.opacity = '0';
+    crawlContainer.style.height = '0px';
+    crawlContainer.classList.add("shown");
   }
   setTimeout(startCrawl, 400);
 }
 
-function hideCrawl(){ 
-  let crawlContainer = getElement('crawler-container');
-  if (crawlContainer) crawlContainer.classList.add("hidden"); 
-}
-
-function startCrawl(){ 
-  calculateCrawlSpeed(); 
-  let crawlText = getElement('crawl-text');
-  if (crawlText) crawlText.classList.add('animate'); 
-}
+function hideCrawl(){ getElement('crawler-container').classList.add("hidden"); }
+function startCrawl(){ calculateCrawlSpeed(); getElement('crawl-text').classList.add('animate'); }
 
 function calculateCrawlSpeed() {
   var crawlTextElement = getElement('crawl-text');
-  if (!crawlTextElement) return;
   var elementLength = crawlTextElement.innerHTML.length;
   var timeTaken = (elementLength < (crawlScreenTime*crawlSpeedCasual) - crawlSpace) ? (elementLength + crawlSpace) / crawlSpeedCasual : (elementLength > (crawlScreenTime*crawlSpeedFast) ? elementLength / crawlSpeedFast : crawlScreenTime);
   crawlTextElement.style.animationDuration = timeTaken + "s";
