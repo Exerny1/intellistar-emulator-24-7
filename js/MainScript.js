@@ -163,15 +163,15 @@ function executePage(pageIndex, subPageIndex){
 
   if(currentLogo != (typeof getPageLogoFileName === 'function' ? getPageLogoFileName(currentSubPageName) : '')){
     getElement('logo-stack').style.left = ((-85*currentLogoIndex)-(20*currentLogoIndex)).toString() + "px";
-    currentLogo = getPageLogoFileName(currentSubPageName);
+    currentLogo = (typeof getPageLogoFileName === 'function' ? getPageLogoFileName(currentSubPageName) : '');
     currentLogoIndex++;
   }
 
   if(currentSubPageName == "current-page"){
     setTimeout(loadCC, 800);
     setTimeout(scrollCC, currentSubPageDuration / 2);
-    if(typeof animateValue === 'function') animateValue('cc-temperature-text', -20, currentTemperature, 2500, 1);
-    if(typeof animateDialFill === 'function') animateDialFill('cc-dial-color', currentTemperature, 2500);
+    if(typeof animateValue === 'function') animateValue('cc-temperature-text', -20, (typeof currentTemperature !== 'undefined' ? currentTemperature : 0), 2500, 1);
+    if(typeof animateDialFill === 'function') animateDialFill('cc-dial-color', (typeof currentTemperature !== 'undefined' ? currentTemperature : 0), 2500);
   } else if(currentSubPageName == 'radar-page'){
     startRadar();
   } else if(currentSubPageName == 'zoomed-radar-page'){
@@ -265,8 +265,8 @@ function silentRestart(){
   const subPageElements = document.querySelectorAll('.subpage');
   subPageElements.forEach(el => {
     el.style.visibility = 'hidden';
-    el.style.top = '';
-    el.style.opacity = '';
+    el.style.top = '1080px'; 
+    el.style.opacity = '1';
     el.classList.remove('shown', 'hidden');
   });
 
@@ -274,7 +274,7 @@ function silentRestart(){
     'infobar-twc-logo', 'infobar-local-logo', 'infobar-location-container', 
     'infobar-time-container', 'outlook-titlebar', 'content-container', 
     'background-image', 'hello-text', 'hello-location-text', 'greeting-text', 
-    'crawler-container', 'progressbar', 'hello-text-container', 'hello-location-container'
+    'crawler-container', 'progressbar', 'hello-text-container', 'hello-location-container', 'local-logo-container'
   ];
 
   resetList.forEach(id => {
@@ -296,14 +296,13 @@ function silentRestart(){
     getElement('background-image').classList.add("below-screen");
   }
   
-  // Wait 2 minutes before the next loop to respect API limits
   setTimeout(() => {
     if (typeof fetchCurrentWeather === 'function') {
       fetchCurrentWeather(); 
     } else {
       scheduleTimeline();
     }
-  }, 120000);
+  }, 1000); // 1-second pause to ensure clean reset
 }
 
 function loadInfoBar(){
@@ -319,7 +318,7 @@ function setClockTime(){
   if(h == 0) h = 12;
   else if(h > 12) h = h - 12;
   if(m < 10) m = "0" + m;
-  getElement("infobar-time-text").innerHTML = h + ":" + m;
+  if(getElement("infobar-time-text")) getElement("infobar-time-text").innerHTML = h + ":" + m;
   setTimeout(setClockTime, 5000);
 }
 
@@ -401,7 +400,7 @@ function resizeWindow(){
 function getElement(id){ return document.getElementById(id); }
 
 function showCrawl(){
-  if (CONFIG.crawl.length > 0){
+  if (CONFIG.crawl && CONFIG.crawl.length > 0){
     getElement('crawler-container').classList.add("shown");
     setTimeout(startCrawl, 400);
   }
@@ -412,6 +411,7 @@ function startCrawl(){ calculateCrawlSpeed(); getElement('crawl-text').classList
 
 function calculateCrawlSpeed() {
   var crawlTextElement = getElement('crawl-text');
+  if(!crawlTextElement) return;
   var elementLength = crawlTextElement.innerHTML.length;
   var timeTaken = (elementLength < (crawlScreenTime*crawlSpeedCasual) - crawlSpace) ? (elementLength + crawlSpace) / crawlSpeedCasual : (elementLength > (crawlScreenTime*crawlSpeedFast) ? elementLength / crawlSpeedFast : crawlScreenTime);
   crawlTextElement.style.animationDuration = timeTaken + "s";
