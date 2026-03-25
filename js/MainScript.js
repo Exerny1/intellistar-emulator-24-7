@@ -1,3 +1,5 @@
+This was the last script that looped: 
+
 // Timings: Weather 17s, Greeting 6s
 const MORNING = [{name: "Now", subpages: [{name: "current-page", duration: 17000}, {name: "radar-page", duration: 17000}]},{name: "Today", subpages: [{name: "today-page", duration: 17000}]},{name: "Tonight", subpages: [{name: "tonight-page", duration: 17000}]},{name: "Beyond", subpages: [{name: "tomorrow-page", duration: 17000}, {name: "7day-page", duration: 17000}]},]
 const NIGHT = [{name: "Now", subpages: [{name: "current-page", duration: 17000}, {name: "radar-page", duration: 17000}]},{name: "Tonight", subpages: [{name: "tonight-page", duration: 17000}]},{name: "Beyond", subpages: [{name: "tomorrow-page", duration: 17000}, {name: "tomorrow-night-page", duration: 17000}, {name: "7day-page", duration: 17000}]},]
@@ -395,14 +397,10 @@ function resizeWindow(){
 function getElement(id){ return document.getElementById(id); }
 
 function showCrawl(){
-  // The crawl still "runs" so the loop stays active, but we've hidden the UI.
-  let crawlContainer = getElement('crawler-container');
-  if (crawlContainer) {
-    crawlContainer.style.opacity = '0';
-    crawlContainer.style.height = '0px';
-    crawlContainer.classList.add("shown");
+  if (CONFIG.crawl.length > 0){
+    getElement('crawler-container').classList.add("shown");
+    setTimeout(startCrawl, 400);
   }
-  setTimeout(startCrawl, 400);
 }
 
 function hideCrawl(){ getElement('crawler-container').classList.add("hidden"); }
