@@ -41,6 +41,7 @@ function preLoadMusic(){
 }
 
 function scheduleTimeline(){
+  // Auto-check Day/Night status
   var hour = new Date().getHours();
   isDay = (hour >= 6 && hour < 18);
 
@@ -265,7 +266,7 @@ function silentRestart(){
   const subPageElements = document.querySelectorAll('.subpage');
   subPageElements.forEach(el => {
     el.style.visibility = 'hidden';
-    el.style.top = '1080px'; 
+    el.style.top = '1080px'; // FIXED: Force reset to bottom so it can slide up again
     el.style.opacity = '1';
     el.classList.remove('shown', 'hidden');
   });
@@ -274,7 +275,7 @@ function silentRestart(){
     'infobar-twc-logo', 'infobar-local-logo', 'infobar-location-container', 
     'infobar-time-container', 'outlook-titlebar', 'content-container', 
     'background-image', 'hello-text', 'hello-location-text', 'greeting-text', 
-    'crawler-container', 'progressbar', 'hello-text-container', 'hello-location-container', 'local-logo-container'
+    'crawler-container', 'progressbar', 'hello-text-container', 'hello-location-container'
   ];
 
   resetList.forEach(id => {
@@ -296,13 +297,14 @@ function silentRestart(){
     getElement('background-image').classList.add("below-screen");
   }
   
+  // Trigger immediate fresh data fetch
   setTimeout(() => {
     if (typeof fetchCurrentWeather === 'function') {
       fetchCurrentWeather(); 
     } else {
       scheduleTimeline();
     }
-  }, 1000); // 1-second pause to ensure clean reset
+  }, 500);
 }
 
 function loadInfoBar(){
