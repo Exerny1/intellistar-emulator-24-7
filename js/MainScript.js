@@ -255,10 +255,8 @@ function clearEnd(){
   setTimeout(silentRestart, 1000);
 }
 
+// ✅ Fixed silentRestart
 function silentRestart(){
-  var id = window.setTimeout(function() {}, 0);
-  while (id--) { if (id > 20) window.clearTimeout(id); }
-  
   setClockTime();
   currentLogoIndex = 0;
   currentLogo = undefined;
@@ -266,7 +264,7 @@ function silentRestart(){
   const subPageElements = document.querySelectorAll('.subpage');
   subPageElements.forEach(el => {
     el.style.visibility = 'hidden';
-    el.style.top = '1080px'; // FIXED: Force reset to bottom so it can slide up again
+    el.style.top = '1080px'; // Force reset to bottom
     el.style.opacity = '1';
     el.classList.remove('shown', 'hidden');
   });
@@ -297,7 +295,6 @@ function silentRestart(){
     getElement('background-image').classList.add("below-screen");
   }
   
-  // Trigger immediate fresh data fetch
   setTimeout(() => {
     if (typeof fetchCurrentWeather === 'function') {
       fetchCurrentWeather(); 
@@ -373,48 +370,4 @@ function getTemperatureColor(temperature){
     calculatedColor = interpolateColor([77, 171, 247], [255, 212, 59], percent);
   } else if(temperature < 80){
     var percent = (temperature - 60)/20;
-    calculatedColor = interpolateColor([255, 212, 59], [247, 103, 7], percent);
-  } else {
-    var percent = (temperature - 80)/20;
-    calculatedColor = interpolateColor([247, 103, 7], [201, 42, 42], percent);
-  }
-  return 'rgb(' + calculatedColor[0] + ', ' + calculatedColor[1] + ', ' + calculatedColor[2] + ')';
-}
-
-var interpolateColor = function(color1, color2, factor) {
-  var result = color1.slice();
-  for (var i=0;i<3;i++) {
-    result[i] = Math.round(result[i] + factor*(color2[i]-color1[i]));
-  }
-  return result;
-};
-
-const baseSize = { w: 1920, h: 1080 }
-window.onresize = resizeWindow;
-function resizeWindow(){
-  var ww = window.innerWidth;
-  var wh = window.innerHeight;
-  var newScale = (ww/wh < baseSize.w/baseSize.h) ? ww / baseSize.w : wh / baseSize.h;
-  var frame = getElement('render-frame');
-  if(frame) frame.style.transform = 'scale(' + newScale + ',' +  newScale + ')';
-}
-
-function getElement(id){ return document.getElementById(id); }
-
-function showCrawl(){
-  if (CONFIG.crawl && CONFIG.crawl.length > 0){
-    getElement('crawler-container').classList.add("shown");
-    setTimeout(startCrawl, 400);
-  }
-}
-
-function hideCrawl(){ getElement('crawler-container').classList.add("hidden"); }
-function startCrawl(){ calculateCrawlSpeed(); getElement('crawl-text').classList.add('animate'); }
-
-function calculateCrawlSpeed() {
-  var crawlTextElement = getElement('crawl-text');
-  if(!crawlTextElement) return;
-  var elementLength = crawlTextElement.innerHTML.length;
-  var timeTaken = (elementLength < (crawlScreenTime*crawlSpeedCasual) - crawlSpace) ? (elementLength + crawlSpace) / crawlSpeedCasual : (elementLength > (crawlScreenTime*crawlSpeedFast) ? elementLength / crawlSpeedFast : crawlScreenTime);
-  crawlTextElement.style.animationDuration = timeTaken + "s";
-}
+    calculatedColor = interpolateColor([255, 212, 59
