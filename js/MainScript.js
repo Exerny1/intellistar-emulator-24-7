@@ -255,54 +255,65 @@ function clearEnd(){
   setTimeout(silentRestart, 1000);
 }
 
-// ✅ Fixed silentRestart
-function silentRestart(){
-  setClockTime();
-  currentLogoIndex = 0;
-  currentLogo = undefined;
-  
-  const subPageElements = document.querySelectorAll('.subpage');
-  subPageElements.forEach(el => {
-    el.style.visibility = 'hidden';
-    el.style.top = '1080px'; // Force reset to bottom
-    el.style.opacity = '1';
-    el.classList.remove('shown', 'hidden');
-  });
-
-  const resetList = [
-    'infobar-twc-logo', 'infobar-local-logo', 'infobar-location-container', 
-    'infobar-time-container', 'outlook-titlebar', 'content-container', 
-    'background-image', 'hello-text', 'hello-location-text', 'greeting-text', 
-    'crawler-container', 'progressbar', 'hello-text-container', 'hello-location-container'
-  ];
-
-  resetList.forEach(id => {
-    let el = getElement(id);
-    if(el) {
-        el.classList.remove('shown', 'hidden', 'expand', 'above-screen', 'progress');
-        el.style.top = '';
-        el.style.opacity = '';
-        el.style.left = '';
+// ----------- FIXED LOOP FUNCTION ----------------
+function silentRestart() {
+    // 1. Clear all running timeouts
+    let highestTimeoutId = window.setTimeout(() => {}, 0);
+    for (let i = 0; i <= highestTimeoutId; i++) {
+        window.clearTimeout(i);
     }
-  });
 
-  if (getElement('crawl-text')) {
-    getElement('crawl-text').classList.remove('animate');
-    void getElement('crawl-text').offsetWidth;
-  }
-  
-  if (getElement('background-image')) {
-    getElement('background-image').classList.add("below-screen");
-  }
-  
-  setTimeout(() => {
-    if (typeof fetchCurrentWeather === 'function') {
-      fetchCurrentWeather(); 
-    } else {
-      scheduleTimeline();
+    // 2. Reset clock and logos
+    setClockTime();
+    currentLogoIndex = 0;
+    currentLogo = undefined;
+
+    // 3. Reset subpages
+    const subPages = document.querySelectorAll('.subpage');
+    subPages.forEach(el => {
+        el.style.visibility = 'hidden';
+        el.style.top = '1080px';
+        el.style.opacity = '1';
+        el.classList.remove('shown', 'hidden');
+    });
+
+    // 4. Reset info bar, content, progress, crawl
+    const resetIds = [
+        'infobar-twc-logo', 'infobar-local-logo', 'infobar-location-container', 
+        'infobar-time-container', 'outlook-titlebar', 'content-container', 
+        'background-image', 'hello-text', 'hello-location-text', 'greeting-text', 
+        'crawler-container', 'progressbar', 'hello-text-container', 'hello-location-container'
+    ];
+    resetIds.forEach(id => {
+        let el = getElement(id);
+        if(el) {
+            el.classList.remove('shown', 'hidden', 'expand', 'above-screen', 'progress');
+            el.style.top = '';
+            el.style.left = '';
+            el.style.opacity = '';
+        }
+    });
+
+    // 5. Reset crawl animation
+    const crawl = getElement('crawl-text');
+    if(crawl) {
+        crawl.classList.remove('animate');
+        void crawl.offsetWidth;
     }
-  }, 500);
+
+    // 6. Background below screen
+    const bg = getElement('background-image');
+    if(bg) bg.classList.add('below-screen');
+
+    // 7. Trigger fresh weather fetch & restart timeline
+    setTimeout(() => {
+        if (typeof fetchCurrentWeather === 'function') {
+            fetchCurrentWeather();
+        }
+        scheduleTimeline();
+    }, 500);
 }
+// ---------------------------------------------------
 
 function loadInfoBar(){
   getElement("infobar-local-logo").classList.add("shown");
@@ -363,11 +374,4 @@ function getTemperatureColor(temperature){
   if(temperature > 100) return 'rgb(201, 42, 42)';
   var calculatedColor = [0, 0, 0];
   if(temperature < 40){
-    var percent = (temperature + 20)/60;
-    calculatedColor = interpolateColor([24, 100, 171], [77, 171, 247], percent);
-  } else if(temperature < 60){
-    var percent = (temperature - 40)/20;
-    calculatedColor = interpolateColor([77, 171, 247], [255, 212, 59], percent);
-  } else if(temperature < 80){
-    var percent = (temperature - 60)/20;
-    calculatedColor = interpolateColor([255, 212, 59
+    var percent = (temperature + 20)/60
