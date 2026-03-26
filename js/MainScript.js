@@ -184,7 +184,7 @@ function clearPage(pageIndex, subPageIndex){
   var currentPage = pageOrder[pageIndex];
   var currentSubPageName = currentPage.subpages[subPageIndex].name;
   var currentSubPageElement = getElement(currentSubPageName);
-  var isLastPage = (pageIndex >= pageOrder.length - 1) && (subPageIndex >= pageOrder[pageIndex].subpages.length - 1);
+  var isLastPage = (pageIndex >= pageOrder.length - 1) && (subPageIndex >= currentPage.subpages.length - 1);
 
   if(!currentSubPageElement) return;
 
@@ -255,63 +255,41 @@ function clearEnd(){
   setTimeout(silentRestart, 1000);
 }
 
-// ----------- FIXED LOOP FUNCTION ----------------
+// ------------------ FIXED LOOP ------------------
 function silentRestart() {
-    // 1. Clear all running timeouts
-    let highestTimeoutId = window.setTimeout(() => {}, 0);
-    for (let i = 0; i <= highestTimeoutId; i++) {
-        window.clearTimeout(i);
-    }
-
-    // 2. Reset clock and logos
-    setClockTime();
+    // Reset main timeline variables
     currentLogoIndex = 0;
     currentLogo = undefined;
 
-    // 3. Reset subpages
+    // Hide all subpages and reset positions
     const subPages = document.querySelectorAll('.subpage');
     subPages.forEach(el => {
         el.style.visibility = 'hidden';
-        el.style.top = '1080px';
+        el.style.top = '1080px';  // start below screen
         el.style.opacity = '1';
         el.classList.remove('shown', 'hidden');
     });
 
-    // 4. Reset info bar, content, progress, crawl
-    const resetIds = [
-        'infobar-twc-logo', 'infobar-local-logo', 'infobar-location-container', 
-        'infobar-time-container', 'outlook-titlebar', 'content-container', 
-        'background-image', 'hello-text', 'hello-location-text', 'greeting-text', 
-        'crawler-container', 'progressbar', 'hello-text-container', 'hello-location-container'
-    ];
-    resetIds.forEach(id => {
-        let el = getElement(id);
-        if(el) {
-            el.classList.remove('shown', 'hidden', 'expand', 'above-screen', 'progress');
-            el.style.top = '';
-            el.style.left = '';
-            el.style.opacity = '';
-        }
-    });
-
-    // 5. Reset crawl animation
-    const crawl = getElement('crawl-text');
-    if(crawl) {
-        crawl.classList.remove('animate');
-        void crawl.offsetWidth;
+    // Reset progress bar
+    const progress = getElement('progressbar');
+    if (progress) {
+        progress.classList.remove('progress');
+        progress.style.transitionDuration = '0ms';
+        void progress.offsetWidth; // force reflow
     }
 
-    // 6. Background below screen
-    const bg = getElement('background-image');
-    if(bg) bg.classList.add('below-screen');
+    // Reset crawl text
+    const crawl = getElement('crawl-text');
+    if (crawl) {
+        crawl.classList.remove('animate');
+        void crawl.offsetWidth; // force reflow
+    }
 
-    // 7. Trigger fresh weather fetch & restart timeline
-    setTimeout(() => {
-        if (typeof fetchCurrentWeather === 'function') {
-            fetchCurrentWeather();
-        }
-        scheduleTimeline();
-    }, 500);
+    // Optional: refresh weather data before looping
+    if (typeof fetchCurrentWeather === 'function') fetchCurrentWeather();
+
+    // Restart the timeline
+    scheduleTimeline();
 }
 // ---------------------------------------------------
 
@@ -374,4 +352,16 @@ function getTemperatureColor(temperature){
   if(temperature > 100) return 'rgb(201, 42, 42)';
   var calculatedColor = [0, 0, 0];
   if(temperature < 40){
-    var percent = (temperature + 20)/60
+    var percent = (temperature + 20)/60;
+    calculatedColor = interpolateColor([24, 100, 171], [77, 171, 247], percent);
+  } else if(temperature < 60){
+    var percent = (temperature - 40)/20;
+    calculatedColor = interpolateColor([77, 171, 247], [255, 212, 59], percent);
+  } else if(temperature < 80){
+    var percent = (temperature - 60)/20;
+    calculatedColor = interpolateColor([255, 212, 59], [247, 103, 7], percent);
+  } else {
+    var percent = (temperature - 80)/20;
+    calculatedColor = interpolateColor([247, 103, 7], [201, 42, 42], percent);
+  }
+  return 'rgb(' + calculatedColor[0] + ', ' + calculatedColor[1] + ', ' + calculatedColor
