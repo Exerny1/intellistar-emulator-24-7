@@ -255,43 +255,58 @@ function clearEnd(){
   setTimeout(silentRestart, 1000);
 }
 
-// ------------------ FIXED LOOP ------------------
-function silentRestart() {
-    // Reset main timeline variables
-    currentLogoIndex = 0;
-    currentLogo = undefined;
+// ✅ LOOP FIXED: Reset all slides so they can show again
+function silentRestart(){
+  // Clear all timeouts to avoid duplicates
+  var id = window.setTimeout(function() {}, 0);
+  while (id--) { if (id > 20) window.clearTimeout(id); }
 
-    // Hide all subpages and reset positions
-    const subPages = document.querySelectorAll('.subpage');
-    subPages.forEach(el => {
-        el.style.visibility = 'hidden';
-        el.style.top = '1080px';  // start below screen
-        el.style.opacity = '1';
-        el.classList.remove('shown', 'hidden');
-    });
+  // Reset logos
+  currentLogoIndex = 0;
+  currentLogo = undefined;
 
-    // Reset progress bar
-    const progress = getElement('progressbar');
-    if (progress) {
-        progress.classList.remove('progress');
-        progress.style.transitionDuration = '0ms';
-        void progress.offsetWidth; // force reflow
+  // Reset all subpages
+  const subPageElements = document.querySelectorAll('.subpage');
+  subPageElements.forEach(el => {
+    el.style.visibility = 'hidden';
+    el.style.top = '1080px'; // back to starting position
+    el.style.left = '0px';
+    el.style.opacity = '1';
+    el.classList.remove('shown', 'hidden');
+  });
+
+  // Reset main elements
+  const resetList = [
+    'infobar-twc-logo', 'infobar-local-logo', 'infobar-location-container',
+    'infobar-time-container', 'outlook-titlebar', 'content-container',
+    'background-image', 'hello-text', 'hello-location-text', 'greeting-text',
+    'crawler-container', 'progressbar', 'hello-text-container', 'hello-location-container'
+  ];
+  resetList.forEach(id => {
+    let el = getElement(id);
+    if(el){
+      el.classList.remove('shown', 'hidden', 'expand', 'above-screen', 'progress');
+      el.style.top = '';
+      el.style.opacity = '';
+      el.style.left = '';
     }
+  });
 
-    // Reset crawl text
-    const crawl = getElement('crawl-text');
-    if (crawl) {
-        crawl.classList.remove('animate');
-        void crawl.offsetWidth; // force reflow
-    }
+  // Reset crawl animation
+  if(getElement('crawl-text')){
+    getElement('crawl-text').classList.remove('animate');
+    void getElement('crawl-text').offsetWidth;
+  }
 
-    // Optional: refresh weather data before looping
-    if (typeof fetchCurrentWeather === 'function') fetchCurrentWeather();
+  if(getElement('background-image')){
+    getElement('background-image').classList.add("below-screen");
+  }
 
-    // Restart the timeline
-    scheduleTimeline();
+  // Wait a moment, then restart the original slideshow flow
+  setTimeout(() => {
+    scheduleTimeline(); // This will recalc day/night, alerts, and start the slideshow from the beginning
+  }, 500);
 }
-// ---------------------------------------------------
 
 function loadInfoBar(){
   getElement("infobar-local-logo").classList.add("shown");
@@ -353,15 +368,4 @@ function getTemperatureColor(temperature){
   var calculatedColor = [0, 0, 0];
   if(temperature < 40){
     var percent = (temperature + 20)/60;
-    calculatedColor = interpolateColor([24, 100, 171], [77, 171, 247], percent);
-  } else if(temperature < 60){
-    var percent = (temperature - 40)/20;
-    calculatedColor = interpolateColor([77, 171, 247], [255, 212, 59], percent);
-  } else if(temperature < 80){
-    var percent = (temperature - 60)/20;
-    calculatedColor = interpolateColor([255, 212, 59], [247, 103, 7], percent);
-  } else {
-    var percent = (temperature - 80)/20;
-    calculatedColor = interpolateColor([247, 103, 7], [201, 42, 42], percent);
-  }
-  return 'rgb(' + calculatedColor[0] + ', ' + calculatedColor[1] + ', ' + calculatedColor
+    calculatedColor = interpolateColor([24, 100, 171], [77
