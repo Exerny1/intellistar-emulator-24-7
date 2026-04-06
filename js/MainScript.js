@@ -255,17 +255,17 @@ function clearEnd(){
 }
 
 function silentRestart(){
-  // Clear all pending timeouts to prevent "ghost" slides
   var id = window.setTimeout(function() {}, 0);
   while (id--) { if (id > 20) window.clearTimeout(id); }
   
-  // Reset all positions and classes
   const subPageElements = document.querySelectorAll('.subpage');
   subPageElements.forEach(el => {
+    el.style.transition = 'none';
     el.style.visibility = 'hidden';
     el.style.top = '1080px';
     el.style.opacity = '1';
     el.classList.remove('shown', 'hidden');
+    void el.offsetWidth;
   });
 
   const resetList = [
@@ -278,9 +278,13 @@ function silentRestart(){
   resetList.forEach(id => {
     let el = getElement(id);
     if(el) {
-        el.classList.remove('shown', 'hidden', 'expand', 'above-screen', 'progress');
+        el.style.transition = 'none';
+        el.classList.remove('shown', 'hidden', 'expand', 'above-screen', 'progress', 'extend');
         el.style.top = '';
         el.style.opacity = '';
+        el.style.left = '';
+        void el.offsetWidth;
+        el.style.transition = '';
     }
   });
 
@@ -288,7 +292,6 @@ function silentRestart(){
     getElement('background-image').classList.add("below-screen");
   }
 
-  // RE-START TRIGGER: Fetch new data then startGreeting again
   currentLogoIndex = 0;
   currentLogo = undefined;
 
@@ -296,9 +299,9 @@ function silentRestart(){
     if (typeof fetchCurrentWeather === 'function') {
       fetchCurrentWeather(); 
     } else {
-      scheduleTimeline(); // If manual data, just restart the timeline
+      scheduleTimeline(); 
     }
-  }, 500);
+  }, 100);
 }
 
 function loadInfoBar(){
