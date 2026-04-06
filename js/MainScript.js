@@ -251,12 +251,17 @@ function clearElements(){
 function clearEnd(){
   getElement('background-image').classList.add("above-screen");
   getElement('content-container').classList.add("above-screen");
-  setTimeout(silentRestart, 1000);
+  setTimeout(silentRestart, 1200);
 }
 
 function silentRestart(){
+  // Clear all pending timeouts to prevent "ghost" slides
   var id = window.setTimeout(function() {}, 0);
   while (id--) { if (id > 20) window.clearTimeout(id); }
+  
+  currentLogoIndex = 0;
+  currentLogo = undefined;
+  if (typeof setClockTime === 'function') setClockTime();
   
   const subPageElements = document.querySelectorAll('.subpage');
   subPageElements.forEach(el => {
@@ -291,15 +296,12 @@ function silentRestart(){
   if (getElement('background-image')) {
     getElement('background-image').classList.add("below-screen");
   }
-
-  currentLogoIndex = 0;
-  currentLogo = undefined;
-
+  
   setTimeout(() => {
     if (typeof fetchCurrentWeather === 'function') {
       fetchCurrentWeather(); 
     } else {
-      scheduleTimeline(); 
+      scheduleTimeline();
     }
   }, 100);
 }
