@@ -281,7 +281,7 @@ function silentRestart(){
   resetList.forEach(id => {
     let el = getElement(id);
     if(el) {
-        el.classList.remove('shown', 'hidden', 'expand', 'above-screen', 'progress', 'extend');
+        el.className = id; 
         el.style.top = '';
         el.style.opacity = '';
         el.style.left = '';
@@ -292,7 +292,6 @@ function silentRestart(){
     getElement('background-image').classList.add("below-screen");
   }
   
-  // Call the refresh directly instead of wrapping in another timeout
   if (typeof fetchCurrentWeather === 'function') {
     fetchCurrentWeather(); 
   } else {
