@@ -17,7 +17,7 @@ var currentLogoIndex = 0;
 var pageOrder;
 var music;
 
-// ✅ NEW: track timeouts
+// ✅ ONLY ADDITION: timeout tracking
 let activeTimeouts = [];
 
 function setT(fn, delay, ...args){
@@ -124,7 +124,7 @@ function clearGreetingPage(){
   getElement('local-logo-container').classList.remove('shown');
   getElement('hello-text-container').classList.add('hidden');
   getElement("hello-location-container").classList.add("hidden");
-  
+
   schedulePages();
   loadInfoBar();
   revealTimeline();
@@ -132,17 +132,18 @@ function clearGreetingPage(){
 }
 
 function schedulePages(){
-  var cumulativeTime = 0;
+  var cumlativeTime = 0;
+
   for(var p = 0; p < pageOrder.length; p++){
     for (var s = 0; s < pageOrder[p].subpages.length; s++) {
 
-      var startTime = cumulativeTime;
-      var clearTime = cumulativeTime + pageOrder[p].subpages[s].duration;
+      var startTime = cumlativeTime;
+      var clearTime = cumlativeTime + pageOrder[p].subpages[s].duration;
 
       setT(executePage, startTime, p, s);
       setT(clearPage, clearTime, p, s);
 
-      cumulativeTime = clearTime;
+      cumlativeTime = clearTime;
     }
   }
 }
@@ -151,7 +152,6 @@ function executePage(pageIndex, subPageIndex){
   var currentPage = pageOrder[pageIndex];
   var currentSubPageName = currentPage.subpages[subPageIndex].name;
   var currentSubPageElement = getElement(currentSubPageName);
-  var currentSubPageDuration = currentPage.subpages[subPageIndex].duration;
 
   if(!currentSubPageElement) return;
 
@@ -170,13 +170,13 @@ function executePage(pageIndex, subPageIndex){
       currentPage.subpages.forEach(sp => pageTime += sp.duration);
       getElement('progressbar').style.transitionDuration = pageTime + "ms";
       getElement('progressbar').classList.add('progress');
-      getElement('timeline-event-container').style.left = (-280*pageIndex) + "px";
-      getElement('progress-stack').style.left = (-280*pageIndex) + "px";
+      getElement('timeline-event-container').style.left = (-280*pageIndex).toString() + "px";
+      getElement('progress-stack').style.left = (-280*pageIndex).toString() + "px";
   }
 
   if(currentSubPageName == "current-page"){
     setT(loadCC, 800);
-    setT(scrollCC, currentSubPageDuration / 2);
+    setT(scrollCC, 1000);
   }
 }
 
@@ -189,7 +189,7 @@ function clearPage(pageIndex, subPageIndex){
   if(!currentSubPageElement) return;
 
   currentSubPageElement.style.top = '-1080px';
-  
+
   if(isLastPage) {
       currentSubPageElement.style.opacity = '0';
       endSequence();
@@ -214,10 +214,9 @@ function clearEnd(){
   setT(silentRestart, 1200);
 }
 
-// ✅ FIXED LOOP RESET
+// ✅ FIXED ONLY THIS
 function silentRestart(){
 
-  // Only clear OUR timeouts
   activeTimeouts.forEach(id => clearTimeout(id));
   activeTimeouts = [];
 
