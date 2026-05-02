@@ -6,11 +6,11 @@ const MULTIPLE = [{name: "Alerts", subpages: [{name: "multiple-alerts-page", dur
 
 const WEEKDAY = ["SUN","MON","TUES","WED","THU","FRI","SAT"];
 
-const jingle = new Audio("assets/music/jingle.wav")
-const crawlSpeedCasual = 10; 
-const crawlSpeedFast = 20; 
-const crawlScreenTime = 45; 
-const crawlSpace = 70; 
+const jingle = new Audio("assets/music/jingle.wav");
+const crawlSpeedCasual = 10;
+const crawlSpeedFast = 20;
+const crawlScreenTime = 45;
+const crawlSpace = 70;
 
 var isDay = true;
 var currentLogo;
@@ -19,10 +19,10 @@ var pageOrder;
 var music;
 
 window.onload = function () {
-  CONFIG.addLocationOption('airport-code', 'Airport', 'ATL or KATL')
-  CONFIG.addLocationOption('zip-code', 'Postal', '00000')
-  CONFIG.addOption('crawlText', 'Crawl Text', 'Text that scrolls along the bottom')
-  CONFIG.addOption('greetingText', 'Greeting Text', 'Message (or joke) that appears at the start')
+  CONFIG.addLocationOption('airport-code', 'Airport', 'ATL or KATL');
+  CONFIG.addLocationOption('zip-code', 'Postal', '00000');
+  CONFIG.addOption('crawlText', 'Crawl Text', 'Text that scrolls along the bottom');
+  CONFIG.addOption('greetingText', 'Greeting Text', 'Message (or joke) that appears at the start');
   CONFIG.load();
 
   preLoadMusic();
@@ -55,6 +55,17 @@ function scheduleTimeline(){
   setInformation();
 }
 
+function revealTimeline(){
+  getElement('timeline-event-container').classList.add('shown');
+  getElement('progressbar-container').classList.add('shown');
+  getElement('logo-stack').classList.add('shown');
+
+  var timelineElements = document.querySelectorAll(".timeline-item");
+  for (var i = 0; i < timelineElements.length; i++) {
+    timelineElements[i].style.top = '0px';
+  }
+}
+
 function setInformation(){
   if (typeof setGreetingPage === 'function') setGreetingPage();
   checkStormMusic();
@@ -66,7 +77,6 @@ function setInformation(){
   if (typeof setTimelineEvents === 'function') setTimelineEvents();
 
   hideSettings();
-
   setTimeout(startAnimation, 1000);
 }
 
@@ -77,7 +87,9 @@ function startAnimation(){
   executeGreetingPage();
 }
 
-function startMusic(){ if(music) music.play(); }
+function startMusic(){
+  if(music) music.play();
+}
 
 function executeGreetingPage(){
   getElement('background-image').classList.remove("below-screen");
@@ -88,7 +100,7 @@ function executeGreetingPage(){
   getElement('greeting-text').classList.add('shown');
   getElement('local-logo-container').classList.add("shown");
 
-  setTimeout(clearGreetingPage, 6000); 
+  setTimeout(clearGreetingPage, 6000);
 }
 
 function clearGreetingPage(){
@@ -170,48 +182,43 @@ function clearElements(){
   setTimeout(clearEnd, 2000);
 }
 
+/* =========================================================
+   ✅ FIX: SAFE FULL RESTART (NO STARTUP INTERFERENCE)
+   ========================================================= */
+
 function clearEnd(){
-  setTimeout(fullRestartCycle, 1200);
-}
+  setTimeout(() => {
 
-/* =========================
-   🔴 FIXED RESTART SYSTEM
-   ========================= */
+    const subPageElements = document.querySelectorAll('.subpage');
 
-function fullRestartCycle(){
+    subPageElements.forEach(el => {
+      el.style.transition = 'none';
+      el.style.visibility = 'hidden';
+      el.style.top = '1080px';
+      el.style.left = '0px';
+      el.style.opacity = '1';
+    });
 
-  const subPageElements = document.querySelectorAll('.subpage');
+    const progress = getElement('progressbar');
+    if (progress) {
+      progress.classList.remove('progress');
+      progress.style.transitionDuration = '0ms';
+    }
 
-  subPageElements.forEach(el => {
-    el.style.transition = 'none';
-    el.style.visibility = 'hidden';
-    el.style.top = '1080px';
-    el.style.left = '0px';
-    el.style.opacity = '1';
-  });
+    getElement('timeline-event-container').style.left = '0px';
+    getElement('progress-stack').style.left = '0px';
+    getElement('logo-stack').style.left = '0px';
 
-  const progress = getElement('progressbar');
-  if (progress) {
-    progress.classList.remove('progress');
-    progress.style.transitionDuration = '0ms';
-  }
+    currentLogoIndex = 0;
+    currentLogo = undefined;
 
-  getElement('timeline-event-container').style.left = '0px';
-  getElement('progress-stack').style.left = '0px';
-  getElement('logo-stack').style.left = '0px';
+    void document.body.offsetHeight;
 
-  currentLogoIndex = 0;
-  currentLogo = undefined;
-
-  void document.body.offsetHeight;
-
-  if (typeof fetchCurrentWeather === 'function') {
-    fetchCurrentWeather();
-  } else {
     scheduleTimeline();
-  }
+
+  }, 1200);
 }
 
-/* ========================= */
+/* ========================================================= */
 
 function getElement(id){ return document.getElementById(id); }
