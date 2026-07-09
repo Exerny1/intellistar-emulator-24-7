@@ -20,7 +20,10 @@
   left: 150px;
   overflow: hidden;
   transition: width 0.8s;
-  background-color: rgba(0, 0, 0, 0.5);
+
+  /* Invisible but still operating */
+  opacity: 0;
+  pointer-events: none;
 }
 
 #crawler-container.shown{
