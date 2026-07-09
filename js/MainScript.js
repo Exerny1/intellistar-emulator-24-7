@@ -99,8 +99,8 @@ function setInformation() {
   setTimeout(startAnimation, 1000);
 }
 
-function setMainBackground() {
-  getElement('background-image').style.backgroundImage = 'url(https://picsum.photos/1920/1080/?random)';
+function setMainBackground(){
+  getElement('background-image').style.backgroundImage = 'url(https://picsum.photos/id/215/1920/1080)';
 }
 
 function checkStormMusic() {
