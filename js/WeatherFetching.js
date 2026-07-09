@@ -24,6 +24,17 @@ function fetchAlerts(){
           );
           if (hasWarning) {
             alertAudio.play().catch(e => console.log("Audio interaction required"));
+            if (hasWarning) {
+  document.documentElement.style.setProperty('--bar-top', '#d32f2f');
+  document.documentElement.style.setProperty('--bar-bottom', '#8b0000');
+  document.documentElement.style.setProperty('--metal-top', '#121212');
+  document.documentElement.style.setProperty('--metal-bottom', '#1e1e1e');
+} else {
+  document.documentElement.style.setProperty('--bar-top', '#0099cc');
+  document.documentElement.style.setProperty('--bar-bottom', '#0077aa');
+  document.documentElement.style.setProperty('--metal-top', '#141a1f');
+  document.documentElement.style.setProperty('--metal-bottom', '#1b2229');
+}
           }
         }
 
