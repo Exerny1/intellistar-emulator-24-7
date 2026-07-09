@@ -50,11 +50,15 @@ window.onload = function () {
   setMainBackground();
   resizeWindow();
   setClockTime();
+  
   if (!CONFIG.loop) {
     getElement("settings-container").style.display = 'block';
     guessZipCode();
   } else {
-    if (typeof fetchCurrentWeather === 'function') fetchCurrentWeather();
+    // 1-second safety delay to allow config to completely settle
+    setTimeout(() => {
+      if (typeof fetchCurrentWeather === 'function') fetchCurrentWeather();
+    }, 1000);
   }
 };
 
@@ -279,49 +283,13 @@ function clearEnd() {
 }
 
 function silentRestart() {
-  let id = window.setTimeout(function () { }, 0);
-  while (id--) { if (id > 20) window.clearTimeout(id); }
-
   currentLogoIndex = 0;
   currentLogo = undefined;
-  pageOrder = undefined;
-
-  const subPageElements = document.querySelectorAll('.subpage');
-  subPageElements.forEach(el => {
-    el.style.transition = 'none';
-    el.style.visibility = 'hidden';
-    el.style.top = '1080px';
-    el.style.opacity = '1';
-    el.classList.remove('shown', 'hidden');
-  });
-
-  const resetList = [
-    'infobar-twc-logo', 'infobar-local-logo', 'infobar-location-container',
-    'infobar-time-container', 'outlook-titlebar', 'content-container',
-    'background-image', 'hello-text', 'hello-location-text', 'greeting-text',
-    'crawler-container', 'progressbar', 'hello-text-container', 'hello-location-container',
-    'local-logo-container', 'timeline-event-container', 'progress-stack', 'progressbar-container'
-  ];
-
-  resetList.forEach(id => {
-    let el = getElement(id);
-    if (el) {
-      el.classList.remove('shown', 'hidden', 'expand', 'above-screen');
-      el.style.top = '';
-      el.style.opacity = '';
-      el.style.left = '';
-    }
-  });
-
-  if (getElement('background-image')) {
-    getElement('background-image').classList.add("below-screen");
-  }
-
-  if (typeof fetchCurrentWeather === 'function') {
-    fetchCurrentWeather();
-  } else {
-    scheduleTimeline();
-  }
+  
+  // Clean, native reload approach that eliminates stale state bugs
+  setTimeout(() => {
+    location.reload();
+  }, 500);
 }
 
 function loadInfoBar() {
