@@ -19,17 +19,17 @@
     linear-gradient(115deg, 
       transparent 0%, 
       transparent 35%, 
-      rgba(255, 255, 255, 0.14) 50%, 
+      rgba(255, 255, 255, 0.12) 50%, 
       transparent 65%, 
       transparent 100%
     ),
-    /* THE BARS (17.5% Drop) */
+    /* THE BARS (IntelliStar 2 xD Automated Framework) */
     linear-gradient(to bottom,
-      #1b2229 0%, #141a1f 17.5%,         
-      #0099cc 17.5%, #0077aa 18.5%,      
+      #0e1318 0%, #151c24 17.5%,         /* Deepened 2 xD header navy-charcoal */
+      #00aaff 17.5%, #005588 18.5%,      /* Cleaned up neon blue top accent rules */
       transparent 18.5%, transparent 88%, 
-      #0077aa 88%, #0099cc 89%,          
-      #141a1f 89%, #1b2229 100%          
+      #005588 88%, #00aaff 89%,          /* Balanced bottom accent rules */
+      #151c24 89%, #0e1318 100%          /* Authentic 2 xD automated LDL base */
     );
 
   background-size: 200% 100%, 100% 100%;
