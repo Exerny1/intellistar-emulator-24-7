@@ -7,9 +7,9 @@
   height: 100% !important;
   z-index: 0 !important;
   
-  /* THE MODERN WEATHERSCAN OS GRADIENT BASE */
-  /* This creates that premium, smooth dark-blue/charcoal vignette across the entire background */
-  background: radial-gradient(circle at 30% 35%, #18222b 0%, #070a0e 100%) !important;
+  /* THE OS SPOTLIGHT VIGNETTE */
+  /* This paints the entire screen canvas in that smooth, deep dark-navy glow */
+  background: radial-gradient(circle at 30% 35%, #1c2631 0%, #0a0e12 100%) !important;
 }
 
 #background-image::after {
@@ -17,18 +17,15 @@
   position: absolute;
   top: 0; left: 0; width: 100%; height: 100%; z-index: 1;
   
-  background-image: 
-    /* THE HORIZONTAL FRAME BARS (17.5% Top / 88% Bottom Sizing) */
-    /* Deep dark matte charcoal bands with razor-thin modern blue dividing rules */
-    linear-gradient(to bottom,
-      #131a20 0%, #0c1115 17.5%,         /* Top Header Bar */
-      #0099cc 17.5%, #006699 18.2%,      /* Top Blue Accent Line */
-      
-      transparent 18.2%, transparent 88%, /* Middle section is transparent so your main content shines */
-      
-      #006699 88%, #0099cc 88.7%,        /* Bottom Blue Accent Line */
-      #0c1115 88.7%, #131a20 100%        /* Bottom LDL Bar */
-    );
+  /* THE ARCHITECTURE BARS (No Loud Blue Lines) */
+  /* Subdued, semi-translucent dark bands that frame your layout cleanly */
+  background-image: linear-gradient(to bottom,
+    rgba(14, 20, 26, 0.85) 0%, rgba(10, 14, 18, 0.85) 17.5%,   /* Sleek Top Header Space */
+    
+    transparent 17.5%, transparent 89%,                        /* Completely open middle canvas */
+    
+    rgba(10, 14, 18, 0.9) 89%, rgba(14, 20, 26, 0.9) 100%       /* Minimalist Bottom LDL Space */
+  );
 
   background-size: 100% 100%;
   background-repeat: no-repeat;
