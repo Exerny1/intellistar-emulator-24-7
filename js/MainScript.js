@@ -100,7 +100,7 @@ function setInformation() {
 }
 
 function setMainBackground(){
-  getElement('background-image').style.backgroundImage = 'url(https://picsum.photos/id/215/1920/1080)';
+  getElement('background-image').style.backgroundImage = 'url(IMG_8852.png)';
 }
 
 function checkStormMusic() {
