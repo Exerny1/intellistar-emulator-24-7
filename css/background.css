@@ -8,7 +8,6 @@
   z-index: 0 !important;
   background-size: cover !important;
   background-position: center !important;
-  /* Your real-life background image loads here completely clean and untouched */
 }
 
 #background-image::after {
@@ -16,20 +15,28 @@
   position: absolute;
   top: 0; left: 0; width: 100%; height: 100%; z-index: 1;
   
-  /* THE INTELLISTAR 2 xD AUTOMATED GRAPHIC BARS */
   background-image: 
-    /* TOP HEADER: Built-in dark navy-charcoal gradient block */
-    linear-gradient(to bottom, #1c2631 0%, #0d1217 17.5%),
+    /* THE TOP HEADER LAYER (17.5% Drop) */
+    /* Deep navy gradient topped off with a razor-thin 1px bright cyan edge rule */
+    linear-gradient(to bottom,
+      #111a24 0%, 
+      #080d12 96%, 
+      #00aaff 96%, /* Ultra-thin light cyan accent edge line */
+      #00aaff 100%
+    ),
     
-    /* BOTTOM LDL: Built-in deep slate gradient block */
-    linear-gradient(to bottom, #0d1217 0%, #10161c 100%);
+    /* THE BOTTOM LDL LAYER (Remains 12% at the base) */
+    /* Mirror image: crisp 1px cyan top rule fading down into rich navy-slate */
+    linear-gradient(to bottom,
+      #00aaff 0%,  /* Ultra-thin light cyan accent edge line */
+      #00aaff 4%,  
+      #080d12 4%, 
+      #111a24 100%
+    );
 
-  /* Position the top bar at the top, and the bottom bar at the bottom */
+  /* Lock them to the edges, leaving the exact center 100% transparent */
   background-position: top, bottom;
-  
-  /* Matches your exact layout architecture dimensions */
   background-size: 100% 17.5%, 100% 12%; 
-  
   background-repeat: no-repeat;
   pointer-events: none;
 }
