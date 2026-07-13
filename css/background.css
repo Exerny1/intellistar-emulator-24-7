@@ -7,9 +7,9 @@
   height: 100% !important;
   z-index: 0 !important;
   
-  /* THE AUTHENTIC INTELLISTAR 2 xD CANVAS */
-  /* This places the signature 2019-present deep navy ambient spotlight behind your fixed UI */
-  background: radial-gradient(circle at 30% 35%, #1c2631 0%, #0a0e12 100%) !important;
+  /* THE MODERN WEATHERSCAN OS GRADIENT BASE */
+  /* This creates that premium, smooth dark-blue/charcoal vignette across the entire background */
+  background: radial-gradient(circle at 30% 35%, #18222b 0%, #070a0e 100%) !important;
 }
 
 #background-image::after {
@@ -18,34 +18,19 @@
   top: 0; left: 0; width: 100%; height: 100%; z-index: 1;
   
   background-image: 
-    /* THE SHINE SWEEP */
-    linear-gradient(115deg, 
-      transparent 0%, 
-      transparent 35%, 
-      rgba(255, 255, 255, 0.14) 50%, 
-      transparent 65%, 
-      transparent 100%
-    ),
-    /* THE BARS (Your Exact 17.5% Layout Structure) */
-    /* Updated with the rich, deep 2 xD tones and high-definition blue accent rules */
+    /* THE HORIZONTAL FRAME BARS (17.5% Top / 88% Bottom Sizing) */
+    /* Deep dark matte charcoal bands with razor-thin modern blue dividing rules */
     linear-gradient(to bottom,
-      #141a21 0%, #0d1217 17.5%,         /* Deep 2 xD Header Bar */
-      #00aaff 17.5%, #005588 18.5%,      /* Punchy Blue Top Accent Line */
-      transparent 18.5%, transparent 88%, 
-      #005588 88%, #00aaff 89%,          /* Punchy Blue Bottom Accent Line */
-      #0d1217 89%, #141a21 100%          /* Deep 2 xD LDL Footer Bar */
+      #131a20 0%, #0c1115 17.5%,         /* Top Header Bar */
+      #0099cc 17.5%, #006699 18.2%,      /* Top Blue Accent Line */
+      
+      transparent 18.2%, transparent 88%, /* Middle section is transparent so your main content shines */
+      
+      #006699 88%, #0099cc 88.7%,        /* Bottom Blue Accent Line */
+      #0c1115 88.7%, #131a20 100%        /* Bottom LDL Bar */
     );
 
-  background-size: 200% 100%, 100% 100%;
+  background-size: 100% 100%;
   background-repeat: no-repeat;
-  
-  /* Retains your exact 14s animation mechanics */
-  animation: shineSweep 14s infinite linear;
   pointer-events: none;
-}
-
-@keyframes shineSweep {
-  0% { background-position: 150% 0, 0 0; }
-  28% { background-position: -50% 0, 0 0; }
-  100% { background-position: -50% 0, 0 0; }
 }
