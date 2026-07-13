@@ -7,19 +7,45 @@
   height: 100% !important;
   z-index: 0 !important;
   
-  /* THE INTELLISTAR 2 xD OPERATING SYSTEM RENDER */
-  background-image: 
-    /* LAYER 1: Your Original 17.5% Layout Bars & Accent Lines */
-    linear-gradient(to bottom,
-      #1b2229 0%, #141a1f 17.5%,         
-      #0099cc 17.5%, #0077aa 18.5%,      
-      transparent 18.5%, transparent 88%, 
-      #0077aa 88%, #0099cc 89%,          
-      #141a1f 89%, #1b2229 100%          
-    ),
-    /* LAYER 2: The Signature Top-Left Spotlight Vignette Canvas */
-    radial-gradient(circle at 30% 35%, #1c2631 0%, #0a0e12 100%) !important;
+  /* THE AUTHENTIC INTELLISTAR 2 xD CANVAS */
+  /* This places the signature 2019-present deep navy ambient spotlight behind your fixed UI */
+  background: radial-gradient(circle at 30% 35%, #1c2631 0%, #0a0e12 100%) !important;
+}
 
-  background-size: 100% 100%;
+#background-image::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%; z-index: 1;
+  
+  background-image: 
+    /* THE SHINE SWEEP */
+    linear-gradient(115deg, 
+      transparent 0%, 
+      transparent 35%, 
+      rgba(255, 255, 255, 0.14) 50%, 
+      transparent 65%, 
+      transparent 100%
+    ),
+    /* THE BARS (Your Exact 17.5% Layout Structure) */
+    /* Updated with the rich, deep 2 xD tones and high-definition blue accent rules */
+    linear-gradient(to bottom,
+      #141a21 0%, #0d1217 17.5%,         /* Deep 2 xD Header Bar */
+      #00aaff 17.5%, #005588 18.5%,      /* Punchy Blue Top Accent Line */
+      transparent 18.5%, transparent 88%, 
+      #005588 88%, #00aaff 89%,          /* Punchy Blue Bottom Accent Line */
+      #0d1217 89%, #141a21 100%          /* Deep 2 xD LDL Footer Bar */
+    );
+
+  background-size: 200% 100%, 100% 100%;
   background-repeat: no-repeat;
+  
+  /* Retains your exact 14s animation mechanics */
+  animation: shineSweep 14s infinite linear;
+  pointer-events: none;
+}
+
+@keyframes shineSweep {
+  0% { background-position: 150% 0, 0 0; }
+  28% { background-position: -50% 0, 0 0; }
+  100% { background-position: -50% 0, 0 0; }
 }
