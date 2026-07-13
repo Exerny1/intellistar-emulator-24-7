@@ -100,7 +100,7 @@ function setInformation() {
 }
 
 function setMainBackground(){
-  getElement('background-image').style.backgroundImage = 'url(IMG_8852.png)';
+  getElement('background-image').style.backgroundImage = 'url(assets/IMG_8852.png)';
 }
 
 function checkStormMusic() {
@@ -391,6 +391,11 @@ function showCrawl() {
     getElement('crawler-container').classList.add("shown");
     setTimeout(startCrawl, 400);
   }
+}
+
+// Fixed background image location inside setMainBackground
+function setMainBackground(){
+  getElement('background-image').style.backgroundImage = 'url(assets/IMG_8852.png)';
 }
 
 function hideCrawl() { getElement('crawler-container').classList.add("hidden"); }
