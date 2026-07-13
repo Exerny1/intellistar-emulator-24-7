@@ -23,13 +23,13 @@
       transparent 65%, 
       transparent 100%
     ),
-    /* THE BARS (17.5% Drop) */
+    /* THE BARS (Updated for Current TWC Look) */
     linear-gradient(to bottom,
-      #1b2229 0%, #141a1f 17.5%,         
-      #0099cc 17.5%, #0077aa 18.5%,      
+      #1b2229 0%, #141a1f 17.5%,         /* Top Dark Bar */
+      #0099cc 17.5%, #0077aa 18.5%,      /* Top Blue Accent Line */
       transparent 18.5%, transparent 88%, 
-      #0077aa 88%, #0099cc 89%,          
-      #141a1f 89%, #1b2229 100%          
+      #cccccc 88%, #cccccc 88.5%,        /* Modern Thin Gray Separator Line */
+      #ffffff 88.5%, #ffffff 100%        /* Stark White Bottom Ticker Strip */
     );
 
   background-size: 200% 100%, 100% 100%;
