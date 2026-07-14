@@ -13,30 +13,32 @@
 #background-image::after {
   content: "";
   position: absolute;
-  top: 0; left: 0; width: 100%; height: 100%; z-index: 1;
+  top: 0; 
+  left: 0; 
+  width: 100%; 
+  height: 100%; 
+  z-index: 1;
   
-  background-image: 
-    /* THE TOP HEADER LAYER (17.5% Drop) */
-    /* Deep navy gradient topped off with a razor-thin 1px bright cyan edge rule */
-    linear-gradient(to bottom,
-      #111a24 0%, 
-      #080d12 96%, 
-      #00aaff 96%, /* Ultra-thin light cyan accent edge line */
-      #00aaff 100%
-    ),
-    
-    /* THE BOTTOM LDL LAYER (Remains 12% at the base) */
-    /* Mirror image: crisp 1px cyan top rule fading down into rich navy-slate */
-    linear-gradient(to bottom,
-      #00aaff 0%,  /* Ultra-thin light cyan accent edge line */
-      #00aaff 4%,  
-      #080d12 4%, 
-      #111a24 100%
-    );
+  /* One single, continuous gradient matching the dark steel-blue style of your image */
+  background: linear-gradient(135deg, #1e2732 0%, #0a0d11 100%);
 
-  /* Lock them to the edges, leaving the exact center 100% transparent */
-  background-position: top, bottom;
-  background-size: 100% 17.5%, 100% 12%; 
-  background-repeat: no-repeat;
+  /* A mask that keeps the gradient visible ONLY at the top 17.5% and bottom 12% */
+  -webkit-mask-image: linear-gradient(to bottom, 
+    black 0%, 
+    black 17.5%, 
+    transparent 17.5%, 
+    transparent 88%, 
+    black 88%, 
+    black 100%
+  );
+  mask-image: linear-gradient(to bottom, 
+    black 0%, 
+    black 17.5%, 
+    transparent 17.5%, 
+    transparent 88%, 
+    black 88%, 
+    black 100%
+  );
+
   pointer-events: none;
 }
