@@ -13,6 +13,14 @@
   transition: top .4s;
   top: 100%;
   float: left;
+  
+  /* --- Added for the new logo image --- */
+  background-image: url('assets/IMG_8857.jpeg');
+  background-size: contain; /* Ensures the whole image fits without stretching */
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 150px;  /* You may need to adjust this width to match your new logo's aspect ratio */
+  height: 100%;  /* Fills the 95px container height */
 }
 
 #infobar-local-logo {
