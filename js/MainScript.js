@@ -395,7 +395,7 @@ function showCrawl() {
 
 // Fixed background image location inside setMainBackground
 function setMainBackground(){
-  getElement('background-image').style.backgroundImage = 'url(assets/IMG_8852.png)';
+  getElement('background-image').style.backgroundImage = 'url(assets/IMG_8862.jpeg)';
 }
 
 function hideCrawl() { getElement('crawler-container').classList.add("hidden"); }
