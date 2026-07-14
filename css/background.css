@@ -22,21 +22,21 @@
   /* One single, continuous gradient matching the dark steel-blue style of your image */
   background: linear-gradient(135deg, #1e2732 0%, #0a0d11 100%);
 
-  /* The mask has been adjusted to keep the bottom gradient visible ONLY for the bottom 6% (from 94% to 100%) */
+  /* Changed from 94% to 91% to make the bottom bar taller */
   -webkit-mask-image: linear-gradient(to bottom, 
     black 0%, 
     black 17.5%, 
     transparent 17.5%, 
-    transparent 94%, 
-    black 94%, 
+    transparent 91%, 
+    black 91%, 
     black 100%
   );
   mask-image: linear-gradient(to bottom, 
     black 0%, 
     black 17.5%, 
     transparent 17.5%, 
-    transparent 94%, 
-    black 94%, 
+    transparent 91%, 
+    black 91%, 
     black 100%
   );
 
