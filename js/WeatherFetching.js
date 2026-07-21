@@ -20,7 +20,7 @@ function fetchAlerts(){
         const alertAudio = document.getElementById('alert-sound');
         const bgElem = document.getElementById('background-image');
 
-        if (data.features.length > 0) {
+        if (data.features && data.features.length > 0) {
           const hasWarning = data.features.some(f =>
             f.properties.event.toUpperCase().includes("WARNING")
           );
@@ -28,19 +28,19 @@ function fetchAlerts(){
           if (hasWarning) {
             if (alertAudio) alertAudio.play().catch(e => console.log("Audio interaction required"));
             
-            // ⚠️ SEVERE WARNING MODE
-            if (bgElem) bgElem.style.backgroundImage = 'url("IMG_8966.jpeg")';
+            // ⚠️ SEVERE WARNING MODE: Warning Image + Red Gradient
+            if (bgElem) bgElem.style.backgroundImage = 'url("assets/IMG_8966.jpeg")';
             document.documentElement.style.setProperty('--bg-top', '#2b0b0b');
             document.documentElement.style.setProperty('--bg-bottom', '#0f0505');
           } else {
-            // 🔵 NORMAL MODE
-            if (bgElem) bgElem.style.backgroundImage = 'url("IMG_8852.png")';
+            // 🔵 NORMAL MODE: Standard Image + Steel Blue Gradient
+            if (bgElem) bgElem.style.backgroundImage = 'url("assets/IMG_8852.png")';
             document.documentElement.style.setProperty('--bg-top', '#1e2732');
             document.documentElement.style.setProperty('--bg-bottom', '#0a0d11');
           }
         } else {
-          // 🔵 NO ALERTS ACTIVE (DEFAULT NORMAL MODE)
-          if (bgElem) bgElem.style.backgroundImage = 'url("IMG_8852.png")';
+          // 🔵 NO ALERTS: Standard Image + Steel Blue Gradient
+          if (bgElem) bgElem.style.backgroundImage = 'url("assets/IMG_8852.png")';
           document.documentElement.style.setProperty('--bg-top', '#1e2732');
           document.documentElement.style.setProperty('--bg-bottom', '#0a0d11');
         }
