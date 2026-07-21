@@ -34,13 +34,13 @@ function fetchAlerts(){
             document.documentElement.style.setProperty('--bg-bottom', '#0f0505');
           } else {
             // 🔵 NORMAL MODE: Standard Image + Steel Blue Gradient
-            if (bgElem) bgElem.style.backgroundImage = 'url("assets/IMG_8852.png")';
+            if (bgElem) bgElem.style.backgroundImage = 'url("assets/IMG_8862.jpeg")';
             document.documentElement.style.setProperty('--bg-top', '#1e2732');
             document.documentElement.style.setProperty('--bg-bottom', '#0a0d11');
           }
         } else {
           // 🔵 NO ALERTS: Standard Image + Steel Blue Gradient
-          if (bgElem) bgElem.style.backgroundImage = 'url("assets/IMG_8852.png")';
+          if (bgElem) bgElem.style.backgroundImage = 'url("assets/IMG_8862.jpeg")';
           document.documentElement.style.setProperty('--bg-top', '#1e2732');
           document.documentElement.style.setProperty('--bg-bottom', '#0a0d11');
         }
