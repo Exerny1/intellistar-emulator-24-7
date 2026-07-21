@@ -18,22 +18,32 @@ function fetchAlerts(){
         }
 
         const alertAudio = document.getElementById('alert-sound');
-        if (alertAudio && data.features.length > 0) {
+        const bgElem = document.getElementById('background-image');
+
+        if (data.features.length > 0) {
           const hasWarning = data.features.some(f =>
             f.properties.event.toUpperCase().includes("WARNING")
           );
-          if (hasWarning) {
-  alertAudio.play().catch(e => console.log("Audio interaction required"));
-  
-  // ⚠️ SEVERE WARNING MODE: Deep Crimson/Maroon Gradient
-  document.documentElement.style.setProperty('--bg-top', '#2b0b0b');
-  document.documentElement.style.setProperty('--bg-bottom', '#0f0505');
-} else {
-  // 🔵 NORMAL MODE: Dark Steel Blue Gradient
-  document.documentElement.style.setProperty('--bg-top', '#1e2732');
-  document.documentElement.style.setProperty('--bg-bottom', '#0a0d11');
-}
 
+          if (hasWarning) {
+            if (alertAudio) alertAudio.play().catch(e => console.log("Audio interaction required"));
+            
+            // ⚠️ SEVERE WARNING MODE
+            if (bgElem) bgElem.style.backgroundImage = 'url("IMG_8966.jpeg")';
+            document.documentElement.style.setProperty('--bg-top', '#2b0b0b');
+            document.documentElement.style.setProperty('--bg-bottom', '#0f0505');
+          } else {
+            // 🔵 NORMAL MODE
+            if (bgElem) bgElem.style.backgroundImage = 'url("IMG_8852.png")';
+            document.documentElement.style.setProperty('--bg-top', '#1e2732');
+            document.documentElement.style.setProperty('--bg-bottom', '#0a0d11');
+          }
+        } else {
+          // 🔵 NO ALERTS ACTIVE (DEFAULT NORMAL MODE)
+          if (bgElem) bgElem.style.backgroundImage = 'url("IMG_8852.png")';
+          document.documentElement.style.setProperty('--bg-top', '#1e2732');
+          document.documentElement.style.setProperty('--bg-bottom', '#0a0d11');
+        }
 
         if (data.features.length == 1) {
           alerts[0] = data.features[0].properties.event + '<br>' +
@@ -46,7 +56,7 @@ function fetchAlerts(){
         else {
           for(var i = 0; i < data.features.length; i++){
             alertCrawl = alertCrawl + " " + data.features[i].properties.description.replace("...", " ");
-            alerts[i] = data.features[i].properties.event
+            alerts[i] = data.features[i].properties.event;
           }
         }
 
@@ -57,7 +67,7 @@ function fetchAlerts(){
         alertsActive = alerts.length > 0;
         fetchForecast();
       });
-    })
+    });
 }
 
 function fetchForecast(){
