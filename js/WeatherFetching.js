@@ -23,20 +23,17 @@ function fetchAlerts(){
             f.properties.event.toUpperCase().includes("WARNING")
           );
           if (hasWarning) {
-            alertAudio.play().catch(e => console.log("Audio interaction required"));
-            if (hasWarning) {
-  document.documentElement.style.setProperty('--bar-top', '#d32f2f');
-  document.documentElement.style.setProperty('--bar-bottom', '#8b0000');
-  document.documentElement.style.setProperty('--metal-top', '#121212');
-  document.documentElement.style.setProperty('--metal-bottom', '#1e1e1e');
+  alertAudio.play().catch(e => console.log("Audio interaction required"));
+  
+  // ⚠️ SEVERE WARNING MODE: Deep Crimson/Maroon Gradient
+  document.documentElement.style.setProperty('--bg-top', '#2b0b0b');
+  document.documentElement.style.setProperty('--bg-bottom', '#0f0505');
 } else {
-  document.documentElement.style.setProperty('--bar-top', '#0099cc');
-  document.documentElement.style.setProperty('--bar-bottom', '#0077aa');
-  document.documentElement.style.setProperty('--metal-top', '#141a1f');
-  document.documentElement.style.setProperty('--metal-bottom', '#1b2229');
+  // 🔵 NORMAL MODE: Dark Steel Blue Gradient
+  document.documentElement.style.setProperty('--bg-top', '#1e2732');
+  document.documentElement.style.setProperty('--bg-bottom', '#0a0d11');
 }
-          }
-        }
+
 
         if (data.features.length == 1) {
           alerts[0] = data.features[0].properties.event + '<br>' +
