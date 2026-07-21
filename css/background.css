@@ -19,10 +19,10 @@
   height: 100%; 
   z-index: 1;
   
-  /* One single, continuous gradient matching the dark steel-blue style of your image */
-  background: linear-gradient(135deg, #1e2732 0%, #0a0d11 100%);
+  /* Reads the JS variables --bg-top and --bg-bottom (defaults to steel-blue) */
+  background: linear-gradient(135deg, var(--bg-top, #1e2732) 0%, var(--bg-bottom, #0a0d11) 100%);
 
-  /* Changed from 94% to 91% to make the bottom bar taller */
+  /* The mask framing the top and bottom */
   -webkit-mask-image: linear-gradient(to bottom, 
     black 0%, 
     black 17.5%, 
