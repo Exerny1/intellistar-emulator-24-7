@@ -28,10 +28,10 @@ function fetchAlerts(){
           if (hasWarning) {
             if (alertAudio) alertAudio.play().catch(e => console.log("Audio interaction required"));
             
-            // ⚠️ SEVERE WARNING MODE: Warning Image + Red Gradient
+            // ⚠️ SEVERE WARNING MODE: Warning Image + Steel Gray Gradient
             if (bgElem) bgElem.style.backgroundImage = 'url("assets/IMG_8966.jpeg")';
-            document.documentElement.style.setProperty('--bg-top', '#2b0b0b');
-            document.documentElement.style.setProperty('--bg-bottom', '#0f0505');
+            document.documentElement.style.setProperty('--bg-top', '#2c3238');
+            document.documentElement.style.setProperty('--bg-bottom', '#121518');
           } else {
             // 🔵 NORMAL MODE: Standard Image + Steel Blue Gradient
             if (bgElem) bgElem.style.backgroundImage = 'url("assets/IMG_8862.jpeg")';
