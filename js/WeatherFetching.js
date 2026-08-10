@@ -28,10 +28,10 @@ function fetchAlerts(){
           if (hasWarning) {
             if (alertAudio) alertAudio.play().catch(e => console.log("Audio interaction required"));
             
-            // ⚠️ SEVERE WARNING MODE: Warning Image + Steel Gray Gradient
-            if (bgElem) bgElem.style.backgroundImage = 'url("assets/IMG_8966.jpeg")';
-            document.documentElement.style.setProperty('--bg-top', '#2c3238');
-            document.documentElement.style.setProperty('--bg-bottom', '#121518');
+            // ⚠️ SEVERE WARNING MODE: Warning Image + Dark Steel Gray / Charcoal Gradient
+           if (bgElem) bgElem.style.backgroundImage = 'url("assets/IMG_8966.jpeg")';
+           document.documentElement.style.setProperty('--bg-top', '#1a1d20');
+           document.documentElement.style.setProperty('--bg-bottom', '#0a0b0c');
           } else {
             // 🔵 NORMAL MODE: Standard Image + Steel Blue Gradient
             if (bgElem) bgElem.style.backgroundImage = 'url("assets/IMG_8862.jpeg")';
