@@ -100,7 +100,7 @@ function setInformation() {
 }
 
 function setMainBackground(){
-  getElement('background-image').style.backgroundImage = 'url(assets/IMG_8852.png)';
+  getElement('background-image').style.backgroundImage = 'url(assets/C8486F3B-7236-439F-9EE9-87CE91E879C3.png)';
 }
 
 function checkStormMusic() {
