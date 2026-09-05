@@ -22,23 +22,14 @@
   /* Reads the JS variables --bg-top and --bg-bottom (defaults to steel-blue) */
   background: linear-gradient(135deg, var(--bg-top, #1e2732) 0%, var(--bg-bottom, #0a0d11) 100%);
 
-  /* The mask framing the top and bottom */
-  -webkit-mask-image: linear-gradient(to bottom, 
-    black 0%, 
-    black 17.5%, 
-    transparent 17.5%, 
-    transparent 91%, 
-    black 91%, 
-    black 100%
-  );
-  mask-image: linear-gradient(to bottom, 
-    black 0%, 
-    black 17.5%, 
-    transparent 17.5%, 
-    transparent 91%, 
-    black 91%, 
-    black 100%
-  );
+  /* Combined mask: Top/Bottom bars + Left/Right bars */
+  -webkit-mask-image: 
+    linear-gradient(to bottom, black 0%, black 17.5%, transparent 17.5%, transparent 91%, black 91%, black 100%),
+    linear-gradient(to right, black 0%, black 2%, transparent 2%, transparent 98%, black 98%, black 100%);
+  
+  mask-image: 
+    linear-gradient(to bottom, black 0%, black 17.5%, transparent 17.5%, transparent 91%, black 91%, black 100%),
+    linear-gradient(to right, black 0%, black 2%, transparent 2%, transparent 98%, black 98%, black 100%);
 
   pointer-events: none;
 }
