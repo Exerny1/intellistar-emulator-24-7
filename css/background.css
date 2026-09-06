@@ -25,11 +25,11 @@
   /* Combined mask: Top/Bottom bars + Left/Right bars */
   -webkit-mask-image: 
     linear-gradient(to bottom, black 0%, black 17.5%, transparent 17.5%, transparent 88%, black 88%, black 100%),
-    linear-gradient(to right, black 0%, black 2%, transparent 2%, transparent 98%, black 98%, black 100%);
+    linear-gradient(to right, black 0%, black 5%, transparent 5%, transparent 95%, black 95%, black 100%);
   
   mask-image: 
     linear-gradient(to bottom, black 0%, black 17.5%, transparent 17.5%, transparent 88%, black 88%, black 100%),
-    linear-gradient(to right, black 0%, black 2%, transparent 2%, transparent 98%, black 98%, black 100%);
+    linear-gradient(to right, black 0%, black 5%, transparent 5%, transparent 95%, black 95%, black 100%);
 
   pointer-events: none;
 }
